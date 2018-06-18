@@ -221,7 +221,7 @@
 #-------------------------------------------------------------------------------
 
 	#base='src/core'
-	dirs=( equalizer layout modifiers )
+	dirs=( debug equalizer elements layout modifiers )
 	
 	function lux_build_each(){
 		local files arr d i f j p 
@@ -320,7 +320,7 @@
 			if [ $thisb = "lib" ]; then
 				#recompile all core files with new lib
 				lux_build_each
-				lux_copy_dist
+				lux_copy_res
 			else
 				[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
 				d="$thisb"
