@@ -1,0 +1,72 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Tester
+////////////////////////////////////////////////////////////////////////////// */
+
+.loaded.loaded-standard-variants
+  background green
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Flexbox Details
+///////////////////////////////////////////////////////////////////////////// */
+
+// .inline-flex 
+//   display inline-flex
+
+// .flex-none
+//     flex none
+
+
+// .as-desktop .with-gaps .panel
+//   margin-left 5px
+
+// .as-desktop .with-gaps .panel:first-child 
+//   margin-left 0
+
+// .as-desktop .with-gaps .panel:last-child
+//   margin-right 0  
+  
+
+
+// .as-mobile .group.with-gaps .panel
+//   margin-bottom 5px
+
+// .as-mobile .group.with-gaps .panel:first-child 
+//   margin-top 0
+
+// .as-mobile .group.with-gaps .panel:last-child 
+//   margin-bottom 0
+  
+/* /////////////////////////////////////////////////////////////////////////////
+// Flexbox Spanning
+///////////////////////////////////////////////////////////////////////////// */
+  
+  //12 spanning elements
+  for $i in (1..$basis)
+     {$cl_group} > {$pre_spans}{$i} // group => spans-x
+        width round( percentage( $i/$basis ), 3 )
+        flex none
+        
+     {$cl_group} > {$pre_offsets}{$i} // group => offsets-x
+        margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
+        
+  {$pre_spans}all //spans-all
+    flex none
+    width 100%
+    
+  {$pre_offsets}all //offsets-all
+    visibility hidden
+
+/* /////////////////////////////////////////////////////////////////////////////
+// Flexbox Ordering
+///////////////////////////////////////////////////////////////////////////// */
+
+  // .group > .is-first
+      
+  // .group > .is-last  
+    
+  //50 ordering elements
+  for $i in (0..$flex_max)// 12 per row default
+     {$cl_group} > {$pre_index}{$i}
+        order $i
+
+

@@ -1,0 +1,19 @@
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Tester
+////////////////////////////////////////////////////////////////////////////// */
+.loaded-lib-functions
+  background green
+  
+
+$join()
+  join('',arguments)
+
+
+$fontsize($$s,$$l)
+  for $size in $$s
+    $i = index($$s,$size)
+    $lbl = $$l[$i]
+    p($$l[$i], $$s[$i])
+    &.is-size-{$lbl}
+      font-size: $$s[$i]

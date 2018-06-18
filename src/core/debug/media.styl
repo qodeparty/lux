@@ -1,0 +1,156 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Tags
+///////////////////////////////////////////////////////////////////////////// */
+
+// 320  Mobile S
+// 375  Mobile M
+// 425  Mobile L
+// 768  Tablet
+// 1024 Laptop
+// 1216 Widescreen
+// 1440 Laptop L (Desktop)
+// 1920 x1080
+// 2560 4k
+
+
+
+
+.ruler
+  background linear-gradient(90deg, white 319px, #94d8Ed 0, #94d8Ed 320px, white 0,
+                                    white 374px, #94d8Ed 0, #94d8Ed 375px, white 0,
+                                    white 424px, #94d8Ed 0, #94d8Ed 425px, white 0,
+                                    white 767px, #94d8Ed 0, #94d8Ed 768px, white 0,
+                                    white 1023px, #94d8Ed 0, #94d8Ed 1024px, white 0,
+                                    white 1215px, #94d8Ed 0, #94d8Ed 1216px, white 0,
+                                    white 1439px, #94d8Ed 0, #94d8Ed 1440px, white 0,
+                                    white 1919px, #94d8Ed 0, #94d8Ed 1920px, white 0,
+                                    white 2559px, #94d8Ed 0, #94d8Ed 2560px, white 0)
+  background-position 0
+
+
+
+.debug-display 
+  position fixed
+  bottom 0
+  right 0
+  
+button.as-display 
+  border 1px solid #ccc
+  font-family sans-serif
+  font-size 10px
+  float left
+  margin 2px
+  display none
+  color white
+
+@media only screen and (min-width: 0px) and (max-width: 360px)
+  body.debug
+      background #ddd
+  .as-display.is-micro
+      display block
+      background #000
+  
+@media only screen and (min-width: 360px) and (max-width: 768px)
+  body.debug
+      background #94d8Ed
+  .as-display.is-mobile
+      display block
+      background #0c4e7a
+
+@media only screen and (min-width: 768px) and (max-width: 1024px)
+  body.debug
+      background #55BCED
+  .as-display.is-tablet 
+      display block
+      background #0a6ba8
+
+//1024x768
+@media only screen and (min-width: 1024px) and (max-width: 1216px)
+  body.debug
+      background #28A9E1
+  .as-display.is-desktop
+      display block
+      background #147BBC
+
+@media only screen and (min-width: 1216px) and (max-width: 1440px)
+  body.debug
+      background #147bbc
+  .as-display.is-widedesk
+      display block
+      background #28A9E1
+
+@media only screen and (min-width: 1440px) and (max-width: 1920px)
+  body.debug
+      background #0a6ba8
+  .as-display.is-hidef
+      display block  
+      background #55BCED
+
+//1920x1080      
+@media only screen and (min-width: 1920px) and (max-width: 2560px)
+  body.debug
+      background #0a6ba8
+  .as-display.is-fullhd
+      display block
+      background #94D8ED
+      
+//2560x1440
+@media only screen and (min-width: 2560px)
+  body.debug
+      background #0c4e7a
+  .as-display.is-ultra
+      display block  
+      background #CBEAF3
+
+
+
+/*
+          family   : "Plain",
+          active : false, 
+          enabled : true,
+          colors : [
+           { hex : 'CC0000', name : 'Boston Red' },
+           { hex : 'F2951B', name : 'Orange' },
+           { hex : 'FCCC00', name : 'Yellowish' },
+           { hex : '03C03C', name : 'Dark Green' },
+           { hex : '007FFF', name : 'Azure' },
+           { hex : 'C41BF2', name : 'Purple' },
+           { hex : '333333', name : 'Charcoal' }  
+          ]
+        },
+
+        {
+          family : "Rainbow",
+          active : false,
+          enabled : true,
+          colors: [
+            { hex : 'F964CB', name : 'Sand Pink'   },
+            { hex : 'FA6563', name : 'Sand Red'    },
+            { hex : 'FFA64D', name : 'Sand Orange' },
+            { hex : 'FFE056', name : 'Sand Yellow' },
+            { hex : '94DA87', name : 'Sand Green'  },
+            { hex : '75B8FB', name : 'Late Sky'    },
+            { hex : '3399FF', name : 'Electric'    },
+            { hex : '6868DC', name : 'Dusk'        },
+            { hex : '404058', name : 'Twilight'    },
+            { hex : '1C1D24', name : 'Dark Night'  },
+            { hex : 'A9A9A9', name : 'Grey Bee'    },
+            { hex : 'e0e0e0', name : 'Cloudy'      }
+          ]
+        },
+
+        {
+          family   : "Architect",
+          active : true,
+          enabled : true,
+          colors: [
+           { hex : 'CBEAF3', name : 'Arch 1' },
+           { hex : '94d8Ed', name : 'Arch 2' },
+           { hex : '55BCED', name : 'Arch 3' },
+           { hex : '28A9E1', name : 'Arch 4' },   
+           { hex : '147bbc', name : 'Arch 6' },
+           { hex : '0a6ba8', name : 'Arch 7' },
+           { hex : 'ddbb85', name : 'Accent' },
+          ]
+        }
+    */

@@ -1,0 +1,79 @@
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Tester
+////////////////////////////////////////////////////////////////////////////// */
+.loaded-lib-mixins
+  background green
+  
+
+
+/* borrowed from nib */
+
+clearfix()
+  &:before
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+  zoom: 1 if support-for-ie
+
+
+
+reset-font()
+  font-weight: inherit
+  font-style: inherit
+  font-family: inherit
+  font-size: 100%
+  vertical-align: baseline
+  
+reset-table()
+  border-collapse: separate
+  border-spacing: 0
+  vertical-align: middle
+
+
+size()
+  if length(arguments) == 1
+    width   arguments[0]
+    height  arguments[0]
+  else
+    width   arguments[0]
+    height  arguments[1]
+
+whitespace()
+  white-space: arguments
+  
+no-wrap = unquote('nowrap')
+
+
+ellipsis(no-wrap = true)
+  if no-wrap
+    white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+shadow-stroke(n)
+  text-shadow: -1px -1px 0 n, 1px -1px 0 n, -1px 1px 0 n, 1px 1px 0 n
+
+
+$layout_brim(n)
+  padding n 0 n 0
+  
+  
+$layout_gutter(n)
+  padding 0 n 0 n
+
+
+$box_reset_full()
+  margin 0
+  padding 0
+  border 0
+  outline 0
+
+$box_reset()
+  margin 0
+  padding 0
