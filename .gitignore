@@ -8,6 +8,7 @@ notes.log*
 
 _*
 dist
+build
 
 # Runtime data
 pids
