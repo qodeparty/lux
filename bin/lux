@@ -12,7 +12,7 @@
 # QodeParty (c) 2018 
 #===============================================================================
 
-  MIN_BASH_VERSION='3.2'
+	MIN_BASH_VERSION='3.2'
 
 #-----------------------------------------------------------
 ## Script
@@ -66,27 +66,27 @@
 		[ $opt_quiet -eq 1 ] && [ -t 1 ] && [ -n "$text" ] && printf "${prefix}${!color}%b${x}\n" "${text}" 1>&2 || :
 	}
 
-  function info(){
-    local text=${1:-}
-    [ $opt_verbose -eq 1 ] && __print "$lambda$text" "blue"
-  }
+	function info(){
+		local text=${1:-}
+		[ $opt_verbose -eq 1 ] && __print "$lambda$text" "blue"
+	}
 
-  function log(){
-    local text=${1:-}
-    __print "$text" "grey"
-  }
+	function log(){
+		local text=${1:-}
+		__print "$text" "grey"
+	}
 
-  function trace(){
-    local text=${1:-}
-    [ $opt_verbose -eq 1 ] && __print "$text" "grey2"
-  }
+	function trace(){
+		local text=${1:-}
+		[ $opt_verbose -eq 1 ] && __print "$text" "grey2"
+	}
 
-  function fatal(){
-    trap - EXIT
-    lux_usage_sh
-    __print "$fail $1 [$2]" 
-    exit 1
-  }
+	function fatal(){
+		trap - EXIT
+		lux_usage_sh
+		__print "$fail $1 [$2]" 
+		exit 1
+	}
 
 	function __exitscreen() {
 		#tput rmcup
@@ -95,9 +95,9 @@
 		return 0
 	}
 
-  function quiet(){
-  	[ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1;
-  }
+	function quiet(){
+		[ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1;
+	}
 
 #-------------------------------------------------------------------------------
 # Sig / Flow
@@ -198,8 +198,8 @@
 	opt_force=1
 	opt_verbose=1
 
-  CPID="$$"
-  BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+	CPID="$$"
+	BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 	THIS_DIR="$( cd $BIN_DIR && cd ..; pwd -P )"
 
 	LUX_RC="$HOME/.luxrc"
@@ -226,7 +226,7 @@
 	function lux_build_each(){
 		local files arr d i f j p 
 		#echo $LUX_HOME $THIS_DIR
-	  info "Rebuilding each..."
+		info "Rebuilding each..."
 		files=();
 		arr=("${dirs[@]}"); 
 
@@ -276,35 +276,35 @@
 	}
 
 
-  function lux_listfile(){
-    var=$1
-    path=$2
-    ftype=$3
-    jsfile="./www/res/js/${var}.js"
-    list=($(find "./www/${path}" -type f -name "*.${ftype}" -printf '%P\n' ))
-    len=$((${#list[@]}-1));
+	function lux_listfile(){
+		var=$1
+		path=$2
+		ftype=$3
+		jsfile="./www/res/js/${var}.js"
+		list=($(find "./www/${path}" -type f -name "*.${ftype}" -printf '%P\n' ))
+		len=$((${#list[@]}-1));
 
-    printf "%s\\n" "//generated ${len}" > $jsfile
-    printf "%s\\n" "var ${var} = [" >> $jsfile
-    for i in ${!list[@]}; do
-      this="'${list[$i]}'"
-      [ $i -lt $len ] && this="${this},"
-      printf "%s\\n" "$this" >> $jsfile
-    done
-    printf "%s\\n" "];" >> $jsfile
-  }
-
-
-  function lux_copy_res(){
-  	mkdir -p "$LUX_RES"
-  	[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RES || :
-  }
+		printf "%s\\n" "//generated ${len}" > $jsfile
+		printf "%s\\n" "var ${var} = [" >> $jsfile
+		for i in ${!list[@]}; do
+			this="'${list[$i]}'"
+			[ $i -lt $len ] && this="${this},"
+			printf "%s\\n" "$this" >> $jsfile
+		done
+		printf "%s\\n" "];" >> $jsfile
+	}
 
 
-  function lux_compile(){
+	function lux_copy_res(){
+		mkdir -p "$LUX_RES"
+		[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RES || :
+	}
 
-  	local this thisd thisb thisf d f p
-  	this="$1"
+
+	function lux_compile(){
+
+		local this thisd thisb thisf d f p
+		this="$1"
 
 		if [ ${#this} -gt 0 ] && [ -f $this ]; then
 			
@@ -338,7 +338,7 @@
 			fi
 		fi
 
-  }
+	}
 
 	function lux_buildmod(){
 		mod="$1"		
@@ -351,9 +351,9 @@
 	}
 
 
-  function lux_watch(){
-  	local IFS sec chsum chsum2 res this thisd thisb thisf
-  	sec="${1:-5}"
+	function lux_watch(){
+		local IFS sec chsum chsum2 res this thisd thisb thisf
+		sec="${1:-5}"
 		chsum1=""
 		info "Watching.. $THIS_DIR/src"
 		while [[ true ]];
@@ -368,7 +368,7 @@
 			fi
 			sleep 1
 		done
-  }
+	}
 
 #-------------------------------------------------------------------------------
 # Utils
@@ -441,8 +441,8 @@
 	}
 
 
-  function file_find_block(){
-  	local src block_lbl match_st match_end data res ret
+	function file_find_block(){
+		local src block_lbl match_st match_end data res ret
 		src="$1"; block_lbl="$2"; delim="$3"; ret=1
 		match_st=$(file_marker "str" "${block_lbl}" "${delim}")
 		match_end=$(file_marker "end" "${block_lbl}" "${delim}")
@@ -450,7 +450,7 @@
 		[ -z "$res" ] && ret=1 || ret=0;
 		echo "$res"
 		return $ret;
-  }
+	}
 
 
 	function profile_link(){
@@ -504,7 +504,7 @@
 			export LUX_INST=0
 
 			if [ -n "\$LUX_BIN" ]; then
-			  [[ ! "\$PATH" =~ "\$LUX_BIN" ]] && export PATH=\$PATH:\$LUX_BIN;
+				[[ ! "\$PATH" =~ "\$LUX_BIN" ]] && export PATH=\$PATH:\$LUX_BIN;
 			fi
 
 			alias luxcd="cd \$LUX_HOME; ls -la; [ -t 1 ] && printf \"\n${blue}${lambda}Lux directory.${x}\n\"||:"
@@ -527,17 +527,17 @@
 #-------------------------------------------------------------------------------
 # Main
 #-------------------------------------------------------------------------------
-  function __dispatch(){
-    #log_debug "[fx:$FUNCNAME] args:$#"
-    local call ret
+	function __dispatch(){
+		#log_debug "[fx:$FUNCNAME] args:$#"
+		local call ret
 
-    #call=$1; shift
+		#call=$1; shift
 
-    [ -f "$LUX_RC" ] && source $LUX_RC
+		[ -f "$LUX_RC" ] && source $LUX_RC
 
-    for call in "$@"; do
+		for call in "$@"; do
 
-    	shift
+			shift
 			case $call in
 				help)
 					lux_usage
@@ -573,11 +573,11 @@
 				clean)
 					lux_clean
 					;;
-		    list)
-		      lux_listfile "csslist" "res/css" "css"
-		      lux_listfile "htmllist" "test" "html"
-		      ;;
-		    watch)
+				list)
+					lux_listfile "csslist" "res/css" "css"
+					lux_listfile "htmllist" "test" "html"
+					;;
+				watch)
 					lux_watch "$1"; shift;
 					;;
 				setup) 	:; ret=$?;;
@@ -588,8 +588,8 @@
 			esac
 		done
 
-    return $ret
-  }
+		return $ret
+	}
 
 
 	function main(){
