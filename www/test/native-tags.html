@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" id='native'>
+  <head>
+    <meta charset="utf-8">
+    <title>All Elements</title>
+    <link rel='stylesheet' id='base'  href='../res/build/debug.css'   type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/equalizer.css'   type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/modifiers.css'   type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/layout.css'   type='text/css' media='all' />
+  </head>
+  <body id='annotate' class='bg-grid debug' onload='draw()'>
+    
+    <div class='debug-display is-micro is-mobile is-tablet is-desktop is-widedesk is-fullhd is-ultra'>
+      <button class='as-display is-micro'>micro</button>
+      <button class='as-display is-mobile'>mobile</button>
+      <button class='as-display is-tablet'>tablet</button>
+      <button class='as-display is-desktop'>desktop</button>
+      <button class='as-display is-widedesk'>widedesk</button>
+      <button class='as-display is-hidef'>hidef</button>
+      <button class='as-display is-ultra'>ultra</button>
+    </div>
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Meta </span><br />
+      </p>
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Sections </span><br />
+      </p>
+
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+      <div class='grouping' id='sections'>
+
+        <div data-tag='main'>
+          <main title='main' class='psuedo'>
+          </main>
+        </div>
+
+
+        <div data-tag='article'>
+          <article title='article' class='psuedo'>
+          </article>
+        </div>
+
+
+        <div data-tag='aside'>
+          <aside title='aside' class='psuedo'>
+          </aside>
+        </div>
+
+
+        <div data-tag='nav'>
+          <nav title='nav' class='psuedo'>
+          </nav>
+        </div>
+
+
+        <div data-tag='header'>
+          <header title='header' class='psuedo'>
+          </header>
+        </div>
+
+        <div data-tag='footer'>
+          <footer title='footer' class='psuedo'>
+          </footer>
+        </div>
+
+
+        <div data-tag='section'>
+          <section title='section' class='psuedo'>
+          </section>
+        </div>
+
+
+        <div data-tag='div'>
+          <div title='div' class='psuedo'>
+          </div>
+        </div>
+
+      </div>
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Inline Text (Flow) </span><br />
+        <span class='note'>
+          Please note that inline text does not align nicely so we've wrapped them in p tags, things like
+          root text and spans may have to be tested independently.
+        </span>
+        <span class='note'>
+          Non-latin character annotation tags are not included here (ruby,bdi,etc).
+        </span>
+      </p>
+
+      <!-- https://web.archive.org/web/20121014054923/http://styleguide.yahoo.com/ -->
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+     <div class='grouping' id='inline'>
+        <div data-tag='none'>Plain text</div>
+
+        <div data-tag='a'><a href="#!">This is an anchor</a></div>
+
+        <div data-tag='span'><span>inline text can be wraped with:</span><span class='ref'>span</span></div>
+
+        <div data-tag='strong'><strong>To indicate strong importance use:</strong><span class='ref'>strong</span></div>
+
+        <div data-tag='em'><em>This text has added emphasis.</em></div>
+
+        <div data-tag='b'><b>This text is bold</b> using the <span class='ref'>b</span> tag but is not semantic in HTML5.</div>
+
+        <div data-tag='i'><i>This text is italic</i> using the <span class='ref'>i</span> tag but is not semantic in HTML5.</div>
+
+        <div data-tag='u'><i>This text is underlined</i> using the <span class='ref'>u</span> tag but is not semantic in HTML5.</div>
+
+        <div data-tag='s'><s>This text has a strikethrough</s>.</div>
+
+        <div data-tag='q'><q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">This text is a short inline quotation.</q></div>
+
+        <div data-tag='ins'><ins>This text is inserted.</ins></div>   
+
+        <div data-tag='del'><del>This text is deleted.</del></div>
+
+        <div data-tag='sup'>Superscript<sup>&reg;</sup>.</div>
+
+        <div data-tag='sub'>Subscript for things like H<sub>2</sub>O.</div>
+
+        <div data-tag='small'><small>This small text is small for for fine print, etc.</small></div>
+
+        <div data-tag='abbr'>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></div>
+
+        <div data-tag='cite'><cite>This is a citation.</cite></div>
+
+        <div data-tag='dfn'>The <dfn title='this is a definition'>dfn element</dfn> indicates a definition.</div>
+
+        <div data-tag='mark'>The <mark>mark element</mark> indicates a highlight.</div>
+
+        <div data-tag='var'>The <var>variable element</var>, such as <var>x</var> = <var>y</var>.</div>
+
+        <div data-tag='time'>The time element: <time datetime="2013-04-06T12:32+00:00">2 weeks ago</time></div>
+
+        <div data-tag='kbd'>The keyboard element <kbd>ctrl</kbd> is monospace.</div>
+
+        <div data-tag='code'>The code element <code>x+y=7</code> is monospace, too.</div>
+
+        <div data-tag='samp'>The samp element <samp>12898</samp> is monospace, too.</div>
+
+        <div data-tag='data'>The data element <data>1211</data> is not monospace...</div>
+
+        <div data-tag='wbr'>The word break element show breaks as marked, http://yahoo<wbr>.com</wbr>, weird.</div>
+
+        <div data-tag='br'>The line break element show breaks <br>, like this!</div>
+      </div>
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Block Text </span><br />
+        <span class='note'>
+          Note: type attribute on ol/ul is deprecated and use list-style-type css instead
+        </span>
+        <br />
+        <span class='note'>
+          Technically, table is not a block type but is included here as complex text element
+        </span>
+      </p>
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+
+
+  <!-- ================================================================================ -->
+      <div class='grouping' id='block'>
+        <div data-tag='p'>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non ipsum mi. Cras turpis lorem, suscipit porttitor odio at, consectetur sodales odio. Aenean sodales nisl eget enim tempus, ut venenatis magna eleifend. Donec porta venenatis enim eget placerat. Donec aliquam, justo at lacinia eleifend, leo risus feugiat sapien, at semper erat ante vitae ligula. Aliquam congue lacus sed nunc efficitur, vitae dictum est imperdiet. Donec posuere efficitur turpis in viverra. Nulla euismod id felis eget tincidunt. Nullam in ante sit amet tortor accumsan tincidunt. Phasellus ut est et sem tristique vestibulum non ut neque. Vivamus mi odio, viverra sed faucibus id, blandit nec lectus. In sit amet lectus massa. Vestibulum vitae dui rhoncus, suscipit magna quis, semper mauris. Nullam nec lacus elit. Sed lobortis enim et libero suscipit volutpat. </p> 
+        </div>
+
+
+        <div data-tag='blockquote'>
+          <blockquote>
+            A block quotation (also known as a long quotation or extract) is a quotation in a written document, that is set off from the main text as a paragraph, or block of text.
+          </blockquote>
+        </div>
+
+
+        <div data-tag='pre'><!-- includes line whitespace so yeah! -->
+          <pre>
+            P R E F O R M A T T E D T E X T
+            ! " # $ % &amp; ' ( ) * + , - . /
+            0 1 2 3 4 5 6 7 8 9 : ; &lt; = &gt; ?
+            @ A B C D E F G H I J K L M N O
+            P Q R S T U V W X Y Z [ \ ] ^ _
+            ` a b c d e f g h i j k l m n o
+            p q r s t u v w x y z { | } ~ </pre>
+        </div>
+
+        <div data-tag='h1'><h1>Heading 1</h1></div>
+        <div data-tag='h2'><h2>Heading 2</h2></div>
+        <div data-tag='h3'><h3>Heading 3</h3></div>
+        <div data-tag='h4'><h4>Heading 4</h4></div>
+        <div data-tag='h5'><h5>Heading 5</h5></div>
+        <div data-tag='h6'><h6>Heading 6</h6></div>
+
+        <div data-tag='address'>
+          <address>
+            555 Yo Mama Drive,<br>
+            San Francisco, CA 94142<br>
+            USA
+          </address>
+        </div>
+
+        <div data-tag='hr'>
+          <hr/>
+        </div>
+
+        <div data-tag='ol'>
+          <ol>
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+            <ol type='a'><!-- type is dep, has offset -->
+             <li>SubItem 1</li>
+             <li>SubItem 2</li>
+              <ol type='i'><!-- type is dep, has offset -->
+               <li>Thing 1</li>
+               <li>Thing 2</li>
+               <li>Thing 3</li>
+              </ol>
+            </ol>
+
+          </ol>
+        </div>
+
+        <div data-tag='ul'>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 2</li>
+            <ul><!-- sub type is auto, has offset -->
+              <li>Item 1</li>
+              <li>Item 2</li>
+              <ul><!-- sub type is auto, has offset -->
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+              </ul>
+            </ul>
+          </ul>
+        </div>
+
+        <div data-tag='dl'>
+
+          <dl>
+            <dt> Austin </dt>
+            <dd> Texas </dd>
+            <dt> California </dt>
+            <dd> Sacremento </dd>
+            <dt> Oregon </dt>
+            <dd> Salem </dd>
+            <dt> New York </dt>
+            <dd> Albany </dd>
+          </dl>
+
+        </div>
+
+        <div data-tag='details'>
+          <details open>
+            <summary>Even more details</summary>
+            <p>Here are even more details about the details.</p>
+          </details>
+        </div>
+
+        <div data-tag='table'>
+
+          <table border='1'>
+            <thead>
+              <tr>
+                <th>Head 1</th>
+                <th>Head 2</th>
+                <th>Head 3</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cell 1</td>
+                <td>Cell 2</td>
+                <td>Cell 3</td>
+              </tr>
+              <tr>
+                <td>Cell 4</td>
+                <td>Cell 5</td>
+                <td>Cell 6</td>
+              </tr>
+              <tr>
+                <td>Cell 7</td>
+                <td>Cell 8</td>
+                <td>Cell 9</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br />
+
+          <!-- more complex sample -->
+          <table border='1'>
+            <caption>Invoice</caption>
+            <colgrouping>
+              <col span='2' >
+              <col style='background-color:#efefef'>
+            </colgrouping>
+            <thead>
+              <tr>
+                <th colspan='2'>Info</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+
+            <tfoot><!-- tfoot always before tbody -->
+              <tr>
+                <th colspan='3' style='background-color:#ccc'>Thank you!</th>
+              </tr>
+            </tfoot>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Item Descript</td>
+                <td>$59.65</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Item Descript</td>
+                <td>$45.17</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Item Descript</td>
+                <td>$601.92</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Item Descript</td>
+                <td>$14.59</td>
+              </tr>
+              <tr>
+                <th colspan='2'>Coupon</th>
+                <td>---</td>
+              </tr>
+
+              <tr>
+                <th rowspan='2'>Subtotal</th>
+                <th>Tax</th>
+                <td>$12.81</td>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <td>$653.99</td>
+              </tr>               
+            </tbody>
+
+          </table>
+        </div>
+
+        
+      </div>
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Form Elements </span><br />
+        <span class='note'>
+          Note: input fields are weird because their rendering features change on attributes, for example
+          type=search adds a clear in chrome, &lt;search&gt; would make more sense.
+        </span>
+      </p>
+
+ <!-- ================================================================================ -->
+
+      <div class='grouping' id='forms'>
+        <div data-tag='button'>
+          <button id='button'>click me</button>
+          <br /> <br />
+          <button id='button-dis' disabled>cant click me</button>
+        </div>
+
+        <div data-tag='input'>
+          <label for='input'>Name</label> 
+          <input type='text' placeholder='enter your name' id='input' required />
+          <br /><br />
+          <label for='input-dis'>Nope</label> 
+          <input type='text' placeholder='disabled' id='input-dis' disabled />
+        </div>
+
+        <div data-tag='output'>
+          <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
+              <input type="range" name="b" value="50" /> +
+              <input type="number" name="a" value="10" /> =
+              <output name="result">60</output>
+          </form>
+        </div>
+
+        <div data-tag='fieldset'>
+          <form>
+            <fieldset>
+              <legend>Fieldset</legend>
+            </fieldset>
+          </form>
+        </div>
+
+        <div data-tag='datalist'>
+          <label for='list'>Datalist</label>
+          <input list='list' name='list'>
+          <datalist id='list'>
+            <option>Internet Explorer</option>
+            <option>Firefox</option>
+            <option>Chrome</option>
+          </datalist>
+        </div>
+
+        <div data-tag='number'>
+          <label for='number'>Number</label> 
+          <input id="number" type='number' placeholder="#">
+        </div>
+
+        <div data-tag='range'>
+          <label for='ir'>Range input</label>
+          <input type="range" id='ir' value='10'>
+        </div>
+
+        <div data-tag='color'>
+           <label for='ic'>Color input</label>
+           <input type='color' id='ic' value='#000000'>
+        </div>
+
+        <div data-tag='file'>
+          <label for='file'>Input File</label>
+          <input id='file' type='file'>
+        </div>
+
+        <div data-tag='hidden'>
+          <input id='hidden' type="hidden">
+        </div>
+
+        <div data-tag='checkbox'>
+          <label><input type='checkbox' name='this_check' value='1' /> Apples</label><br />
+          <label><input type='checkbox' name='this_check' value='2' /> Bananas</label><br />
+          <label><input type='checkbox' name='this_check' value='3' checked /> Oranges</label><br />
+          <label><input type='checkbox' name='this_check' value='4' disabled /> Turkey</label><br />
+        </div>
+
+        <div data-tag='radio'>
+          <label><input name='this_radio' type='radio' value='1' /> Email</label><br />
+          <label><input name='this_radio' type='radio' value='2' checked /> Phone</label><br />
+          <label><input name='this_radio' type='radio' value='3' /> Pigeon</label><br />
+          <label><input name='this_radio' type='radio' value='4' disabled /> Laserbeam</label><br />
+        </div>
+
+        <div data-tag='select'>
+
+          <label for="gender">Dropdown</label>
+          <select>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+
+          <br /><br />
+
+          <label for="select">Select</label>
+          <select id="select">
+          <optgrouping label="Option grouping">
+            <option>Option One</option>
+            <option>Option Two</option>
+            <option>Option Three</option>
+          </optgrouping>
+          </select>
+
+        </div>
+
+
+        <div data-tag='textarea'>
+         <textarea rows='6' cols='30' placeholder='enter your life story'></textarea>
+         <textarea rows='6' placeholder='disabled' disabled></textarea>
+        </div>
+
+
+        <div data-tag='form'>
+          <form title='form' class='psuedo'></form>
+        </div>
+
+      </div>
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Embed Elements </span><br />
+      </p>
+
+      <!-- ref -->
+ <!-- ================================================================================ -->
+      
+      <div class='grouping' id='embeds'>
+        <div data-tag='img'>
+          <img src="http://via.placeholder.com/50x50/000/fff" alt="Image alt text">
+        </div>
+
+        <div data-tag='figure'>
+          <figure>
+            <img src="http://via.placeholder.com/50x50/000/fff" alt="Image alt text">
+            <figcaption>Figure Caption for image.</figcaption>
+          </figure>
+        </div>
+
+        <div data-tag='meter'>
+          <meter value="2" min="0" max="10">2 out of 10</meter>
+        </div>
+
+        <div data-tag='meter'>
+          <progress>progress</progress>
+        </div>
+
+        <div data-tag='iframe'>
+          <iframe src='' ></iframe>
+        </div>
+
+        <div data-tag='audio'>
+          <audio controls="">
+            <source src="" type="audio/wav">
+            <source src="" type="audio/wav">
+            <span> Your browser doesnt support HTML5 audio</span>
+          </audio>
+        </div>
+
+
+        <div data-tag='video'> <!-- see vtt webVTT standard -->
+          <video controls="">
+            <track kind="chapters" src="sampleChapters.vtt" srclang="en">   
+            <track kind="subtitles" src="sampleSubtitles_en.vtt" srclang="en">
+            <track kind="metadata" src="keyStage1.vtt" srclang="en" label="Key Stage 1">
+            <span> Your browser doesnt support HTML5 audio</span>
+          </video>
+        </div>
+
+
+        <div data-tag='map'>
+          <map name="primary">
+            <area shape="circle" coords="75,75,75" href="left.html" alt="Click to go Left">
+            <area shape="circle" coords="275,75,75" href="right.html" alt="Click to go Right">
+          </map>
+          <img usemap="#primary" src="http://via.placeholder.com/350x150/000/fff" alt="350 x 150 pic">
+        </div>
+
+
+        <div data-tag='canvas'>
+          <canvas id='canvas' width='350' height='150'></canvas>
+          <script>
+            function draw() {
+              var canvas = document.getElementById('canvas');
+              if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                ctx.fillRect(25, 25, 100, 100);
+                ctx.clearRect(45, 45, 60, 60);
+                ctx.strokeRect(50, 50, 50, 50);
+              }
+            }
+          </script>
+        </div>
+      </div>
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> SVG Crossover </span><br />
+      </p>
+
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+      <div class='grouping' id='svgs'>
+        <div data-tag='svg'>
+          <svg width="200px" height="200px"><circle cx="100" cy="100" r="100" fill="#1fa3ec"></circle></svg>
+        </div>
+      </div>  
+
+  <!-- ================================================================================ -->
+
+
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Math Crossover (MathJax) </span><br />
+
+      </p>
+
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+      <div class='grouping' id='maths'>
+        <div data-tag='math'>
+          <math>
+            <mrow>
+              <mrow>
+                <msup>
+                  <mi>a</mi>
+                  <mn>2</mn>
+                </msup>
+                <mo>+</mo>
+                <msup>
+                  <mi>b</mi>
+                  <mn>2</mn>
+                </msup>
+              </mrow>
+              <mo>=</mo>
+              <msup>
+                <mi>c</mi>
+                <mn>2</mn>
+              </msup>
+            </mrow>
+          </math>
+        </div>
+      </div>
+
+  <!-- ================================================================================ -->
+
+ <!-- ================================================================================ -->
+      <!-- ref -->
+      
+      <p class='notes break'>
+        <span class='title'> Composite (Flow) </span><br />
+        <span class='note'>
+          Non-latin character annotation tags are not included here (ruby,bdi,etc).
+        </span>
+      </p>
+
+      <!-- https://web.archive.org/web/20121014054923/http://styleguide.yahoo.com/ -->
+      <!-- ref -->
+ <!-- ================================================================================ -->
+
+      <div class='grouping' id='composite'>
+        <div data-tag='horiz-list'>
+
+          <span class='note'>basic horizontal list</span>
+
+          <ul class='list'>
+            <li>Item A</li>
+            <li>Item B</li>
+            <li>Item C</li>
+          </ul>
+        </div>
+
+        <div data-tag='menu'>
+          <span class='note'>horizontal menu</span>
+          <ul class='menu pad10'>
+            <li>Item A</li><li>Item B</li><li>Item C</li>
+          </ul>
+        </div>
+
+        <div data-tag='menu-complex'>
+          <span class='note'>complex horizontal menu</span>
+          <ul class='menu pad10'>
+            <li>Item A</li><li>Item B</li><li>Item C</li>
+          </ul>
+        </div>
+
+        <div data-tag='tabs'>
+          <span class='note'>tabs with pad helper </span>
+          <ul class='tabs pad10'>
+            <li>Item A</li><li>Item B</li><li>Item C</li>
+          </ul>
+        </div>
+
+        <div data-tag='tabs-complex'>
+          <span class='note'>complex tabs using hidden input radios</span>
+          <ul class='tabs'>
+            <li>
+              <input type='radio' id='t1' name='tabs' >
+              <label for='t1'>Item A</label>
+              <div class='content'>
+               stuff A
+              </div>
+            </li><!--
+         --><li>
+              <input type='radio' id='t2' name='tabs' >
+              <label for='t2'>Item B</label>
+              <div class='content'>
+               stuff B
+              </div>
+            </li><!--
+         --><li>
+              <input type='radio' id='t3' name='tabs' >
+              <label for='t3'>Item C</label>
+              <div class='content'>
+               stuff C
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>  
+
+
+  <!-- ################################################################## -->
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
+
+  </body>
+</html>
