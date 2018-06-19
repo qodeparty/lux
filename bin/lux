@@ -358,12 +358,13 @@
 		info "Watching.. $THIS_DIR/src"
 		while [[ true ]];
 		do
-			chsum2=`find $THIS_DIR/src -type f -name *.styl -mmin $(echo "$sec/60"|bc -l) -exec md5sum {} \;`
+			chsum2=`find $THIS_DIR/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin $(echo "$sec/60"|bc -l) -exec md5sum {} \;`
 			if [[ $chsum1 != $chsum2 ]] ; then 
 				res=$(echo "$chsum2")  
 				IFS=' ' read -r -a array <<< "$res"  
-				trace "${array[0]}"; this="${array[1]}"
-				lux_compile "$this"
+				this="${array[1]}"
+				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})..."; 
+				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
 				chsum1=$chsum2
 			fi
 			sleep 1
