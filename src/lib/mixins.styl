@@ -10,7 +10,7 @@
   
 
 
-/* borrowed from nib */
+/* borrowed from nib  */
 
 clearfix()
   &:before
@@ -59,21 +59,123 @@ ellipsis(no-wrap = true)
 shadow-stroke(n)
   text-shadow: -1px -1px 0 n, 1px -1px 0 n, -1px 1px 0 n, 1px 1px 0 n
 
+/************************************************************/
 
-$layout_brim(n)
+
+__layout_brim(n)
   padding n 0 n 0
   
   
-$layout_gutter(n)
+__layout_gutter(n)
   padding 0 n 0 n
 
 
-$box_reset_full()
+__box_reset_full()
   margin 0
   padding 0
   border 0
   outline 0
 
-$box_reset()
+__box_reset()
   margin 0
   padding 0
+
+/************************************************************/
+
+__media_from( $devive )
+  @media screen and (min-width __rem($device))
+    {block}
+    
+__media_to( $devive )
+  @media screen and (max-width __rem($device))
+    {block}
+
+
+
+__micro()
+   @media screen and (min-width __rem($micro))
+     {block}
+
+__micro_only()
+   @media screen and (min-width __rem($micro)) and (max-width __rem($mobile))
+     {block}   
+
+
+__mobile()
+   @media screen and (min-width __rem($mobile))
+     {block}
+
+__mobile_only()
+   @media screen and (min-width __rem($mobile)) and (max-width __rem($tablet))
+     {block}
+     
+
+   
+__tablet()
+   @media screen and (min-width __rem($tablet))
+     {block}
+
+__tablet_only()
+   @media screen and (min-width __rem($tablet)) and (max-width __rem($desktop))
+     {block}
+
+
+__touch()
+   @media screen and (max-width __rem($desktop))
+     {block}
+   
+
+
+
+
+__desktop()
+   @media screen and (min-width __rem($desktop))
+     {block}
+     
+__desktop_only()
+   @media screen and (min-width __rem($desktop)) and (max-width __rem($widehd))
+     {block}
+
+   
+
+
+__widehd()
+   @media screen and (min-width __rem($widehd))
+     {block}
+
+__widehd_only()
+   @media screen and (min-width __rem($widehd)) and (max-width __rem($fullhd))
+     {block}
+   
+
+__fullhd()
+   @media screen and (min-width __rem($fullhd))
+     {block}
+
+__fullhd_only()
+   @media screen and (min-width __rem($fullhd)) and (max-width __rem($jumbohd))
+     {block}
+   
+   
+jumbohd()
+   @media screen and (min-width __rem($jumbohd))
+     {block}
+
+__jumbohd_only()
+   @media screen and (min-width __rem($jumbohd)) and (max-width __rem($ultrahd))
+     {block}
+     
+
+__hd_only()
+   @media screen and (min-width __rem($widehd)) and (max-width __rem($ultrahd))
+     {block}
+   
+
+
+
+__ultrahd()
+   @media screen and (min-width __rem($ultrahd))
+     {block}
+
+
+

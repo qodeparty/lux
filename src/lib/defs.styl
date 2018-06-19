@@ -7,37 +7,69 @@
 $pre_is='.is-'
 
 
-$pre_index   =$join($pre_is,'i')
-$pre_spans   ='.spans-'
+$pre_index   =__join($pre_is,'i') //is-i<n>
+$pre_spans   ='.spans-'   
 $pre_offsets ='.offsets-'
 
-
+$pre_size    =__join($pre_is,'size-') //is-size-<s>
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Classes
 ////////////////////////////////////////////////////////////////////////////// */
-$cl_group    ='.group'
+
 $cl_groups   ='.groups'
+$cl_group    ='.row'
 $cl_group_ch ='.col'
+
+$cl_ttl      = '.title'
+$cl_ttl_is   = __join($pre_is,'title') //is-title
+
+$cl_subttl   = '.subtitle'
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
 ////////////////////////////////////////////////////////////////////////////// */
-$cl_flag_resp     = $join($pre_is,'resp')
-$cl_flag_resp_tab = $join($pre_is,'resp-tablet')
+
+$cl_flag_resp = __join($pre_is,'resp') //is-resp
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Grid Systems
+////////////////////////////////////////////////////////////////////////////// */
+
+$basis=16
+
+$roundby=3
+
+
+$screens = { 
+  micro:0,mobile:360,tablet:768,desktop:1024,widehd:1216,fullhd:1440,stdhd:1920,ultra:2560
+}
+
+$screen_list = 'micro' 'mobile' 'tablet' 'desktop' 'wide' 'full' 'jumbo' 'ultra'
+
+$micro    = $screens[ 'micro'   ]
+$mobile   = $screens[ 'mobile'  ] // 22.5em //360px
+$tablet   = $screens[ 'tablet'  ] // 48em //768
+$desktop  = $screens[ 'desktop' ]
+$widehd   = $screens[ 'widehd'  ]
+$fullhd   = $screens[ 'fullhd'  ] //1440
+$jumbohd  = $screens[ 'jumbohd' ] //1920
+$ultrahd  = $screens[ 'ultra'   ] //2560
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Size Rhythm
 ////////////////////////////////////////////////////////////////////////////// */
 
-$size_labels = '000' '00' 0 1 2 3 4 5 6 7 8 9 99 
+$size_labels = '000' '00' 0 1 2 3 4 5 6 7 8 9 99 999 
+$size_step   = 0.25
+$size_max    = 3.5
 
 $c=0
-for $v in range(0.25, 3.5, 0.25)
+for $v in range(0.25, $size_max, $size_step)
   $suf= '-' + $size_labels[$c]
   $var ='$_size' + $suf
-  define( $var, unquote($join($v,'rem')) )
-  //p($var)
+  define( $var, unquote(__join($v,'rem')) )
   $c=$c+1
 
 /* //////////////////////////////////////////////////////////////////////////////
@@ -54,18 +86,3 @@ $garnish-md  = 10px
 $garnish-lg  = 15px
 $garnish-xl  = 20px
 $garnish-xxl = 50px
-
-/* //////////////////////////////////////////////////////////////////////////////
-// Grid Systems
-////////////////////////////////////////////////////////////////////////////// */
-
-$screens = {
-   micro:0,
-   mobile:360,
-   tablet:768,
-   desktop:1024,
-   whd:1216,
-   fhd:1440,
-   hd:1920,
-   ultra:2560
-}
