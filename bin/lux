@@ -1,15 +1,15 @@
 #rainbow
 #!/usr/bin/env bash
 #===============================================================================
-# Lux CLI 
-#     __     
-#     \ \    
-#      \ \   
-#       > \  
-#      / ^ \ 
-#     /_/ \_\
-#         
-# QodeParty (c) 2018 
+##     Lux CLI 
+##       __     
+##       \ \    
+##        \ \   
+##         > \  
+##        / ^ \ 
+##       /_/ \_\
+##         
+##  QodeParty (c) 2018 
 #===============================================================================
 
 	MIN_BASH_VERSION='3.2'
@@ -328,7 +328,7 @@
 				[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
 				res=$(stylus --import $THIS_DIR/src/lib "$this" --out "$LUX_BUILD/${p}.css")
 				__print "$res"
-				rm "$LUX_RES/${p}.css"
+				rm -f "$LUX_RES/${p}.css"
 				cp "$LUX_BUILD/${p}.css" "$LUX_RES"
 				sleep 2
 				lux_buildmod "$d"
@@ -344,9 +344,10 @@
 		mod="$1"		
 		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
 		info "Rebuilding... ${mod}.css"
-		res=$(stylus --import $THIS_DIR/src/lib "$THIS_DIR/src/core/${mod}/index.styl" --out "$LUX_BUILD/${mod}.css");
+		[ "$mod" = "core" ] && modpath="core" || modpath="core/$mod"
+		res=$(stylus --import $THIS_DIR/src/lib "$THIS_DIR/src/${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 		__print "$res"
-		rm "$LUX_RES/${mod}.css"
+		rm -f "$LUX_RES/${mod}.css"
 		cp "$LUX_BUILD/${mod}.css" "$LUX_RES"
 	}
 
@@ -485,7 +486,7 @@
 		local ret res data src lbl
 		src="$BASH_RC"
 		lbl="$LUX_ID"
-		[ -f "$LUX_RC" ] && rm "$LUX_RC"
+		[ -f "$LUX_RC" ] && rm -f "$LUX_RC"
 		res=$(file_del_block "$src" "$lbl" )
 		ret=$?
 		[ $ret -eq 0 ] && __print ".luxrc removed from $BASH_RC" "red" ||: 

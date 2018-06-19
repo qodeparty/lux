@@ -5,8 +5,6 @@
 .loaded-lib-functions
   background green
   
-use('../../fx/str-len.js') //strlen
-use('../../fx/str-in.js') //char_in
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Tester
@@ -19,8 +17,10 @@ __join()
 __in($c,$ref)
   fx_char_in($c,$ref)
 
-__fontsize($$s,$$l,$ref="")
-  p(__in('desktop',$ref))
+
+__fontsize($ref="")
+  $$s=$sizes
+  $$l=$size_labels
   $ref = fx_str_len($ref) > 1 ? __join('-',$ref) : ""
   for $size in $$s
     $i = index($$s,$size)
@@ -29,10 +29,14 @@ __fontsize($$s,$$l,$ref="")
       font-size: $$s[$i]
       
 __em($val)
+  p($val,$basis)
   $val = $val / $basis
   unquote(__join($val,'em'))
 
 __rem($val)
   $val = $val / $basis
   unquote(__join($val,'rem'))
+
+__what($thing)
+  fx_wtf($thing)
 

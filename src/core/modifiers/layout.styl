@@ -16,37 +16,37 @@
 // General Brim Garnishings
 ///////////////////////////////////////////////////////////////////////////// */
 
-for $key, $val in $garnishes
-  $base='has-brim'
-  if $key == 'std'
-    $key = ""
-  else if $key =='x'
-    $base='no-brim'
-    $key = ""
-    $val = 0
-  else
-    $key = "-"+$key
-    .{$base}{$key}
-      $layout_brim($val)
+// for $key, $val in $garnishes
+//   $base='has-brim'
+//   if $key == 'std'
+//     $key = ""
+//   else if $key =='x'
+//     $base='no-brim'
+//     $key = ""
+//     $val = 0
+//   else
+//     $key = "-"+$key
+//     .{$base}{$key}
+//       $layout_brim($val)
   // .as-mobile .{$base}{$key}
   //    $layout_gutter($val)
 
-/* /////////////////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////
 // General Gutter Garnishings
-///////////////////////////////////////////////////////////////////////////// */
+///////////////////////////////////////////////////////////////////////////// 
 
-for $key, $val in $garnishes
-  $base='has-gutter'
-  if $key == 'std'
-    $key = ""
-  else if $key =='x'
-    $base='no-gutter'
-    $key = ""
-    $val = 0
-  else
-    $key = "-"+$key  
-    .{$base}{$key}
-     $layout_gutter($val)
+// for $key, $val in $garnishes
+//   $base='has-gutter'
+//   if $key == 'std'
+//     $key = ""
+//   else if $key =='x'
+//     $base='no-gutter'
+//     $key = ""
+//     $val = 0
+//   else
+//     $key = "-"+$key  
+//     .{$base}{$key}
+//      $layout_gutter($val)
   // .as-mobile .{$base}{$key}
   //    $layout_brim($val)
 

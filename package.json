@@ -11,7 +11,7 @@
     "clean": "bash ./bin/lux clean",
     "make":  "bash ./bin/lux clean make",
     "help":  "bash ./bin/lux help --force",
-    "prepublish":"bash ./bin/lux clean make",
+    "prepublish":"bash ./bin/lux clean make"
   },
   "repository": {
     "type": "git",
@@ -27,9 +27,7 @@
   "config": {
     "basis" : 12
   },
-  "dependencies" : {
-    "stylus" : "latest"
-  },
+
   "author": "qodeparty",
   "license": "MIT",
   "bugs": {

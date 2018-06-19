@@ -43,65 +43,79 @@ button.as-display
   display none
   color white
 
-@media only screen and (min-width: 0px) and (max-width: 360px)
+
++__micro_only()
   body.debug
       background #ddd
   .as-display.is-micro
       display block
       background #000
   
-@media only screen and (min-width: 360px) and (max-width: 768px)
++__mobile_only()
   body.debug
       background #94d8Ed
   .as-display.is-mobile
       display block
       background #0c4e7a
+  .is-size-1-mobile
+      font-size $h1
+      
 
-@media only screen and (min-width: 768px) and (max-width: 1024px)
++__tablet_only()
   body.debug
       background #55BCED
   .as-display.is-tablet 
       display block
       background #0a6ba8
-
+  .is-size-1-tablet
+      font-size $h1
+      
 //1024x768
-@media only screen and (min-width: 1024px) and (max-width: 1216px)
++__desktop_only()
   body.debug
       background #28A9E1
   .as-display.is-desktop
       display block
       background #147BBC
-
-@media only screen and (min-width: 1216px) and (max-width: 1440px)
+  .is-size-1-desktop
+      font-size $h1
+      
++__widehd_only()
   body.debug
       background #147bbc
-  .as-display.is-widedesk
+  .as-display.is-wide
       display block
       background #28A9E1
 
-@media only screen and (min-width: 1440px) and (max-width: 1920px)
++__fullhd_only()
   body.debug
       background #0a6ba8
-  .as-display.is-hidef
-      display block  
-      background #55BCED
-
-//1920x1080      
-@media only screen and (min-width: 1920px) and (max-width: 2560px)
-  body.debug
-      background #0a6ba8
-  .as-display.is-fullhd
+  .as-display.is-full
       display block
       background #94D8ED
       
+//1920x1080      
++__jumbohd_only()
+  body.debug
+      background #0a6ba8
+  .as-display.is-jumbo
+      display block  
+      background #55BCED
+
+      
++__hd_only()
+  .is-size-1-hd
+      font-size $h1
+
 //2560x1440
-@media only screen and (min-width: 2560px)
++__ultrahd()
   body.debug
       background #0c4e7a
   .as-display.is-ultra
       display block  
       background #CBEAF3
-
+  .is-size-1-ultra
+      font-size $h1
 
 
 /*
