@@ -66,7 +66,7 @@
 		[ $opt_quiet -eq 1 ] && [ -t 1 ] && [ -n "$text" ] && printf "${prefix}${!color}%b${x}\n" "${text}" 1>&2 || :
 	}
 
-	function  info(){ local text=${1:-}; [ $opt_debug   -eq 0 ] && __print "$lambda$text" "blue"; }
+	function  info(){ local text=${1:-}; [ $opt_verbose -eq 0 ] || [ $opt_debug -eq 0 ]  && __print "$lambda$text" "blue"; }
 	function silly(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$dots$text" "purple"; }
 	function trace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$text" "grey2"; }
 	function error(){ local text=${1:-}; __print " $text" "fail";	}
@@ -86,7 +86,7 @@
 		local E="$?"
 		cleanup
 		#[ $opt_force -eq 0 ] && lux_usage || echo "$opt_force"
-		[ $E -eq 0 ] && __print "${green}${pass} ${1:-Done}.${x}\n\n" \
+		[ $E -eq 0 ] && __print "${pass} ${green}${1:-Done}.${x}\n\n" \
 								 || __print "$red$fail ${1:-${err:-Cancelled}}.${x}\n\n"
 	}
 
@@ -249,7 +249,7 @@
 		local temp=()
 		local array=($@)
 		for val in "${array[@]}"; do
-		    [[ "$val" != "$match" ]] && temp+=($val)
+		    [[ ! "$val" =~ "$match" ]] && temp+=($val)
 		done
 		array=("${temp[@]}")
 		unset temp
@@ -435,7 +435,7 @@
 					files+=("$index"); #move to end
 				fi
 
-				info "Files => ${files[*]}"
+				info "Files ($orange$d$x$blue)=> ${files[*]}"
 
 				for j in ${!files[@]}; do
 					f="${files[$j]//\.styl/}" #remove extension
@@ -516,7 +516,7 @@
 				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
 
 				chsum1=$chsum2
-				[ -n "$chval" ] && pass "Watch job ($green$chval$x) completed$nl$line" || :
+				[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
 			fi
 
 			sleep 1
@@ -745,6 +745,8 @@ if [ "$0" = "-bash" ]; then
 	echo "Hmmm no se"
 else
 
+	args=("${@}")
+
 	if [[ "${@}" =~ "--debug" ]]; then
 		opt_debug=0
 	elif [[ "${@}" =~ "--info" ]]; then
@@ -756,5 +758,8 @@ else
 	else
 		:
 	fi
-	main "$@";ret=$?
+
+	args=( "${args[@]/\-*}" ); #delete anything that looks like an option
+
+	main "${args[@]}";ret=$?
 fi
