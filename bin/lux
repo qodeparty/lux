@@ -390,7 +390,7 @@
 
 
 	function lux_build(){
-		info "[MAIN] Rebuilding Lux..."
+		info "Rebuilding Lux..."
 		[ ! -d $LUX_DIST ] && mkdir -p $LUX_DIST
 		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
 
@@ -483,7 +483,7 @@
 				res=$(stylus $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 				__print "$res"
 				rm -f "$LUX_RES/${mod}.css"
-				cp "$LUX_BUILD/${mod}.css" "$LUX_RES"
+				cp "$LUX_BUILD/${mod}.css" "$LUX_RES/${mod}.css"
 			else
 				error "Invalid module directory ($mod)";	
 			fi
@@ -709,7 +709,7 @@
 				build|make)
 					case $1 in
 						each) shift; lux_build_each;;
-            "")   shift; lux_build;;
+						"")   shift; lux_build;;
 						*)    lux_build_mod "$1";;
 					esac
 					break;
@@ -742,7 +742,6 @@
 #-------------------------------------------------------------------------------
 if [ "$0" = "-bash" ]; then
 	:
-	echo "Hmmm no se"
 else
 
 	args=("${@}")
