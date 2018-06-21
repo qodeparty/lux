@@ -1,6 +1,6 @@
 {
   "name": "lux",
-  "version": "1.2.0",
+  "version": "0.2.0",
   "description": "lux css framework]",
   "main": "dist/lux.min.css",
   "bin": {
