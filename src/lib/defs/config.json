@@ -1,0 +1,121 @@
+{
+
+  "init" : {
+    "lux_lang"  : "en-us",
+    "roundby"   : 3,
+    "basis"     : 16,
+    "size_step" : 0.25,
+    "flex_max"  : 49
+  },
+
+  "flags" : {
+    "debug" : true,
+    "rtl"   : false,
+    "ext"   : true
+  },
+
+  "vars"  : {
+    "$idx"   : "this.vals.idx",
+    "$cat"   : "this.vals.cat",
+    "$range" : "this.vals.range",
+    "$alias" : "this.meta.alias",
+    "$shorts": "this.meta.shorts",
+    "$cats"  : "this.meta.cats",
+    "$min"   : "",
+    "$max"   : "",
+    "$prefix": "",
+    "$each"  : ""
+  },
+
+  "basis"   : [ 4, 8, 12, 16, 24 ],
+
+  "devices" : {
+    "meta"  : {
+      "cats"   : [ "none", "all", "extended", "touch", "desk", "hidef", "tv", "custom"  ],
+      "alias"  : { "laptop" : "desktop", "watch" : "nano", "standard" : "jumbo" },
+      "shorts" : { "vals" : [ "w", "m", "t", "d", "w", "f", "j", "u" ] }
+    },
+    "vals"  : {
+      "nano"    : { "idx" : 0, "cat" : [0,1,2],     "range" : [ 0,    360 ] },
+      "mobile"  : { "idx" : 1, "cat" : [0,2],       "range" : [ 360,  768 ] },
+      "tablet"  : { "idx" : 2, "cat" : [0,2],       "range" : [ 768,  1024 ] },
+      "desktop" : { "idx" : 3, "cat" : [0,3],       "range" : [ 1024, 1216 ] },
+      "wide"    : { "idx" : 4, "cat" : [0,3,4],     "range" : [ 1216, 1440 ] },
+      "full"    : { "idx" : 5, "cat" : [0,3,4],     "range" : [ 1440, 1920 ] },
+      "jumbo"   : { "idx" : 6, "cat" : [0,3,4,5],   "range" : [ 1920, 2560 ] },
+      "ultra"   : { "idx" : 7, "cat" : [0,1,3,4,5], "range" : [ 2560, 9999 ] }
+    }
+  },
+
+  "sizes"  : {
+    "meta" : {
+      "cats"   : [ "none", "all", "extended", "headers", "countable" ],
+      "shorts" : { "prefix" : "s", "vals" : [ "s04", "s03", "s02", "s0", "s1", "s2", "s3", "s4", 
+                   "s5", "s6", "s7", "s8", "s9", "s92", "s93", "s94" ]}
+    },
+    "vals" : {
+      "size_0000" : { "idx" :  0, "cat" : [0,1],   "em" : "0.01" },
+      "size_000"  : { "idx" :  1, "cat" : [0,1],   "em" : "0.10" },
+      "size_00"   : { "idx" :  2, "cat" : [0,1],   "em" : "0.20" },
+      "size_0"    : { "idx" :  3, "cat" : [0,3],   "em" : "0.25" },
+      "size_1"    : { "idx" :  4, "cat" : [0,3],   "em" : "0.50" },
+      "size_2"    : { "idx" :  5, "cat" : [0,3],   "em" : "0.75" },
+      "size_3"    : { "idx" :  6, "cat" : [0,2,3], "em" : "1.00" },
+      "size_4"    : { "idx" :  7, "cat" : [0,2,3], "em" : "1.25" },
+      "size_5"    : { "idx" :  8, "cat" : [0,2,3], "em" : "1.50" },
+      "size_6"    : { "idx" :  9, "cat" : [0,2,3], "em" : "1.75" },
+      "size_7"    : { "idx" : 10, "cat" : [0,2,3], "em" : "2.00" },
+      "size_8"    : { "idx" : 11, "cat" : [0,2,3], "em" : "2.25" },
+      "size_9"    : { "idx" : 12, "cat" : [0,3],   "em" : "2.50" },
+      "size_99"   : { "idx" : 13, "cat" : [0,1],   "em" : "2.75" },
+      "size_999"  : { "idx" : 14, "cat" : [0,1],   "em" : "3.00" },
+      "size_9999" : { "idx" : 15, "cat" : [0,1],   "em" : "4.00" }
+    }
+  },
+
+  "cols" : {
+    "meta" : {
+      "cats"   : [ "none", "all:basis_24", "extended", "basis_12", "basis_16" ],
+      "gen"    : { "spans" : "all", "offsets" : "all" },
+      "shorts" : { "prefix" : "c", "each" : "#" }
+    },
+    "vals" : {
+      "col_1"  : { "idx" :  1, "cat" : [1,2,3] },
+      "col_2"  : { "idx" :  2, "cat" : [1,2,3] },
+      "col_3"  : { "idx" :  3, "cat" : [1,2,3] },
+      "col_4"  : { "idx" :  4, "cat" : [1,2,3] },
+      "col_5"  : { "idx" :  5, "cat" : [1,2,3] },
+      "col_6"  : { "idx" :  6, "cat" : [1,2,3] },
+      "col_7"  : { "idx" :  7, "cat" : [1,2,3] },
+      "col_8"  : { "idx" :  8, "cat" : [1,2,3] },
+      "col_9"  : { "idx" :  9, "cat" : [1,2,3] },
+      "col_10" : { "idx" : 10, "cat" : [1,2,3] },
+      "col_11" : { "idx" : 11, "cat" : [1,2,3] },
+      "col_12" : { "idx" : 12, "cat" : [1,2,3] },
+      "col_13" : { "idx" : 13, "cat" : [1,3] },
+      "col_14" : { "idx" : 14, "cat" : [1,3] },
+      "col_15" : { "idx" : 15, "cat" : [1,3] },
+      "col_16" : { "idx" : 16, "cat" : [1,3] },
+      "col_17" : { "idx" : 17, "cat" : [1] },
+      "col_18" : { "idx" : 18, "cat" : [1] },
+      "col_19" : { "idx" : 19, "cat" : [1] },
+      "col_20" : { "idx" : 20, "cat" : [1] },
+      "col_21" : { "idx" : 21, "cat" : [1] },
+      "col_22" : { "idx" : 22, "cat" : [1] },
+      "col_23" : { "idx" : 23, "cat" : [1] },
+      "col_24" : { "idx" : 24, "cat" : [1] }
+    }
+  },
+
+  "tshirts" : [ "none", "xxsm", "xsm", "sm", "md", "lg", "xl", "xxl" ],
+  "palettes" : {
+    "rainbow"   : {},
+    "architect" : {},
+    "wizard"    : {},
+    "greyscale" : {}
+  },
+
+  "elements" : {},
+  "template" : {}
+
+}
