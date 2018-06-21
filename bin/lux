@@ -12,7 +12,6 @@
 ##  QodeParty (c) 2018 
 #===============================================================================
 
-	MIN_BASH_VERSION='3.2'
 
 #-----------------------------------------------------------
 ## Script
@@ -20,7 +19,7 @@
 	readonly script_pid=$$
 	readonly script_author="qodeparty"
 	readonly script_id="lux"
-	readonly script_vers="0.1.1"
+	readonly script_vers="0.2.0"
 	readonly script_prefix="LUX"
 	readonly script_rc_file=".luxrc"
 	readonly script_log_file="$script_id.log"
@@ -49,8 +48,9 @@
 	nl=$'\n'
 	blambda=$(sed -n '5,11 p' $BASH_SOURCE)$nl
 	blambda=${blambda//#/}
-	line=$(sed -n '17,17 p' $BASH_SOURCE)$nl
-	pass='\xE2\x9C\x93'
+	line=$(sed -n '16,16 p' $BASH_SOURCE)$nl
+	diamond='\xE1\x9B\x9C'
+	pass="${green}\xE2\x9C\x93$x"
 	fail="${red}\xE2\x9C\x97$red2"
 	dots='\xE2\x80\xA6'
 	space='\x20'
@@ -62,67 +62,27 @@
 
 	function __print(){
 		local text color prefix
-		text=${1:-}; color=${2:-grey2}; prefix=${!3:-};
+		text=${1:-}; color=${2:-grey}; prefix=${!3:-};
 		[ $opt_quiet -eq 1 ] && [ -t 1 ] && [ -n "$text" ] && printf "${prefix}${!color}%b${x}\n" "${text}" 1>&2 || :
 	}
 
-	function info(){
-		local text=${1:-}
-		[ $opt_verbose -eq 1 ] && __print "$lambda$text" "blue"
-	}
-
-	function log(){
-		local text=${1:-}
-		__print "$text" "grey"
-	}
-
-	function trace(){
-		local text=${1:-}
-		[ $opt_verbose -eq 1 ] && __print "$text" "grey2"
-	}
-
-	function fatal(){
-		trap - EXIT
-		lux_usage_sh
-		__print "$fail $1 [$2]" 
-		exit 1
-	}
-
-	function __exitscreen() {
-		#tput rmcup
-		#stty echo
-		printf "\e[?25h" #show
-		return 0
-	}
-
-	function quiet(){
-		[ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1;
-	}
+	function  info(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$lambda$text" "blue"; }
+	function silly(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$dots$text" "purple"; }
+	function trace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$text" "grey2"; }
+	function error(){ local text=${1:-}; __print " $text" "fail";	}
+	function  pass(){ local text=${1:-}; __print " $text" "pass";	}
+	function fatal(){ trap - EXIT; lux_usage_sh; __print "$fail $1 [$2]"; exit 1; }
+	function quiet(){ [ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1; }
 
 #-------------------------------------------------------------------------------
 # Sig / Flow
 #-------------------------------------------------------------------------------
 
 
-	function handle_sigint() {
-		__exitscreen
-		S="$?"
-		kill 0
-		exit $S
-	}
-
-	function handle_sigtstp() {
-		__exitscreen
-		kill -s SIGSTOP $$
-	}
-
-	function handle_input(){
-		[ -t 0 ] && stty -echo -icanon time 0 min 0
-	}
-
-	function cleanup(){
-		[ -t 0 ] && stty sane
-	}
+	function handle_sigint(){ s="$?"; kill 0; exit $s;	}
+	function handle_sigtstp(){ kill -s SIGSTOP $$; }
+	function handle_input(){ [ -t 0 ] && stty -echo -icanon time 0 min 0; }
+	function cleanup(){ [ -t 0 ] && stty sane; }
 
 	function fin(){
 		local E="$?"
@@ -161,7 +121,6 @@
 			${s}${b}Dev Commands${x}${n}
 			${s}${p}${sc} make   ${x}${t}   generate lux.css and lux.min.css dist
 			${s}${p}${sc} clean  ${x}${t}   clean all generated dirs and files
-			${s}${p}${sc} dir    ${x}${t}   output lux home path for use in scripts
 			${s}${p}${sc} link   ${x}${t}   makes lux-cli available on command line
 			${s}${p}${sc} unlink ${x}${t}   remove lux-cli from command line
 			${s}${p}${sc} rcfile ${x}${t}   regenerate .luxrc file in [${y}$HOME${x}]
@@ -170,10 +129,14 @@
 			${s}${p}${sc} each   ${x}${t}   generate lux sub module files for testing
 			${s}${p}${sc} watch ${y}t${x}${t}   watch dev files for changes every [${y}t-seconds${x}]
 			${n}
+			${s}${b}Info Commands${x}${n}
+			${s}${p}${sc} dir    ${x}${t}   output lux home path for use in scripts
+			${s}${p}${sc} vars   ${x}${t}   output lux variables
+			${s}${p}${sc} mods   ${x}${t}   output lux style mods	
+			${n}
 			${s}${b}Dev Falgs${x}${n}
 			${s}${p}${sc} --debug
-			${s}${p}${sc} --info
-
+			${s}${p}${sc} --info ${x}${t}   enable verbose output	
 			${n}
 			${b}${line//#/}${x}
 		EOF
@@ -202,49 +165,76 @@
 	BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 	THIS_DIR="$( cd $BIN_DIR && cd ..; pwd -P )"
 
+	LUX_MODS=( debug equalizer elements layout modifiers )
+
 	LUX_RC="$HOME/.luxrc"
-	LUX_HOME="$PWD"
+	LUX_HOME="${LUX_HOME:-$THIS_DIR}"
 	LUX_BIN="$PWD/bin"
-	LUX_CORE='src/core'
+
 	LUX_ID="$script_id"
-	LUX_BUILD="$THIS_DIR/build"
-	LUX_DIST="$THIS_DIR/dist"
-	LUX_RES="$THIS_DIR/www/res/build"
+	LUX_BUILD="$LUX_HOME/build"
+	LUX_DIST="$LUX_HOME/dist"
+	LUX_RES="$LUX_HOME/www/res/build"
 	LUX_INST=1
+
+	LUX_LIB="$LUX_HOME/src/lib"
+	LUX_EXT="$LUX_LIB/ext"
+	LUX_DEFS="$LUX_LIB/defs"
+
+	LUX_CORE="$LUX_HOME/src/styl/lux"
+	LUX_VARS="$LUX_HOME/src/styl/vars"
+	LUX_UTIL="$LUX_HOME/src/styl/util"
+
+	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
+	OPT_IMPORT="--import $LUX_DEFS"
 
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
-	
 
 #-------------------------------------------------------------------------------
 # Utils
 #-------------------------------------------------------------------------------
+	function in_string(){ [ -z "${2##*$1*}" ]; }
 
-	#base='src/core'
-	dirs=( debug equalizer elements layout modifiers )
-	
-	function lux_build_each(){
-		local files arr d i f j p 
-		#echo $LUX_HOME $THIS_DIR
-		info "Rebuilding each..."
-		files=();
-		arr=("${dirs[@]}"); 
-
-		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
-
-		for i in ${!arr[@]}; do
-			d="${arr[$i]}"
-			this="$THIS_DIR/$LUX_CORE/$d"
-			[ -d "$this" ] && files=($(find $this -type f -name *.styl -printf "%f\n" )) || :
-
-			for j in ${!files[@]}; do
-				f="${files[$j]//\.styl/}" #remove extension
-				[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
-				stylus --import $THIS_DIR/src/lib -r "$THIS_DIR/src/core/$d/${f}.styl" --out "$LUX_BUILD/${p}.css"
-			done
-		done
-
+	function in_array(){
+		local e
+		for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+		return 1
 	}
+
+
+	function lux_vars(){
+		local data
+		data="$(cat <<-EOF
+			${sp}LUX_ID    = $LUX_ID
+			${sp}LUX_RC    = $LUX_RC
+
+			${sp}LUX_HOME  = $LUX_HOME
+			${sp}THIS_DIR  = $THIS_DIR
+
+			${sp}LUX_BIN   = $LUX_BIN
+			${sp}BIN_DIR   = $BIN_DIR
+
+			${sp}LUX_LIB   = $LUX_LIB
+			${sp}LUX_DEFS  = $LUX_DEFS
+
+			${sp}LUX_CORE  = $LUX_CORE
+			${sp}LUX_VARS  = $LUX_VARS
+			${sp}LUX_UTIL  = $LUX_UTIL
+
+			${sp}LUX_DIST  = $LUX_DIST
+			${sp}LUX_BUILD = $LUX_BUILD
+			${sp}LUX_RES   = $LUX_RES
+		EOF
+		)";
+
+		__print "$data"
+	}
+#-------------------------------------------------------------------------------
+# Utils
+#-------------------------------------------------------------------------------
+	
+
 
 	function lux_prep(){
 		local src data
@@ -257,15 +247,6 @@
 		printf '%s\n%s' "$data" "$(cat $src)" > $src
 	}
 
-	function lux_build(){
-		info "Making Lux..."
-		[ ! -d $LUX_DIST ] && mkdir -p $LUX_DIST
-		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
-		res=$(stylus --import $THIS_DIR/src/lib -r "$THIS_DIR/src/core/" --out "$LUX_DIST/lux.css");
-		res=$(stylus -c --import $THIS_DIR/src/lib -r "$THIS_DIR/src/core/" --out "$LUX_DIST/lux.min.css");
-		lux_prep "$LUX_DIST/lux.css"
-		lux_prep "$LUX_DIST/lux.min.css"
-	}
 
 
 	function lux_clean(){
@@ -301,9 +282,43 @@
 	}
 
 
+	function lux_buildtype(){
+		local mod mode val
+		mod=$1
+		mode=$2
+		case $mod in
+			lux)  		 [ -z "$mode" ] && val='main' || val="$LUX_CORE";;
+			util) 		 [ -z "$mode" ] && val='each' || val="$LUX_UTIL";;
+			fx|mixins) [ -z "$mode" ] && val='each' || val="$LUX_UTIL/$mod";;
+			vars)		   [ -z "$mode" ] && val='each' || val="$LUX_VARS";;
+			*) 				 [ -z "$mode" ] && val='mod'  || val="$LUX_CORE/$mod";;
+		esac
+		echo $val;
+	}
+
+	function lux_parsename(){
+		local this="$1"
+		if [ -n "$this" ]; then
+			thisd=$(dirname $this)
+			thisb=$(basename $thisd)
+			thisf=$(basename $this)
+			d="$thisb"
+			f="${thisf//\.styl/}" #remove extension
+			case $f in
+				index)     p="${d}";;
+				[a-zA-Z]*) p="${d}-${f}";;
+				*) return 1;;
+			esac
+			echo "$p"
+			return 0
+		fi
+		return 1
+	}
+
+
 	function lux_compile(){
 
-		local this thisd thisb thisf d f p
+		local this thisd thisb thisf d f p buildtype
 		this="$1"
 
 		if [ ${#this} -gt 0 ] && [ -f $this ]; then
@@ -311,64 +326,159 @@
 			thisd=$(dirname $this)
 			thisb=$(basename $thisd)
 			thisf=$(basename $this)
-			
-			#lux_clean
 
-			info "Compiling... $thisb/$thisf"
+			buildtype=$(lux_buildtype $thisb)
+			info "Compiling... ($thisb/$thisf) $buildtype"
+
+			case $buildtype in
+				main) 
+						silly "Rebuild main! ($thisb)"	 
+						lux_build
+					;;
+				each)
+						silly "Rebuild each! ($thisb)"	 
+						lux_build_each
+						lux_copy_res
+						lux_build
+					;;
+				mod)  
+						silly "Rebuild mod! ($thisb)"	
+						lux_build_submod "$this"
+						lux_copy_res
+						lux_build
+					;;
+				*)    
+						silly "Rebuild woops!" 
+					;;
+			esac
+
+		fi
+	}
 
 
-			if [ $thisb = "lib" ]; then
-				#recompile all core files with new lib
-				lux_build_each
-				lux_copy_res
+	function lux_build(){
+		info "[MAIN] Rebuilding Lux..."
+		[ ! -d $LUX_DIST ] && mkdir -p $LUX_DIST
+		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
+
+		#FIX COMPILE PATHS
+		res=$(stylus $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.css");
+		__print "$res"
+
+		res=$(stylus -c $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");
+		__print "$res"
+
+		lux_prep "$LUX_DIST/lux.css"
+		lux_prep "$LUX_DIST/lux.min.css"
+	}
+
+
+
+	function lux_build_each(){
+		local files arr d i f j p err
+
+		info "Rebuilding each..."
+
+		files=();
+
+		arr=("${LUX_MODS[@]}"); 
+
+		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
+
+		for i in ${!arr[@]}; do
+
+			d="${arr[$i]}"
+			this="$LUX_CORE/$d"
+
+			[ -d "$this" ] && files=($(find $this -type f -name *.styl -printf "%f\n" )) || err="Invalid directory ($d)"
+
+			if [ -z "$err" ]; then
+				silly "Files => ${files[*]}"
+				for j in ${!files[@]}; do
+					f="${files[$j]//\.styl/}" #remove extension
+					[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
+					silly "Rebuilding ($d-$f) ..."
+					stylus $OPT_INCLUDE -r "$LUX_CORE/$d/${f}.styl" --out "$LUX_BUILD/${p}.css"
+				done
 			else
-				[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
-				d="$thisb"
-				f="${thisf//\.styl/}" #remove extension
-				[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
-				res=$(stylus --import $THIS_DIR/src/lib "$this" --out "$LUX_BUILD/${p}.css")
-				__print "$res"
-				rm -f "$LUX_RES/${p}.css"
-				cp "$LUX_BUILD/${p}.css" "$LUX_RES"
-				sleep 2
-				lux_buildmod "$d"
-				# info "Rebuilding... $d.css $f"
-				# stylus --import $THIS_DIR/src/lib "$THIS_DIR/src/core/$d/" --out "$THIS_DIR/dist/${d}.css"
-				# cp "$THIS_DIR/dist/${d}.css" "$THIS_DIR/www/res/dist"
+				error "$err" 
 			fi
+
+			err=
+		done
+	}
+
+
+	function lux_build_submod(){
+		local this name res ret
+		this="$1"
+		name=$(lux_parsename $this); ret=$?
+		if [ $ret -eq 0 ]; then
+			if in_string '-' "$name"; then 
+				info "[SUB] Rebuilding Sub... ${name}.css"
+				res=$(stylus $OPT_INCLUDE "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
+			fi
+			lux_build_mod "${name%%\-*}"
+		else
+			error "Problem building $this";
 		fi
 
 	}
 
-	function lux_buildmod(){
+
+
+	function lux_build_mod(){
+		local res ret mod modpath
 		mod="$1"		
-		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
-		info "Rebuilding... ${mod}.css"
-		[ "$mod" = "core" ] && modpath="core" || modpath="core/$mod"
-		res=$(stylus --import $THIS_DIR/src/lib "$THIS_DIR/src/${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
-		__print "$res"
-		rm -f "$LUX_RES/${mod}.css"
-		cp "$LUX_BUILD/${mod}.css" "$LUX_RES"
+		
+		res=$(in_array "$mod" "${LUX_MODS[@]}"); ret=$?;
+
+		if [ $ret -eq 0 ]; then
+			
+			[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD;
+			modpath=$(lux_buildtype $mod true)
+
+			if [ -d $modpath ]; then
+				info "[MOD] Rebuilding... ${mod}.css"
+				res=$(stylus $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
+				__print "$res"
+				rm -f "$LUX_RES/${mod}.css"
+				cp "$LUX_BUILD/${mod}.css" "$LUX_RES"
+			else
+				error "Invalid module directory ($mod)";	
+			fi
+		else
+			error "Unknown module ($mod)";
+		fi
 	}
 
 
+
 	function lux_watch(){
-		local IFS sec chsum chsum2 res this thisd thisb thisf
+		local IFS sec chsum chsum2 chval res this thisd thisb thisf
 		sec="${1:-5}"
 		chsum1=""
 		info "Watching.. $THIS_DIR/src"
 		while [[ true ]];
 		do
 			chsum2=`find $THIS_DIR/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin $(echo "$sec/60"|bc -l) -exec md5sum {} \;`
+
 			if [[ $chsum1 != $chsum2 ]] ; then 
 				res=$(echo "$chsum2")  
 				IFS=' ' read -r -a array <<< "$res"  
 				this="${array[1]}"
+			  chval="${array[0]}"
 				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})..."; 
+
+				#FIX COMPILE PATHS
 				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
+
 				chsum1=$chsum2
+				[ -n "$chval" ] && pass "Watch job ($green$chval$x) completed$nl$line" || :
 			fi
+
 			sleep 1
+			
 		done
 	}
 
@@ -541,48 +651,34 @@
 
 			shift
 			case $call in
-				help)
-					lux_usage
-					;;
-				dir)
-					quiet 0
-					echo "$LUX_HOME"
-					ret=$?;;
+				help) lux_usage;;
+				vars) lux_vars;;
+				mods) info "=> ${LUX_MODS[*]}";;
+				dir)  quiet 0; echo "$LUX_HOME";;
 				dev)
 					lux_build_each
 					lux_copy_res
 					;;
-				link)
-					profile_link; 
-					ret=$?;;
-				unlink)
-					profile_unlink
-					ret=$?;;
-				rcfile) 
-					lux_make_rc $1; ret=$?;;
-				each)    
-					lux_build_each
-					;;
-				res)
-					lux_copy_res
-					;;
+				link)   profile_link;   ret=$?;;
+				unlink) profile_unlink; ret=$?;;
+				rcfile) lux_make_rc 1; ret=$?;;
+				each)   lux_build_each;;
+				res)    lux_copy_res;;
 				build|make)
 					case $1 in
 						each) shift; lux_build_each;;
-						*) lux_build;;
+            "")   shift; lux_build;;
+						*)    lux_build_mod "$1";;
 					esac
+					break;
 				;;
-				clean)
-					lux_clean
-					;;
+				clean) lux_clean ;;
 				list)
 					lux_listfile "csslist" "res/css" "css"
 					lux_listfile "htmllist" "test" "html"
 					;;
-				watch)
-					lux_watch "$1"; shift;
-					;;
-				setup) 	:; ret=$?;;
+				watch) lux_watch "$1"; shift;;
+				skip) break;;
 				--*) :;;
 				*) 
 					fatal "Invalid command" $call;
