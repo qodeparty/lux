@@ -1,17 +1,17 @@
 {
   "name": "lux",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "lux css framework]",
   "main": "dist/lux.min.css",
   "bin": {
     "lux": "./bin/lux",
-    "luxconf" : "./config"
+    "luxconf": "./config"
   },
   "scripts": {
     "clean": "bash ./bin/lux clean",
-    "make":  "bash ./bin/lux clean make",
-    "help":  "bash ./bin/lux help --force",
-    "prepublish":"bash ./bin/lux clean make"
+    "make": "bash ./bin/lux clean make",
+    "help": "bash ./bin/lux help --force",
+    "prepublish": "bash ./bin/lux clean make"
   },
   "repository": {
     "type": "git",
@@ -25,13 +25,13 @@
     "sass"
   ],
   "config": {
-    "basis" : 16
+    "basis": 16
   },
-
   "author": "qodeparty",
   "license": "MIT",
   "bugs": {
     "url": "https://gitlab.com/qodeparty/lux/issues"
   },
-  "homepage": "https://gitlab.com/qodeparty/lux#README"
+  "homepage": "https://gitlab.com/qodeparty/lux#README",
+  "dependencies": {}
 }
