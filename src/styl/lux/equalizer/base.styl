@@ -1,0 +1,160 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Equalize
+///////////////////////////////////////////////////////////////////////////// */
+
+*
+  &, &:before, &:after
+    box-sizing inherit
+    
+html, body
+  __box_reset()
+
+html
+  font-size $rootfont
+  line-height $line_height
+  text-rendering optimizeLegibility
+  box-sizing border-box
+ 
+body
+  font-size 1em
+  font-family $basefamily
+
+ 
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Monkey Elements
+///////////////////////////////////////////////////////////////////////////// */
+
+canvas, article, aside, figcaption, figure, footer, 
+header, hgroup, main, menu, nav, section, summary, details
+  display block
+  __box_reset()
+  vertical-align baseline
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Hidden Elements
+///////////////////////////////////////////////////////////////////////////// */
+
+[hidden],
+template
+  display none
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Table Elements
+///////////////////////////////////////////////////////////////////////////// */
+
+table 
+  border-collapse collapse
+  border-spacing 0
+  
+table, tbody, tfoot, thead, tr, th, td, caption
+  __box_reset()
+
+caption, th, td
+  border-collapse separate
+  border-spacing 0
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Summary
+///////////////////////////////////////////////////////////////////////////// */
+ 
+details
+  display block
+
+summary 
+  display list-item
+  
+/* //////////////////////////////////////////////////////////////////////////////
+// Input
+///////////////////////////////////////////////////////////////////////////// */
+
+form, label, legend, fieldset, output
+  __box_reset()
+  vertical-align baseline
+  
+label,button, 
+input[type=button],
+input[type=submit],
+input[type=file],
+  cursor pointer
+
+button[disabled], html input[disabled]
+  cursor default
+    
+button,
+input,
+select,
+legend,
+label,
+optgroup,
+textarea
+  font-family $basefamily
+  font-size inherit
+  line-height inherit
+
+input, select
+  vertical-align middle
+  margin 0
+
+form
+  width 100%
+
+textarea
+  overflow auto
+
+input[type='search']
+  box-sizing content-box
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// MEDIA 
+///////////////////////////////////////////////////////////////////////////// */
+
+img 
+  max-width 100%
+  height auto
+  vertical-align  middle 
+  border none
+
+
+audio:not([controls])
+  display none
+  height 0
+
+audio,
+canvas,
+progress,
+video 
+  display inline-block
+  vertical-align baseline
+
+
+embed,
+iframe,
+object,
+audio,
+video
+  __box_reset()
+  max-width 100%
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// EXT 
+///////////////////////////////////////////////////////////////////////////// */
+
+svg:not(:root)
+  overflow hidden
+
+hr
+  display block
+  box-sizing content-box
+  height 0
+  overflow visible
+
+
+[tabindex="-1"]:focus
+  outline: 0 !important
+
