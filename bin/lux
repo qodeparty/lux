@@ -225,7 +225,7 @@
 	LUX_VARS="$LUX_HOME/src/styl/vars"
 	LUX_UTIL="$LUX_HOME/src/styl/util"
 
-	LUX_MODS=($(find "$LUX_CORE" -type d -printf '%P\n' ))
+	LUX_MODS=
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
 	OPT_IMPORT="--import $LUX_VARS --import $LUX_UTIL"
@@ -267,7 +267,9 @@
 # Utils
 #-------------------------------------------------------------------------------
 	
-
+	function lux_mods(){
+		LUX_MODS=($(find "$LUX_CORE" -type d -printf '%P\n' ))
+	}
 
 	function lux_prep(){
 		local src data
@@ -354,6 +356,8 @@
 		local this thisd thisb thisf d f p buildtype
 		this="$1"
 
+		lux_mods
+
 		if [ ${#this} -gt 0 ] && [ -f $this ]; then
 			
 			thisd=$(dirname $this)
@@ -388,6 +392,10 @@
 		fi
 	}
 
+	function lux_build_path(){
+		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
+	}
+
 
 	function lux_build(){
 		info "Rebuilding Lux..."
@@ -395,10 +403,10 @@
 		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
 
 		#FIX COMPILE PATHS
-		res=$(stylus $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.css");
+		res=$(stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.css");
 		__print "$res"
 
-		res=$(stylus -c $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");
+		res=$(stylus -c $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");
 		__print "$res"
 
 		lux_prep "$LUX_DIST/lux.css"
@@ -413,10 +421,10 @@
 		info "Rebuilding each..."
 		index='index.styl'
 		files=();
-
+		lux_mods
 		arr=("${LUX_MODS[@]}"); 
 
-		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
+		lux_build_path
 
 		for i in ${!arr[@]}; do
 
@@ -441,7 +449,7 @@
 					f="${files[$j]//\.styl/}" #remove extension
 					[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
 					silly "Rebuilding ($d-$f) ..."
-					stylus $OPT_INCLUDE -r "$LUX_CORE/$d/${f}.styl" --out "$LUX_BUILD/${p}.css"
+					stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE/$d/${f}.styl" --out "$LUX_BUILD/${p}.css"
 				done
 			else
 				error "$err" 
@@ -456,10 +464,12 @@
 		local this name res ret;
 		this="$1"
 		name=$(lux_parse_styl $this); ret=$?
+
 		if [ $ret -eq 0 ]; then
+			lux_build_path
 			if in_string '-' "$name"; then 
 				info "[SUB] Rebuilding Sub... ${name}.css"
-				res=$(stylus $OPT_INCLUDE "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
+				res=$(stylus $OPT_IMPORT $OPT_INCLUDE "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
 			fi
 			lux_build_mod "${name%%\-*}"
 		else
@@ -476,11 +486,11 @@
 		res=$(in_array "$mod" "${LUX_MODS[@]}"); ret=$?;
 
 		if [ $ret -eq 0 ]; then
-			[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD;
+			lux_build_path
 			modpath=$(lux_buildtype $mod true)
 			if [ -d $modpath ]; then
 				info "[MOD] Rebuilding... ${mod}.css"
-				res=$(stylus $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
+				res=$(stylus $OPT_IMPORT $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 				__print "$res"
 				rm -f "$LUX_RES/${mod}.css"
 				cp "$LUX_BUILD/${mod}.css" "$LUX_RES/${mod}.css"
