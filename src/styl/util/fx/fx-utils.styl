@@ -5,3 +5,21 @@
   __join()
     join('',arguments)
     
+  __fontsize($ref="")
+    $$s=$sizes
+    $$l=$size_labels
+    $ref = fx_str_len($ref) > 1 ? __join('-',$ref) : ""
+    for $size in $$s
+      $i = index($$s,$size)
+      $lbl = $$l[$i]
+      &{$pre_size}{$lbl}{$ref}
+        font-size: $$s[$i]
+        
+  __em($val)
+    p($val,$basis)
+    $val = $val / $basis
+    unquote(__join($val,'em'))
+
+  __rem($val)
+    $val = $val / $basis
+    unquote(__join($val,'rem'))

@@ -4,6 +4,20 @@
 
 
 
+/* /////////////////////////////////////////////////////////////////////////////
+// Flexbox
+///////////////////////////////////////////////////////////////////////////// */
+  
+  {$cl_layout_row}
+    display flex
+    flex-wrap wrap
+    align-items stretch
+    
+  {$cl_layout_col}
+    flex-basis 0 
+    flex-grow 1 
+    flex-shrink  1 
+    padding  .75rem
 
 // /* /////////////////////////////////////////////////////////////////////////////
 // // Flexbox Spanning & Offsets
@@ -18,4 +32,16 @@
      {$cl_layout_row} > {$pre_offsets}{$i} // group => offsets-x
         margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
 
+  //50 ordering elements
+  for $i in (0..$flex_max)// 12 per row default
+     {$cl_layout_row} > {$pre_index}{$i}
+        order $i
+        
+/* /////////////////////////////////////////////////////////////////////////////
+// Flexbox Responsive
+///////////////////////////////////////////////////////////////////////////// */
 
+  @media only screen and (max-width: 767px)
+    {$cl_layout_row}{$cl_flag_resp}
+      flex-direction column
+    
