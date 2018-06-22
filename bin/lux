@@ -228,7 +228,7 @@
 	LUX_MODS=
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
-	OPT_IMPORT="--import $LUX_VARS --import $LUX_UTIL"
+	OPT_IMPORT="--import $LUX_UTIL --import $LUX_VARS " #order matters
 
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
