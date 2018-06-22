@@ -1,7 +1,7 @@
 #rainbow
 #!/usr/bin/env bash
 #===============================================================================
-##     Lux CLI 
+##     Lux CLI  > lux watch 2 > lux.out  2>&1
 ##       __     
 ##       \ \    
 ##        \ \   
@@ -46,9 +46,9 @@
 	sp="   "
 	tab=$'\t'
 	nl=$'\n'
-	blambda=$(sed -n '5,11 p' $BASH_SOURCE)$nl
-	blambda=${blambda//#/}
-	line=$(sed -n '16,16 p' $BASH_SOURCE)$nl
+	blambda="$(sed -n '5,11 p' $BASH_SOURCE)$nl"
+	blambda="${blambda//#/}"
+	line="$(sed -n '16,16 p' $BASH_SOURCE)$nl"
 	diamond='\xE1\x9B\x9C'
 	pass="${green}\xE2\x9C\x93$x"
 	fail="${red}\xE2\x9C\x97$red2"
@@ -63,7 +63,7 @@
 	function __print(){
 		local text color prefix
 		text=${1:-}; color=${2:-grey}; prefix=${!3:-};
-		[ $opt_quiet -eq 1 ] && [ -t 1 ] && [ -n "$text" ] && printf "${prefix}${!color}%b${x}\n" "${text}" 1>&2 || :
+		[ $opt_quiet -eq 1 ] && [ -n "$text" ] && printf "${prefix}${!color}%b${x}\n" "${text}" 1>&2 || :
 	}
 
 	function  info(){ local text=${1:-}; [ $opt_verbose -eq 0 ] || [ $opt_debug -eq 0 ]  && __print "$lambda$text" "blue"; }
@@ -229,6 +229,7 @@
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
 	OPT_IMPORT="--import $LUX_UTIL --import $LUX_VARS " #order matters
+	OPT_USE=""
 
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
@@ -525,6 +526,7 @@
 
 				#FIX COMPILE PATHS
 				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
+				[[ "$this" =~ ".js" ]]   && lux_compile "$LUX_UTIL/index.styl" || :
 
 				chsum1=$chsum2
 				[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
@@ -768,6 +770,8 @@ else
 	else
 		:
 	fi
+
+	#[ -t 1 ] && [ $opt_force -eq 0 ] && opt_quiet=1 ||:
 
 	args=( "${args[@]/\-*}" ); #delete anything that looks like an option
 

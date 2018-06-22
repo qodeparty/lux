@@ -1,17 +1,20 @@
 {
 
+
   "init" : {
-    "lux_lang"  : "en-us",
-    "roundby"   : 3,
-    "basis"     : 16,
-    "size_step" : 0.25,
-    "flex_max"  : 49
-  },
+    "lang"    : "en-us",
+    "roundby"     : 3,
+    "basis"       : 16,
+    "size-step"   : 0.25,
+    "flex-max"    : 49
+  }, 
 
   "flags" : {
-    "debug" : true,
-    "rtl"   : false,
-    "ext"   : true
+    "debug"   : true,
+    "rtl"     : false,
+    "ext"     : true,
+    "cssvars" : false,
+    "ultra"   : true
   },
 
   "vars"  : {
