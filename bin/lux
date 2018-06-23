@@ -71,8 +71,14 @@
 	function trace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$text" "grey2"; }
 	function error(){ local text=${1:-}; __print " $text" "fail";	}
 	function  pass(){ local text=${1:-}; __print " $text" "pass";	}
-	function fatal(){ trap - EXIT; lux_usage_sh; __print "$fail $1 [$2]"; exit 1; }
+	function fatal(){ trap - EXIT; __print "$fail $1 [$2]"; exit 1; }
 	function quiet(){ [ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1; }
+	function status(){ 
+		local ret res msg
+		ret=$1; res=$2; msg=$3; __print "$res";
+		[ $ret -eq 1 ] && fatal "Error: $msg, exiting" "1";
+ 		return 0
+	}
 
 #-------------------------------------------------------------------------------
 # Sig / Flow
@@ -404,11 +410,12 @@
 		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
 
 		#FIX COMPILE PATHS
-		res=$(stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.css");
-		__print "$res"
+		res=$(stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.css"); ret=$?;
+		status $ret "$res" "Compile Error"
 
-		res=$(stylus -c $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");
-		__print "$res"
+		res=$(stylus -c $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");ret=$?;
+		status $ret "$res" "Compile Error"
+
 
 		lux_prep "$LUX_DIST/lux.css"
 		lux_prep "$LUX_DIST/lux.min.css"
@@ -450,7 +457,8 @@
 					f="${files[$j]//\.styl/}" #remove extension
 					[ "$f" = "index" ] && p="${d}" || p="${d}-${f}";
 					silly "Rebuilding ($d-$f) ..."
-					stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE/$d/${f}.styl" --out "$LUX_BUILD/${p}.css"
+					stylus $OPT_IMPORT $OPT_INCLUDE -r "$LUX_CORE/$d/${f}.styl" --out "$LUX_BUILD/${p}.css";ret=$?;
+					status $ret "$res" "Compile Error"
 				done
 			else
 				error "$err" 
@@ -472,6 +480,7 @@
 			if in_string '-' "$name"; then 
 				info "[SUB] Rebuilding Sub... ${name}.css"
 				res=$(stylus $OPT_IMPORT $OPT_INCLUDE "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
+				status $ret "$res" "Compile Error"
 			fi
 			lux_build_mod "${name%%\-*}"
 		else
@@ -493,7 +502,7 @@
 			if [ -d $modpath ]; then
 				info "[MOD] Rebuilding... ${mod}.css"
 				res=$(stylus $OPT_IMPORT $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
-				__print "$res"
+				status $ret "$res" "Compile Error"
 				rm -f "$LUX_RES/${mod}.css"
 				cp "$LUX_BUILD/${mod}.css" "$LUX_RES/${mod}.css"
 			else
