@@ -4,7 +4,7 @@
     "lang"        : "en-us",
     "roundby"     : 3,
     "basis"       : 16,
-    "flex-max"    : 49,
+    "flex-max"    : 32,
     "line-height" : 1.15,
     "root-font"   : "100%",
     "base-family" : "Arial, Helvetica, sans-serif"
@@ -48,7 +48,7 @@
       "min"    : 0.25,
       "max"    : 3.5,
       "step"   : 0.25,
-      "hstart" : 9,
+      "hstart" : 11,
       "cats"   : [ "none", "all", "extended", "headers", "countable" ],
       "labels" : [ "000","00","0","1","2","3","4","5","6","7","8", "9", "99", "999" ]
     },

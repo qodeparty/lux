@@ -10,7 +10,7 @@ $size_step     ?= __size_meta('step')
 $size_prefix   ?= __size_meta('prefix')   // use $LANG_size?
 $size_start    ?= __size_meta('hstart')
 
-p($basis)
+//p($basis)
 /* /////////////////////////////////////////////////////////////////////////////
 // Size Generator 
 ///////////////////////////////////////////////////////////////////////////// */
@@ -29,10 +29,10 @@ p($basis)
     else
       $sizes = ($key)
 
-if $devmode
-  p($sizes)
-  for $s in $sizes
-    p('size=> '+$s + ' = '+ lookup($s))
+// if $devmode
+//   p($sizes)
+//   for $s in $sizes
+//     p('size=> '+$s + ' = '+ lookup($s))
     
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,8 @@ if $devmode
     $key='$h'+$j
     $step=$size_start - $i //h1 has inverse value to size1
     $keyval=$sizes[$step]
-    define($key,lookup($keyval))
+    $val=__rem(lookup($keyval))
+    define($key,$val)
     // if $devmode 
     //   p($key  + ' ' + lookup($keyval) + ' ' + $step)
 

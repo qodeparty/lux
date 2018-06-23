@@ -39,6 +39,7 @@
   "border"  : "border",
 
   "hidden"  : "hidden",
+  "block"   : "block",
 
   "nano"    : "nano",
   "mobile"  : "mobile",
