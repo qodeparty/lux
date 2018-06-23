@@ -1,0 +1,17 @@
+{
+  "meta"  : {
+    "cats"   : [ "none", "all", "extended", "touch", "desk", "hidef", "tv", "custom"  ],
+    "alias"  : { "laptop" : "desktop", "watch" : "nano", "standard" : "jumbo" },
+    "shorts" : { "vals" : [ "w", "m", "t", "d", "w", "f", "j", "u" ] }
+  },
+  "vals"  : {
+    "nano"    : { "idx" : 0, "cat" : [0,1,2],     "range" : [ 0,    360 ] },
+    "mobile"  : { "idx" : 1, "cat" : [0,2],       "range" : [ 360,  768 ] },
+    "tablet"  : { "idx" : 2, "cat" : [0,2],       "range" : [ 768,  1024 ] },
+    "desktop" : { "idx" : 3, "cat" : [0,3],       "range" : [ 1024, 1216 ] },
+    "wide"    : { "idx" : 4, "cat" : [0,3,4],     "range" : [ 1216, 1440 ] },
+    "full"    : { "idx" : 5, "cat" : [0,3,4],     "range" : [ 1440, 1920 ] },
+    "jumbo"   : { "idx" : 6, "cat" : [0,3,4,5],   "range" : [ 1920, 2560 ] },
+    "ultra"   : { "idx" : 7, "cat" : [0,1,3,4,5], "range" : [ 2560, 9999 ] }
+  }
+}

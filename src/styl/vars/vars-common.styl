@@ -6,19 +6,20 @@
 // Grid Systems
 ////////////////////////////////////////////////////////////////////////////// */
 
-$basis      ?= __config('var_basis')
-$roundby    ?= __config('var_roundby')
+$basis       ?= __config('var_basis')
+$roundby     ?= __config('var_roundby')
 
 
-$line_height?= 1.15 //8pt softgrid rhythm?
-$rootfont   ?= 100% //16px = 1em
-$basefamily ?= Arial, Helvetica, sans-serif
+$line_height ?= __config('var_line-height') //8pt softgrid rhythm?
+$basefamily  ?= __config('var_base-family')
 
-$lang_rtl   ?= __config('use_rtl')
-$offset_dir  = ( $lang_rtl ? right : left )
-
-$use_cssvars ?= __config('use_cssvars')
-$use_ultra   ?= __config('use_ultra')
+$rootfont    ?= __config('var_root-font')
 
 $flex_max    ?= __config('var_flex-max')
 
+
+$use_rtl     ?= __config('use_rtl')
+$use_cssvars ?= __config('use_cssvars')
+$use_ultra   ?= __config('use_ultra')
+
+$offset_dir   = ( $use_rtl ? right : left )

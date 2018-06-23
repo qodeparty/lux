@@ -2,18 +2,21 @@
 
 
   "init" : {
-    "lang"    : "en-us",
+    "lang"        : "en-us",
     "roundby"     : 3,
     "basis"       : 16,
     "size-step"   : 0.25,
-    "flex-max"    : 49
+    "flex-max"    : 49,
+    "line-height" : 1.15,
+    "root-font"   : "100%",
+    "base-family" : "Arial, Helvetica, sans-serif"
   }, 
 
   "flags" : {
     "debug"   : true,
     "rtl"     : false,
     "ext"     : true,
-    "cssvars" : false,
+    "cssvars" : true,
     "ultra"   : true
   },
 
@@ -36,7 +39,8 @@
     "meta"  : {
       "cats"   : [ "none", "all", "extended", "touch", "desk", "hidef", "tv", "custom"  ],
       "alias"  : { "laptop" : "desktop", "watch" : "nano", "standard" : "jumbo" },
-      "shorts" : { "vals" : [ "w", "m", "t", "d", "w", "f", "j", "u" ] }
+      "shorts" : { "vals" : [ "w", "m", "t", "d", "w", "f", "j", "u" ] },
+      "ranges" : { "touch" : [ "nano", "desktop" ], "desktop" : [ "desktop", "ultra" ], "hd" : [ "wide", "ultra" ] }
     },
     "vals"  : {
       "nano"    : { "idx" : 0, "cat" : [0,1,2],     "range" : [ 0,    360 ] },
