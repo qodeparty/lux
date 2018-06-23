@@ -1,6 +1,5 @@
 {
 
-
   "init" : {
     "lang"        : "en-us",
     "roundby"     : 3,
@@ -20,18 +19,6 @@
     "ultra"   : true
   },
 
-  "vars"  : {
-    "$idx"   : "this.vals.idx",
-    "$cat"   : "this.vals.cat",
-    "$range" : "this.vals.range",
-    "$alias" : "this.meta.alias",
-    "$shorts": "this.meta.shorts",
-    "$cats"  : "this.meta.cats",
-    "$min"   : "",
-    "$max"   : "",
-    "$prefix": "",
-    "$each"  : ""
-  },
 
   "basis"   : [ 4, 8, 12, 16, 24 ],
 

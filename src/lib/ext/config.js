@@ -18,20 +18,16 @@ function * listGenerator(iter){
 
 
 //console.log(deviceGenerator)
-const gen = listGenerator(devices);
+const deviceGen = listGenerator(devices);
 
 function makeDeviceGenerator(){
-
   const len =  Object.keys(devices).length;
-  //console.log('LENGTH is',len);
-
   return function(getLength){
     if(getLength) return len;
-    let $this = gen.next();
+    let $this = deviceGen.next();
     if( ! $this.done ) return $this.value; 
     return null;
   }
-
 }
 
 
@@ -67,15 +63,10 @@ module.exports = () => {
     });
 
 
-
-
-
-
     stylus.define('fx_make_device_iter', function(g){
       const gen = makeDeviceGenerator()
       let i = gen(g.val);
       return i;
-
     });
 
 

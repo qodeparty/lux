@@ -1,0 +1,53 @@
+{
+  "i"       : "i",
+  "is"      : "is",
+  "has"     : "has",
+  "no"      : "no",
+  "with"    : "with",
+  "as"      : "as",
+  "spans"   : "spans",
+  "offsets" : "offsets",
+  "size"    : "size",
+
+  "xsmall" : "xsmall",
+  "small"  : "small",
+  "medium" : "medium",
+  "large"  : "large",
+  "xlarge" : "xlarge",
+
+  "groups" : "groups",
+  "row"    : "row",
+  "col"    : "col",
+
+
+  "title"    : "title",
+  "subtitle" : "subtitle",
+
+  "responsive" : "resp",
+
+  "capital" : "capital",
+  "lower"   : "lower",
+  "upper"   : "upper",
+  "italic"  : "italic",
+  "sub"     : "sub",
+  "sup"     : "sup",
+
+  "margins" : "margins",
+  "padding" : "padding",
+  "radius"  : "radius",
+  "shadhow" : "shadow",
+  "border"  : "border",
+
+  "nano"    : "nano",
+  "mobile"  : "mobile",
+  "tablet"  : "tablet",
+  "desktop" : "desktop",
+  "wide"    : "wide", 
+  "full"    : "full",
+  "jumbo"   : "jumbo",
+  "ultra"   : "ultra", 
+
+  "red"     :   "red"
+
+}
+

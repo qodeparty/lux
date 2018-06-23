@@ -32,35 +32,35 @@ __media_to( $devive )
 
 
 __nano()
-   @media screen and (min-width __rem($nano))
+   @media screen and (min-width __rem($screen_nano))
      {block}
 
 __nano_only()
-   @media screen and (min-width __rem($nano)) and (max-width __rem($mobile))
+   @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile))
      {block}   
 
 
 __mobile()
-   @media screen and (min-width __rem($mobile))
+   @media screen and (min-width __rem($screen_mobile))
      {block}
 
 __mobile_only()
-   @media screen and (min-width __rem($mobile)) and (max-width __rem($tablet))
+   @media screen and (min-width __rem($screen_mobile)) and (max-width __rem($screen_tablet))
      {block}
      
 
    
 __tablet()
-   @media screen and (min-width __rem($tablet))
+   @media screen and (min-width __rem($screen_tablet))
      {block}
 
 __tablet_only()
-   @media screen and (min-width __rem($tablet)) and (max-width __rem($desktop))
+   @media screen and (min-width __rem($screen_tablet)) and (max-width __rem($screen_desktop))
      {block}
 
 
 __touch()
-   @media screen and (max-width __rem($desktop))
+   @media screen and (max-width __rem($screen_screen_desktop))
      {block}
    
 
@@ -68,52 +68,52 @@ __touch()
 
 
 __desktop()
-   @media screen and (min-width __rem($desktop))
+   @media screen and (min-width __rem($screen_desktop))
      {block}
      
 __desktop_only()
-   @media screen and (min-width __rem($desktop)) and (max-width __rem($wide))
+   @media screen and (min-width __rem($screen_desktop)) and (max-width __rem($screen_wide))
      {block}
 
    
 
 
 __wide()
-   @media screen and (min-width __rem($wide))
+   @media screen and (min-width __rem($screen_wide))
      {block}
 
 __wide_only()
-   @media screen and (min-width __rem($wide)) and (max-width __rem($full))
+   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_full))
      {block}
    
 
 __full()
-   @media screen and (min-width __rem($full))
+   @media screen and (min-width __rem($screen_full))
      {block}
 
 __full_only()
-   @media screen and (min-width __rem($full)) and (max-width __rem($jumbo))
+   @media screen and (min-width __rem($screen_full)) and (max-width __rem($screen_jumbo))
      {block}
    
    
 __jumbo()
-   @media screen and (min-width __rem($jumbo))
+   @media screen and (min-width __rem($screen_jumbo))
      {block}
 
 __jumbo_only()
-   @media screen and (min-width __rem($jumbo)) and (max-width __rem($ultra))
+   @media screen and (min-width __rem($screen_jumbo)) and (max-width __rem($screen_ultra))
      {block}
      
 
 __hd_only()
-   @media screen and (min-width __rem($wide)) and (max-width __rem($ultra))
+   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_ultra))
      {block}
    
 
 
 
 __ultra()
-   @media screen and (min-width __rem($ultra))
+   @media screen and (min-width __rem($screen_ultra))
      {block}
 
 

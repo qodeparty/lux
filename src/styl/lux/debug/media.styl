@@ -44,14 +44,18 @@ button.as-display
   display none
   color white
 
+$b4=__basis_width(4)
 
-+__micro_only()
++__nano_only()
   body.debug
       background #ddd
-  .as-display.is-micro
+  .as-display.is-nano
       display block
       background #000
-  
+  .row > .nano-with-span-2
+      flex none
+      width $b4
+      
 +__mobile_only()
   body.debug
       background #94d8Ed
@@ -60,6 +64,9 @@ button.as-display
       background #0c4e7a
   .is-size-1-mobile
       font-size $h1
+  .row > .mobile-with-span-2
+      flex none
+      width $b4
       
 
 +__tablet_only()
@@ -70,7 +77,10 @@ button.as-display
       background #0a6ba8
   .is-size-1-tablet
       font-size $h1
-      
+  .row > .tablet-with-span-2
+      flex none
+      width $b4
+          
 //1024x768
 +__desktop_only()
   body.debug
@@ -80,36 +90,51 @@ button.as-display
       background #147BBC
   .is-size-1-desktop
       font-size $h1
+  .row > .desktop-with-span-2
+      flex none
+      width $b4
       
-+__widehd_only()
++__wide_only()
   body.debug
       background #147bbc
   .as-display.is-wide
       display block
       background #28A9E1
+  .row > .row > .wide-with-span-2
+      flex none
+      width $b4
 
-+__fullhd_only()
++__full_only()
   body.debug
       background #0a6ba8
   .as-display.is-full
       display block
       background #94D8ED
+  .row > .full-with-span-2
+      flex none
+      width $b4
       
 //1920x1080      
-+__jumbohd_only()
++__jumbo_only()
   body.debug
       background #0a6ba8
   .as-display.is-jumbo
       display block  
       background #55BCED
+  .row > .jumbo-with-span-2
+      flex none
+      width $b4
 
       
 +__hd_only()
   .is-size-1-hd
       font-size $h1
+  .row > .hd-with-span-2
+      flex none
+      width $b4
 
 //2560x1440
-+__ultrahd()
++__ultra()
   body.debug
       background #0c4e7a
   .as-display.is-ultra
@@ -117,7 +142,9 @@ button.as-display
       background #CBEAF3
   .is-size-1-ultra
       font-size $h1
-
+  .row > .ultra-with-span-2
+      flex none
+      width $b4
 
 /*
           family   : "Plain",

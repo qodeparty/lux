@@ -1,30 +1,114 @@
 /* //////////////////////////////////////////////////////////////////////////////
 // Partial Classes (Prefix)
 ////////////////////////////////////////////////////////////////////////////// */
-$pre_is='.is-'
+$dot='.'
+$dash='-'
 
+$pre_is = $dot + $L_is    + $dash         //.is-
+$pre_has= $dot + $L_has   + $dash         //.has-
+$pre_no = $dot + $L_spans + $dash         //.no-
 
-$pre_index   = $pre_is + 'i' //is-i<n>
-$pre_spans   ='.spans-'   
-$pre_offsets ='.offsets-'
+$pre_index   = $pre_is + $L_i             //.is-i<n>
+$pre_spans   = $dot + $L_spans   + $dash  //.spans-<n>
+$pre_offsets = $dot + $L_offsets + $dash  //.offsets-<n>
 
-$pre_size    = $pre_is + 'size-' //is-size-<s>
+$pre_size    = $pre_is + $L_size + $dash  //.is-size-<s>
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Classes
 ////////////////////////////////////////////////////////////////////////////// */
 
-$cl_layout_tbl ='.groups'
-$cl_layout_row ='.row'
-$cl_layout_col ='.col'
+$cl_layout_tbl = $dot + $L_groups
+$cl_layout_row = $dot + $L_row
+$cl_layout_col = $dot + $L_col
 
-$cl_ttl      = '.title'
-$cl_ttl_is   = $pre_is + 'title' //is-title
+$cl_ttl      = $dot + $L_title    //.title
+$cl_ttl_is   = $pre_is + $L_title //.is-title
 
-$cl_subttl   = '.subtitle'
+$cl_subttl   = $dot + $L_subtitle //.subtitle
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
 ////////////////////////////////////////////////////////////////////////////// */
 
-$cl_flag_resp =  $pre_is + 'resp' //is-resp
+$cl_flag_resp =  $pre_is + 'resp' //.is-resp
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Modifiers
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_flag_xsm = $pre_is + $L_xsmall //.is-xsmall
+$cl_flag_sm  = $pre_is + $L_small  //.is-small
+$cl_flag_med = $pre_is + $L_medium //.is-medium
+$cl_flag_lg  = $pre_is + $L_large  //.is-large
+$cl_flag_xlg = $pre_is + $L_xlarge //.is-xlarge
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Modifiers - Text
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_txt_cap  = $pre_is + $L_capital
+$cl_txt_low  = $pre_is + $L_lower
+$cl_txt_up   = $pre_is + $L_upper
+$cl_txt_ital = $pre_is + $L_italic
+$cl_txt_sub  = $pre_is + $L_sub
+$cl_txt_sup  = $pre_is + $L_sup
+
+$cl_sans_marg   = $pre_no + $L_margins //.no-margins
+$cl_sans_pad    = $pre_no + $L_padding //.no-padding
+$cl_sans_radius = $pre_no + $L_radius  //.no-radius
+$cl_sans_shadow = $pre_no + $L_shadow  //.no-shadow
+$cl_sans_border = $pre_no + $L_border  //.no-border
+  
+/*
+  [
+  "orange"
+  "yellow"
+  "green"
+  "blue"
+  "purple"
+  "pink"
+  "white"
+  "black"
+  "grey"
+  "teal"
+  "lime"
+  "tropical"
+  "magenta"
+  "neon"
+  "lemon"
+  "electric"
+  "clear"
+  "light"
+  "lighter"
+  "dark"
+  "darker"
+  "inverse"
+
+  "full"
+  "half"
+  "third"
+  "quarter"
+  "fifth"
+  "eighth"
+  "tenth"
+  "none"
+
+  "visible"
+  "hidden"
+  
+  "first"
+  "last"              
+  "next"
+  "prev"
+  "curr"
+  "this"
+  "that"
+
+  "form"
+  "button"
+  "input"
+  "radio"
+  "field"]
+ */
