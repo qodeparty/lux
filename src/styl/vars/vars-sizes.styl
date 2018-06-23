@@ -2,44 +2,52 @@
 // Size Rhythm
 ////////////////////////////////////////////////////////////////////////////// */
 
-$size_labels = '000' '00' 0 1 2 3 4 5 6 7 8 9 99 999 
-$size_step   = 0.25
-$size_max    = 3.5
 
-$c=0
-for $v in range(0.25, $size_max, $size_step)
-  $suf = '-' + $size_labels[$c]
-  $var ='$_size' + $suf
-  $v   = __join($v,'rem')
-  define( $var, unquote($v) )
-  $c=$c+1
+
+$size_min      ?= __size_meta('min')
+$size_max      ?= __size_meta('max')
+$size_step     ?= __size_meta('step')
+$size_prefix   ?= __size_meta('prefix')   // use $LANG_size?
+$size_start    ?= __size_meta('hstart')
+
+p($basis)
+/* /////////////////////////////////////////////////////////////////////////////
+// Size Generator 
+///////////////////////////////////////////////////////////////////////////// */
   
-/* //////////////////////////////////////////////////////////////////////////////
-// Typography
-////////////////////////////////////////////////////////////////////////////// */
+  $len = fx_make_size_iter(1)
 
-$h1 ?= $size-8 
-$h2 ?= $size-7
-$h3 ?= $size-6
-$h4 ?= $size-5
-$h5 ?= $size-4
-$h6 ?= $size-3 // size-8 = 1em
+  for $i in (1..$len)
+    $v=fx_make_size_iter()
+    $key='$'+$size_prefix+$v+'' //size-000
+    $val= $i * $size_step * $basis // 1 * 0.25 * 16
 
-//mobile 320 360 400
-$size-000 ?= $_size-000
-$size-00  ?= $_size-00
-$size-0   ?= $_size-0
-$size-1   ?= $_size-1
-$size-2   ?= $_size-2
-$size-3   ?= $_size-3
-$size-4   ?= $_size-4
-$size-5   ?= $_size-5
-$size-6   ?= $_size-6
-$size-7   ?= $_size-7
-$size-8   ?= $_size-8
-$size-9   ?= $_size-9
-$size-99  ?= $_size-99
-$size-999 ?= $_size-999
+    define($key,$val)      
 
-$sizes = $size-000 $size-00 $size-0 $size-1 $size-2 $size-3 $size-4 $size-5 $size-6 $size-7 $size-8 $size-9 $size-99 $size-999
+    if $sizes is defined 
+      push($sizes,$key)
+    else
+      $sizes = ($key)
+
+if $devmode
+  p($sizes)
+  for $s in $sizes
+    p('size=> '+$s + ' = '+ lookup($s))
+    
+
+/* /////////////////////////////////////////////////////////////////////////////
+// $h1-$h6 generator
+///////////////////////////////////////////////////////////////////////////// */
+  for $i in (1..6)
+    if $j is defined 
+      $j+=1
+    else    
+      $j=1
+    $key='$h'+$j
+    $step=$size_start - $i //h1 has inverse value to size1
+    $keyval=$sizes[$step]
+    define($key,lookup($keyval))
+    // if $devmode 
+    //   p($key  + ' ' + lookup($keyval) + ' ' + $step)
+
 

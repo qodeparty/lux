@@ -4,7 +4,6 @@
     "lang"        : "en-us",
     "roundby"     : 3,
     "basis"       : 16,
-    "size-step"   : 0.25,
     "flex-max"    : 49,
     "line-height" : 1.15,
     "root-font"   : "100%",
@@ -12,6 +11,7 @@
   }, 
 
   "flags" : {
+    "devmode" : true,
     "debug"   : true,
     "rtl"     : false,
     "ext"     : true,
@@ -24,6 +24,7 @@
 
   "devices" : {
     "meta"  : {
+      "prefix" : "device-",
       "cats"   : [ "none", "all", "extended", "touch", "desk", "hidef", "tv", "custom"  ],
       "alias"  : { "laptop" : "desktop", "watch" : "nano", "standard" : "jumbo" },
       "shorts" : { "vals" : [ "w", "m", "t", "d", "w", "f", "j", "u" ] },
@@ -43,28 +44,15 @@
 
   "sizes"  : {
     "meta" : {
+      "prefix" : "size-",
+      "min"    : 0.25,
+      "max"    : 3.5,
+      "step"   : 0.25,
+      "hstart" : 9,
       "cats"   : [ "none", "all", "extended", "headers", "countable" ],
-      "shorts" : { "prefix" : "s", "vals" : [ "s04", "s03", "s02", "s0", "s1", "s2", "s3", "s4", 
-                   "s5", "s6", "s7", "s8", "s9", "s92", "s93", "s94" ]}
+      "labels" : [ "000","00","0","1","2","3","4","5","6","7","8", "9", "99", "999" ]
     },
-    "vals" : {
-      "size_0000" : { "idx" :  0, "cat" : [0,1],   "em" : "0.01" },
-      "size_000"  : { "idx" :  1, "cat" : [0,1],   "em" : "0.10" },
-      "size_00"   : { "idx" :  2, "cat" : [0,1],   "em" : "0.20" },
-      "size_0"    : { "idx" :  3, "cat" : [0,3],   "em" : "0.25" },
-      "size_1"    : { "idx" :  4, "cat" : [0,3],   "em" : "0.50" },
-      "size_2"    : { "idx" :  5, "cat" : [0,3],   "em" : "0.75" },
-      "size_3"    : { "idx" :  6, "cat" : [0,2,3], "em" : "1.00" },
-      "size_4"    : { "idx" :  7, "cat" : [0,2,3], "em" : "1.25" },
-      "size_5"    : { "idx" :  8, "cat" : [0,2,3], "em" : "1.50" },
-      "size_6"    : { "idx" :  9, "cat" : [0,2,3], "em" : "1.75" },
-      "size_7"    : { "idx" : 10, "cat" : [0,2,3], "em" : "2.00" },
-      "size_8"    : { "idx" : 11, "cat" : [0,2,3], "em" : "2.25" },
-      "size_9"    : { "idx" : 12, "cat" : [0,3],   "em" : "2.50" },
-      "size_99"   : { "idx" : 13, "cat" : [0,1],   "em" : "2.75" },
-      "size_999"  : { "idx" : 14, "cat" : [0,1],   "em" : "3.00" },
-      "size_9999" : { "idx" : 15, "cat" : [0,1],   "em" : "4.00" }
-    }
+    "vals" : {}
   },
 
   "cols" : {

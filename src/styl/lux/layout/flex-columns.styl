@@ -42,7 +42,7 @@
 // Flexbox Responsive
 ///////////////////////////////////////////////////////////////////////////// */
 
-  @media only screen and (max-width: 767px)
+  +__touch()
     {$cl_layout_row}{$cl_flag_resp}
       flex-direction column
     
@@ -54,11 +54,10 @@
   
   for $i in (1..$len)
     v=fx_make_device_iter()
-    //p(v)
+    p(v)
     ref=lookup('__'+v)
     //p(ref,typeof(ref))
     +ref()
       .{v}
         color red
-
 

@@ -526,15 +526,20 @@
 
 
 	function lux_watch(){
-		local IFS sec chsum chsum2 chval res this thisd thisb thisf;
+		local IFS sec chsum chsum2 chval res this thisd thisb thisf diff_time;
 		sec="${1:-5}"
+		
+		printf -v "diff_time" "%.2f" "-$(echo "$sec/60"|bc -l)" #this isnt working now?
 		chsum1=""
 		opt_debug=0
 		__print "\n\n\n$line"
-		info "Watching ./src ..."
+		info "Watching ./src ... $diff_time"
 		while [[ true ]];
 		do
-			chsum2=`find $THIS_DIR/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin $(echo "$sec/60"|bc -l) -exec md5sum {} \;`
+			
+			chsum2=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin -0.5 -exec md5sum {}  \;`
+
+			#info "Rechecking... $chsum2"
 
 			if [[ $chsum1 != $chsum2 ]] ; then 
 				res=$(echo "$chsum2")  
@@ -549,6 +554,7 @@
 
 				chsum1=$chsum2
 				[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
+				#info "Check $chsum1 $chsum2"
 			fi
 
 			sleep 1

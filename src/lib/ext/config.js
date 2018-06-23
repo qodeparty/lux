@@ -2,33 +2,50 @@ $prefix = require('../defs/prefix.json');
 $config = require('../defs/config.json');
 $flags  = $config['flags'];
 
-devices = $config['devices']['vals'];
+$devices   = $config['devices']['vals'];
+$sizes     = $config['sizes'];
+$size_lbls = $sizes['meta']['labels'];
 
-//console.log(devices)
+//console.log($size_lbls)
 
 function * listGenerator(iter){
   //let iter = devices;
   let index = 0;
-  let names = Object.keys(iter);
+  let names = (Array.isArray(iter)) ? iter : Object.keys(iter);
   for(d in names){
-    //console.log('item: '+d);
+    //console.log('item: '+names[d]);
     yield names[d];
   }
 }
 
 
 //console.log(deviceGenerator)
-const deviceGen = listGenerator(devices);
+const deviceGen = listGenerator($devices);
 
 function makeDeviceGenerator(){
-  const len =  Object.keys(devices).length;
+  const len =  Object.keys($devices).length;
   return function(getLength){
-    if(getLength) return len;
+    if(getLength===1) return len;
     let $this = deviceGen.next();
     if( ! $this.done ) return $this.value; 
     return null;
   }
 }
+
+
+const sizeGen = listGenerator($size_lbls);
+
+function makeSizeGenerator(){
+  const len =  Object.keys($size_lbls).length;
+  return function(getLength){
+    //console.log('len',(getLength?))
+    if(getLength===1) return len;
+    let $this = sizeGen.next();
+    if( ! $this.done ) return ""+$this.value; 
+    return null;
+  }
+}
+
 
 
 module.exports = () => {
@@ -63,13 +80,34 @@ module.exports = () => {
     });
 
 
-    stylus.define('fx_make_device_iter', function(g){
+    stylus.define('fx_make_device_iter', function(len){
       const gen = makeDeviceGenerator()
-      let i = gen(g.val);
+      let i = gen(len.val);
       return i;
+    });
+
+    stylus.define('fx_device_meta', function(k) {
+      return 1;
+    });
+
+
+
+    stylus.define('fx_make_size_iter', function(len) {
+      const gen = makeSizeGenerator()
+      let i = gen(len.val);
+      return i;
+    });
+
+
+    stylus.define('fx_size_meta', function(param) {
+      $meta = $sizes['meta'];
+      let lookup = param.val;
+      let $val   = $meta[lookup] || null;
+      return $val; 
     });
 
 
   };
 
 };
+

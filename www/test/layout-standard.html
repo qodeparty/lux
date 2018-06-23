@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lux - Layout Standard</title>
-    <link rel='stylesheet' id='base'  href='../res/build/debug.css'   type='text/css' media='all' />
-    <link rel='stylesheet' id='base'  href='../res/build/equalizer.css'   type='text/css' media='all' />
-    <link rel='stylesheet' id='base'  href='../res/build/elements.css'   type='text/css' media='all' />
-    <link rel='stylesheet' id='base'  href='../res/build/modifiers.css'   type='text/css' media='all' />
-    <link rel='stylesheet' id='base'  href='../res/build/layout.css'   type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/debug.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/equalizer.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/modifier.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/layout.css'    type='text/css' media='all' />
   </head>
   <body id='annotate' class='bg-grid theme-unity debug' >
     <button>Toggle Mobile</button>
-    <div class='debug-display is-micro is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
-      <button class='as-display is-micro'>micro &lt; 360</button>
+    <div class='debug-display is-nano is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
+      <button class='as-display is-nano'>nano &lt; 360</button>
       <button class='as-display is-mobile'>mobile 360</button>
       <button class='as-display is-tablet'>tablet 768</button>
       <button class='as-display is-desktop'>desktop 1024</button>
@@ -22,20 +22,20 @@
       <button class='as-display is-jumbo'>hidef 1920</button>
       <button class='as-display is-ultra'>ultra 2560</button>
     </div>
-    <div class='groups has-gutter-lg has-brim-xl '>
+    <div class='groups'>
 
-        <div id='sss' class='row with-gaps has-brim-xl is-resp'>
+        <div id='sss' class='row is-resp'>
 
           <div class='app col is-i0'>
             <span class='text is-size-00'>this is my app 0</span>
           </div>
 
           <div class='app col is-i1'>
-            <span>this is my app 1 </span>
+            <span class='is-upper'>this is my app 1 </span>
           </div>
 
           <div class='app col is-i2'>
-            <span>this is my app 2</span>
+            <span>Yay this is my app </span><span class='is-sub'>2</span>
           </div>
 
           <div class='app col is-i3'>
@@ -112,6 +112,42 @@
             <span> Only Ultra</span>
           </div>
 
+        </div>
+
+
+        <div id='sss' class='row '>
+
+          <div class='app col i0 mobile-with-span-2'>
+            <span>Span 2 UMobile</span>
+          </div>
+
+          <div class='app col i0 tablet-with-span-2'>
+            <span>Span 2 UTablet</span>
+          </div>
+
+          <div class='app col i0 desktop-with-span-2'>
+            <span>Span 2 UDesktop</span>
+          </div>
+
+          <div class='app col i0 hd-with-span-2'>
+            <span>Span 2 UHD</span>
+          </div>
+
+          <div class='app col i0 ultra-with-span-2'>
+            <span>Span 2 Ultra</span>
+          </div>
+
+          <div class='app col is-i0'>
+            <span>this is my app 0</span>
+          </div>
+
+          <div class='app col is-i1'>
+            <span>this is my app 1 </span>
+          </div>
+
+          <div class='app col is-i2'>
+            <span>this is my app 2</span>
+          </div>
         </div>
 
         <div id='sss' class='row '>

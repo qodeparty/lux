@@ -56,8 +56,19 @@
     else 
       $this
     
- __device()
+  __device()
     1
+    
+  __size_meta($key)
+    $this = fx_size_meta($key)
+    if typeof($this) == 'string'
+     unquote($this)
+    else if typeof($this) == 'null'
+      p($key + ' => ' +typeof($this))
+    else 
+      $this
+        
+
 /* //////////////////////////////////////////////////////////////////////////////
 // Units
 ////////////////////////////////////////////////////////////////////////////// */   
@@ -69,3 +80,4 @@
   __rem($val)
     $val = $val / $basis
     unquote(__join($val,'rem'))
+

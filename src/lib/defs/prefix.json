@@ -1,4 +1,5 @@
 {
-    "use" : "flags",
-    "var" : "init"
+    "use"  : "flags",
+    "flag" : "flags",
+    "var"  : "init"
 }

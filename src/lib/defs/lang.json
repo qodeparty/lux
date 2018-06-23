@@ -38,6 +38,8 @@
   "shadhow" : "shadow",
   "border"  : "border",
 
+  "hidden"  : "hidden",
+
   "nano"    : "nano",
   "mobile"  : "mobile",
   "tablet"  : "tablet",
