@@ -89,8 +89,31 @@
   "tshirts" : [ "none", "xxsm", "xsm", "sm", "md", "lg", "xl", "xxl" ],
 
   "palettes" : {
-    "rainbow"   : {},
-    "architect" : {},
+
+    "rainbow"   : [
+        { "hex" : "F964CB", "as" : "", "name" : "sand-pink"   },
+        { "hex" : "FA6563", "as" : "", "name" : "sand-red"    },
+        { "hex" : "FFA64D", "as" : "", "name" : "sand-orange" },
+        { "hex" : "FFE056", "as" : "", "name" : "sand-yellow" },
+        { "hex" : "94DA87", "as" : "", "name" : "sand-green"  },
+        { "hex" : "75B8FB", "as" : "", "name" : "late-sky"    },
+        { "hex" : "3399FF", "as" : "", "name" : "electric"    },
+        { "hex" : "6868DC", "as" : "", "name" : "dusk"        },
+        { "hex" : "404058", "as" : "", "name" : "twilight"    },
+        { "hex" : "1C1D24", "as" : "", "name" : "dark-night"  },
+        { "hex" : "A9A9A9", "as" : "", "name" : "grey-bee"    },
+        { "hex" : "e0e0e0", "as" : "", "name" : "cloudy"      }
+    ],
+
+    "architect" : [
+       { "hex" : "CBEAF3", "name" : "arch-1" },
+       { "hex" : "94d8Ed", "name" : "arch-2" },
+       { "hex" : "55BCED", "name" : "arch-3" },
+       { "hex" : "28A9E1", "name" : "arch-4" },   
+       { "hex" : "147bbc", "name" : "arch-6" },
+       { "hex" : "0a6ba8", "name" : "arch-7" },
+       { "hex" : "ddbb85", "name" : "accent" }
+    ],
     "wizard"    : {},
     "greyscale" : {}
   },
