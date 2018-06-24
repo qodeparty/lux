@@ -60,6 +60,8 @@
     $device=fx_make_device_iter()
     //p(v)
     ref=lookup('__'+$device+'_only')
+    if ! ref
+      ref=lookup('__'+$device)
     //p(ref,typeof(ref))
     
     if ref is defined
