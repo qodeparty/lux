@@ -372,7 +372,7 @@
 		#www_id="$(lux_build_version 'build')";
 		www_id=$(date +%s)
 		msg="auto build $build_id.$www_id :$msg:"
-		info "$msg"
+		info "Pushing automated build... <$msg>"
 		res=$(cd $LUX_WWW; git add -A .;git commit -m "$msg"; git push origin; ); ret=$?
 		__print "$res"
 	}
