@@ -18,7 +18,8 @@
     "cssvars"    : true,
     "ultra"      : true,
     "aliases"    : false, 
-    "nat-basis"  : true
+    "nat-basis"  : true,
+    "mobile"     : false
   },
 
   "basis"   : [ 4, 8, 12, 16, 20, 24 ],
