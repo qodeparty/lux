@@ -1,4 +1,4 @@
-$lang = require('../defs/lang.json');
+$lang = require('../lang/en.json');
 
 module.exports = () => {
 

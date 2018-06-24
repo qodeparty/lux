@@ -11,16 +11,17 @@
   }, 
 
   "flags" : {
-    "devmode" : true,
-    "debug"   : true,
-    "rtl"     : false,
-    "ext"     : true,
-    "cssvars" : true,
-    "ultra"   : true
+    "devmode"    : true,
+    "debug"      : true,
+    "rtl"        : false,
+    "ext"        : true,
+    "cssvars"    : true,
+    "ultra"      : true,
+    "aliases"    : false, 
+    "nat-basis"  : true
   },
 
-
-  "basis"   : [ 4, 8, 12, 16, 24 ],
+  "basis"   : [ 4, 8, 12, 16, 20, 24 ],
 
   "devices" : {
     "meta"  : {
@@ -54,55 +55,39 @@
     },
     "vals" : {}
   },
-  "spreads"  : {
-    "meta" : {
-      "labels" : [ 
-        "100p", "80p", "75p", "60p", "50p", "40p", "33p", "33p", "25p", "20p"
-      ],
-      "alias"  : {
-        "half"    : "50p", 
-        "quarter" : "25p",
-        "third"   : "33p",
-        "fifth"   : "20p",
-        "full"    : "100p",
-      }
-    }
-  },
-  "cols" : {
-    "meta" : {
-      "cats"   : [ "none", "all:basis_24", "extended", "basis_12", "basis_16" ],
-      "gen"    : { "spans" : "all", "offsets" : "all" },
-      "shorts" : { "prefix" : "c", "each" : "#" }
-    },
+  
+  "percs"  : {
+    "meta" : {},
     "vals" : {
-      "col_1"  : { "idx" :  1, "cat" : [1,2,3] },
-      "col_2"  : { "idx" :  2, "cat" : [1,2,3] },
-      "col_3"  : { "idx" :  3, "cat" : [1,2,3] },
-      "col_4"  : { "idx" :  4, "cat" : [1,2,3] },
-      "col_5"  : { "idx" :  5, "cat" : [1,2,3] },
-      "col_6"  : { "idx" :  6, "cat" : [1,2,3] },
-      "col_7"  : { "idx" :  7, "cat" : [1,2,3] },
-      "col_8"  : { "idx" :  8, "cat" : [1,2,3] },
-      "col_9"  : { "idx" :  9, "cat" : [1,2,3] },
-      "col_10" : { "idx" : 10, "cat" : [1,2,3] },
-      "col_11" : { "idx" : 11, "cat" : [1,2,3] },
-      "col_12" : { "idx" : 12, "cat" : [1,2,3] },
-      "col_13" : { "idx" : 13, "cat" : [1,3] },
-      "col_14" : { "idx" : 14, "cat" : [1,3] },
-      "col_15" : { "idx" : 15, "cat" : [1,3] },
-      "col_16" : { "idx" : 16, "cat" : [1,3] },
-      "col_17" : { "idx" : 17, "cat" : [1] },
-      "col_18" : { "idx" : 18, "cat" : [1] },
-      "col_19" : { "idx" : 19, "cat" : [1] },
-      "col_20" : { "idx" : 20, "cat" : [1] },
-      "col_21" : { "idx" : 21, "cat" : [1] },
-      "col_22" : { "idx" : 22, "cat" : [1] },
-      "col_23" : { "idx" : 23, "cat" : [1] },
-      "col_24" : { "idx" : 24, "cat" : [1] }
+      "0per"   : { "alias" : "none" },
+      "1per"   : {},
+      "4per"   : {},
+      "5per"   : {},
+      "10per"  : {},
+      "15per"  : {},
+      "16per"  : { "frac"  : "one-sixth"    , "num" : "1-6", "basis" : [ 12, 24 ] },
+      "20per"  : { "frac"  : "one-fifth"    , "num" : "1-5", "basis" : [ 20 ] },
+      "25per"  : { "alias" : "quad", "frac"  : "one-quad"     , "num" : "1-4", "basis" : [ 12, 16, 20, 24 ] },
+      "30per"  : {},
+      "33per"  : { "frac"  : "one-third"    , "num" : "1-3", "basis" : [ 12, 24 ] },
+      "40per"  : { "frac"  : "two-fifths"   , "num" : "2-5", "basis" : [ 20 ] },
+      "45per"  : {},
+      "50per"  : { "alias" : "half", "frac" : "one-half"     , "num" : "1-2", "basis" : [ 12, 16, 20, 24 ] },
+      "60per"  : { "frac"  : "three-fifths" , "num" : "3-5", "basis" : [ 20 ] },
+      "66per"  : { "frac"  : "two-thirds"   , "num" : "2-3", "basis" : [ 12, 24 ] },
+      "70per"  : {},
+      "75per"  : { "alias" : "triq", "frac"  : "three-quad"   , "num" : "3-4", "basis" : [ 12, 16, 24 ] },
+      "80per"  : { "frac"  : "four-fifths"  , "num" : "4-5", "basis" : [ 20 ] },
+      "83per"  : { "frac"  : "five-sixths"  , "num" : "5-6", "basis" : [ 12, 24 ] },
+      "90per"  : {},
+      "99per"  : {},
+      "100per" : { "alias" : "all"  }
     }
   },
 
+
   "tshirts" : [ "none", "xxsm", "xsm", "sm", "md", "lg", "xl", "xxl" ],
+
   "palettes" : {
     "rainbow"   : {},
     "architect" : {},

@@ -1,10 +1,13 @@
 $prefix = require('../defs/prefix.json');
-$config = require('../defs/config.json');
+$config = require('../defs/lux.json');
 $flags  = $config['flags'];
+$vals   = $config['init'];
 
 $devices   = $config['devices']['vals'];
 $sizes     = $config['sizes'];
 $size_lbls = $sizes['meta']['labels'];
+
+$percs     = $config['percs']['vals'];
 
 //console.log($size_lbls)
 
@@ -46,6 +49,18 @@ function makeSizeGenerator(){
   }
 }
 
+
+const percGen = listGenerator($percs);
+
+function makePercGenerator(){
+  const len =  Object.keys($percs).length;
+  return function(getLength){
+    if(getLength===1) return len;
+    let $this = percGen.next();
+    if( ! $this.done ) return $this.value; 
+    return null;
+  }
+}
 
 
 module.exports = () => {
@@ -106,7 +121,28 @@ module.exports = () => {
       return $val; 
     });
 
+    stylus.define('fx_make_perc_iter', function(len){
+      const gen = makePercGenerator()
+      let i = gen(len.val);
+      return i;
+    });
 
+    stylus.define('fx_perc_frac', function(i,param){
+      let f=i.val; let b=$vals['basis']; let n=$flags['nat-basis'];
+      let val,cl,t,q = Math.trunc(f*100/b);
+
+      const keys=Object.keys($percs);
+
+      if( Array.isArray(keys) ){
+        val = q+'per';
+        if( keys.indexOf(val) > -1 ){
+          t = $percs[val];
+          cl = t && t['frac'] ? t['frac'] : ( t['alias'] ? t['alias'] : '' );         
+        }
+      }
+      //console.log(f + '/' + b + ' = ' + Math.trunc(f*100/b)+'%', n?'nat':'any', val, cl?cl:'')
+      return cl;
+    });    
   };
 
 };
