@@ -54,7 +54,20 @@
     },
     "vals" : {}
   },
-
+  "spreads"  : {
+    "meta" : {
+      "labels" : [ 
+        "100p", "80p", "75p", "60p", "50p", "40p", "33p", "33p", "25p", "20p"
+      ],
+      "alias"  : {
+        "half"    : "50p", 
+        "quarter" : "25p",
+        "third"   : "33p",
+        "fifth"   : "20p",
+        "full"    : "100p",
+      }
+    }
+  },
   "cols" : {
     "meta" : {
       "cats"   : [ "none", "all:basis_24", "extended", "basis_12", "basis_16" ],
