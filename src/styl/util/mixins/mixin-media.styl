@@ -14,7 +14,7 @@ __nano()
      {block}
 
 __nano_only()
-   @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile))
+   @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile,1))
      {block}   
 
 
@@ -23,7 +23,7 @@ __mobile()
      {block}
 
 __mobile_only()
-   @media screen and (min-width __rem($screen_mobile)) and (max-width __rem($screen_tablet))
+   @media screen and (min-width __rem($screen_mobile)) and (max-width __rem($screen_tablet,1))
      {block}
      
 
@@ -33,7 +33,7 @@ __tablet()
      {block}
 
 __tablet_only()
-   @media screen and (min-width __rem($screen_tablet)) and (max-width __rem($screen_desktop))
+   @media screen and (min-width __rem($screen_tablet)) and (max-width __rem($screen_desktop,1))
      {block}
 
 
@@ -50,7 +50,7 @@ __desktop()
      {block}
      
 __desktop_only()
-   @media screen and (min-width __rem($screen_desktop)) and (max-width __rem($screen_wide))
+   @media screen and (min-width __rem($screen_desktop)) and (max-width __rem($screen_wide,1))
      {block}
 
    
@@ -61,7 +61,7 @@ __wide()
      {block}
 
 __wide_only()
-   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_full))
+   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_full,1))
      {block}
    
 
@@ -70,7 +70,7 @@ __full()
      {block}
 
 __full_only()
-   @media screen and (min-width __rem($screen_full)) and (max-width __rem($screen_jumbo))
+   @media screen and (min-width __rem($screen_full)) and (max-width __rem($screen_jumbo,1))
      {block}
    
    
@@ -79,12 +79,12 @@ __jumbo()
      {block}
 
 __jumbo_only()
-   @media screen and (min-width __rem($screen_jumbo)) and (max-width __rem($screen_ultra))
+   @media screen and (min-width __rem($screen_jumbo)) and (max-width __rem($screen_ultra,1))
      {block}
      
 
 __hd_only()
-   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_ultra))
+   @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_ultra,1))
      {block}
    
 

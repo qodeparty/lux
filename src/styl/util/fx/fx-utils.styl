@@ -80,12 +80,12 @@
 /* //////////////////////////////////////////////////////////////////////////////
 // Units
 ////////////////////////////////////////////////////////////////////////////// */   
-  __em($val)
+  __em($val,$offset=0)
     p($val,$basis)
     $val = $val / $basis
     unquote(__join($val,'em'))
 
-  __rem($val)
-    $val = $val / $basis
+  __rem($val,$offset=0)
+    $val = ( $val - $offset ) / $basis //calculate px offset before conversion
     unquote(__join($val,'rem'))
 
