@@ -19,7 +19,7 @@
 	readonly script_pid=$$
 	readonly script_author="qodeparty"
 	readonly script_id="lux"
-	readonly script_vers="$(git describe --abbrev=0 --tags --exact-match)"
+	readonly script_vers="$(git describe --abbrev=0 --tags)"
 	readonly script_prefix="LUX"
 	readonly script_rc_file=".luxrc"
 	readonly script_log_file="$script_id.log"
@@ -165,7 +165,7 @@
 		lux_mods
 		data="$(cat <<-EOF
 			$line
-			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build')
+			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www') 
 
 			${s}${b}LUX_ID    = ${w}$LUX_ID
 			${s}${b}LUX_RC    = ${w}$LUX_RC
@@ -292,9 +292,9 @@
 #-------------------------------------------------------------------------------
 	function lux_build_version(){
 		case $1 in
-			www) echo $(cd $LUX_WWW;git rev-list HEAD --count);;
-			build) echo $(git rev-list HEAD --count);;
-			*) echo $(git describe --abbrev=0 --tags --exact-match);;
+			www)   echo $(cd $LUX_WWW;git rev-list HEAD --count);;
+			build) echo $(cd $LUX_HOME;git rev-list HEAD --count);;
+			*)     echo $(cd $LUX_HOME;git describe --abbrev=0 --tags --exact-match);;
 		esac
 	}
 
@@ -355,12 +355,18 @@
 	function lux_copy_www(){
 		local res ret build_id
 		info "Pushing generated files to www..."
+
+		build_id="$(lux_build_version 'build')";
+		#www_id="$(lux_build_version 'build')";
+		www_id=$(date +%s)
+
+		info "$www_id $build_id"
+
 		if [ -d "$LUX_WWW"  ]; then
 			mkdir -p $LUX_WWW/res/build
 			cp -r $LUX_RES $LUX_WWW/res
 			cp -r $LUX_HOME/www/test $LUX_WWW
-			build_id="$(lux_build_version 'build')"
-			www_id="$(lux_build_version 'www')"
+
 			res=$(cd $LUX_WWW; git add -A .;git commit -m "build $build_id.$www_id"; git push origin; ); ret=$?
 			__print "$res"
 		fi
@@ -561,28 +567,23 @@
 		sec="${1:-5}"
 		
 		printf -v "diff_time" "%.2f" "-$(echo "$sec/60"|bc -l)" #this isnt working now?
-		chsum1=""
-		opt_debug=0
+		chsum1=""; opt_debug=0
 		__print "\n\n\n$line"
 		info "Watching ./src ... $diff_time"
 		while [[ true ]];
 		do
-			
+		
 			chsum2=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin -0.5 -exec md5sum {}  \;`
-
-			#info "Rechecking... $chsum2"
 
 			if [[ $chsum1 != $chsum2 ]] ; then 
 				res=$(echo "$chsum2")  
 				IFS=' ' read -r -a array <<< "$res"  
-				this="${array[1]}"
-			  chval="${array[0]}"
+				this="${array[1]}";chval="${array[0]}"
 				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})..."; 
 
 				#FIX COMPILE PATHS
 				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
 				[[ "$this" =~ ".js" ]]   && lux_compile "$LUX_UTIL/index.styl" || :
-
 				chsum1=$chsum2
 				[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
 				#info "Check $chsum1 $chsum2"
@@ -596,6 +597,15 @@
 #-------------------------------------------------------------------------------
 # Utils
 #-------------------------------------------------------------------------------
+	function template_vars(){
+		local found res ret buf
+		buf=($(find $LUX_HOME -type f \( -name "*.html" -o -name "*.tpl*" \))); ret=$?;
+		for this in ${buf[@]}; do
+			vars=($(grep --color=always "$@" -o -P "%.+%" $this))
+			#do stuff but im lazy
+		done
+	}
+
 
 	function file_marker(){
 		local delim dst dend mode lbl
@@ -790,6 +800,7 @@
 					;;
 				watch) lux_watch "$1"; shift;;
 				www) lux_copy_www;;
+				tpl) template_vars;;
 				skip) break;;
 				--*) :;;
 				*) 
