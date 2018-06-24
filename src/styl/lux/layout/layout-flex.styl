@@ -26,13 +26,17 @@
 
   //12 spanning elements
   for $i in (1..$basis)
-     {$cl_layout_row} > {$pre_spans}{$i} // group => spans-x
-        width round( percentage( $i/$basis ), 3 )
-        flex none
-        
-     {$cl_layout_row} > {$pre_offsets}{$i} // group => offsets-x
-        margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
+    $cl=__natural_basis($i) //what a pain in the butt
+    {$cl},
+    {$cl_layout_col}{$pre_is}{$i},
+    {$cl_layout_row} > {$pre_spans}{$i} // group => spans-x
+       width round( percentage( $i/$basis ), 3 )
+       flex none
+             
+    {$cl_layout_row} > {$pre_offsets}{$i} // group => offsets-x
+       margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
 
+     
   //50 ordering elements
   for $i in (0..$flex_max)// 12 per row default
      {$cl_layout_row} > {$pre_index}{$i}
@@ -64,8 +68,11 @@
           display none
         {$cl_flag_block}-{$device}
           display block     
-             
+        {$cl_flag_static}-{$device}
+          flex none     
+          
         for $i in (1..$basis)
+          {$cl_layout_col}{$pre_is}{$i}-{$device},
           {$cl_layout_row} > {$pre_spans}{$i}-{$device} // group => spans-x
             width round( percentage( $i/$basis ), 3 )
             flex none

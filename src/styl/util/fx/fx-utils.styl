@@ -29,7 +29,15 @@
 
   __basis_width($slot)
     round( percentage( $slot/$basis ), 3 )    
-    
+
+  __natural_basis($i)
+    if $use_natural
+      $cl=fx_perc_frac($i)    
+      if $cl    
+        return unquote($pre_is + $cl)
+
+
+ 
 /* //////////////////////////////////////////////////////////////////////////////
 // CSS Vars
 ////////////////////////////////////////////////////////////////////////////// */   
