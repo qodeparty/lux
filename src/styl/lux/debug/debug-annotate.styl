@@ -1,5 +1,5 @@
 #annotate 
-  margin-top 3rem
+  margin-top 4.5rem
   padding 10px
   
   #inline div 
@@ -65,4 +65,57 @@
       background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
       background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
 
+/* //////////////////////////////////////////////////////////////////////////////
+// Theme
+///////////////////////////////////////////////////////////////////////////// */
 
+
+.theme-unity {$cl_layout_row} > div,
+.theme-unity {$cl_layout_col}
+  __pseudo_border_var(1px)
+
+body.debug.theme-unity 
+  color var(--debug-color)
+
+
+.debug-display 
+  position fixed
+  bottom 0
+  right 0
+  
+
+.debug-links
+  position fixed
+  top 0
+  left 0
+  padding 1em
+  width 100%
+  border-bottom 1px solid white
+  z-index 999
+  a
+    margin-top 3px
+    margin-left 5px
+    padding 5px
+    font-size 10px
+    display inline-block
+    min-width 30px
+    border 1px solid white
+    color $lux_blue_2
+    background #dbdbdb 
+    
+    
+  section
+    width 100%
+    
+  .curr
+    background $lux_blue
+    color white
+    
+
+.luxlogo
+  background-image url(../img/lux.svg)
+  background-repeat no-repeat
+  background-size contain
+  height 30px
+  width 30px
+  float left
