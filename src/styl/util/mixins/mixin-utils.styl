@@ -29,5 +29,12 @@ __pseudo_border($t=1px,$hex)
     $t 0 0 0 $hex inset,
     0 $t 0 0 $hex inset
 
+__pseudo_border_var($t=1px)
+  box-shadow: 
+    $t 0 0 0 var(--box-shadow-color), 
+    0 $t 0 0 var(--box-shadow-color),
+    $t $t 0 0 var(--box-shadow-color),  
+    $t 0 0 0 var(--box-shadow-color) inset,
+    0 $t 0 0 var(--box-shadow-color) inset
 
 /************************************************************/

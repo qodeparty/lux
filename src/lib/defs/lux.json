@@ -106,13 +106,15 @@
     ],
 
     "architect" : [
+       { "hex" : "c1e4ef", "name" : "arch-0" },
        { "hex" : "CBEAF3", "name" : "arch-1" },
        { "hex" : "94d8Ed", "name" : "arch-2" },
        { "hex" : "55BCED", "name" : "arch-3" },
        { "hex" : "28A9E1", "name" : "arch-4" },   
-       { "hex" : "147bbc", "name" : "arch-6" },
-       { "hex" : "0a6ba8", "name" : "arch-7" },
-       { "hex" : "ddbb85", "name" : "accent" }
+       { "hex" : "147bbc", "name" : "arch-5" },
+       { "hex" : "0a6ba8", "name" : "arch-6" },
+       { "hex" : "0c4e7a", "name" : "arch-7" },
+       { "hex" : "ddbb85", "name" : "accent" } 
     ],
     "wizard"    : {},
     "greyscale" : {}
