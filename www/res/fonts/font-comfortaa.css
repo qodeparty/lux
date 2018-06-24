@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Comfortaa";
+  src: url("Comfortaa-Regular.woff") format('woff');
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("Comfortaa-Light.woff") format('woff');
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("Comfortaa-Bold.woff") format('woff');
+  font-weight: bold;
+}
+
+
+.comforta-test {
+    font-family: "Comfortaa";
+}

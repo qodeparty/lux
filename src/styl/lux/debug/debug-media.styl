@@ -52,14 +52,21 @@ body.debug.theme-unity
   bottom 0
   right 0
   
+.debug-links
+  position fixed
+  top 0
+  left 0
+  padding 1em
+  
 button.as-display 
   border 1px solid #ccc
   font-family sans-serif
-  font-size 10px
+  font-size 14px
   float left
   margin 2px
   display none
   color white
+  height 30px
 
 $b4=__basis_width(4)
 
@@ -71,6 +78,7 @@ $b4=__basis_width(4)
   .as-display.is-nano
       display block
       background $arch_7
+      color $arch_1
   .row > .nano-with-span-2
       flex none
       width $b4
@@ -83,6 +91,7 @@ $b4=__basis_width(4)
   .as-display.is-mobile
       display block
       background $arch_6
+      color $arch_1
   .is-size-1-mobile
       font-size $h1
   .row > .mobile-with-span-2
@@ -98,6 +107,7 @@ $b4=__basis_width(4)
   .as-display.is-tablet 
       display block
       background $arch_5
+      color $arch_1
   .is-size-1-tablet
       font-size $h1
   .row > .tablet-with-span-2
@@ -113,6 +123,7 @@ $b4=__basis_width(4)
   .as-display.is-desktop
       display block
       background $arch_4
+      color $arch_0
   .is-size-1-desktop
       font-size $h1
   .row > .desktop-with-span-2
@@ -127,6 +138,7 @@ $b4=__basis_width(4)
   .as-display.is-wide
       display block
       background $arch_3
+      color $arch_0
   .row > .wide-with-span-2
       flex none
       width $b4
@@ -139,6 +151,7 @@ $b4=__basis_width(4)
   .as-display.is-full
       display block
       background $arch_2
+      color $arch_5
   .is-size-1-full
       font-size $h1
   .row > .full-with-span-2
@@ -154,6 +167,7 @@ $b4=__basis_width(4)
   .as-display.is-jumbo
       display block  
       background $arch_1
+      color $arch_6
   .row > .jumbo-with-span-2
       flex none
       width $b4
@@ -175,6 +189,7 @@ $b4=__basis_width(4)
   .as-display.is-ultra
       display block  
       background $arch_0
+      color $arch_6
   .is-size-1-ultra
       font-size $h1
   .row > .ultra-with-span-2
