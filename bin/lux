@@ -167,28 +167,30 @@
 			$line
 			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www') 
 
-			${s}${b}LUX_ID    = ${w}$LUX_ID
-			${s}${b}LUX_RC    = ${w}$LUX_RC
-			${s}${b}LUX_HOME  = ${w}${LUX_HOME//$THIS_ROOT/.}
-			${s}${b}LUX_BIN   = ${w}${LUX_BIN//$THIS_ROOT/.}
+			${s}${b}LUX_ID     = ${w}$LUX_ID
+			${s}${b}LUX_RC     = ${w}$LUX_RC
+			${s}${b}LUX_HOME   = ${w}${LUX_HOME//$THIS_ROOT/.}
+			${s}${b}LUX_BIN    = ${w}${LUX_BIN//$THIS_ROOT/.}
 			
-			${s}${b}LUX_CORE  = ${w}${LUX_CORE//$THIS_ROOT/.}
-			${s}${b}LUX_VARS  = ${w}${LUX_VARS//$THIS_ROOT/.}
-			${s}${b}LUX_UTIL  = ${w}${LUX_UTIL//$THIS_ROOT/.}
-			${s}${b}LUX_DIST  = ${w}${LUX_DIST//$THIS_ROOT/.}
-			${s}${b}LUX_BUILD = ${w}${LUX_BUILD//$THIS_ROOT/.}
-			${s}${b}LUX_RES   = ${w}${LUX_RES//$THIS_ROOT/.}
+			${s}${b}LUX_CORE   = ${w}${LUX_CORE//$THIS_ROOT/.}
+			${s}${b}LUX_VARS   = ${w}${LUX_VARS//$THIS_ROOT/.}
+			${s}${b}LUX_UTIL   = ${w}${LUX_UTIL//$THIS_ROOT/.}
+			${s}${b}LUX_DIST   = ${w}${LUX_DIST//$THIS_ROOT/.}
+			${s}${b}LUX_BUILD  = ${w}${LUX_BUILD//$THIS_ROOT/.}
+			
+			${s}${b}LUX_RES    = ${w}${LUX_RES//$THIS_ROOT/.}
+			${s}${b}LUX_RBUILD = ${w}${LUX_RBUILD//$THIS_ROOT/.}
 
-			${s}${b}LUX_LIB   = ${w}${LUX_LIB//$THIS_ROOT/.}
-			${s}${b}LUX_EXT   = ${w}${LUX_EXT//$THIS_ROOT/.}
-			${s}${b}LUX_DEFS  = ${w}${LUX_DEFS//$THIS_ROOT/.}
+			${s}${b}LUX_LIB    = ${w}${LUX_LIB//$THIS_ROOT/.}
+			${s}${b}LUX_EXT    = ${w}${LUX_EXT//$THIS_ROOT/.}
+			${s}${b}LUX_DEFS   = ${w}${LUX_DEFS//$THIS_ROOT/.}
 
-			${s}${p}THIS_ROOT = ${w}$THIS_ROOT
-			${s}${p}THIS_DIR  = ${w}$THIS_DIR
-			${s}${p}BIN_DIR   = ${w}$BIN_DIR	
+			${s}${p}THIS_ROOT  = ${w}$THIS_ROOT
+			${s}${p}THIS_DIR   = ${w}$THIS_DIR
+			${s}${p}BIN_DIR    = ${w}$BIN_DIR	
 
-			${s}${b}LUX_WWW   = ${y}$LUX_WWW
-			${s}${b}LUX_MODS  = ${y}${LUX_MODS[*]}	
+			${s}${b}LUX_WWW    = ${y}$LUX_WWW
+			${s}${b}LUX_MODS   = ${y}${LUX_MODS[*]}	
 			${x}
 			$line
 		EOF
@@ -226,7 +228,8 @@
 	LUX_ID="$script_id"
 	LUX_BUILD="$LUX_HOME/build"
 	LUX_DIST="$LUX_HOME/dist"
-	LUX_RES="$LUX_HOME/www/res/build"
+	LUX_RES="$LUX_HOME/www/res"
+	LUX_RBUILD="$LUX_RES/build"
 	LUX_INST=1
 
 	LUX_LIB="$LUX_HOME/src/lib"
@@ -321,7 +324,7 @@
 		info "Cleaning... dist build res/build"
 		[ -d $LUX_DIST ]  && rm -rf $LUX_DIST  || : 
 		[ -d $LUX_BUILD ] && rm -rf $LUX_BUILD || : 
-		[ -d $LUX_RES ]   && rm -rf $LUX_RES   || :
+		[ -d $LUX_RBUILD ]   && rm -rf $LUX_RBUILD   || :
 	}
 
 
@@ -346,30 +349,32 @@
 
 	function lux_copy_res(){
 		info "Copying build & dist to res..."
-		mkdir -p "$LUX_RES"
-		[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RES || error "Missing build directory"
-		[ -d "$LUX_DIST"  ] && cp $LUX_DIST/*.css  $LUX_RES || error "Missing dist directory"
+		mkdir -p "$LUX_RBUILD"
+		[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RBUILD || error "Missing build directory"
+		[ -d "$LUX_DIST"  ] && cp $LUX_DIST/*.css  $LUX_RBUILD || error "Missing dist directory"
 	}
 
 
 	function lux_copy_www(){
-		local res ret build_id
-		info "Pushing generated files to www..."
+		local res ret 
+		info "Copying resouce and generated files to www..."
+		if [ -d "$LUX_WWW"  ]; then
+			mkdir -p $LUX_WWW/res/build
+			cp -r $LUX_RES $LUX_WWW
+			cp -r $LUX_HOME/www/test $LUX_WWW
+		fi
+	}
 
+	function lux_push_www(){
+		local res ret build_id www_id
+		msg=${1:-gem}
 		build_id="$(lux_build_version 'build')";
 		#www_id="$(lux_build_version 'build')";
 		www_id=$(date +%s)
-
-		info "$www_id $build_id"
-
-		if [ -d "$LUX_WWW"  ]; then
-			mkdir -p $LUX_WWW/res/build
-			cp -r $LUX_RES $LUX_WWW/res
-			cp -r $LUX_HOME/www/test $LUX_WWW
-
-			res=$(cd $LUX_WWW; git add -A .;git commit -m "build $build_id.$www_id"; git push origin; ); ret=$?
-			__print "$res"
-		fi
+		msg="auto build $build_id.$www_id :$msg:"
+		info "$msg"
+		res=$(cd $LUX_WWW; git add -A .;git commit -m "$msg"; git push origin; ); ret=$?
+		__print "$res"
 	}
 
 
@@ -550,8 +555,8 @@
 				info "[MOD] Rebuilding... ${mod}.css"
 				res=$(stylus $OPT_IMPORT $OPT_INCLUDE "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 				status $ret "$res" "Compile Error"
-				rm -f "$LUX_RES/${mod}.css"
-				cp "$LUX_BUILD/${mod}.css" "$LUX_RES/${mod}.css"
+				rm -f "$LUX_RBUILD/${mod}.css"
+				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css"
 			else
 				error "Invalid module directory ($mod)";	
 			fi
@@ -799,7 +804,14 @@
 					lux_listfile "htmllist" "test" "html"
 					;;
 				watch) lux_watch "$1"; shift;;
-				www) lux_copy_www;;
+				www) 
+					opt_debug=0; 
+					case $1 in
+						push) shift; lux_push_www "$1";;
+						*)    lux_copy_www "$1";;
+					esac
+					break;
+					;;
 				tpl) template_vars;;
 				skip) break;;
 				--*) :;;
