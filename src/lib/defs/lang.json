@@ -50,7 +50,14 @@
   "jumbo"   : "jumbo",
   "ultra"   : "ultra", 
 
-  "red"     :   "red"
+  "red"     : "red",
+
+  "none"    : "none",
+  "half"    : "half",
+  "quarter" : "quarter",
+  "third"   : "third",
+  "fifth"   : "fifth",
+  "full"    : "full"
 
 }
 
