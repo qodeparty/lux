@@ -57,16 +57,18 @@
     //p(v)
     ref=lookup('__'+$device+'_only')
     //p(ref,typeof(ref))
-    +ref()
-      {$cl_flag_hidden}-{$device}
-        display none
-      {$cl_flag_block}-{$device}
-        display block     
-           
-      for $i in (1..$basis)
-        {$cl_layout_row} > {$pre_spans}{$i}-{$device} // group => spans-x
-          width round( percentage( $i/$basis ), 3 )
-          flex none
-          
-        {$cl_layout_row} > {$pre_offsets}{$i}-{$device} // group => offsets-x
-          margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
+    
+    if ref is defined
+      +ref()
+        {$cl_flag_hidden}-{$device}
+          display none
+        {$cl_flag_block}-{$device}
+          display block     
+             
+        for $i in (1..$basis)
+          {$cl_layout_row} > {$pre_spans}{$i}-{$device} // group => spans-x
+            width round( percentage( $i/$basis ), 3 )
+            flex none
+            
+          {$cl_layout_row} > {$pre_offsets}{$i}-{$device} // group => offsets-x
+            margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
