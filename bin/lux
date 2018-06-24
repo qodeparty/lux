@@ -807,7 +807,7 @@
 				www) 
 					opt_debug=0; 
 					case $1 in
-						push) shift; lux_push_www "$1";;
+						push) shift; lux_copy_www; lux_push_www "$1";;
 						*)    lux_copy_www "$1";;
 					esac
 					break;

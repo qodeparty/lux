@@ -9,7 +9,7 @@
     color:#000
 
   .break 
-    border:none; border-top:1px dotted #eee; padding-top:10px
+    border:none; border-top:1px dotted var(--debug-color); padding-top:10px
   
   .grouping 
     border:1px dotted #75B8FB; background:#eee; padding:30px; margin:50px
@@ -32,12 +32,12 @@
     border:none; border:1px dashed #FFA64D; padding:1px 3px; 
     font-family:sans-serif; color:#FFA64D; font-size:10px; text-transform:uppercase; line-height:1.5pt 
     
-  .notes,.note 
-    font-family:sans-serif; color:#eee; font-size:9px;
+  .notes,.note,.title
+    font-family:sans-serif; color var(--debug-color); font-size:9px;
   
 
   .title 
-    font-family:sans-serif; color:#eee; font-size:9px; text-transform:uppercase
+    text-transform:uppercase
     
   .code  
     display:none
