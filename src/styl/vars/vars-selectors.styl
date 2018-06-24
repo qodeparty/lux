@@ -5,9 +5,10 @@ $dot='.'
 $dash='-'
 $amp='&'
 
-$pre_is = $dot + $L_is    + $dash         //.is-
-$pre_has= $dot + $L_has   + $dash         //.has-
-$pre_no = $dot + $L_spans + $dash         //.no-
+$pre_is   = $dot + $L_is    + $dash         //.is-
+$pre_has  = $dot + $L_has   + $dash         //.has-
+$pre_no   = $dot + $L_spans + $dash         //.no-
+$pre_with = $dot + 'with' + $dash 
 
 $pre_index   = $pre_is + $L_i             //.is-i<n>
 $pre_spans   = $dot + $L_spans   + $dash  //.spans-<n>
@@ -22,6 +23,10 @@ $pre_size    = $pre_is + $L_size + $dash  //.is-size-<s>
 $cl_layout_tbl = $dot + $L_groups
 $cl_layout_row = $dot + $L_row
 $cl_layout_col = $dot + $L_col
+
+$cl_with_gaps = $pre_with + 'gaps';
+$cl_with_sm_gaps = $pre_with + 'sm-gaps';
+
 
 $cl_ttl      = $dot + $L_title    //.title
 $cl_ttl_is   = $pre_is + $L_title //.is-title

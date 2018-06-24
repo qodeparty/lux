@@ -1,6 +1,6 @@
 #annotate 
   margin-top 4.5rem
-  padding 10px
+  
   
   #inline div 
     color:#bbb
@@ -9,7 +9,7 @@
     color:#000
 
   .break 
-    border:none; border-top:1px dotted var(--debug-color); padding-top:10px
+    border:none; border-top:1px dotted var(--debug-color); margin 10px
   
   .grouping 
     border:1px dotted #75B8FB; background:#eee; padding:30px; margin:50px
@@ -33,7 +33,7 @@
     font-family:sans-serif; color:#FFA64D; font-size:10px; text-transform:uppercase; line-height:1.5pt 
     
   .notes,.note,.title
-    font-family:sans-serif; color var(--debug-color); font-size:9px;
+    font-family:sans-serif; color var(--debug-color); font-size:9px; padding 10px
   
 
   .title 
@@ -64,7 +64,28 @@
         linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
       background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
       background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
+      
+  .has-notes
+    padding 0 1rem
+    padding-top 1rem
+    margin-bottom 1rem
+    
+        
+  .has-notes[title]:before
+    content attr(title) 
+    background-color:#EBF9FF
+    font-size 0.7em
+    padding 2px
+    padding-left 5px
+    color $lux_blue
+    top -1px
+    left 0
+    position absolute
+    min-width 100px
+    text-align left
+    z-index 100
 
+  
 /* //////////////////////////////////////////////////////////////////////////////
 // Theme
 ///////////////////////////////////////////////////////////////////////////// */
@@ -77,9 +98,33 @@
   width 30px
   float left
 
-.theme-unity {$cl_layout_row} > div,
-.theme-unity {$cl_layout_col}
+.theme-unity .changes-shadow {$cl_layout_row} > div,
+.theme-unity .changes-shadow {$cl_layout_col}
   __pseudo_border_var(1px)
+
+.theme-unity .changes-shadow .thing
+  background var(--debug-color)
+
+
+.theme-unity .thing
+  text-overflow ellipsis
+  overflow hidden
+  white-space nowrap
+  text-align center
+  background rgba($lux_blue, .5)
+  padding 2.1325rem 0
+  border-radius 3px
+  color white
+  position relative
+  min-width 0.625rem
+  
+
+.changes-background .thing
+  background var(--display-color,$sand_sadcloud )
+
+
+.theme-unity {$cl_layout_row} > div
+  __pseudo_border(1px,#fff)
 
 body.debug.theme-unity 
   color var(--debug-color)
@@ -89,6 +134,7 @@ body.debug.theme-unity
   position fixed
   bottom 0
   right 0
+  z-index 999
   
 
 .debug-links

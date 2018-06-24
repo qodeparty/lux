@@ -10,14 +10,21 @@
   
   {$cl_layout_row}
     display flex
-    flex-wrap wrap
-    align-items stretch
-    
+    position relative
+    //flex-wrap wrap
+    //align-items stretch
+
   {$cl_layout_col}
+    display block
     flex-basis 0 
     flex-grow 1 
-    flex-shrink  1 
-    padding  .75rem
+    flex-shrink  1
+
+  {$cl_layout_row}{$cl_with_gaps} > {$cl_layout_col}  
+    padding __rem($size-00)
+    
+  {$cl_layout_row}{$cl_with_sm_gaps} > {$cl_layout_col}  
+    padding __rem($size-000)
 
 
 // /* /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +33,7 @@
 
   //12 spanning elements
   for $i in (1..$basis)
-    $cl=__natural_basis($i) //what a pain in the butt
+    $cl=__natural_basis($i) //what a pain in the butt      
     {$cl},
     {$cl_layout_col}{$pre_is}{$i},
     {$cl_layout_row} > {$pre_spans}{$i} // group => spans-x
@@ -36,7 +43,13 @@
     {$cl_layout_row} > {$pre_offsets}{$i} // group => offsets-x
        margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
 
-     
+  {$pre_spans}all //spans-all
+    flex none
+    width 100%
+    
+  {$pre_offsets}all //offsets-all
+    visibility hidden
+
   //50 ordering elements
   for $i in (0..$flex_max)// 12 per row default
      {$cl_layout_row} > {$pre_index}{$i}
