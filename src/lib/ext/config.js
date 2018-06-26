@@ -80,7 +80,7 @@ module.exports = () => {
       let $val   = $this[key];
       //val = $config[lookup][key] || $config[$prefix[lookup]][key] || null;
 
-      //console.log( lookup, key, $val, $this );
+      //console.log( 'hi', lookup, key, $val, $this );
       
       if(typeof $val == 'undefined' ) throw new Error('Invalid config key: ' + param);
 

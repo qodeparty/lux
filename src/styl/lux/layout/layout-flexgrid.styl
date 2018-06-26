@@ -1,0 +1,129 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// LUX! Layouts 2
+////////////////////////////////////////////////////////////////////////////// */
+
+
+
+{$cl_attr_cell_any }:hover:after 
+    content: attr( class );
+    padding: 2px 8px;
+    position: absolute;
+    left: 0.5rem;
+    top: 0;
+    white-space: nowrap;
+    z-index: 20;
+    background-color: #555;
+    color: #fff;
+    font-size: .8rem;
+
+////////// AUTO GRID CELLS //////////
+
+
+{$cl_attr_grid}, //class or attr? hmm
+{$cl_attr_pre_grid_any}
+  border 1px dotted red
+  padding 1rem
+  display  flex 
+  flex-flow  row wrap
+  margin 0 -0.5rem 
+  margin-bottom 1rem
+
+
+$cellPlaceholder
+    padding 0.5rem
+    max-width 100%
+    cursor help
+    position relative
+   
+{$cl_attr_cell}
+  @extends $cellPlaceholder
+  flex 1 1 0% 
+
+{$cl_attr_pre_cell_any}
+  @extends $cellPlaceholder
+  
+
+{$cl_attr_pre_cell_any} //fixed %
+  flex none
+  
+
+////////// GRID FROM CELL //////////
+
+
+{$cl_attr_grid}{$cl_attr_cell} // .grid.cell
+{$cl_attr_grid}{$cl_attr_pre_cell_any},
+{$cl_attr_pre_grid_any}{$cl_attr_cell},
+{$cl_attr_pre_grid_any}{$cl_attr_pre_cell_any}
+  margin  0
+  padding 0
+  
+
+////////////////////
+  
+
+
+//.grid-{$n} > .col
+  $j=$basis
+  $each=(100/$basis)
+  
+  for $i in (1..$basis)
+
+    $perc=round( ( 100/$i ), 3 )
+    $this=$perc+'%'
+    $this_inv = ($i*$each) +'%'
+    $this_cell=s($cl_attr_pre_cell_s,$i)
+    $this_grid=s($cl_attr_pre_grid_s,$i)
+  
+    
+      
+    ////////// POSITION GRID CELLS //////////
+    {$cl_attr_pre_grid_any} > {$this_cell},
+    {$cl_attr_grid}         > {$this_cell}
+      +cache('maxflexwidth' + $this_inv) //magic cache
+        flex-basis $this_inv
+        max-width  $this_inv
+
+      
+    $j=operate('-',$basis,$i)
+  
+    ////////// PARENT-DEFINED GRID CELLS //////////
+    {$this_grid} > {$cl_attr_pre_cell_any},
+    {$this_grid} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
+      +cache('maxflexwidth' + $this) //magic cache
+        flex-basis $this
+        max-width  $this
+      
+
+
+
+
+// [class*="cell"]
+//   background:red
+////////// IN-CLASS MODIFIERS //////////
+
+// -center
+// -left
+// -right
+
+// -device
+
+// -top
+// -middle
+// -bottom
+
+// -reverse
+// -reverse-col
+// -reverse-row
+
+// -first
+// -last
+
+// -nogap
+
+// -equal (stretch)
+
+// -between (space between)
+
+// -push-left-${n}
+// -push-right-${n}
+

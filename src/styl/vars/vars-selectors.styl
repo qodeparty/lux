@@ -1,9 +1,24 @@
 /* //////////////////////////////////////////////////////////////////////////////
-// Partial Classes (Prefix)
+// Critical Strings
 ////////////////////////////////////////////////////////////////////////////// */
+
+
 $dot='.'
 $dash='-'
 $amp='&'
+
+$attr_in='~='
+$attr_pre='^='
+$attr_suf='$='
+$attr_any='*='
+
+$dash_i='-%s'
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Partial Classes (Prefix)
+////////////////////////////////////////////////////////////////////////////// */
+
+
 
 $pre_is   = $dot + $L_is    + $dash         //.is-
 $pre_has  = $dot + $L_has   + $dash         //.has-
@@ -20,13 +35,41 @@ $pre_size    = $pre_is + $L_size + $dash  //.is-size-<s>
 // Classes
 ////////////////////////////////////////////////////////////////////////////// */
 
-$cl_layout_tbl = $dot + $L_groups
-$cl_layout_row = $dot + $L_row
-$cl_layout_col = $dot + $L_col
+$cl_layout_tbl = $dot + $L_groups //.groups
+$cl_layout_row = $dot + $L_row    //.row
+$cl_layout_col = $dot + $L_col    //.col
 
-$cl_with_gaps = $pre_with + 'gaps';
+$cl_with_gaps    = $pre_with + 'gaps';
 $cl_with_sm_gaps = $pre_with + 'sm-gaps';
 
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Layouts 2
+////////////////////////////////////////////////////////////////////////////// */
+
+$pre_grid = $dot + $L_flex_grid + $dash  //.grid-
+$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
+
+$cl_flex_grid = $dot + $L_flex_grid //.grid
+$cl_flex_cell = $dot + $L_flex_cell //.cell
+
+$cl_attr_grid         = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
+$cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
+//$cl_attr_pre_grid     = __attr_class($pre_grid, $attr_any)     // [class*=grid-]
+$cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
+$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class~=grid-]
+
+$cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
+$cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
+//$cl_attr_pre_cell     = __attr_class($pre_cell, $attr_any)     // [class*=cell-]
+$cl_attr_pre_cell_s   = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
+$cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Elements
+////////////////////////////////////////////////////////////////////////////// */
 
 $cl_ttl      = $dot + $L_title    //.title
 $cl_ttl_is   = $pre_is + $L_title //.is-title

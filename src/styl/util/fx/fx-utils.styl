@@ -89,3 +89,16 @@
     $val = ( $val - $offset ) / $basis //calculate px offset before conversion
     unquote(__join($val,'rem'))
 
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Units
+////////////////////////////////////////////////////////////////////////////// */   
+  
+  __attr_class($name,$type=$attr_in)
+    //fx_debug(arguments)
+    $name = replace('\.', '', $name)
+    $this = join('', '[class' $type '"' $name '"]' )
+    return $this
+
+  __undot($class)
+    return( replace('\.', '', $class))
