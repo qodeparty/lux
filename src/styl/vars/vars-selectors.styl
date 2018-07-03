@@ -5,6 +5,7 @@
 
 $dot='.'
 $dash='-'
+$under='_'
 $amp='&'
 
 $attr_in='~='
@@ -72,9 +73,12 @@ $cl_flex_cell = $dot + $L_flex_cell //.cell
 $cl_attr_grid         = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
 $cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
 
-$cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
-$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class*=grid-]
+$cl_attr_pre_grid_s     = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
+$cl_attr_pre_grid_any   = __attr_class($pre_grid, $attr_any) // [class*=grid-]
 $cl_attr_pre_grid_any_s = __attr_class($L_flex_grid + $dash_i, $attr_any)
+
+$cl_attr_pre_grid_under = __attr_class($L_flex_grid + $under, $attr_any)
+
 
 $cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
 $cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
@@ -84,7 +88,37 @@ $cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
 $cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any) 
 
 
+$cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
+
+
+
 $cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
+
+
+$cl_pre_offset   = "off"
+
+// $cl_attr_pre_push_any     = __attr_class($L_push + $dash , $attr_any)  // [class*=push-]
+// $cl_attr_pre_push_any_s   = __attr_class($L_push + $dash_i, $attr_any) // [class*=push-%s]
+
+// $cl_attr_pre_push_under_s   = __attr_class($L_push + $dash_i + $dash_i, $attr_any)
+
+// $cl_attr_pre_pull_any     = __attr_class($L_pull + $dash , $attr_any)  // [class*=pull-]
+// $cl_attr_pre_pull_any_s   = __attr_class($L_pull + $dash_i, $attr_any) // [class*=pull-%s]
+
+// $cl_attr_pre_pull_under_s   = __attr_class($L_pull + $dash_i + $dash_i, $attr_any)
+
+/* //////////////////////////////////////////////////////////////////////////////
+// mini directions offsets
+////////////////////////////////////////////////////////////////////////////// */
+
+ //data-pull*=off-1_lg-2
+ //data-push*=
+ 
+$cl_attr_data_pull_any_s  = __attr_data('pull', 'off' + $dash_i ,$attr_any)  // data-pull-%s
+$cl_attr_data_pull_size_s = __attr_data('pull', $under_i + $dash_i ,$attr_any)
+
+$cl_attr_data_push_any_s  = __attr_data('push', 'off' + $dash_i ,$attr_any) 
+$cl_attr_data_push_size_s = __attr_data('push', $under_i + $dash_i ,$attr_any) 
 
 
 /* //////////////////////////////////////////////////////////////////////////////
@@ -103,6 +137,8 @@ $attr_left  = __attr_short( 'lt' , 'left'   )
 $attr_first  = __attr_short( '0th' , 'first' )
 $attr_last   = __attr_short( 'nth' , 'last'  )
 
+$attr_auto   = $L_auto
+$attr_flush  = "flush"
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x

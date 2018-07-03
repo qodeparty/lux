@@ -75,7 +75,9 @@
   "_three-fifths": "", 
   "_four-fifths" : "",
   "_one-sixth"   : "",
-  "_five-sixths" : ""
+  "_five-sixths" : "",
+  "pull" : "*",
+  "push" : "*"
 }
 
 

@@ -112,25 +112,61 @@
   color white
   position relative
   min-width 0.625rem
+  __inner_border(1px,$sand_sadcloud)
   
 
-.theme-unity .thing.r
+.theme-unity .r .thing
   background rgba($sand_red, .5)
   
-.theme-unity .thing.y
+.theme-unity .o .thing
+  background rgba($sand_orange, .5)
+  
+.theme-unity .y .thing
   background rgba($sand_yellow, .5)
   
-.theme-unity .thing.g
-  background rgba($sand_pine, .5)
+.theme-unity .g .thing
+  background rgba($sand_green, .5)
+
+
+.theme-unity .s1 .thing
+  background rgba($scale_0, .5)
   
-.theme-unity .thing.p
-  background rgba($sand_dusk, .5)
+.theme-unity .s2 .thing
+  background rgba($scale_1, .5) 
   
+.theme-unity .s3 .thing
+  background rgba($scale_2, .5)
+
+.theme-unity .s4 .thing
+  background rgba($scale_3, .5)
+
+.theme-unity .s5 .thing
+  background rgba($scale_4, .5)
+
+.theme-unity .s6 .thing
+  background rgba($scale_5, .5)
+
+.theme-unity .s7 .thing
+  background rgba($scale_6, .5)
+
+.theme-unity .s8 .thing
+  background rgba($scale_7, .5)   
+
+
 .theme-unity .thing.trunc 
   text-overflow ellipsis
   overflow hidden
   white-space nowrap
+  
+//inner border for flush example
+.theme-unity .has-fake-border .thing
+  __inner_border(1px,#fff)
 
+.theme-unity .with-fake-border[class*="grid-"][class*="-flush"] > div
+  box-shadow none
+  
+.theme-unity .with-fake-border[class*="grid-"][class*="-flush"] .thing
+  __inner_border(1px,#fff)
   
 .changes-background .thing
   background var(--display-color,$sand_sadcloud )
@@ -139,6 +175,9 @@
 .theme-unity {$cl_layout_row} > div,
 .with-fake-border > div
   __pseudo_border(1px,#fff)
+
+// .has-fake-border
+//   __inner_border(1px,$sand_sadcloud)
 
 body.debug.theme-unity 
   color var(--debug-color)

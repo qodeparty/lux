@@ -103,9 +103,20 @@
     $this = join('', '[class' $type '"' unquote($name) '"]' )
     return $this
 
+  __attr_data($name,$val,$type=$attr_in)
+    //fx_debug(arguments)
+    $name = replace('\.', '', $name)
+    $this = join('', '[data-' $name $type '"' unquote($val) '"]' )
+    return $this
+
+
   __undot($class)
     return( replace('\.', '', $class))
 
 
   __attr_short($short,$long)
     return $short_attr ? $short : $long
+
+
+  __to_class($prefix,$name)
+    return join('',$dot,$prefix,$dash,$name)
