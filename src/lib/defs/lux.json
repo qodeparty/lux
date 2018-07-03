@@ -22,7 +22,7 @@
     "mobile"     : false,
     "mode-ez"    : true,
     "mode-adv"   : true,
-    "short-attr" : false
+    "short-attr" : true
   },
 
   "basis"   : [ 4, 8, 12, 16, 20, 24 ],

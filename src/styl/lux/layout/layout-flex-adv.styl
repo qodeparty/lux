@@ -82,15 +82,16 @@ if( $flex_mode_adv )
   +__grid_pre('nog')
     margin 0
     
-  +__grid_pre('c') 
+  +__grid_pre($attr_ctr) 
     justify-content center
 
-  +__grid_pre('r')
+  +__grid_pre($attr_right)
     margin-left auto
     justify-content flex-end
     align-self flex-end
 
-  
+  +__grid_pre($attr_left) 
+    justify-content left
 
     
     
@@ -121,11 +122,14 @@ if( $flex_mode_adv )
   __cell_pre($attr_btm, $placeholder_grid_btm)
 
 
-  +__cell_pre('z')
+  +__cell_pre($attr_first)
     order -1 
   
-  +__cell_pre('n')
+  +__cell_pre($attr_last)
     order 999
+    
+  +__grid_pre('auto')
+      align-self stretch
     // -center
     // -left
     // -right

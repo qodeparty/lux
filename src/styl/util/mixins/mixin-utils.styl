@@ -57,9 +57,9 @@ __adv_flex($i)
 
   $perc=round( ( 100/$i ), 3 )  
   $val=$perc+'%'
-  $cache_id1 = 'maxflex' + $perc
+  $cache_id1 = 'maxflex' + __cachebust_str($i) + $perc
   
-  $grid=s($cl_attr_pre_grid_s,$i) // [class~=grid-%s]
+  $grid=s($cl_attr_pre_grid_any_s,$i) // [class~=grid-%s]
   
   {$grid} > {$cl_attr_pre_cell_any},
   {$grid} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
@@ -70,12 +70,12 @@ __adv_flex($i)
 
   $p_basis = ($i*$atomic_basis);
   $val = $p_basis  +'%'
-  $cache_id2 = 'maxflex' + $p_basis  
+  $cache_id2 = 'maxflex' + __cachebust_str($i) + $p_basis  
   
-  $cell = s($cl_attr_pre_cell_s,$i) // [class~=cell-%s]
+  $cell = s($cl_attr_pre_cell_any_s,$i) // [class~=cell-%s]
   
-  {$cl_attr_pre_grid_any} > {$cell},
-  {$cl_attr_grid}         > {$cell}
+  {$cl_attr_pre_grid_any} > {$cell},  //[class*=grid] > [class~=cell-%s]
+  {$cl_attr_grid}         > {$cell}   //[class~=grid] > [class~=cell-%s]
     +cache($cache_id2) //magic cache
       flex-basis $val
       max-width  $val
@@ -87,7 +87,7 @@ __adv_flex($i)
 __adv_flex_media($i,$label,$device) // any => *, same => ~
   $perc=round( ( 100/$i ), 3 )  
   $val=$perc+'%'
-  $cache_id1 = 'max' + $device + $perc
+  $cache_id1 = 'max' + $device + __cachebust_str($i) + $perc
   //p($cache_id1)
   $this_s_class = s($cl_attr_screen_s,unquote($label),$i) //class*=["_%s-%s"]
   
@@ -99,7 +99,7 @@ __adv_flex_media($i,$label,$device) // any => *, same => ~
       
   $p_basis = ($i*$atomic_basis);
   $val = $p_basis  +'%'
-  $cache_id2 = 'max' + $device + $p_basis  
+  $cache_id2 = 'max' + $device + __cachebust_str($i) + $p_basis  
   
   {$this_s_class} > {$cl_attr_pre_cell_any},
   {$this_s_class} > {$cl_attr_cell}

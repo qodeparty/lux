@@ -36,8 +36,11 @@
       if $cl    
         return unquote($pre_is + $cl)
 
+//cachebust on the limits of a range 1..$basis 
+//because joining limit classes causes css precendence conflict
+ __cachebust_str($i)
+    return($i==1||$i==$basis?$i:'')
 
- 
 /* //////////////////////////////////////////////////////////////////////////////
 // CSS Vars
 ////////////////////////////////////////////////////////////////////////////// */   

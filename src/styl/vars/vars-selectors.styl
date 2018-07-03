@@ -74,12 +74,15 @@ $cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
 
 $cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
 $cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class*=grid-]
+$cl_attr_pre_grid_any_s = __attr_class($L_flex_grid + $dash_i, $attr_any)
 
 $cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
 $cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
 
 $cl_attr_pre_cell_s   = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
 $cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any) 
+
 
 $cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
 
@@ -89,9 +92,17 @@ $cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["
 ////////////////////////////////////////////////////////////////////////////// */
 
 
-$attr_top= __attr_short( 't', 'top' )
-$attr_mid= __attr_short( 'm', 'mid' )
-$attr_btm= __attr_short( 'b', 'btm' )
+$attr_top= __attr_short( 'top', 'top'    )
+$attr_mid= __attr_short( 'mid', 'middle' )
+$attr_btm= __attr_short( 'btm', 'bottom' )
+
+$attr_ctr   = __attr_short( 'ctr', 'center' ) 
+$attr_right = __attr_short( 'rt' , 'right'  )
+$attr_left  = __attr_short( 'lt' , 'left'   )
+
+$attr_first  = __attr_short( '0th' , 'first' )
+$attr_last   = __attr_short( 'nth' , 'last'  )
+
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
