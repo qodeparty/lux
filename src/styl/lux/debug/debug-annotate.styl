@@ -66,7 +66,7 @@
       
   .has-notes
     padding 1rem 0
-    margin-bottom 1rem
+    //margin-bottom 1rem
     
         
   .has-notes[title]:before
@@ -110,7 +110,7 @@
   white-space nowrap
   text-align center
   background rgba($lux_blue, .5)
-  padding 2.1325rem 0
+  padding 1rem 0
   border-radius 3px
   color white
   position relative
@@ -165,4 +165,17 @@ body.debug.theme-unity
     color white
 
 
+.debug
+  {$cl_attr_cell_any}:hover:after,
+  {$cl_layout_col}:hover:after 
+    content: attr( class );
+    padding: 2px 8px;
+    position: absolute;
+    left: 0.5rem
+    top: 0.5rem
+    white-space: nowrap;
+    z-index: 20;
+    background-color: $scale_4;
+    color: #fff;
+    font-size: .8rem;
 

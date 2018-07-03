@@ -97,8 +97,12 @@
   __attr_class($name,$type=$attr_in)
     //fx_debug(arguments)
     $name = replace('\.', '', $name)
-    $this = join('', '[class' $type '"' $name '"]' )
+    $this = join('', '[class' $type '"' unquote($name) '"]' )
     return $this
 
   __undot($class)
     return( replace('\.', '', $class))
+
+
+  __grid_and_cell()
+    1

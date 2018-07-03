@@ -7,6 +7,10 @@ __media_to( $devive )
   @media screen and (max-width __rem($device,1))
     {block}
 
+__media_range( $deviveA, $deviceB  )
+  @media screen and (min-width __rem($deviceA)) and (max-width __rem($deviceB,1))
+    {block}
+
 
 
 __nano()
@@ -96,3 +100,4 @@ __ultra()
 
 
 
+// __placholder

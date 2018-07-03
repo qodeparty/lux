@@ -37,4 +37,64 @@ __pseudo_border_var($t=1px)
     $t 0 0 0 var(--box-shadow-color) inset,
     0 $t 0 0 var(--box-shadow-color) inset
 
+
+
+__adv_flex($i)
+
+  $perc=round( ( 100/$i ), 3 )  
+  $val=$perc+'%'
+  $cache_id1 = 'maxflex' + $perc
+  
+  $grid=s($cl_attr_pre_grid_s,$i) // [class~=grid-%s]
+  
+  {$grid} > {$cl_attr_pre_cell_any},
+  {$grid} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
+    +cache($cache_id1) //magic cache
+      flex-basis $val
+      max-width  $val
+      
+
+  $p_basis = ($i*$atomic_basis);
+  $val = $p_basis  +'%'
+  $cache_id2 = 'maxflex' + $p_basis  
+  
+  $cell = s($cl_attr_pre_cell_s,$i) // [class~=cell-%s]
+  
+  {$cl_attr_pre_grid_any} > {$cell},
+  {$cl_attr_grid}         > {$cell}
+    +cache($cache_id2) //magic cache
+      flex-basis $val
+      max-width  $val
+
+
 /************************************************************/
+
+
+__adv_flex_media($i,$label,$device) // any => *, same => ~
+  $perc=round( ( 100/$i ), 3 )  
+  $val=$perc+'%'
+  $cache_id1 = 'max' + $device + $perc
+  //p($cache_id1)
+  $this_s_class = s($cl_attr_screen_s,unquote($label),$i) //class*=["_%s-%s"]
+  
+  {$cl_attr_pre_grid_any}  > {$this_s_class},
+  {$cl_attr_grid}  > {$this_s_class}
+    +cache($cache_id1)
+      flex-basis $val
+      max-width  $val
+      
+  $p_basis = ($i*$atomic_basis);
+  $val = $p_basis  +'%'
+  $cache_id2 = 'max' + $device + $p_basis  
+  
+  {$this_s_class} > {$cl_attr_pre_cell_any},
+  {$this_s_class} > {$cl_attr_cell}
+    +cache($cache_id2)
+      flex-basis $val
+      max-width  $val
+
+
+
+
+/************************************************************/
+

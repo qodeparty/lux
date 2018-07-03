@@ -3,10 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////// */
 
 
-
-/* /////////////////////////////////////////////////////////////////////////////
-// Flexbox
-///////////////////////////////////////////////////////////////////////////// */
+if( $flex_mode_ez )
   
   {$cl_layout_row}
     display flex
@@ -16,6 +13,7 @@
 
   {$cl_layout_col}
     display block
+    position relative
     flex-basis 0 
     flex-grow 1 
     flex-shrink  1
@@ -94,3 +92,5 @@
             
           {$cl_layout_row} > {$pre_offsets}{$i}-{$device} // group => offsets-x
             margin-{$offset_dir} round( percentage( $i/$basis ), 3 ) //LTR margin left RTL margin right
+
+

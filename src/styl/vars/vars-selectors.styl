@@ -13,11 +13,11 @@ $attr_suf='$='
 $attr_any='*='
 
 $dash_i='-%s'
+$under_i='_%s'
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Partial Classes (Prefix)
 ////////////////////////////////////////////////////////////////////////////// */
-
 
 
 $pre_is   = $dot + $L_is    + $dash         //.is-
@@ -31,41 +31,6 @@ $pre_offsets = $dot + $L_offsets + $dash  //.offsets-<n>
 
 $pre_size    = $pre_is + $L_size + $dash  //.is-size-<s>
 
-/* //////////////////////////////////////////////////////////////////////////////
-// Classes
-////////////////////////////////////////////////////////////////////////////// */
-
-$cl_layout_tbl = $dot + $L_groups //.groups
-$cl_layout_row = $dot + $L_row    //.row
-$cl_layout_col = $dot + $L_col    //.col
-
-$cl_with_gaps    = $pre_with + 'gaps';
-$cl_with_sm_gaps = $pre_with + 'sm-gaps';
-
-
-/* //////////////////////////////////////////////////////////////////////////////
-// Layouts 2
-////////////////////////////////////////////////////////////////////////////// */
-
-$pre_grid = $dot + $L_flex_grid + $dash  //.grid-
-$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
-
-$cl_flex_grid = $dot + $L_flex_grid //.grid
-$cl_flex_cell = $dot + $L_flex_cell //.cell
-
-$cl_attr_grid         = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
-$cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
-//$cl_attr_pre_grid     = __attr_class($pre_grid, $attr_any)     // [class*=grid-]
-$cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
-$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class~=grid-]
-
-$cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
-$cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
-//$cl_attr_pre_cell     = __attr_class($pre_cell, $attr_any)     // [class*=cell-]
-$cl_attr_pre_cell_s   = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
-$cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
-
-
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Elements
@@ -75,6 +40,48 @@ $cl_ttl      = $dot + $L_title    //.title
 $cl_ttl_is   = $pre_is + $L_title //.is-title
 
 $cl_subttl   = $dot + $L_subtitle //.subtitle
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Flex Simple
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_layout_tbl = $dot + $L_groups //.groups
+$cl_layout_row = $dot + $L_row    //.row
+$cl_layout_col = $dot + $L_col    //.col
+
+$cl_with_gaps    = $pre_with + 'gaps';
+$cl_with_sm_gaps = $pre_with + 'sm-gaps';
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Flex Advanced
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_container = $dot + $L_container //.container
+
+
+$pre_grid = $dot + $L_flex_grid + $dash  //.grid-
+$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
+
+
+$cl_flex_grids = $dot + $L_flex_grid + 's' //.grids
+
+$cl_flex_grid = $dot + $L_flex_grid //.grid
+$cl_flex_cell = $dot + $L_flex_cell //.cell
+
+$cl_attr_grid         = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
+$cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
+
+$cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
+$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class~=grid-]
+
+$cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
+$cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
+
+$cl_attr_pre_cell_s   = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
+$cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
+
+$cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
@@ -97,12 +104,12 @@ $cl_flag_xlg = $pre_is + $L_xlarge //.is-xlarge
 // Modifiers - Text
 ////////////////////////////////////////////////////////////////////////////// */
 
-$cl_txt_cap  = $pre_is + $L_capital
-$cl_txt_low  = $pre_is + $L_lower
-$cl_txt_up   = $pre_is + $L_upper
-$cl_txt_ital = $pre_is + $L_italic
-$cl_txt_sub  = $pre_is + $L_sub
-$cl_txt_sup  = $pre_is + $L_sup
+$cl_txt_cap  = $pre_is + $L_capital //.is-captial
+$cl_txt_low  = $pre_is + $L_lower   //.is-lower
+$cl_txt_up   = $pre_is + $L_upper   //.is-upper
+$cl_txt_ital = $pre_is + $L_italic  //.is-italic
+$cl_txt_sub  = $pre_is + $L_sub     //.is-sub
+$cl_txt_sup  = $pre_is + $L_sup     //.is-sup
 
 $cl_sans_marg   = $pre_no + $L_margins //.no-margins
 $cl_sans_pad    = $pre_no + $L_padding //.no-padding
