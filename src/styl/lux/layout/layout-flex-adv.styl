@@ -54,7 +54,7 @@ if( $flex_mode_adv )
 
   ////////////////////
     
-  for $i in (1..$basis)
+  for $i in (0..$basis)
     __adv_flex($i)
 
   $len = fx_make_device_iter(1)
@@ -73,10 +73,10 @@ if( $flex_mode_adv )
           display none
           
         //order matters - cuz precendence
-        for $i in (1..$basis)
+        for $i in (0..$basis)
           __adv_flex_cell_media($i,$label,$screen)
 
-        for $i in (1..$basis)
+        for $i in (0..$basis)
           __adv_flex_grid_media($i,$label,$screen)
 
 
@@ -126,11 +126,20 @@ if( $flex_mode_adv )
     flex-direction column
 
   +__grid_pre('crev')
-    flex-direction column-reverse;
+    flex-direction column-reverse
 
   +__grid_pre('nw')
     flex-wrap nowrap
+
+  +__grid_pre('bal')
+    justify-content space-evenly   
+
+  +__grid_pre('spread')
+    justify-content space-between  
     
+  +__grid_pre('dist')
+    justify-content space-around 
+
 
   __cell_pre($attr_top, $placeholder_grid_top)
     
