@@ -21,7 +21,8 @@
     "nat-basis"  : true,
     "mobile"     : false,
     "mode-ez"    : true,
-    "mode-adv"   : true
+    "mode-adv"   : true,
+    "short-attr" : false
   },
 
   "basis"   : [ 4, 8, 12, 16, 20, 24 ],

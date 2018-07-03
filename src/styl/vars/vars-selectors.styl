@@ -73,7 +73,7 @@ $cl_attr_grid         = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
 $cl_attr_grid_any     = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
 
 $cl_attr_pre_grid_s   = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
-$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class~=grid-]
+$cl_attr_pre_grid_any = __attr_class($pre_grid, $attr_any) // [class*=grid-]
 
 $cl_attr_cell         = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
 $cl_attr_cell_any     = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
@@ -82,6 +82,16 @@ $cl_attr_pre_cell_s   = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class
 $cl_attr_pre_cell_any = __attr_class($pre_cell, $attr_any) // [class*=cell-]
 
 $cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// mini directions
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$attr_top= __attr_short( 't', 'top' )
+$attr_mid= __attr_short( 'm', 'mid' )
+$attr_btm= __attr_short( 'b', 'btm' )
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x

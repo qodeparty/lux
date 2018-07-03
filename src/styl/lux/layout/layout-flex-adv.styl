@@ -65,20 +65,67 @@ if( $flex_mode_adv )
       +ref()
         for $i in (1..$basis)
           __adv_flex_media($i,$label,$screen)
-          //__adv_flex_grid_media($i,$label,$screen)
 
-      // if $cl  
-    //   {$cl_flex_cell}{$cl}
-    //     +cache('maxflexwidth' + $this) //magic cache
-    //       flex-basis $this
-    //       max-width  $this
+  ////////// GRID MODIFIERS //////////
+
+  $placeholder_grid_top
+    align-items flex-start    
+  
+  $placeholder_grid_mid
+    align-items center 
       
+  $placeholder_grid_btm
+    align-items flex-end
+    
 
 
-    // [class*="cell"]
-    //   background:red
-    ////////// IN-CLASS MODIFIERS //////////
+  +__grid_pre('nog')
+    margin 0
+    
+  +__grid_pre('c') 
+    justify-content center
 
+  +__grid_pre('r')
+    margin-left auto
+    justify-content flex-end
+    align-self flex-end
+
+  
+
+    
+    
+  __grid_pre($attr_top, $placeholder_grid_top)
+    
+  __grid_pre($attr_mid, $placeholder_grid_mid)
+  
+  __grid_pre($attr_btm, $placeholder_grid_btm)
+
+    
+  +__grid_pre('rev')
+    flex-direction row-reverse
+    
+  +__grid_pre('col')
+    flex-direction column
+
+  +__grid_pre('crev')
+    flex-direction column-reverse;
+
+  +__grid_pre('nw')
+    flex-wrap nowrap
+    
+
+  __cell_pre($attr_top, $placeholder_grid_top)
+    
+  __cell_pre($attr_mid, $placeholder_grid_mid)
+       
+  __cell_pre($attr_btm, $placeholder_grid_btm)
+
+
+  +__cell_pre('z')
+    order -1 
+  
+  +__cell_pre('n')
+    order 999
     // -center
     // -left
     // -right

@@ -38,6 +38,20 @@ __pseudo_border_var($t=1px)
     0 $t 0 0 var(--box-shadow-color) inset
 
 
+__grid_pre($cl_sub,$ext=false)
+  {$cl_attr_pre_grid_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext  
+      @extends {$ext}
+  
+
+
+__cell_pre($cl_sub,$ext=false)
+  {$cl_attr_pre_cell_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext 
+      @extends {$ext}
+
 
 __adv_flex($i)
 
