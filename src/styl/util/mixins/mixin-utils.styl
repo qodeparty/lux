@@ -21,6 +21,7 @@ __box_reset()
   margin 0
   padding 0
   
+
 __pseudo_border($t=1px,$hex)
   box-shadow: 
     $t 0 0 0 $hex, 
@@ -37,12 +38,9 @@ __pseudo_border_var($t=1px)
     $t 0 0 0 var(--box-shadow-color) inset,
     0 $t 0 0 var(--box-shadow-color) inset
 
-
 __inner_border($t=1px,$hex)
   box-shadow: 
     0 0 $t $t $hex inset
-
-
 
 __except_device($device,$cl_sub)
   $len = fx_make_device_iter(1)

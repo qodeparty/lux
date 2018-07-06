@@ -191,7 +191,6 @@ body.debug.theme-unity
   
 
 .debug-links
-
   position fixed
   top 0
   left 0
@@ -233,3 +232,16 @@ body.debug.theme-unity
     color: #fff;
     font-size: .8rem;
 
+
+body.debug:after
+  content: $var_vers'.b-'$var_build;
+  padding: 2px 8px;
+  position: sticky;
+  left: 0.5rem
+  bottom: 0.5rem
+  white-space: nowrap;
+  z-index: 20;
+  background-color: $scale_7;
+  color: #fff;
+  font-size: .8rem;
+  z-index 9999
