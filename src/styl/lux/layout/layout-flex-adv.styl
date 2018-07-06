@@ -62,11 +62,17 @@ if( $flex_mode_adv )
   for $l in (1..$len)
     $screen = fx_make_device_iter()
     $label  = fx_device_size($screen) //sm md lg ..
-    
+    //p($screen)
     ref=lookup('__'+$screen+'_only')
     if ref is defined
       +ref()
-        
+      
+        {__to_class('is-block',$screen)}
+          display block
+          
+        +__except_device($screen,"is-block")
+          display none
+
         {__to_class($label,'h')},
         {__to_class('is-hidden',$screen)}
           display none
@@ -77,7 +83,6 @@ if( $flex_mode_adv )
 
         for $i in (0..$basis)
           __adv_flex_grid_media($i,$label,$screen)
-
 
 
   +__touch()

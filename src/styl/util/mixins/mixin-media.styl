@@ -95,13 +95,13 @@ __hd_only()
    @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_ultra,1))
      {block}
    
-
-
-if $use_ultra
+if $use_ultra 
   __ultra()
      @media screen and (min-width __rem($screen_ultra))
        {block}
 
-
+  __ultra_only()
+     @media screen and (min-width __rem($screen_ultra))
+       {block}
 
 // __placholder

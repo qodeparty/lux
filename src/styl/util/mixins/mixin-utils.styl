@@ -44,3 +44,16 @@ __inner_border($t=1px,$hex)
 
 
 
+__except_device($device,$cl_sub)
+  $len = fx_make_device_iter(1)
+  $pstr  = $device + $dash + $cl_sub + $dash + 'placeholder'
+  ${$pstr}
+    {block}
+    
+  for $l in (1..$len)
+    $screen = fx_make_device_iter()
+     
+    if $screen != $device
+        {$dot + $cl_sub + $dash + $screen}
+          @extends ${$pstr}
+
