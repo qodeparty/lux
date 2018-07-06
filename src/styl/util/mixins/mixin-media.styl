@@ -7,19 +7,19 @@ __media_to( $devive )
   @media screen and (max-width __rem($device,1))
     {block}
 
-__media_range( $deviveA, $deviceB  )
+__media_range( $deviveA, $deviceB )
   @media screen and (min-width __rem($deviceA)) and (max-width __rem($deviceB,1))
     {block}
 
 
+if $use_nano
+  __nano()
+     @media screen and (min-width __rem($screen_nano))
+       {block}
 
-__nano()
-   @media screen and (min-width __rem($screen_nano))
-     {block}
-
-__nano_only()
-   @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile,1))
-     {block}   
+  __nano_only()
+     @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile,1))
+       {block}   
 
 
 __mobile()
@@ -41,10 +41,13 @@ __tablet_only()
      {block}
 
 
+
+
 __touch()
-   @media screen and (max-width __rem($screen_desktop,1))
-     {block}
+  @media screen and (min-width __rem(0)) and (max-width __rem($screen_desktop,1))
+    {block}
    
+
 
 
 
@@ -58,6 +61,7 @@ __desktop_only()
      {block}
 
    
+
 
 
 __wide()
@@ -93,10 +97,10 @@ __hd_only()
    
 
 
-
-__ultra()
-   @media screen and (min-width __rem($screen_ultra))
-     {block}
+if $use_ultra
+  __ultra()
+     @media screen and (min-width __rem($screen_ultra))
+       {block}
 
 
 

@@ -97,6 +97,15 @@ module.exports = () => {
 
   return function(stylus){
 
+    stylus.define('debug', function(param){
+      console.log(process.env['COLOR_CYAN']+param.string);
+    });
+
+
+    stylus.define('fx_get_block', function(param){
+      let $this  = $config[param.val];
+      return $this;
+    });
 
     stylus.define('fx_get_config', function(param){
 
@@ -134,15 +143,17 @@ module.exports = () => {
         restart();
         i = gen();
       } 
-
       return i;
     });
 
 
     stylus.define('fx_device_size', function(device,getVals=false){
       let $val;
-      device  = device.val
+      
+      device  = device.string
       getVals = getVals.val;
+      //console.log($devices,device)
+
       if( device ){
         $val  = ( getVals ? $devices[device]['range'] : $devices[device]['alt'] );
         return ($val||null); 

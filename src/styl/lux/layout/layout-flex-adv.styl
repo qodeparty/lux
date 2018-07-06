@@ -63,7 +63,6 @@ if( $flex_mode_adv )
     $screen = fx_make_device_iter()
     $label  = fx_device_size($screen) //sm md lg ..
     
-
     ref=lookup('__'+$screen+'_only')
     if ref is defined
       +ref()
@@ -79,6 +78,13 @@ if( $flex_mode_adv )
         for $i in (0..$basis)
           __adv_flex_grid_media($i,$label,$screen)
 
+
+
+  +__touch()
+    __adv_flex_make_set('touch','touch')
+
+  +__desktop()
+    __adv_flex_make_set('desk','desk')
 
   ////////// GRID MODIFIERS //////////
 
@@ -160,31 +166,4 @@ if( $flex_mode_adv )
   +__grid_pre_cell_star($attr_auto)
     height 100%
 
-
-
-    // -center
-    // -left
-    // -right
-
-    // -device
-
-    // -top
-    // -middle
-    // -bottom
-
-    // -reverse
-    // -reverse-col
-    // -reverse-row
-
-    // -first
-    // -last
-
-    // -nogap
-
-    // -equal (stretch)
-
-    // -between (space between)
-
-    // -push-left-${n}
-    // -push-right-${n}
 
