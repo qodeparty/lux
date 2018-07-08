@@ -244,12 +244,12 @@
 	LUX_WWW="$( cd $THIS_DIR && cd ../lux-www; pwd -P )"
 
 	LUX_MODS=
+	LUX_CLI_VARS=( "build:$script_build" "vers:$script_vers" )
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
 	OPT_IMPORT="--import $LUX_UTIL --import $LUX_VARS " #order matters
-	OPT_USE="--use $LUX_EXT/cli-vars.js --with {lux_build:\"$script_build\",lux_vers:\"$script_vers\"}"
-
-	OPT_ALL="$OPT_USE $OPT_IMPORT $OPT_INCLUDE"
+	OPT_USE="" #update with lux_opt_refresh
+	OPT_ALL="" #update with lux_opt_refresh
 
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
@@ -286,6 +286,27 @@
 		echo "${res[*]}"
 	}
 
+	function json_maker(){
+		vars=( ${LUX_CLI_VARS[@]} ${@})
+		str=""
+		len=$((${#vars[@]}-1));
+		for i in ${!vars[@]}; do
+			this="${vars[$i]}"
+			this_var="${this#*:}"
+			this=${this%%:*}
+			printf -v "this" '"%s":"%s"' "lux_$this" $this_var
+			[ $i -lt $len ] && this="${this},"
+			str="$str$this"
+		done
+		printf -v "str" "{ %s }" $str
+		echo "$str"
+
+	}
+
+	function add_var(){
+		LUX_CLI_VARS+=($@)
+	}
+
 #-------------------------------------------------------------------------------
 # Lang
 #-------------------------------------------------------------------------------
@@ -299,6 +320,14 @@
 #-------------------------------------------------------------------------------
 # Utils
 #-------------------------------------------------------------------------------
+
+
+	function lux_opt_refresh(){
+		OPT_USE="--use $LUX_EXT/cli-vars.js --with $(json_maker)"
+		OPT_ALL="$OPT_USE $OPT_IMPORT $OPT_INCLUDE"
+		echo "$OPT_USE"
+	}
+
 	function lux_build_version(){
 		case $1 in
 			www)   echo $(cd $LUX_WWW;git rev-list HEAD --count);;
@@ -778,11 +807,17 @@
 		#call=$1; shift
 
 		[ -f "$LUX_RC" ] && source $LUX_RC
+		lux_opt_refresh
 
 		for call in "$@"; do
-
+			#echo "$# $call"
 			shift
 			case $call in
+				json) 
+					add_var "stinky:lady" "dirty:pussy"
+					lux_opt_refresh
+					json_maker "pussy:queen"
+					shift;;
 				help) lux_usage;;
 				vars) lux_vars;;
 				mods) opt_debug=0; info "=> ${LUX_MODS[*]}";;
@@ -822,8 +857,11 @@
 				skip) break;;
 				--*) :;;
 				*) 
-					fatal "Invalid command" $call;
-					lux_usage;  ret=1;;
+					if [ ! -z "$call" ]; then
+						fatal "Invalid command" $call;
+						lux_usage;  ret=1
+					fi
+				;;
 			esac
 		done
 
@@ -845,17 +883,12 @@ else
 
 	args=("${@}")
 
-	if [[ "${@}" =~ "--debug" ]]; then
-		opt_debug=0
-	elif [[ "${@}" =~ "--info" ]]; then
-		opt_verbose=0
-	elif [[ "${@}" =~ "--quiet" ]]; then
-		opt_quiet=0
-	elif [[ "${@}" =~ "--force" ]]; then
-		opt_force=0
-	else
-		:
-	fi
+	[[ "${@}" =~ "--debug" ]] && opt_debug=0 || :
+	[[ "${@}" =~ "--info"  ]] && opt_verbose=0 || :
+	[[ "${@}" =~ "--quiet" ]] && opt_quiet=0 || :
+	[[ "${@}" =~ "--force" ]] && opt_force=0 || :
+	[[ "${@}" =~ "--12"    ]] && add_var "basis:12" || :
+	[[ "${@}" =~ "--16"    ]] && add_var "basis:16" || :
 
 	#[ -t 1 ] && [ $opt_force -eq 0 ] && opt_quiet=1 ||:
 
