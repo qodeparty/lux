@@ -216,6 +216,7 @@
 	opt_force=1
 	opt_verbose=1
 	opt_debug=1
+	opt_basis=
 
 	CPID="$$"
 	BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
@@ -497,16 +498,17 @@
 		[ ! -d $LUX_DIST ] && mkdir -p $LUX_DIST
 		touch "$LUX_DIST/lux.css" "$LUX_DIST/lux.min.css"
 
+		[ -n "$opt_basis" ] && this_name="lux-$opt_basis" || this_name='lux'
+
 		#FIX COMPILE PATHS
-		res=$(stylus $OPT_ALL -r "$LUX_CORE" --out "$LUX_DIST/lux.css"); ret=$?;
+		res=$(stylus $OPT_ALL -r "$LUX_CORE" --out "$LUX_DIST/$this_name.css"); ret=$?;
 		status $ret "$res" "Compile Error"
 
-		res=$(stylus -c $OPT_ALL -r "$LUX_CORE" --out "$LUX_DIST/lux.min.css");ret=$?;
+		res=$(stylus -c $OPT_ALL -r "$LUX_CORE" --out "$LUX_DIST/$this_name.min.css");ret=$?;
 		status $ret "$res" "Compile Error"
 
-
-		lux_prep "$LUX_DIST/lux.css"
-		lux_prep "$LUX_DIST/lux.min.css"
+		lux_prep "$LUX_DIST/$this_name.css"
+		lux_prep "$LUX_DIST/$this_name.min.css"
 	}
 
 
@@ -557,11 +559,19 @@
 		
 	}
 
+	function with_basis(){
+		local this_name
+		[[ "$2" =~ $1 ]] &&	[ -n "$opt_basis" ] && this_name="$2-$opt_basis" || this_name="$2"
+		echo $this_name
+	}
+
 
 	function lux_build_submod(){
 		local this name res ret;
 		this="$1"
 		name=$(lux_parse_styl $this); ret=$?
+
+		[[ "$name" =~ "flex" ]]
 
 		if [ $ret -eq 0 ]; then
 			lux_build_path
@@ -569,6 +579,16 @@
 				info "[SUB] Rebuilding Sub... ${name}.css"
 				res=$(stylus $OPT_ALL "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
 				status $ret "$res" "Compile Error"
+
+				rm -f "$LUX_RBUILD/${name}.css"
+				cp "$LUX_BUILD/${name}.css" "$LUX_RBUILD/${name}.css"
+
+				bname=$(with_basis "flex" "$name")
+				if [[ "$bname" != "$name" ]]; then
+					cp "$LUX_BUILD/${name}.css" "$LUX_BUILD/${bname}.css"
+					cp "$LUX_BUILD/${name}.css" "$LUX_RBUILD/${bname}.css"
+				fi	
+
 			fi
 			lux_build_mod "${name%%\-*}"
 		else
@@ -584,6 +604,7 @@
 		mod="$1"		
 		res=$(in_array "$mod" "${LUX_MODS[@]}"); ret=$?;
 
+	
 		if [ $ret -eq 0 ]; then
 			lux_build_path
 			modpath=$(lux_buildtype $mod true)
@@ -593,6 +614,14 @@
 				status $ret "$res" "Compile Error"
 				rm -f "$LUX_RBUILD/${mod}.css"
 				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css"
+
+				bname=$(with_basis "layout" "$mod")
+				if [[ "$bname" != "$mod" ]]; then
+					cp "$LUX_BUILD/${mod}.css" "$LUX_BUILD/${bname}.css"
+					cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${bname}.css"
+				fi
+
+
 			else
 				error "Invalid module directory ($mod)";	
 			fi
@@ -889,8 +918,8 @@ else
 	[[ "${@}" =~ "--info"  ]] && opt_verbose=0 || :
 	[[ "${@}" =~ "--quiet" ]] && opt_quiet=0 || :
 	[[ "${@}" =~ "--force" ]] && opt_force=0 || :
-	[[ "${@}" =~ "--12"    ]] && add_var "basis:12" || :
-	[[ "${@}" =~ "--16"    ]] && add_var "basis:16" || :
+	[[ "${@}" =~ "--12"    ]] && add_var "basis:12" && opt_basis=12 || :
+	[[ "${@}" =~ "--16"    ]] && add_var "basis:16" && opt_basis=16 || :
 
 	#[ -t 1 ] && [ $opt_force -eq 0 ] && opt_quiet=1 ||:
 
