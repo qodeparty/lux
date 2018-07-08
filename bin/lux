@@ -146,10 +146,11 @@
 			${s}${p}${sc} vars   ${x}${t}   output lux variables
 			${s}${p}${sc} mods   ${x}${t}   output lux style mods	
 			${n}
-			${s}${b}Dev Falgs${x}${n}
+			${s}${b}Flags${x}${n}
 			${s}${p}${sc} --debug${x}${t}   enable debug mode
 			${s}${p}${sc} --info ${x}${t}   enable verbose output	
 			${s}${p}${sc} --lang ${x}${t}   translate class and ids for specified lang	
+			${s}${p}${sc} --12/16${x}${t}   set grid basis to basis-12 or basis-16
 			${n}
 			${b}${line//#/}${x}
 		EOF
@@ -163,7 +164,7 @@
 		local data b w g p y s t n;
 		b=$blue;w=$wz;g=$grey2;p=$cyan;y=$orange;
 		s=$sp;t=$tab;n=$nl;
-		lux_mods
+		lux_var_refresh
 		data="$(cat <<-EOF
 			$line
 			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www') 
@@ -248,8 +249,8 @@
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
 	OPT_IMPORT="--import $LUX_UTIL --import $LUX_VARS " #order matters
-	OPT_USE="" #update with lux_opt_refresh
-	OPT_ALL="" #update with lux_opt_refresh
+	OPT_USE="" #update with lux_var_refresh
+	OPT_ALL="" #update with lux_var_refresh
 
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
@@ -294,11 +295,11 @@
 			this="${vars[$i]}"
 			this_var="${this#*:}"
 			this=${this%%:*}
-			printf -v "this" '"%s":"%s"' "lux_$this" $this_var
+			printf -v "this" '%s:\"%s\"' "lux_$this" $this_var
 			[ $i -lt $len ] && this="${this},"
 			str="$str$this"
 		done
-		printf -v "str" "{ %s }" $str
+		printf -v "str" "{%s}" $str #stylus is picky about json format
 		echo "$str"
 
 	}
@@ -321,11 +322,11 @@
 # Utils
 #-------------------------------------------------------------------------------
 
-
-	function lux_opt_refresh(){
+	#OPT_USE="--use $LUX_EXT/cli-vars.js --with {lux_build:\"$script_build\",lux_vers:\"$script_vers\"}"
+	function lux_var_refresh(){
 		OPT_USE="--use $LUX_EXT/cli-vars.js --with $(json_maker)"
 		OPT_ALL="$OPT_USE $OPT_IMPORT $OPT_INCLUDE"
-		echo "$OPT_USE"
+		lux_mods
 	}
 
 	function lux_build_version(){
@@ -807,7 +808,7 @@
 		#call=$1; shift
 
 		[ -f "$LUX_RC" ] && source $LUX_RC
-		lux_opt_refresh
+		lux_var_refresh
 
 		for call in "$@"; do
 			#echo "$# $call"
@@ -815,8 +816,9 @@
 			case $call in
 				json) 
 					add_var "stinky:lady" "dirty:pussy"
-					lux_opt_refresh
+					lux_var_refresh
 					json_maker "pussy:queen"
+					#echo "$OPT_USE"
 					shift;;
 				help) lux_usage;;
 				vars) lux_vars;;

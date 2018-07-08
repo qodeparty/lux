@@ -58,14 +58,18 @@
 // Config
 ////////////////////////////////////////////////////////////////////////////// */  
  
-  __config($key)
-    $this = fx_get_config($key)
-    if typeof($this) == 'string'
-     unquote($this)
-    else if typeof($this) == 'null'
-      p($key + ' => ' +typeof($this))
-    else 
-      $this
+  __config($key,$override=null)
+    if $override 
+      $override
+    else  
+      $this = fx_get_config($key)
+      if typeof($this) == 'string'
+       unquote($this)
+      else if typeof($this) == 'null'
+        p($key + ' => ' +typeof($this))
+      else 
+        $this
+          
     
   __device()
     1

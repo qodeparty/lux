@@ -24,9 +24,6 @@
     "stylus",
     "sass"
   ],
-  "config": {
-    "basis": 16
-  },
   "author": "qodeparty",
   "license": "MIT",
   "bugs": {
