@@ -17,6 +17,26 @@ $dash_i='-%s'
 $under_i='_%s'
 
 /* //////////////////////////////////////////////////////////////////////////////
+// mini directions
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$attr_top= __attr_short( 'top', 'top'    )
+$attr_mid= __attr_short( 'mid', 'middle' )
+$attr_btm= __attr_short( 'btm', 'bottom' )
+
+$attr_ctr   = __attr_short( 'ctr', 'center' ) 
+$attr_right = __attr_short( 'rt' , 'right'  )
+$attr_left  = __attr_short( 'lt' , 'left'   )
+
+$attr_first  = __attr_short( '0th' , 'first' )
+$attr_last   = __attr_short( 'nth' , 'last'  )
+
+$attr_auto   = $L_auto
+$attr_flush  = "flush"
+
+$attr_item   = "item"
+/* //////////////////////////////////////////////////////////////////////////////
 // Partial Classes (Prefix)
 ////////////////////////////////////////////////////////////////////////////// */
 
@@ -53,6 +73,29 @@ $cl_layout_col = $dot + $L_col    //.col
 
 $cl_with_gaps    = $pre_with + 'gaps';
 $cl_with_sm_gaps = $pre_with + 'sm-gaps';
+
+/* //////////////////////////////////////////////////////////////////////////////
+//  Flex Blocks
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$cl_attr_right  = __attr_class( $dash + $attr_right, $attr_any)
+$cl_attr_left   = __attr_class( $dash + $attr_left, $attr_any)
+$cl_attr_center = __attr_class( $dash + $attr_ctr, $attr_any)
+$cl_attr_auto   = __attr_class( $dash + $attr_auto, $attr_any)
+
+
+
+$cl_blocks      = ".blocks"
+$cl_block       = ".block"
+$cl_block_pre   = ".block-"
+$cl_block_left  = ".block-lt"
+$cl_block_right = ".block-rt"
+$cl_block_ctr   = ".block-ctr"
+$cl_block_item  = ".block-item"
+
+
+$cl_attr_block_pre_any   = __attr_class( "block" + $dash, $attr_any ) // [class*='block-']
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flex Advanced
@@ -105,24 +148,7 @@ $cl_attr_data_push_any_s  = __attr_data('push', 'off' + $dash_i ,$attr_any)
 $cl_attr_data_push_size_s = __attr_data('push', $under_i + $dash_i ,$attr_any) 
 
 
-/* //////////////////////////////////////////////////////////////////////////////
-// mini directions
-////////////////////////////////////////////////////////////////////////////// */
 
-
-$attr_top= __attr_short( 'top', 'top'    )
-$attr_mid= __attr_short( 'mid', 'middle' )
-$attr_btm= __attr_short( 'btm', 'bottom' )
-
-$attr_ctr   = __attr_short( 'ctr', 'center' ) 
-$attr_right = __attr_short( 'rt' , 'right'  )
-$attr_left  = __attr_short( 'lt' , 'left'   )
-
-$attr_first  = __attr_short( '0th' , 'first' )
-$attr_last   = __attr_short( 'nth' , 'last'  )
-
-$attr_auto   = $L_auto
-$attr_flush  = "flush"
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x

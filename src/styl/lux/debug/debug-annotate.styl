@@ -1,5 +1,5 @@
 #annotate 
-  margin-top 4.5rem
+  margin-top __rem(63)
   
   #inline div 
     color:#bbb
@@ -219,22 +219,24 @@ body.debug.theme-unity
 
 
 .debug
+  {$cl_attr_grid_any}:not({$cl_flex_grids}):hover:after,
   {$cl_attr_cell_any}:hover:after,
-  {$cl_layout_col}:hover:after 
+  {$cl_layout_col}:hover:after, 
+  {$cl_block_pre_any}:hover:after
     content: attr( class );
     padding: 2px 8px;
     position: absolute;
     left: 0.5rem
-    top: 0.5rem
+    top 1rem
     white-space: nowrap;
     z-index: 20;
-    background-color: $scale_4;
+    background-color: $sand_darknight
     color: #fff;
     font-size: .8rem;
 
 
 body.debug:after
-  content $var_vers+'.r-'+$var_build 
+  content $var_vers+'.r-'+$var_build+' ('+$basis+')'
   padding 2px 8px
   position sticky
   left 0.5rem

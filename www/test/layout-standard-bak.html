@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Lux - Layout Standard</title>
+    <link rel="icon" type="image/x-icon"  href="../favicon.ico">
+    <link rel='stylesheet' id='base'  href='../res/build/debug.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/equalizer.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/modifier.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/build/layout.css'    type='text/css' media='all' />
+  </head>
+  <body id='annotate' class='bg-grid theme-unity debug' >
+
+    <div class='debug-links stripes4'>
+      <div class='luxlogo'></div>
+      <section>
+        <a href='#' class='basis'></a>
+        <a class='curr' href='layout-standard.html'>Layout</a>
+        <a href='flex-simple.html'>Flex Simple</a>
+        <a href='flex-advanced.html'>Flex 16</a>
+        <a href='flex-advanced-12.html'>Flex 12</a>
+        <a href='native-tags.html'>Native Tags</a>
+      </section>
+    </div>
+
+    <!-- <button>Toggle Mobile</button> -->
+    <div class='debug-display is-nano is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
+      <button class='as-display is-nano'>nano &lt; 360</button>
+      <button class='as-display is-mobile'>mobile 360</button>
+      <button class='as-display is-tablet'>tablet 768</button>
+      <button class='as-display is-desktop'>desktop 1024</button>
+      <button class='as-display is-wide'>wide 1216</button>
+      <button class='as-display is-full'>full 1440</button>
+      <button class='as-display is-jumbo'>jumbo 1920</button>
+      <button class='as-display is-ultra'>ultra &gt; 2560</button>
+    </div>
+
+
+    <div class='groups changes-shadow'>
+
+        <div title='1:: responsive-flex' class='row with-gaps is-resp has-notes'>
+
+          <div class='col is-i0'>
+            <p class='thing'>0</p>
+          </div>
+
+          <div class='col is-i1'>
+            <p class='thing'>1</p>
+          </div>
+
+          <div class='col is-i2'>
+            <p class='thing'>2</p>
+          </div>
+
+          <div class='col is-i3'>
+            <p class='thing'>3</p>
+          </div>
+
+          <div class='col is-i4'>
+            <p class='thing'>4</p>
+          </div>
+
+          <div class='col is-i5'>
+            <p class='thing'>5</p>
+          </div>
+
+          <div class='col is-i6'>
+            <p class='thing'>6</p>
+          </div>
+
+          <div class='col is-i7'>
+            <p class='thing'>7</p>
+          </div>
+
+          <div class='col is-i8'>
+            <p class='thing'>8</p>
+          </div>
+
+          <div class='col is-i9'>
+            <p class='thing'>9</p>
+          </div>
+
+          <div class='col is-i10'>
+            <p class='thing'>10</p>
+          </div>
+
+          <div class='col is-i11'>
+            <p class='thing'>11</p>
+          </div>
+
+          <div class='col is-i12'>
+            <p class='thing'>12</p>
+          </div>
+
+          <div class='col is-i13'>
+            <p class='thing'>13</p>
+          </div>
+
+          <div class='col is-i14'>
+            <p class='thing'>14</p>
+          </div>
+
+          <div class='col is-i15'>
+            <p class='thing'>15</p>
+          </div>
+        </div>
+
+        <div title='2:: title-scale' class='row is-resp has-notes'>
+          <div class='app col i0 spans-12'>
+            <h1 class='is-title'>this is my app 0</h1>
+            <h2 class='is-title'>this is my app 0</h2>
+            <h3 class='is-title'>this is my app 0</h3>
+            <h4 class='is-title'>this is my app 0</h4>
+            <h5 class='is-title'>this is my app 0</h5>
+            <h6 class='is-title'>this is my app 0</h6>
+          </div>
+        </div>
+
+        <div title='3:: hide-on-device' class='row has-notes'>
+
+          <div class='app col i0 spans-2 is-hidden-mobile'>
+            <span>Hidden Mobile</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-hidden-tablet'>
+            <span>Hidden Tablet</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-hidden-desktop'>
+            <span>Hidden Desktop</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-hidden-full'>
+            <span>Hidden FullHD</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-hidden-ultra'>
+            <span>Hidden Ultra</span>
+          </div>
+        </div>
+
+        <div title='4:: show-on-device' class='row has-notes'>
+          <div class='app col i0 spans-2 is-hidden is-block-mobile'>
+            <span>Block Mobile</span>
+          </div>
+          <div class='app col i0 spans-2 is-hidden is-block-tablet'>
+            <span>Block Tablet</span>
+          </div>
+          <div class='app col i0 spans-2 is-hidden is-block-desktop'>
+            <span>Block Desktop</span>
+          </div>
+          <div class='app col i0 spans-2 is-hidden is-block-full'>
+            <span>Block FullHD</span>
+          </div>
+          <div class='app col i0 spans-2 is-hidden is-block-ultra'>
+            <span>Block Ultra</span>
+          </div>
+        </div> 
+
+        <div title='5:: large-on-device' class='row has-notes'>
+
+          <div class='app col i0 spans-2 is-size-1-mobile'>
+            <span>Only Mobile</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-size-1-tablet'>
+            <span> Only Tablet</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-size-1-desktop'>
+            <span> Only Desktop</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-size-1-full'>
+            <span> Only FullHD</span>
+          </div>
+
+          <div class='app col i0 spans-2 is-size-1-ultra'>
+            <span> Only Ultra</span>
+          </div>
+        </div>
+
+        <div title='6:: span-on-device' class='row has-notes'>
+
+          <div class='app col i0 spans-4-mobile'>
+            <span>Span 2  Mobile</span>
+          </div>
+
+          <div class='app col i0 spans-4-tablet'>
+            <span>Span 2  Tablet</span>
+          </div>
+
+          <div class='app col i0 spans-4-desktop'>
+            <span>Span 2  Desktop</span>
+          </div>
+
+          <div class='app col i0 spans-4-full'>
+            <span>Span 2 Full</span>
+          </div>
+
+          <div class='app col i0 spans-4-ultra'>
+            <span>Span 2 Ultra</span>
+          </div>
+
+          <div class='app col is-i0'>
+            <span>this is my app 0</span>
+          </div>
+
+          <div class='app col is-i1'>
+            <span>this is my app 1 </span>
+          </div>
+
+          <div class='app col is-i2'>
+            <span>this is my app 2</span>
+          </div>
+        </div>
+
+    </div>
+
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
+    <script>
+      $('button').on('click', (e)=>{
+        $('body').toggleClass('as-mobile').toggleClass('as-desktop');
+      });
+    </script>
+  </body>
+</html>

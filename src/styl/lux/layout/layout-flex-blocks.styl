@@ -1,0 +1,114 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// LUX!
+////////////////////////////////////////////////////////////////////////////// */
+
+.wrapper,
+{$cl_blocks}
+  position relative
+  
+// {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
+//   margin __rem(12) 0
+
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_right}
+  margin-left __rem(4)
+  
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_left}
+  margin-right __rem(4)
+  
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_ctr}
+  margin 0 __rem(4)
+  
+.with-gaps {$cl_block}
+  margin __rem(4) 0
+
+  
+{$cl_block}
+  display flex /* display block on non-mobile */
+  position relative
+  align-items center
+  justify-content space-between
+
+
+$block_main_placheholder
+  display flex
+  align-items center
+  flex-basis auto
+  flex-shrink 0
+
++__block_pre($attr_right,$block_main_placheholder)
+  justify-content flex-end
+  flex-grow 0
+
++__block_pre($attr_left,$block_main_placheholder)
+  justify-content flex-start
+  flex-grow 0  
+
++__block_pre($attr_ctr,$block_main_placheholder)
+  justify-content center
+  flex-grow 1 
+
++__block_pre($attr_item,$block_main_placheholder)
+  justify-content center
+  flex-grow 1 /* only on media screen 768+ */
+
++__block_pre($attr_auto,$block_main_placheholder)
+  flex-grow 1
+  max-width 100%
+  min-width __rem(50)
+  padding 2px
+
++__block_pre_elm('button',$attr_auto)
+  display block
+  margin 0 auto
+
+.block-spacer
+  display block
+  background transparent
+  height __rem(4)
+
+  
++__mobile()    
+  {$cl_block},
+  {$cl_attr_block_pre_any}:not(.block-spacer)
+    display block
+  {$cl_block_item}
+    flex-grow 0
+  {$cl_block_item} input /* is this necessary */
+    max-width 100%
+  +__block_pre($attr_auto)
+    width 100%
+  {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
+    margin 0 0
+    margin __rem(4) 0
+    
+  +__block_pre_elm('button',$attr_auto)
+    width 100%
+    display block
+    margin 0 auto
+
+.is-centered
+  text-align center !important
+  
+
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG ME
+////////////////////////////////////////////////////////////////////////////// */
+
+.debug {$cl_blocks}
+  padding 0.5rem
+  background rgba($sand_twilight, .5)
+  
+.debug input{$cl_attr_block_pre_any},
+.debug textarea{$cl_attr_block_pre_any}
+  background white
+  color black
+     
+.debug {$cl_attr_block_pre_any}:not(.block-spacer):not(input):not(textarea)
+  background rgba($lux_blue, .3)
+  padding 1rem
+  border-radius 3px
+  color white
+  __inner_border(1px,$sand_puff)
+
+
+

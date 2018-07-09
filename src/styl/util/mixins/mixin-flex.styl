@@ -30,6 +30,19 @@ __cell_pre($cl_sub,$ext=false)
     if $ext 
       @extends {$ext}
 
+__block_pre($cl_sub,$ext=false)
+  {$cl_attr_block_pre_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext  
+      @extends {$ext}
+
+
+__block_pre_elm($el,$cl_sub,$ext=false)
+  {$el}{$cl_attr_block_pre_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext  
+      @extends {$ext}
+      
 
 __grid_spread($cl_sub)
   {$cl_attr_grid}           > {$cl_sub},

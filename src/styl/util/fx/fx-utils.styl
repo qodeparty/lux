@@ -58,17 +58,27 @@
 // Config
 ////////////////////////////////////////////////////////////////////////////// */  
  
-  __config($key,$override=null)
-    if $override 
-      $override
+  __config($key,$ov=null)
+    $typeov=typeof($ov)
+    
+    if ($typeov isnt 'null') && ($typeov isnt 'ident')
+      //p(typeof($ov) +' '+$key)
+      $ov
     else  
+      
       $this = fx_get_config($key)
-      if typeof($this) == 'string'
+      $type = typeof($this)
+    
+      if $type == 'string'
        unquote($this)
-      else if typeof($this) == 'null'
+      else if $type == 'null'
         p($key + ' => ' +typeof($this))
       else 
-        $this
+       $this
+    //p($val)
+    //return $val
+          
+      
           
     
   __device()
