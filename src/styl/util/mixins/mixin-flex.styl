@@ -69,9 +69,10 @@ __adv_flex($i)
   if $i > 0
     $grid=s($cl_attr_pre_grid_any_s,$i) // [class~=grid-%s]
     
-    +__cell_spread($grid)
-       flex-basis $pval
-       max-width  $pval
+    &
+      +__cell_spread($grid)
+         flex-basis $pval
+         max-width  $pval
         
 
     $p_basis = ($i*$atomic_basis);
@@ -79,21 +80,23 @@ __adv_flex($i)
 
     $cell = s($cl_attr_pre_cell_any_s,$i) // [class~=cell-%s]
    
-
-    +__grid_spread($cell)
-      flex-basis $val
-      max-width  $val
+    &
+      +__grid_spread($cell)
+        flex-basis $val
+        max-width  $val
 
 
   $pull = s($cl_attr_data_pull_any_s,$i) 
       
-  +__grid_spread($pull)
-    margin-right $val
+  &
+    +__grid_spread($pull)
+      margin-right $val
 
   $push = s($cl_attr_data_push_any_s,$i) 
       
-  +__grid_spread($push)
-    margin-left $val
+  &
+    +__grid_spread($push)
+      margin-left $val
 
 
 /************************************************************/

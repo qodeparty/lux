@@ -16,7 +16,7 @@
     <div class='debug-links stripes4'>
       <div class='luxlogo'></div>
       <section>
-        <a href='#' class='basis'></a>
+        <a href='#' class='basis toggle-debug'></a>
         <a href='layout-standard.html'>Layout</a>
         <a href='flex-simple.html'>Flex Simple</a>
         <a href='flex-advanced.html'>Flex 16</a>
@@ -107,7 +107,7 @@
     </div>
 
 
-    <div class='grids has-notes' title='adv:grid cell.is-hidden'>
+    <div class='grids has-notes as-desktop' title='adv:grid cell.is-hidden'>
       <div class='grid with-fake-border'>
         <div class='cell s1 xxs-h'><p class='thing'>hide nano</p></div>
         <div class='cell s2 xs-h'><p class='thing'>hide mobile</p></div>
@@ -115,6 +115,21 @@
         <div class='cell s4 md-h'><p class='thing'>hide desktop</p></div>
         <div class='cell s5 lg-h'><p class='thing'>hide wide</p></div>
         <div class='cell s6 xl-h'><p class='thing'>hide full</p></div>
+        <div class='cell s7 xxl-h'><p class='thing'>hide jumbo</p></div>
+        <div class='cell s8 hide-on-ultra'><p class='thing'>hide ultra</p></div>
+      </div>
+    </div>
+
+    <div class='grids has-notes' title='adv:grid cell.is-block'>
+      <div class='grid with-fake-border'>
+        <div class='cell s1 show-on-nano'><p class='thing'>show nano</p></div>
+        <div class='cell s2 show-on-mobile'><p class='thing'>show mobile</p></div>
+        <div class='cell s3 show-on-tablet'><p class='thing'>show tablet</p></div>
+        <div class='cell s4 show-on-desktop'><p class='thing'>show desktop</p></div>
+        <div class='cell s5 show-on-wide'><p class='thing'>show wide</p></div>
+        <div class='cell s6 show-on-full'><p class='thing'>show full</p></div>
+        <div class='cell s7 show-on-jumbo'><p class='thing'>show jumbo</p></div>
+        <div class='cell s8 show-on-ultra'><p class='thing'>show ultra</p></div>
       </div>
     </div>
 
@@ -222,15 +237,8 @@
 
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
-    <script>
-      $lorem='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Enim nec dui nunc mattis. Netus et malesuada fames ac turpis egestas. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Nisl rhoncus mattis rhoncus urna neque viverra justo. Aliquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.'
-      function subLorem(len=16){
-        return $lorem.substring(0,len);
-      }
-      $('.lorem-1').html(subLorem(100));
-      $('.lorem-3').html(subLorem(300));
-      $('.lorem-5').html(subLorem(500));
-    </script>
+    <script src='../res/js/lux-helper.js'></script>
+    
 
   </body>
 </html>

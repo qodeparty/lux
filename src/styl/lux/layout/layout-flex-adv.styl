@@ -15,19 +15,19 @@ if( $flex_mode_adv )
     position relative
     border 1px dotted red
     padding 1rem
-    display  flex 
+    display flex 
     flex-flow  row wrap
-    margin 0 -0.5rem 
-    margin-bottom 1rem
+    margin 0
+    //margin-bottom 1rem
     
-
-
+    
   $cellPlaceholder
     padding 0.5rem
     max-width 100%
     cursor help
     position relative
-  
+    
+
   {$cl_attr_pre_cell_under},   
   {$cl_attr_cell}
     @extends $cellPlaceholder
@@ -40,6 +40,22 @@ if( $flex_mode_adv )
   {$cl_attr_pre_cell_any} //fixed %
     flex none
     
+  .as-tiles {$cl_attr_cell},
+  .as-tiles {$cl_attr_pre_cell_any}
+    align-items stretch
+    min-height min-content
+    __inner_border(1px,$sand_puff)
+    
+  
+  .as-tiles {$cl_attr_grid}           
+  .as-tiles {$cl_attr_pre_grid_any}   
+  .as-tiles {$cl_attr_pre_grid_under}
+    padding 0
+    align-items stretch
+    min-height min-content
+    border none
+
+    
   ////////// GRID FROM CELL //////////
 
 
@@ -51,7 +67,7 @@ if( $flex_mode_adv )
     padding 0
     
   ////////////////////
-    
+  //.as-desktop  //change so mobile doesnt use the sizes
   for $i in (0..$basis)
     __adv_flex($i)
 
@@ -65,14 +81,14 @@ if( $flex_mode_adv )
     if ref is defined
       +ref()
       
-        {__to_class('is-block',$screen)}
+        {__to_class('show-on',$screen)}
           display block
           
-        +__except_device($screen,"is-block")
+        +__except_device($screen,"show-on")
           display none
 
         {__to_class($label,'h')},
-        {__to_class('is-hidden',$screen)}
+        {__to_class('hide-on',$screen)}
           display none
           
         //order matters - cuz precendence
@@ -85,6 +101,18 @@ if( $flex_mode_adv )
 
   +__touch()
     __adv_flex_make_set('touch','touch')
+
+  +__mobile()
+    //TODO:cleanup classes
+    .is-responsive {$cl_attr_grid},
+    .is-responsive {$cl_attr_cell},
+    .is-responsive {$cl_attr_pre_grid_any},
+    .is-responsive {$cl_attr_pre_cell_any}
+      flex-direction column
+      flex none
+      flex-basis 0
+      max-width 100% !important
+    
 
   +__desktop()
     __adv_flex_make_set('desk','desk')
@@ -168,4 +196,12 @@ if( $flex_mode_adv )
       
   +__grid_pre_cell_star($attr_auto)
     height 100%
+
+  .debug {$cl_flex_grids}
+    margin 25px
+    
+  .debug {$cl_flex_grids} article
+    border-radius 5px
+    color white
+
 

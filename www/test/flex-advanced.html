@@ -1,256 +1,299 @@
 <!DOCTYPE html>
 <html lang="en" >
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <title>Lux - Flex Advanced</title>
-    <link rel="icon" type="image/x-icon"  href="../favicon.ico">
-    <link rel='stylesheet' id='base1'  href='../res/build/debug.css'     type='text/css' media='all' />
-    <link rel='stylesheet' id='base2'  href='../res/build/equalizer.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='base3'  href='../res/build/modifier.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='base4'  href='../res/build/elements.css'  type='text/css' media='all' />
-    <link rel='stylesheet' id='base5'  href='../res/build/layout-16.css'    type='text/css' media='all' />
-  </head>
-  <body id='annotate' class='bg-grid theme-unity debug' >
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Lux - Flex Advanced</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel='stylesheet' id='base1' href='../res/build/debug.css'   type='text/css' media='all' />
+  <link rel='stylesheet' id='base2' href='../res/build/equalizer.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='base3' href='../res/build/modifier.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='base4' href='../res/build/elements.css' type='text/css' media='all' />
+  <link rel='stylesheet' id='base5' href='../res/build/layout-16.css'  type='text/css' media='all' />
+ </head>
+ <body id='annotate' class='bg-grid theme-unity debug' >
 
-    <div class='debug-links stripes4'>
-      <div class='luxlogo'></div>
-      <section>
-        <a href='#' class='basis'></a>
-        <a href='layout-standard.html'>Layout</a>
-        <a href='flex-simple.html'>Flex Simple</a>
-        <a class='curr' href='flex-advanced.html'>Flex 16</a>
-        <a href='flex-advanced-12.html'>Flex 12</a>
-        <a href='native-tags.html'>Native Tags</a>
-      </section>
+  <div class='debug-links stripes4'>
+   <div class='luxlogo'></div>
+   <section>
+    <a href='#' class='basis toggle-debug'></a>
+    <a href='layout-standard.html'>Layout</a>
+    <a href='flex-simple.html'>Flex Simple</a>
+    <a class='curr' href='flex-advanced.html'>Flex 16</a>
+    <a href='flex-advanced-12.html'>Flex 12</a>
+    <a href='native-tags.html'>Native Tags</a>
+   </section>
+  </div>
+
+
+  <!-- <button>Toggle Mobile</button> -->
+  <div class='debug-display is-nano is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
+   <button class='as-display is-nano'>nano &lt; 360</button>
+   <button class='as-display is-mobile'>mobile 360</button>
+   <button class='as-display is-tablet'>tablet 768</button>
+   <button class='as-display is-desktop'>desktop 1024</button>
+   <button class='as-display is-wide'>wide 1216</button>
+   <button class='as-display is-full'>full 1440</button>
+   <button class='as-display is-jumbo'>jumbo 1920</button>
+   <button class='as-display is-ultra'>ultra &gt; 2560</button>
+  </div>
+
+  <div class='grids has-notes' title='adv:grid-4 cell'>
+   <div class='grid-4 with-fake-border'>
+    <div class='cell'><p class='thing'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing'>3</p></div>
+    <div class='cell'><p class='thing'>4</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes' title='adv:grid-8 cell'>
+   <div class='grid-8 with-fake-border'>
+    <div class='cell'><p class='thing'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing'>3</p></div>
+    <div class='cell'><p class='thing'>4</p></div>
+    <div class='cell'><p class='thing'>5</p></div>
+    <div class='cell'><p class='thing'>6</p></div>
+    <div class='cell'><p class='thing'>7</p></div>
+    <div class='cell'><p class='thing'>8</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes is-responsive' title='adv:grid-16 cell resp'>
+   <div class='grid-16 with-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing'>3</p></div>
+    <div class='cell'><p class='thing'>4</p></div>
+    <div class='cell'><p class='thing'>5</p></div>
+    <div class='cell'><p class='thing'>6</p></div>
+    <div class='cell'><p class='thing'>7</p></div>
+    <div class='cell'><p class='thing'>8</p></div>
+    <div class='cell'><p class='thing'>9</p></div>
+    <div class='cell'><p class='thing'>10</p></div>
+    <div class='cell'><p class='thing'>11</p></div>
+    <div class='cell'><p class='thing'>12</p></div>
+    <div class='cell'><p class='thing'>13</p></div>
+    <div class='cell'><p class='thing'>14</p></div>
+    <div class='cell'><p class='thing'>15</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes is-responsive' title='adv:grid cell-n resp'>
+   <div class='grid with-fake-border'>
+    <div class='cell-16'><p class='thing'>16</p></div>
+    <div class='cell-15'><p class='thing'>15</p></div>
+    <div class='cell-1'><p class='thing'>1</p></div>
+    <div class='cell-14'><p class='thing'>14</p></div>
+    <div class='cell-2'><p class='thing'>2</p></div>
+    <div class='cell-13'><p class='thing'>13</p></div>
+    <div class='cell-3'><p class='thing'>3</p></div>
+    <div class='cell-12'><p class='thing'>12</p></div>
+    <div class='cell-4'><p class='thing'>4</p></div>
+    <div class='cell-11'><p class='thing'>11</p></div>
+    <div class='cell-5'><p class='thing'>5</p></div>
+    <div class='cell-10'><p class='thing'>10</p></div>
+    <div class='cell-6'><p class='thing'>6</p></div>
+    <div class='cell-9'><p class='thing'>9</p></div>
+    <div class='cell-7'><p class='thing'>7</p></div>
+    <div class='cell-8'><p class='thing'>8</p></div>
+    <div class='cell-8'><p class='thing'>8</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes ' title='adv:grid push-4 cell'>
+   <div class='grid-dist has-fake-border'>
+    <div class='cell-3' ><p class='thing'>0</p></div>
+    <div class='cell-2' ><p class='thing'>0</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes ' title='adv:grid cell.is-hidden'>
+   <div class='grid with-fake-border'>
+    <div class='cell s1 xxs-h'><p class='thing'>hide nano</p></div>
+    <div class='cell s2 xs-h'><p class='thing'>hide mobile</p></div>
+    <div class='cell s3 sm-h'><p class='thing'>hide tablet</p></div>
+    <div class='cell s4 md-h'><p class='thing'>hide desktop</p></div>
+    <div class='cell s5 lg-h'><p class='thing'>hide wide</p></div>
+    <div class='cell s6 xl-h'><p class='thing'>hide full</p></div>
+    <div class='cell s7 xxl-h'><p class='thing'>hide jumbo</p></div>
+    <div class='cell s8 hide-on-ultra'><p class='thing'>hide ultra</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes' title='adv:grid cell.is-block'>
+   <div class='grid with-fake-border'>
+    <div class='cell s1 show-on-nano'><p class='thing'>show nano</p></div>
+    <div class='cell s2 show-on-mobile'><p class='thing'>show mobile</p></div>
+    <div class='cell s3 show-on-tablet'><p class='thing'>show tablet</p></div>
+    <div class='cell s4 show-on-desktop'><p class='thing'>show desktop</p></div>
+    <div class='cell s5 show-on-wide'><p class='thing'>show wide</p></div>
+    <div class='cell s6 show-on-full'><p class='thing'>show full</p></div>
+    <div class='cell s7 show-on-jumbo'><p class='thing'>show jumbo</p></div>
+    <div class='cell s8 show-on-ultra'><p class='thing'>show ultra</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes ' title='adv:grid-flush cell'>
+   <div class='grid-4-flush has-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing'>3</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes ' title='adv:grid-auto cell'>
+   <div class='grid-auto with-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing lorem-1'>1</p></div>
+    <div class='cell'><p class='thing lorem-3'>2</p></div>
+    <div class='cell'><p class='thing lorem-5'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes ' title='adv:grid-top cell'>
+   <div class='grid-top with-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing lorem-3'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing lorem-1'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes ' title='adv:grid-mid cell'>
+   <div class='grid-mid with-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing lorem-3'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing lorem-1'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes' title='adv:grid-btm cell'>
+   <div class='grid-btm with-fake-border'>
+    <div class='cell'><p class='thing'>0</p></div>
+    <div class='cell'><p class='thing lorem-3'>1</p></div>
+    <div class='cell'><p class='thing'>2</p></div>
+    <div class='cell'><p class='thing lorem-1'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes' title='adv:grid-<pos> cell'>
+   <div class='grid-3-lt with-fake-border'>
+    <div class='cell'><p class='thing'>L</p></div>
+   </div>
+
+   <div class='grid-3-ctr with-fake-border'>
+    <div class='cell'><p class='thing'>C</p></div>
+   </div>
+
+   <div class='grid-3-rt with-fake-border'>
+    <div class='cell'><p class='thing'>R</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes ' title='adv:grid cell'>
+   <div class='grid with-fake-border'>
+    <div class='cell r'><p class='thing'>0</p></div>
+    <div class='cell o'><p class='thing'>1</p></div>
+    <div class='cell y'><p class='thing'>2</p></div>
+    <div class='cell g'><p class='thing'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes ' title='adv:grid-rev cell'>
+   <div class='grid-rev with-fake-border'>
+    <div class='cell r'><p class='thing'>0</p></div>
+    <div class='cell o'><p class='thing'>1</p></div>
+    <div class='cell y'><p class='thing'>2</p></div>
+    <div class='cell g'><p class='thing'>3</p></div>
+   </div>
+  </div>
+
+  <div class='grids has-notes ' title='adv:grid cell-0th, cell-nth'>
+   <div class='grid-4 with-fake-border'>
+    <div class='cell r'><p class='thing'>0</p></div>
+    <div class='cell-nth o'><p class='thing'>1</p></div>
+    <div class='cell y'><p class='thing'>2</p></div>
+    <div class='cell-0th g'><p class='thing'>3</p></div>
+   </div>
+  </div>
+
+
+  <div class='grids has-notes' title='adv:grid cell_desk-n, cell_touch-n'>
+   <div class='grid-16 with-fake-border'>
+    <div class='cell _touch-2 r'><p class='thing'>0</p></div>
+    <div class='cell_touch-7 r'><p class='thing'>0</p></div>
+    <div class='cell_desk-8 g'><p class='thing'>1</p></div>
+    <div class='cell_desk-4 g'><p class='thing'>2</p></div>
+    <div class='cell_touch-4 r'><p class='thing'>3</p></div>
+    <div class='cell'><p class='thing'>0</p></div>
+   </div>
+  </div>
+
+  <div class='grids stripes5 has-notes wrapper as-tiles is-responsive' title='nested block layout'>
+  
+
+    <div class='grid-2'>
+
+     <div class='cell grid-col' >
+
+      <div class='cell grid'>
+
+       <div class='cell grid-col' >
+        <article class='cell g'>
+         <p class='title is-size-7 is-centered'>Vertical...</p>
+         <img src='https://via.placeholder.com/200x180/399e54/fff' />
+        </article>
+        <article class='cell y'>
+         <p class='title is-size-7 is-centered'>Tiles...</p>
+         <img src='https://via.placeholder.com/200x180/FFE056/fff' />
+        </article>
+       </div>       
+  
+       <div class='cell grid'>
+        <article class='cell b'>
+         <p class='title is-size-7 is-centered'>Middle...</p>
+         <img src='https://via.placeholder.com/200x80/3399FF/fff' />
+         <p class='lorem-5'></p>
+        </article>
+       </div>
+
+      </div>
+
+      <div class='grid'>
+        <article class='cell r'>
+         <p class='title is-size-7 is-centered'>Tiles...</p>
+         <img src='https://via.placeholder.com/200x80/F964CB/fff' />
+         <p class='lorem-3'></p>
+        </article>
+      </div> 
+     </div>
+
+     <div class='cell grid'>
+      <article class='cell o'>
+       <p class='title is-size-7 is-centered'>Tall...</p>
+       <img src='https://via.placeholder.com/200x80/FFA64D/fff' />
+       <p class='lorem-9'></p>
+      </article>
+     </div>
+
     </div>
 
+  
+  </div>
 
-    <!-- <button>Toggle Mobile</button> -->
-    <div class='debug-display is-nano is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
-      <button class='as-display is-nano'>nano &lt; 360</button>
-      <button class='as-display is-mobile'>mobile 360</button>
-      <button class='as-display is-tablet'>tablet 768</button>
-      <button class='as-display is-desktop'>desktop 1024</button>
-      <button class='as-display is-wide'>wide 1216</button>
-      <button class='as-display is-full'>full 1440</button>
-      <button class='as-display is-jumbo'>jumbo 1920</button>
-      <button class='as-display is-ultra'>ultra &gt; 2560</button>
-    </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
+  <script src='../res/js/lux-helper.js'></script>
 
-    <div class='grids has-notes' title='adv:grid-4 cell'>
-      <div class='grid-4 with-fake-border'>
-        <div class='cell'><p class='thing'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing'>3</p></div>
-        <div class='cell'><p class='thing'>4</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid-8 cell'>
-      <div class='grid-8 with-fake-border'>
-        <div class='cell'><p class='thing'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing'>3</p></div>
-        <div class='cell'><p class='thing'>4</p></div>
-        <div class='cell'><p class='thing'>5</p></div>
-        <div class='cell'><p class='thing'>6</p></div>
-        <div class='cell'><p class='thing'>7</p></div>
-        <div class='cell'><p class='thing'>8</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid-16 cell'>
-      <div class='grid-16 with-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing'>3</p></div>
-        <div class='cell'><p class='thing'>4</p></div>
-        <div class='cell'><p class='thing'>5</p></div>
-        <div class='cell'><p class='thing'>6</p></div>
-        <div class='cell'><p class='thing'>7</p></div>
-        <div class='cell'><p class='thing'>8</p></div>
-        <div class='cell'><p class='thing'>9</p></div>
-        <div class='cell'><p class='thing'>10</p></div>
-        <div class='cell'><p class='thing'>11</p></div>
-        <div class='cell'><p class='thing'>12</p></div>
-        <div class='cell'><p class='thing'>13</p></div>
-        <div class='cell'><p class='thing'>14</p></div>
-        <div class='cell'><p class='thing'>15</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid cell-n'>
-      <div class='grid with-fake-border'>
-        <div class='cell-16'><p class='thing'>16</p></div>
-        <div class='cell-15'><p class='thing'>15</p></div>
-        <div class='cell-1'><p class='thing'>1</p></div>
-        <div class='cell-14'><p class='thing'>14</p></div>
-        <div class='cell-2'><p class='thing'>2</p></div>
-        <div class='cell-13'><p class='thing'>13</p></div>
-        <div class='cell-3'><p class='thing'>3</p></div>
-        <div class='cell-12'><p class='thing'>12</p></div>
-        <div class='cell-4'><p class='thing'>4</p></div>
-        <div class='cell-11'><p class='thing'>11</p></div>
-        <div class='cell-5'><p class='thing'>5</p></div>
-        <div class='cell-10'><p class='thing'>10</p></div>
-        <div class='cell-6'><p class='thing'>6</p></div>
-        <div class='cell-9'><p class='thing'>9</p></div>
-        <div class='cell-7'><p class='thing'>7</p></div>
-        <div class='cell-8'><p class='thing'>8</p></div>
-        <div class='cell-8'><p class='thing'>8</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid push-4 cell'>
-      <div class='grid-dist has-fake-border'>
-        <div class='cell-3' ><p class='thing'>0</p></div>
-        <div class='cell-2' ><p class='thing'>0</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid cell.is-hidden'>
-      <div class='grid with-fake-border'>
-        <div class='cell s1 xxs-h'><p class='thing'>hide nano</p></div>
-        <div class='cell s2 xs-h'><p class='thing'>hide mobile</p></div>
-        <div class='cell s3 sm-h'><p class='thing'>hide tablet</p></div>
-        <div class='cell s4 md-h'><p class='thing'>hide desktop</p></div>
-        <div class='cell s5 lg-h'><p class='thing'>hide wide</p></div>
-        <div class='cell s6 xl-h'><p class='thing'>hide full</p></div>
-        <div class='cell s7 xxl-h'><p class='thing'>hide jumbo</p></div>
-        <div class='cell s8 is-hidden-ultra'><p class='thing'>hide ultra</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid cell.is-block'>
-      <div class='grid with-fake-border'>
-        <div class='cell s1 is-block-nano'><p class='thing'>show nano</p></div>
-        <div class='cell s2 is-block-mobile'><p class='thing'>show mobile</p></div>
-        <div class='cell s3 is-block-tablet'><p class='thing'>show tablet</p></div>
-        <div class='cell s4 is-block-desktop'><p class='thing'>show desktop</p></div>
-        <div class='cell s5 is-block-wide'><p class='thing'>show wide</p></div>
-        <div class='cell s6 is-block-full'><p class='thing'>show full</p></div>
-        <div class='cell s7 is-block-jumbo'><p class='thing'>show jumbo</p></div>
-        <div class='cell s8 is-block-ultra'><p class='thing'>show ultra</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid-flush cell'>
-      <div class='grid-4-flush has-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing'>3</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid-auto cell'>
-      <div class='grid-auto with-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing lorem-1'>1</p></div>
-        <div class='cell'><p class='thing lorem-3'>2</p></div>
-        <div class='cell'><p class='thing lorem-5'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid-top cell'>
-      <div class='grid-top with-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing lorem-3'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing lorem-1'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid-mid cell'>
-      <div class='grid-mid with-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing lorem-3'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing lorem-1'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid-btm cell'>
-      <div class='grid-btm with-fake-border'>
-        <div class='cell'><p class='thing'>0</p></div>
-        <div class='cell'><p class='thing lorem-3'>1</p></div>
-        <div class='cell'><p class='thing'>2</p></div>
-        <div class='cell'><p class='thing lorem-1'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid-<pos> cell'>
-      <div class='grid-3-lt with-fake-border'>
-        <div class='cell'><p class='thing'>L</p></div>
-      </div>
-
-      <div class='grid-3-ctr with-fake-border'>
-        <div class='cell'><p class='thing'>C</p></div>
-      </div>
-
-      <div class='grid-3-rt with-fake-border'>
-        <div class='cell'><p class='thing'>R</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid cell'>
-      <div class='grid with-fake-border'>
-        <div class='cell r'><p class='thing'>0</p></div>
-        <div class='cell o'><p class='thing'>1</p></div>
-        <div class='cell y'><p class='thing'>2</p></div>
-        <div class='cell g'><p class='thing'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid-rev cell'>
-      <div class='grid-rev with-fake-border'>
-        <div class='cell r'><p class='thing'>0</p></div>
-        <div class='cell o'><p class='thing'>1</p></div>
-        <div class='cell y'><p class='thing'>2</p></div>
-        <div class='cell g'><p class='thing'>3</p></div>
-      </div>
-    </div>
-
-    <div class='grids has-notes' title='adv:grid cell-0th, cell-nth'>
-      <div class='grid-4 with-fake-border'>
-        <div class='cell r'><p class='thing'>0</p></div>
-        <div class='cell-nth o'><p class='thing'>1</p></div>
-        <div class='cell y'><p class='thing'>2</p></div>
-        <div class='cell-0th g'><p class='thing'>3</p></div>
-      </div>
-    </div>
-
-
-    <div class='grids has-notes' title='adv:grid cell_desk-n, cell_touch-n'>
-      <div class='grid-16 with-fake-border'>
-        <div class='cell _touch-2 r'><p class='thing'>0</p></div>
-        <div class='cell_touch-7 r'><p class='thing'>0</p></div>
-        <div class='cell_desk-8 g'><p class='thing'>1</p></div>
-        <div class='cell_desk-4 g'><p class='thing'>2</p></div>
-        <div class='cell_touch-4 r'><p class='thing'>3</p></div>
-        <div class='cell'><p class='thing'>0</p></div>
-      </div>
-    </div>
-
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
-    <script>
-      $lorem='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Enim nec dui nunc mattis. Netus et malesuada fames ac turpis egestas. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Nisl rhoncus mattis rhoncus urna neque viverra justo. Aliquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.'
-      function subLorem(len=16){
-        return $lorem.substring(0,len);
-      }
-      $('.lorem-1').html(subLorem(100));
-      $('.lorem-3').html(subLorem(300));
-      $('.lorem-5').html(subLorem(500));
-    </script>
-
-  </body>
+ </body>
 </html>
