@@ -102,39 +102,42 @@
             <div class='block'>
 
               <div class='block is-vertical'>
-                <article class='block-item  g'>
-                  <p class='title is-size-999 is-centered'>Vertical...</p>
+                <article class='block-item g'>
+                  <p class='title is-size-7 is-centered'>Vertical...</p>
                   <img src='https://via.placeholder.com/200x180/399e54/fff' />
                 </article>
-                <article class='block-item  y'>
-                  <p class='title is-size-999 is-centered'>Tiles...</p>
+                <article class='block-item y'>
+                  <p class='title is-size-7 is-centered'>Tiles...</p>
                   <img src='https://via.placeholder.com/200x180/FFE056/fff' />
                 </article>
               </div>              
    
 
               <div class='block'>
-                <article class='block-item  b'>
-                  <p class='title is-size-999 is-centered'>Middle...</p>
-                  <img src='https://via.placeholder.com/200x180/3399FF/fff' />
+                <article class='block-item b'>
+                  <p class='title is-size-7 is-centered'>Middle...</p>
+                  <img src='https://via.placeholder.com/200x80/3399FF/fff' />
+                  <p class='lorem-5'></p>
                 </article>
               </div>
 
             </div>
 
             <div class='block'>
-                <article class='block-item  r'>
-                  <p class='title is-size-999 is-centered'>Tiles...</p>
-                  <img src='https://via.placeholder.com/200x180/F964CB/fff' />
+                <article class='block-item r'>
+                  <p class='title is-size-7 is-centered'>Tiles...</p>
+                  <img src='https://via.placeholder.com/200x80/F964CB/fff' />
+                  <p class='lorem-1'></p>
                 </article>
             </div> 
 
           </div>
 
           <div class='block'>
-            <article class='block-item  o'>
-              <p class='title is-size-999 is-centered'>Tall...</p>
-              <img src='https://via.placeholder.com/200x180/FFA64D/fff' />
+            <article class='block-item o'>
+              <p class='title is-size-7 is-centered'>Tall...</p>
+              <img src='https://via.placeholder.com/200x80/FFA64D/fff' />
+              <p class='lorem-9'></p>
             </article>
           </div>
 
@@ -142,8 +145,17 @@
       </div>
     </div>
 
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
     <script>
+      $lorem='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Enim nec dui nunc mattis. Netus et malesuada fames ac turpis egestas. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Nisl rhoncus mattis rhoncus urna neque viverra justo. Aliquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. liquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      function subLorem(len=16){
+        return $lorem.substring(0,len);
+      }
+      $('.lorem-1').html(subLorem(100));
+      $('.lorem-3').html(subLorem(300));
+      $('.lorem-5').html(subLorem(500));
+      $('.lorem-9').html(subLorem(1500));
+    </script>
 
     </script>
   </body>

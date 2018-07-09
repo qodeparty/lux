@@ -66,8 +66,21 @@ $block_main_placheholder
   background transparent
   height __rem(4)
 
-  
-+__mobile()    
+.as-tiles {$cl_block}:not(.block-item)
+  display flex
+
++__desktop()
+  for $i in (1..$basis)
+    {$cl_block}{$pre_is}{$i},
+    {$cl_attr_block_pre_any}{$pre_is}{$i},
+    {$cl_layout_col}{$pre_is}{$i}
+      width round( percentage( $i/$basis ), 3 )
+      flex none
+       
++__mobile()
+  .as-tiles {$cl_block}:not(.block-item)
+    display block
+      
   {$cl_block},
   {$cl_attr_block_pre_any}:not(.block-spacer)
     display block
@@ -101,15 +114,9 @@ $block_main_placheholder
   flex-shrink 1
   flex-basis 0
   display block
-  border-radius 5px
-  //__inner_border(1px,#fff)
-  
 
-.as-tiles {$cl_block}:not(.is-child)
-  display flex
-  
-.as-tiles article
-  padding 2rem 1.25rem !important
+  //__inner_border(1px,#fff)
+
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG ME
 ////////////////////////////////////////////////////////////////////////////// */
@@ -125,7 +132,7 @@ $block_main_placheholder
  
  $debug_block_placeholder
   padding 1rem
-  border-radius 3px
+  border-radius 5px
   color white
   __inner_border(1px,$sand_puff)
     
@@ -135,3 +142,6 @@ $block_main_placheholder
   
 .debug {$cl_attr_block_pre_any}:not(.block-spacer)
   @extends $debug_block_placeholder
+
+.debug .as-tiles article
+  padding 2rem 1.25rem !important
