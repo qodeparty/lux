@@ -89,7 +89,27 @@ $block_main_placheholder
 .is-centered
   text-align center !important
   
+.is-vertical
+  flex-direction column
 
+.as-tiles {$cl_attr_block_pre_any},
+.as-tiles {$cl_block},
+.as-tiles {$cl_block_item}
+  align-items stretch
+  min-height min-content
+  flex-grow 1
+  flex-shrink 1
+  flex-basis 0
+  display block
+  border-radius 5px
+  //__inner_border(1px,#fff)
+  
+
+.as-tiles {$cl_block}:not(.is-child)
+  display flex
+  
+.as-tiles article
+  padding 2rem 1.25rem !important
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG ME
 ////////////////////////////////////////////////////////////////////////////// */
@@ -102,13 +122,16 @@ $block_main_placheholder
 .debug textarea{$cl_attr_block_pre_any}
   background white
   color black
-     
-.debug {$cl_attr_block_pre_any}:not(.block-spacer):not(input):not(textarea)
-  background rgba($lux_blue, .3)
+ 
+ $debug_block_placeholder
   padding 1rem
   border-radius 3px
   color white
   __inner_border(1px,$sand_puff)
-
-
-
+    
+.debug {$cl_attr_block_pre_any}:not(.block-spacer):not(input):not(textarea)
+  background rgba($lux_blue, .3)
+  @extends $debug_block_placeholder
+  
+.debug {$cl_attr_block_pre_any}:not(.block-spacer)
+  @extends $debug_block_placeholder

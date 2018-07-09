@@ -33,6 +33,8 @@ if( $flex_mode_ez )
   for $i in (1..$basis)
     $cl=__natural_basis($i) //what a pain in the butt      
     {$cl},
+    {$cl_block}{$pre_is}{$i},
+    {$cl_attr_block_pre_any}{$pre_is}{$i},
     {$cl_layout_col}{$pre_is}{$i},
     {$cl_layout_row} > {$pre_spans}{$i} // group => spans-x
        width round( percentage( $i/$basis ), 3 )

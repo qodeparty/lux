@@ -31,11 +31,11 @@
     border:none; border:1px dashed #FFA64D; padding:1px 3px; 
     font-family:sans-serif; color:#FFA64D; font-size:10px; text-transform:uppercase; line-height:1.5pt 
     
-  .notes,.note,.title
+  .notes,.note,.notes span.title
     font-family:sans-serif; color var(--debug-color); font-size:9px; padding 10px
   
 
-  .title 
+  .notes span.title 
     text-transform:uppercase
     
   .code  
@@ -114,18 +114,29 @@
   min-width 0.625rem
   __inner_border(1px,$sand_sadcloud)
   
-
+.theme-unity .r,
 .theme-unity .r .thing
-  background rgba($sand_red, .5)
-  
+  background rgba($sand_red, .5) !important
+ 
+.theme-unity .o, 
 .theme-unity .o .thing
-  background rgba($sand_orange, .5)
-  
+  background rgba($sand_orange, .5) !important
+
+.theme-unity .y,  
 .theme-unity .y .thing
-  background rgba($sand_yellow, .5)
+  background rgba($sand_yellow, .5) !important
   
+.theme-unity .g,  
 .theme-unity .g .thing
-  background rgba($sand_green, .5)
+  background rgba($sand_green, .5) !important
+
+.theme-unity .b,  
+.theme-unity .b .thing
+  background rgba($sand_electric, .5) !important
+
+.theme-unity .v,  
+.theme-unity .v .thing
+  background rgba($sand_dusk, .5) !important
 
 
 .theme-unity .s1 .thing

@@ -16,15 +16,13 @@
 ////////////////////////////////////////////////////////////////////////////// */
     
   __fontsize($ref="")
-    $$s=$sizes
-    $$l=$size_labels
-    $ref = fx_str_len($ref) > 1 ? __join('-',$ref) : ""
-    for $size in $$s
-      $i = index($$s,$size)
-      $lbl = $$l[$i]
-      &{$pre_size}{$lbl}{$ref}
-        font-size: $$s[$i]
- 
+    $len = fx_make_size_iter(1)
+    for $i in (1..$len)
+      $v=fx_make_size_iter()
+      $key='$'+$size_prefix+$v+'' //size-000
+      
+      &{$pre_size}{$v}
+        font-size: __rem(lookup($key))
 
 
   __basis_width($slot)
