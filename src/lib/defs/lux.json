@@ -25,7 +25,7 @@
     "mode-ez"    : true,
     "mode-adv"   : true,
     "short-attr" : true,
-    "bp-nano"    : false,
+    "bp-nano"    : true,
     "bp-touch"   : false,
     "bp-desktop" : true,
     "bp-hd"      : false,

@@ -12,14 +12,18 @@ __media_range( $deviveA, $deviceB )
     {block}
 
 
-if $use_nano
-  __nano()
-     @media screen and (max-width __rem($screen_nano))
+
+__nano()
+  if $use_nano
+     @media screen and (max-width __rem($screen_mobile,1))
        {block}
 
-  __nano_only()
+
+__nano_only()
+  if $use_nano
      @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile,1))
-       {block}   
+       {block}
+         
 
 
 __mobile()

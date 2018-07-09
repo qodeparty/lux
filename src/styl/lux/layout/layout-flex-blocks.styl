@@ -1,11 +1,23 @@
 /* //////////////////////////////////////////////////////////////////////////////
-// LUX!
+// Lux Flex Block
 ////////////////////////////////////////////////////////////////////////////// */
 
 .wrapper,
-{$cl_blocks}
+{$cl_blocks},
+{$cl_block},
+{$cl_block_item}
   position relative
-  
+
+
+// {$cl_attr_block_pre_any} > {$cl_attr_block_pre_any},
+// {$cl_attr_block_pre_any} > {$cl_block},
+// {$cl_block} > {$cl_attr_block_pre_any},
+// {$cl_block} > {$cl_block}
+//   flex 0 0
+
+{$cl_block_item}
+  align-self stretch
+    
 // {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
 //   margin __rem(12) 0
 
@@ -24,34 +36,44 @@
   
 {$cl_block}
   display flex /* display block on non-mobile */
-  position relative
   align-items center
   justify-content space-between
+  flex-wrap wrap
+  
 
-
-$block_main_placheholder
+  
+//$block_main_placheholder
+{$cl_attr_block_pre_any}
   display flex
   align-items center
   flex-basis auto
   flex-shrink 0
+  // flex-wrap wrap
+  // max-width 100%
 
-+__block_pre($attr_right,$block_main_placheholder)
+
++__block_pre($attr_vert)
+  flex-direction column
+
++__block_pre($attr_right)
   justify-content flex-end
   flex-grow 0
 
-+__block_pre($attr_left,$block_main_placheholder)
++__block_pre($attr_left)
   justify-content flex-start
   flex-grow 0  
 
-+__block_pre($attr_ctr,$block_main_placheholder)
++__block_pre($attr_ctr)
   justify-content center
   flex-grow 1 
 
-+__block_pre($attr_item,$block_main_placheholder)
++__block_pre($attr_item)
+  align-items center
+  flex-basis auto
   justify-content center
-  flex-grow 1 /* only on media screen 768+ */
+  flex 1 0 
 
-+__block_pre($attr_auto,$block_main_placheholder)
++__block_pre($attr_auto)
   flex-grow 1
   max-width 100%
   min-width __rem(50)
@@ -64,9 +86,29 @@ $block_main_placheholder
 .block-spacer
   display block
   background transparent
-  height __rem(4)
+  //width __rem(4)
 
-.as-tiles {$cl_block}:not(.block-item)
+// .block-vspacer
+//   display block
+//   background transparent
+//   height 300px
+//   padding 1rem
+  
++__block_pre($attr_fixed)
+  display block
+  flex-wrap nowrap
+  flex-basis 100%
+
+.block-breaker
+  flex-basis 100%
+  margin 0
+  padding 0
+  background transparent
+  display block
+
+
+.as-tiles {$cl_block}:not(.block-item),
+.as-tiles {$cl_attr_block_pre_any}:not(.block-item)
   display flex
 
 +__desktop()
@@ -102,8 +144,6 @@ $block_main_placheholder
 .is-centered
   text-align center !important
   
-.is-vertical
-  flex-direction column
 
 .as-tiles {$cl_attr_block_pre_any},
 .as-tiles {$cl_block},
@@ -118,31 +158,3 @@ $block_main_placheholder
   //__inner_border(1px,#fff)
     
 
-/* //////////////////////////////////////////////////////////////////////////////
-// DEBUG ME
-////////////////////////////////////////////////////////////////////////////// */
-
-.debug {$cl_blocks}:not(.stripes5)
-  padding 0.5rem
-  background rgba($sand_twilight, .5)
-  
-.debug input{$cl_attr_block_pre_any},
-.debug textarea{$cl_attr_block_pre_any}
-  background white
-  color black
- 
- $debug_block_placeholder
-  padding 1rem
-  border-radius 5px
-  color white
-  __inner_border(1px,$sand_puff)
-    
-.debug {$cl_attr_block_pre_any}:not(.block-spacer):not(input):not(textarea)
-  background rgba($lux_blue, .3)
-  @extends $debug_block_placeholder
-  
-.debug {$cl_attr_block_pre_any}:not(.block-spacer)
-  @extends $debug_block_placeholder
-
-.debug .as-tiles article
-  padding 2rem 1.25rem !important

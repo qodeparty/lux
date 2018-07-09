@@ -11,6 +11,7 @@
     border:none; border-top:1px dotted var(--debug-color); margin 10px
   
   .grouping 
+    position relative
     border:1px dotted #75B8FB; background:#eee; padding:30px; margin:50px
     &.note 
         color:#FA6563; display:block; margin-bottom:5px; font-weight:bold
@@ -85,7 +86,7 @@
 
   
 /* //////////////////////////////////////////////////////////////////////////////
-// Theme
+// Debug Tool
 ///////////////////////////////////////////////////////////////////////////// */
 
 .luxlogo
@@ -96,102 +97,6 @@
   width 30px
   float left
 
-.theme-unity .changes-shadow {$cl_layout_row} > div,
-.theme-unity .changes-shadow {$cl_layout_col}
-  __pseudo_border_var(1px)
-
-.theme-unity .changes-shadow .thing
-  background var(--debug-color)
-
-
-.debug.theme-unity .thing
-  background rgba($lux_blue, .5)
-  padding 1rem 0
-  color white
-  min-width 0.625rem
-
-  
-.theme-unity .thing
-  position relative
-  text-align center
-  border-radius 3px
-  __inner_border(1px,$sand_sadcloud)
-  
-.theme-unity .r,
-.theme-unity .r .thing
-  background rgba($sand_red, .5) !important
- 
-.theme-unity .o, 
-.theme-unity .o .thing
-  background rgba($sand_orange, .5) !important
-
-.theme-unity .y,  
-.theme-unity .y .thing
-  background rgba($sand_yellow, .5) !important
-  
-.theme-unity .g,  
-.theme-unity .g .thing
-  background rgba($sand_green, .5) !important
-
-.theme-unity .b,  
-.theme-unity .b .thing
-  background rgba($sand_electric, .5) !important
-
-.theme-unity .v,  
-.theme-unity .v .thing
-  background rgba($sand_dusk, .5) !important
-
-
-.theme-unity .s1 .thing
-  background rgba($scale_0, .5)
-  
-.theme-unity .s2 .thing
-  background rgba($scale_1, .5) 
-  
-.theme-unity .s3 .thing
-  background rgba($scale_2, .5)
-
-.theme-unity .s4 .thing
-  background rgba($scale_3, .5)
-
-.theme-unity .s5 .thing
-  background rgba($scale_4, .5)
-
-.theme-unity .s6 .thing
-  background rgba($scale_5, .5)
-
-.theme-unity .s7 .thing
-  background rgba($scale_6, .5)
-
-.theme-unity .s8 .thing
-  background rgba($scale_7, .5)   
-
-
-.theme-unity .thing.trunc 
-  text-overflow ellipsis
-  overflow hidden
-  white-space nowrap
-  
-//inner border for flush example
-.theme-unity .has-fake-border .thing
-  __inner_border(1px,#fff)
-
-.theme-unity .with-fake-border[class*="grid-"][class*="-flush"] > div
-  box-shadow none
-  
-.theme-unity .with-fake-border[class*="grid-"][class*="-flush"] .thing
-  __inner_border(1px,#fff)
-  
-.changes-background .thing
-  background var(--display-color,$sand_sadcloud )
-
-
-.theme-unity {$cl_layout_row} > div,
-.with-fake-border > div
-  __pseudo_border(1px,#fff)
-
-// .has-fake-border
-//   __inner_border(1px,$sand_sadcloud)
 
 body.debug.theme-unity 
   color var(--debug-color)
@@ -262,3 +167,27 @@ body.debug:after
   font-size .8rem
   z-index 9999
 
+.xrayinfo:before
+  position absolute
+  text-transform uppercase
+  vertical-align top
+  background #000
+  border-radius: 2px 2px 0 0
+  bottom 100%
+  color white
+  content attr(title)
+  display inline-block
+  font-size 7px
+  font-weight 700
+  left 1px
+  letter-spacing 1px
+  margin-left -1px
+  padding 3px 5px
+  border-left 1px solid $sand_puff
+
+.xrayinfo
+  border-top-left-radius 0 !important
+  margin-top 5px
+
+// .archxray .changes-background .xrayinfo:before
+//   background var(--display-color,$sand_sadcloud )

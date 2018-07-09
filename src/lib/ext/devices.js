@@ -135,9 +135,9 @@ module.exports = () => {
 
       if(options.use_nano){ 
         nbp = $devices['nano'].break;
-        console.log( $devices['nano'] )
+        //console.log( $devices['nano'] )
         ranges.push( [ 0, nbp ] );
-        console.log( green + 'nano is true' + end, options.use_nano );
+        //console.log( green + 'nano is true' + end, options.use_nano );
       }
 
       mbp=$devices['mobile'].break;

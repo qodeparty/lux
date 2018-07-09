@@ -76,7 +76,6 @@ if( $flex_mode_adv )
   for $l in (1..$len)
     $screen = fx_make_device_iter()
     $label  = fx_device_size($screen) //sm md lg ..
-    //p($screen)
     ref=lookup('__'+$screen+'_only')
     if ref is defined
       +ref()
@@ -197,11 +196,5 @@ if( $flex_mode_adv )
   +__grid_pre_cell_star($attr_auto)
     height 100%
 
-  .debug {$cl_flex_grids}
-    margin 25px
-    
-  .debug {$cl_flex_grids} article
-    border-radius 5px
-    color white
 
 
