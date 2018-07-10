@@ -188,6 +188,7 @@ module.exports = () => {
       if(options.use_ultra) ranges.push( [ jbp, abs_max ] ); 
 
       //console.log( ranges );
+      return ranges;
 
     });
   }
