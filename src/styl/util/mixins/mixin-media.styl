@@ -1,3 +1,5 @@
+/* /////////////////////////////////////////////////////////////////////////// */
+
 
 __media_from( $devive )
   @media screen and (min-width __rem($device,1))
@@ -11,19 +13,22 @@ __media_range( $deviveA, $deviceB )
   @media screen and (min-width __rem($deviceA)) and (max-width __rem($deviceB,1))
     {block}
 
-
+/* /////////////////////////////////////////////////////////////////////////// */
 
 __nano()
   if $use_nano
      @media screen and (max-width __rem($screen_mobile,1))
        {block}
-
-
+  else
+    /*nano disabled*/
+      
 __nano_only()
   if $use_nano
      @media screen and (min-width __rem($screen_nano)) and (max-width __rem($screen_mobile,1))
        {block}
-         
+  else
+    /*nano disabled*/
+      
 
 
 __mobile()
@@ -35,7 +40,7 @@ __mobile_only()
    @media screen and (min-width __rem($screen_mobile)) and (max-width __rem($screen_tablet,1))
      {block}
      
-
+/* /////////////////////////////////////////////////////////////////////////// */
    
 __tablet()
    @media screen and (min-width __rem($screen_tablet))
@@ -45,16 +50,14 @@ __tablet_only()
    @media screen and (min-width __rem($screen_tablet)) and (max-width __rem($screen_desktop,1))
      {block}
 
-
-
+/* /////////////////////////////////////////////////////////////////////////// */
 
 __touch()
   @media screen and (min-width __rem(0)) and (max-width __rem($screen_desktop,1))
     {block}
    
 
-
-
+/* /////////////////////////////////////////////////////////////////////////// */
 
 
 __desktop()
@@ -66,8 +69,7 @@ __desktop_only()
      {block}
 
    
-
-
+/* /////////////////////////////////////////////////////////////////////////// */
 
 __wide()
    @media screen and (min-width __rem($screen_wide))
@@ -100,13 +102,18 @@ __hd_only()
    @media screen and (min-width __rem($screen_wide)) and (max-width __rem($screen_ultra,1))
      {block}
    
-if $use_ultra 
-  __ultra()
+/* /////////////////////////////////////////////////////////////////////////// */
+
+__ultra()
+  if $use_ultra 
      @media screen and (min-width __rem($screen_ultra))
        {block}
-
-  __ultra_only()
+  else
+    /*ultra disabled*/
+      
+__ultra_only()
+  if $use_ultra 
      @media screen and (min-width __rem($screen_ultra))
        {block}
-
-// __placholder
+  else
+    /*ultra disabled*/
