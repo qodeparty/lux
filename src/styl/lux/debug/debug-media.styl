@@ -38,7 +38,12 @@
 // Media!
 ///////////////////////////////////////////////////////////////////////////// */
 
-
+body.debug
+    background $arch_6
+    --debug-color $arch_3
+    --box-shadow-color $arch_3
+    --display-color  $scale_1 
+      
 button.as-display 
   border 1px solid #ccc
   font-family sans-serif
@@ -52,7 +57,7 @@ button.as-display
 $b4=__basis_width(4)
 
 +__nano_only()
-  body.debug
+  body.debug.changes-bg
       background $arch_7
       --box-shadow-color $arch_3
       --debug-color $arch_3
@@ -66,7 +71,7 @@ $b4=__basis_width(4)
       width $b4
       
 +__mobile_only()
-  body.debug
+  body.debug.changes-bg
       background $arch_6
       --debug-color $arch_3
       --box-shadow-color $arch_3
@@ -83,7 +88,7 @@ $b4=__basis_width(4)
       
 
 +__tablet_only()
-  body.debug
+  body.debug.changes-bg
       background  $arch_5
       --debug-color $arch_2
       --box-shadow-color $arch_2
@@ -100,7 +105,7 @@ $b4=__basis_width(4)
           
 //1024x768
 +__desktop_only()
-  body.debug
+  body.debug.changes-bg
       background  $arch_4
       --debug-color $arch_1
       --box-shadow-color $arch_1
@@ -116,7 +121,7 @@ $b4=__basis_width(4)
       width $b4
       
 +__wide_only()
-  body.debug
+  body.debug.changes-bg
       background  $arch_3
       --debug-color $arch_6
       --box-shadow-color $arch_6
@@ -130,7 +135,7 @@ $b4=__basis_width(4)
       width $b4
 
 +__full_only()
-  body.debug
+  body.debug.changes-bg
       background $arch_2
       --debug-color $arch_5
       --box-shadow-color $arch_5
@@ -147,7 +152,7 @@ $b4=__basis_width(4)
       
 //1920x1080      
 +__jumbo_only()
-  body.debug
+  body.debug.changes-bg
       background $arch_1
       --debug-color $arch_5
       --box-shadow-color $arch_5
@@ -170,7 +175,7 @@ $b4=__basis_width(4)
 
 //2560x1440
 +__ultra()
-  body.debug
+  body.debug.changes-bg
       background $arch_0
       --debug-color $arch_5
       --box-shadow-color $arch_5

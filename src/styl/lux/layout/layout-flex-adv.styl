@@ -80,15 +80,19 @@ if( $flex_mode_adv )
     if ref is defined
       +ref()
       
+        {__to_class($label,'v')},
         {__to_class('show-on',$screen)}
-          display block
-          
+          display block !important
+        
         +__except_device($screen,"show-on")
-          display none
+          display none !important
+
+        +__except_label($label,"v")
+          display none !important
 
         {__to_class($label,'h')},
         {__to_class('hide-on',$screen)}
-          display none
+          display none !important
           
         //order matters - cuz precendence
         for $i in (0..$basis)
@@ -101,6 +105,8 @@ if( $flex_mode_adv )
   +__touch()
     __adv_flex_make_set('touch','touch')
 
+
+
   +__mobile()
     //TODO:cleanup classes
     .is-responsive {$cl_attr_grid},
@@ -111,6 +117,7 @@ if( $flex_mode_adv )
       flex none
       flex-basis 0
       max-width 100% !important
+
     
 
   +__desktop()

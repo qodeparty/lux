@@ -132,7 +132,9 @@
 
 
 .archxray {$cl_layout_row} > div,
-.debug .with-fake-border > div
+.debug .with-fake-border [class*="cell-"],
+.debug .with-fake-border [class*="cell_"],
+.debug .with-fake-border .cell
   __pseudo_border(1px,#fff)
 
 // .has-fake-border
@@ -148,14 +150,32 @@
 .archxray {$cl_flex_grids} article
   border-radius 5px
   color white
+
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG Container
+////////////////////////////////////////////////////////////////////////////// */
+
+// .archxray .wrapper
+//   margin 2rem
+  
+.archxray .container,
+.archxray .container-fixed
+  $this=$sand_puff
+  background rgba($this, .3) !important
+  border 2px dashed $this !important
+  color $this !important
+  margin-bottom 1rem
   
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG BLOCK
 ////////////////////////////////////////////////////////////////////////////// */
 
 .archxray {$cl_blocks}:not(.stripes5)
-  padding 0.5rem
-  background rgba($sand_twilight, .5)
+  display block
+  padding 2rem
+  margin 1rem
+  
+  //background rgba($sand_twilight, .5)
   
 .archxray input{$cl_attr_block_pre_any},
 .archxray textarea{$cl_attr_block_pre_any}
@@ -172,8 +192,8 @@
   background rgba($lux_blue, .3)
   @extends $debug_block_placeholder
   
-.archxray .xray-blocks {$cl_attr_block_pre_any}
-  @extends $debug_block_placeholder
+// .archxray .xray-blocks {$cl_attr_block_pre_any}
+//   @extends $debug_block_placeholder
 
 .archxray .as-tiles article
   padding 2rem 1.25rem !important
@@ -215,3 +235,9 @@
 
 .archxray .xray-blocks .block-vspacer:after
   content 'VSP'
+
+.archxray .xray-blocks .blocks
+  $this=$sand_puff
+  background rgba($this, .5) !important
+  border 2px dashed $this !important
+  color $this !important

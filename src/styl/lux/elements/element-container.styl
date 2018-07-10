@@ -4,15 +4,87 @@
   margin 0 auto
   position relative
   
-+__desktop()
-  .container.is-desktop
+.container-fixed:after,
+.container:after
+  content attr(max-width)
+  position absolute
+  bottom -10px
+  right 0
+  background $sand_green
+  
++__mobile()
+  $this=__rem($screen_mobile,1)
+  .container-fixed
     margin 0 auto
     position relative
-    max-width __rem($screen_desktop)
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'mobile '+ $this
 
++__tablet()
+  $this= __rem($screen_tablet)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'tablet ' + $this
+    
++__desktop_only()
+  $this= __rem($screen_desktop)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'desktop ' + $this
+    
++__wide_only()
+  $this= __rem($screen_wide,16)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'wide ' + $this
+
++__full_only()
+  $this= __rem($screen_full,1)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'full ' + $this
+
++__jumbo_only()
+  $this= __rem($screen_jumbo,1)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'wide ' + $this
+    
++__ultra()
+  $this= __rem($screen_ultra)
+  .container-fixed
+    margin 0 auto
+    position relative
+    width $this
+    max-width $this
+  .container-fixed:after
+    content 'ultra '+ $this
   // +__mobile()
     
   // +__touch()
   
 
 //.is-fluid
+

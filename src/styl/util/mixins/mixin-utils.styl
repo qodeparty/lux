@@ -55,3 +55,17 @@ __except_device($device,$cl_sub)
         {$dot + $cl_sub + $dash + $screen}
           @extends ${$pstr}
 
+
+__except_label($device,$cl_sub)
+  $len = fx_make_device_iter(1)
+  $pstr  = $device + $dash + $cl_sub + $dash + 'placeholder'
+  ${$pstr}
+    {block}
+    
+  for $l in (1..$len)
+    $screen = fx_make_device_iter()
+    $label  = fx_device_size($screen) //sm md lg ..
+     
+    if $label != $device
+        {$dot + $label + $dash + $cl_sub}
+          @extends ${$pstr}

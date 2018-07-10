@@ -19,7 +19,7 @@
         <a href='#' class='basis toggle-debug'></a>
         <a class='curr' href='layout-standard.html'>Layout</a>
         <a href='block-flow.html'>Blocks</a>
-        <a href='flex-simple.html'>Flex Simple</a>
+        <!-- <a href='flex-simple.html'>Flex Simple</a> -->
         <a href='flex-advanced.html'>Flex 16</a>
         <a href='flex-advanced-12.html'>Flex 12</a>
         <a href='native-tags.html'>Native Tags</a>
@@ -39,112 +39,90 @@
       <button class='as-display is-ultra'>ultra &gt; 2560</button>
     </div>
 
-    <div class='has-notes wrapper xray-blocks' title='layered blocks'>
-      <div class='blocks first'>
+    <p class='notes break'>
+      <span class='title'> Love Containers </span><br />
+    </p>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='container'>
+      <main class='container'>
+        <h1 class='is-size-3'>Container</h1>
+      </main>
+ 
+      <main class='container-fixed'>
+        <h1 class='is-size-3'>Container</h1>
+      </main>
+    </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='container'>
+
+      <main class='container-fixed'>
         <div class='block'>
-          <div class='block-lt'>
-            <h2 class='block-item'>Hey girl hey 1</h2>
+          <div class='block-rt_w25'>
+            <div>
+              I may put my feelings in here
+            </div>
           </div>
+          <div class='block-spacer'></div>
           <div class='block-ctr'>
-            <div class='block-item'>
-              <p>
-                hello
-              </p>
-            </div>  
-          </div>  
-          <div class='block-rt'>
-             <div class='block-item'>
-              <input type=text>
-            </div>           
-          </div>    
-        </div>
-      </div>
-    </div>
-
-    <div class='has-notes wrapper xray-blocks' title='blocks with auto input'>
-      <div class='blocks'>
-        <div class='block'>
-          <h2 class='block-lt is-centered'>Enter a Name:</h2>
-          <input class='block-auto' type=text> 
-        </div>
-      </div>
-    </div>
-
-    <div class='has-notes wrapper xray-blocks' title='blocks with auto textarea'>
-      <div class='blocks with-gaps'>
-
-        <div class='block'>
-          <h2 class='block-lt is-centered'>Enter a Blog Title:</h2>
-          <div class='block-item'>
-            <input class='block-auto' type=text> 
+            <h1 class='is-size-3'>this can just live here forever love</h1>
+          </div>
+          <div class='block-spacer'></div>
+          <div class='block-lt_w25'>
+            <div>
+              I may put my face in here
+            </div>
           </div>
         </div>
-        <div class='block-spacer'></div>
-        <div class='block'>
-          <h2 class='block-lt is-centered'>Enter a Blog Post:</h2>
-          
-          <div class='block-item'>
-            <textarea class='block-auto'></textarea> 
-          </div>
-
-        </div>
-        <div class='block-spacer'></div>
-        <button class='block-auto-ctr is-centered'>Submit</button>
-
-      </div>
+      </main>
     </div>
 
-    <div class='has-notes wrapper' title='nested block layout'>
-      <div class='blocks as-tiles stripes5'>
 
-        <div class='block'>
+    <div class='has-notes wrapper pretty-content' title='container'>
 
-          <div class='block-vert is-8'>
+      <main class='container-fixed with-fake-border as-tiles'>
+        <section class='grid-flush'>
+          <div class='cell grid-col'>
+            <header class="cell g">
 
-            <div class='block'>
 
-              <div class='block-vert'>
-                <article class='block-item g'>
-                  <p class='title is-size-7 is-centered'>Vertical...</p>
-                  
-                </article>
-                <article class='block-item y'>
-                  <p class='title is-size-7 is-centered'>Tiles...</p>
-
-                </article>
-              </div>              
-   
-
-              <div class='block'>
-                <article class='block-item b'>
-                  <p class='title is-size-7 is-centered'>Middle...</p>
-
-                  <p class='lorem-5'></p>
-                </article>
+              <div class='block-fixed'>
+                <div class='block-ctr'>
+                  <div>
+                    <p class="title is-size-7 is-centered">Header...</p>
+                  </div>
+                </div>
+                <div class='block-spacer xs-h'></div>
+                <div class='block-ctr xs-h'>
+                  <h1 class='is-size-3'>this can just live here forever love</h1>
+                </div>
+                <div class='block-spacer xs-h'></div>
+                <div class='block-lt'>
+                  <div class='xs-v'>
+                    <p class='is-size-1'>Menu!</p>
+                  </div>
+                  <div class='xs-h'>
+                    <p class='is-size-3'>Stuff Stuff</p>
+                  </div>
+                </div>
               </div>
 
-            </div>
 
-            <div class='block'>
-                <article class='block-item r'>
-                  <p class='title is-size-7 is-centered'>Tiles...</p>
 
-                  <p class='lorem-1'></p>
-                </article>
+            </header> 
+            <div class="cell grid">
+              <aside class="cell-4 y  hide-on-mobile">
+                <p class="title is-size-7 is-centered">Aside...</p>
+              </aside> 
+              <article class="cell-12_xs-16 r">
+                <p class="title is-size-7 is-centered">Body...</p>
+              </article> 
             </div> 
-
+             <footer class="cell v">
+              <p class="title is-size-7 is-centered">Footer...</p>
+            </footer> 
           </div>
-
-          <div class='block'>
-            <article class='block-item o'>
-              <p class='title is-size-7 is-centered'>Tall...</p>
-
-              <p class='lorem-9'></p>
-            </article>
-          </div>
-
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
