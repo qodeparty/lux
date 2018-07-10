@@ -52,7 +52,8 @@
 	line="$(sed -n '16,16 p' $BASH_SOURCE)$nl"
 	diamond='\xE1\x9B\x9C'
 	delim='\x01'
-	pass="${green}\xE2\x9C\x93$x"
+	delta="${orange}\xE2\x96\xB3"
+	pass="${green}\xE2\x9C\x93"
 	fail="${red}\xE2\x9C\x97$red2"
 	dots='\xE2\x80\xA6'
 	space='\x20'
@@ -71,8 +72,11 @@
 	function  info(){ local text=${1:-}; [ $opt_verbose -eq 0 ] || [ $opt_debug -eq 0 ]  && __print "$lambda$text" "blue"; }
 	function silly(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$dots$text" "purple"; }
 	function trace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print "$text" "grey2"; }
+	function ftrace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print " $text" "fail"; }
+	function ptrace(){ local text=${1:-}; [ $opt_verbose -eq 0 ] && __print " $text$x" "pass"; }
 	function error(){ local text=${1:-}; __print " $text" "fail";	}
-	function  pass(){ local text=${1:-}; __print " $text" "pass";	}
+	function  warn(){ local text=${1:-}; __print " $text$x" "delta";	}
+	function  pass(){ local text=${1:-}; __print " $text$x" "pass";	}
 	function fatal(){ trap - EXIT; __print "$fail $1 [$2]"; exit 1; }
 	function quiet(){ [ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1; }
 	function status(){ 
@@ -169,23 +173,25 @@
 			$line
 			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www') 
 
+			${s}${b}USR_CONF   = ${yellow}${LUX_USER_CONF//$THIS_ROOT/.}
+			
 			${s}${b}LUX_ID     = ${w}$LUX_ID
 			${s}${b}LUX_RC     = ${w}$LUX_RC
-			${s}${b}LUX_HOME   = ${w}${LUX_HOME//$THIS_ROOT/.}
-			${s}${b}LUX_BIN    = ${w}${LUX_BIN//$THIS_ROOT/.}
+			${s}${b}LUX_HOME   = ${w}${LUX_HOME//$LUX_HOME/.}
+			${s}${b}LUX_BIN    = ${w}${LUX_BIN//$LUX_HOME/.}
 			
-			${s}${b}LUX_CORE   = ${w}${LUX_CORE//$THIS_ROOT/.}
-			${s}${b}LUX_VARS   = ${w}${LUX_VARS//$THIS_ROOT/.}
-			${s}${b}LUX_UTIL   = ${w}${LUX_UTIL//$THIS_ROOT/.}
-			${s}${b}LUX_DIST   = ${w}${LUX_DIST//$THIS_ROOT/.}
-			${s}${b}LUX_BUILD  = ${w}${LUX_BUILD//$THIS_ROOT/.}
+			${s}${b}LUX_CORE   = ${w}${LUX_CORE//$LUX_HOME/.}
+			${s}${b}LUX_VARS   = ${w}${LUX_VARS//$LUX_HOME/.}
+			${s}${b}LUX_UTIL   = ${w}${LUX_UTIL//$LUX_HOME/.}
+			${s}${b}LUX_DIST   = ${w}${LUX_DIST//$LUX_HOME/.}
+			${s}${b}LUX_BUILD  = ${w}${LUX_BUILD//$LUX_HOME/.}
 			
-			${s}${b}LUX_RES    = ${w}${LUX_RES//$THIS_ROOT/.}
-			${s}${b}LUX_RBUILD = ${w}${LUX_RBUILD//$THIS_ROOT/.}
+			${s}${b}LUX_RES    = ${w}${LUX_RES//$LUX_HOME/.}
+			${s}${b}LUX_RBUILD = ${w}${LUX_RBUILD//$LUX_HOME/.}
 
-			${s}${b}LUX_LIB    = ${w}${LUX_LIB//$THIS_ROOT/.}
-			${s}${b}LUX_EXT    = ${w}${LUX_EXT//$THIS_ROOT/.}
-			${s}${b}LUX_DEFS   = ${w}${LUX_DEFS//$THIS_ROOT/.}
+			${s}${b}LUX_LIB    = ${w}${LUX_LIB//$LUX_HOME/.}
+			${s}${b}LUX_EXT    = ${w}${LUX_EXT//$LUX_HOME/.}
+			${s}${b}LUX_DEFS   = ${w}${LUX_DEFS//$LUX_HOME/.}
 
 			${s}${p}THIS_ROOT  = ${w}$THIS_ROOT
 			${s}${p}THIS_DIR   = ${w}$THIS_DIR
@@ -193,6 +199,7 @@
 
 			${s}${b}LUX_WWW    = ${y}$LUX_WWW
 			${s}${b}LUX_MODS   = ${y}${LUX_MODS[*]}	
+
 			${x}
 			$line
 		EOF
@@ -247,6 +254,7 @@
 
 	LUX_MODS=
 	LUX_CLI_VARS=( "build:$script_build" "vers:$script_vers" )
+	LUX_USER_CONF=
 
 	OPT_INCLUDE="--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE"
 	OPT_IMPORT="--import $LUX_UTIL --import $LUX_VARS " #order matters
@@ -325,7 +333,11 @@
 
 	#OPT_USE="--use $LUX_EXT/cli-vars.js --with {lux_build:\"$script_build\",lux_vers:\"$script_vers\"}"
 	function lux_var_refresh(){
-		OPT_USE="--use $LUX_EXT/cli-vars.js --with $(json_maker)"
+
+		OPT_USE="--use $LUX_EXT/pre-vars.js --with $(json_maker)"
+
+		[ -f "$LUX_USER_CONF" ] && OPT_USE="$OPT_USE --use $LUX_EXT/pre-config.js" || :
+
 		OPT_ALL="$OPT_USE $OPT_IMPORT $OPT_INCLUDE"
 		lux_mods
 	}
@@ -338,7 +350,36 @@
 		esac
 	}
 
-	
+	function lux_user_config(){
+		local list this i
+		opt_debug=0
+		if [ "$1" == "rm" ]; then
+			warn "Clearing cached user config."
+			LUX_USER_CONF=
+			lux_make_rc
+			return 0
+		fi
+
+	  list=( "$LUX_HOME/$1" "./conf/$1" "$HOME/$1" "$LUX_HOME/local-config.json" "./lux-config.json" "$HOME/lux-config.json" "$LUX_USER_CONF")
+		for i in ${!list[@]}; do
+			this="${list[$i]}"
+			if [ -f "$this" ]; then
+				 if [ "$this" != "$LUX_USER_CONF" ]; then
+				 	 ptrace "New config file at $this"
+				 	 LUX_USER_CONF=$this
+				 	 lux_make_rc
+				 else
+				 	 warn "Found existing config file (${this//$LUX_HOME/.})."
+				 fi
+				 add_var "local_conf:true" "local_conf_path:$this"
+				 break
+			else
+				 ftrace "Cant find a config file at ($this)$dots"
+			fi
+		done
+
+
+	}
 
 	function lux_mods(){
 		LUX_MODS=($(find "$LUX_CORE" -type d -printf '%P\n' ))
@@ -805,6 +846,7 @@
 			export LUX_BIN="$LUX_BIN"
 			export LUX_RC="$LUX_RC"
 			export LUX_INST=0
+			export LUX_USER_CONF="$LUX_USER_CONF"
 
 			if [ -n "\$LUX_BIN" ]; then
 				[[ ! "\$PATH" =~ "\$LUX_BIN" ]] && export PATH=\$PATH:\$LUX_BIN;
@@ -820,7 +862,7 @@
 
 	function lux_make_rc(){
 		local show src rc_str
-		info "Generating .luxrc file..."
+		info "Saving .luxrc file..."
 		src="${LUX_RC}"
 		rc_str="$(lux_rc_str)"
 		echo "$rc_str" > ${src}
@@ -832,21 +874,32 @@
 #-------------------------------------------------------------------------------
 	function __dispatch(){
 		#log_debug "[fx:$FUNCNAME] args:$#"
-		local call ret
+		local call ret 
+		skip=1
 
 		#call=$1; shift
 
 		[ -f "$LUX_RC" ] && source $LUX_RC
+
+		if [ -f "$LUX_USER_CONF" ]; then
+			add_var "local_conf:true" "local_conf_path:$LUX_USER_CONF"
+		fi
+
 		lux_var_refresh
 
 		for call in "$@"; do
 			#echo "$# $call"
 			shift
+			if [ $skip -eq 0 ]; then
+				skip=1
+				#echo "skipping $call"
+				continue
+			fi
 			case $call in
 				json) 
-					add_var "stinky:lady" "dirty:pussy"
+					add_var "test:1" "eat:candy"
 					lux_var_refresh
-					json_maker "pussy:queen"
+					json_maker "nile:queen"
 					#echo "$OPT_USE"
 					shift;;
 				help) lux_usage;;
@@ -870,6 +923,19 @@
 					esac
 					break;
 				;;
+				find)
+					IFS=
+					flags="-HiREl"
+					case $1 in
+						files) shift; res=$(grep -HiREl --color=always "$1" .);;
+						html) shift; res=$(grep -HiRE --include=\*.html --color=always "$1" .);;
+						*) res=$(grep -HiREn --color=always "$1" .);;
+					esac
+					#query=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) \;`
+					#res=$(grep ${flags} --include= --color=always "$1" .)
+					echo "$res"
+					break;
+					;;
 				clean) lux_clean ;;
 				list)
 					lux_listfile "csslist" "res/css" "css"
@@ -886,7 +952,18 @@
 					;;
 				tpl) template_vars;;
 				skip) break;;
-				--*) :;;
+				--*) 
+					case $call in
+						--conf*)
+							lux_user_config $1 
+							skip=0
+							;;
+						--local*)
+							lux_user_config 'local-conf.json' 
+							;;
+						*) : ;;
+					esac
+				;;
 				*) 
 					if [ ! -z "$call" ]; then
 						fatal "Invalid command" $call;
@@ -923,7 +1000,7 @@ else
 
 	#[ -t 1 ] && [ $opt_force -eq 0 ] && opt_quiet=1 ||:
 
-	args=( "${args[@]/\-*}" ); #delete anything that looks like an option
+	#args=( "${args[@]/\-*}" ); #delete anything that looks like an option
 
 	main "${args[@]}";ret=$?
 fi
