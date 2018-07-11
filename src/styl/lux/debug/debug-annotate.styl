@@ -138,8 +138,8 @@ body.debug.theme-unity
 
 
 .debug
-  {$cl_attr_grid_any}:not({$cl_flex_grids}):not(.truegrid):hover:after,
-  {$cl_attr_cell_any}:hover:after,
+  {$cl_attr_cell_any}:not({$cl_cells}):not(.truegrid):hover:after,
+  {$cl_attr_slot_any}:hover:after,
   {$cl_layout_col}:hover:after, 
   {$cl_block_pre_any}:hover:after
     content: attr( class );

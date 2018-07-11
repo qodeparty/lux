@@ -7,7 +7,7 @@
   display:grid;
   grid-gap: 10px 10px;
   grid-template-columns:repeat(4,1fr);
-  grid-auto-rows: 100px 30px 300px 100px;
+  grid-template-rows: 100px 30px 300px 100px;
   grid-template-areas: "h h h h"
                        "s n n n"
                        "s b b b"

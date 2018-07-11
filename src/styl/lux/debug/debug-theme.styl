@@ -121,10 +121,10 @@
 .archxray .has-fake-border .thing
   __inner_border(1px,#fff)
 
-.archxray .with-fake-border[class*="grid-"][class*="-flush"] > div
+.archxray .with-fake-border[class*="cell-"][class*="-flush"] > div
   box-shadow none
   
-.archxray .with-fake-border[class*="grid-"][class*="-flush"] .thing
+.archxray .with-fake-border[class*="cell-"][class*="-flush"] .thing
   __inner_border(1px,#fff)
   
 .archxray .changes-background .thing
@@ -132,22 +132,26 @@
 
 
 .archxray {$cl_layout_row} > div,
-.debug .with-fake-border [class*="cell-"],
-.debug .with-fake-border [class*="cell_"],
-.debug .with-fake-border .cell
+.debug .with-fake-border {$cl_attr_pre_slot_any},
+.debug .with-fake-border {$cl_attr_pre_slot_under},
+.debug .with-fake-border .slot
   __pseudo_border(1px,#fff)
 
+.cell.with-fake-border,
+{$cl_attr_pre_cell_any}.with-fake-border
+  padding 1rem
+  border 1px dotted red
 // .has-fake-border
 //   __inner_border(1px,$sand_sadcloud)
 
 
 /* //////////////////////////////////////////////////////////////////////////////
-// DEBUG GRIDS
+// DEBUG CELLS
 ////////////////////////////////////////////////////////////////////////////// */
-.archxray {$cl_flex_grids}
+.archxray {$cl_cells}
   margin 25px
   
-.archxray {$cl_flex_grids} article
+.archxray {$cl_cells} article
   border-radius 5px
   color white
 
