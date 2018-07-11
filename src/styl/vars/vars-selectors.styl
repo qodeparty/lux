@@ -39,6 +39,7 @@ $attr_last   = __attr_short( 'nth' , 'last'  )
 
 $attr_auto   = $L_auto
 $attr_flush  = 'flush'
+$attr_fill   = 'fill'
 
 $attr_item   = 'item'
 $attr_fixed  = 'fixed'
@@ -144,21 +145,50 @@ $cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
 
 $cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
 
+/* //////////////////////////////////////////////////////////////////////////////
+// media placeholder selectors
+////////////////////////////////////////////////////////////////////////////// */
 
 $cl_attr_screen_s       = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
 
 $cl_attr_media_s        = __attr_class($under_i + $str + $dash_i, $attr_any) // class*=["_%s%s-%s"]
 
 $cl_attr_media_dash_s   = __attr_class($str + $dash_i, $attr_any) // %s-%s
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// cell-slot selectors
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
+
+
+$cl_cell = $dot + $L_flex_cell //L_cell
+$cl_cells = $cl_cell + 's'
+  
+$cl_attr_cell           = __attr_class($cl_cell, $attr_in) 
+$cl_attr_pre_cell_any   = __attr_class($pre_cell, $attr_any)
+$cl_attr_pre_cell_under = __attr_class($cl_cell + $under, $attr_any)
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any) 
+
+
+
+$pre_slot = $dot + 'slot' + $dash  //.slot-
+
+$cl_slot  = $dot + 'slot'
+$cl_slots = $cl_slot + 's'
+
+$cl_attr_slot           = __attr_class($cl_slot, $attr_in) 
+$cl_attr_pre_slot_any   = __attr_class($pre_slot, $attr_any)
+$cl_attr_pre_slot_under = __attr_class($cl_slot + $under, $attr_any)
+$cl_attr_pre_slot_any_s = __attr_class('slot' + $dash_i, $attr_any) 
+
+
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions offsets
 ////////////////////////////////////////////////////////////////////////////// */
  
-// $cl_attr_data_pull_any_s  = __attr_data('pull', 'off' + $dash_i ,$attr_any)  // data-pull-%s
-// $cl_attr_data_pull_size_s = __attr_data('pull', $under_i + $dash_i ,$attr_any)
-
-// $cl_attr_data_push_any_s  = __attr_data('push', 'off' + $dash_i ,$attr_any) 
-// $cl_attr_data_push_size_s = __attr_data('push', $under_i + $dash_i ,$attr_any) 
 
 $cl_attr_pull_any_s = __attr_class('left' + $dash_i , $attr_any) // class*="left-"
 $cl_attr_push_any_s = __attr_class('right' + $dash_i , $attr_any) // class*="right-" 
