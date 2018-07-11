@@ -31,7 +31,8 @@
     "bp-touch"   : false,
     "bp-desktop" : true,
     "bp-hd"      : false,
-    "bp-ult"     : true
+    "bp-ult"     : true,
+    "media-offsets" : true
   },
 
 
