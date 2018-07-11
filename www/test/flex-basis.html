@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Lux - Layout Standard</title>
+    <link rel="icon" type="image/x-icon"  href="../favicon.ico">
+    <link rel='stylesheet' id='base1'  href='../res/build/debug.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='base2'  href='../res/build/equalizer.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='base3'  href='../res/build/modifier.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='base4'  href='../res/build/elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='base5'  href='../res/build/layout.css'    type='text/css' media='all' />
+    <link rel='stylesheet' id='base6'  href='../res/css/flex-basis.css'  type='text/css' media='all' />
+    <style>
+
+    </style>
+  </head>
+  <body id='annotate' class='bg-grid archxray debug' >
+
+
+    <!-- <button>Toggle Mobile</button> -->
+    <div class='debug-display is-nano is-mobile is-tablet is-desktop is-wide is-full is-jumbo is-ultra'>
+      <button class='as-display is-nano'>nano &lt; 360</button>
+      <button class='as-display is-mobile'>mobile 360</button>
+      <button class='as-display is-tablet'>tablet 768</button>
+      <button class='as-display is-desktop'>desktop 1024</button>
+      <button class='as-display is-wide'>wide 1216</button>
+      <button class='as-display is-full'>full 1440</button>
+      <button class='as-display is-jumbo'>jumbo 1920</button>
+      <button class='as-display is-ultra'>ultra &gt; 2560</button>
+    </div>
+
+
+
+    <section class='_gen container-fixed' data-basis='16' data-count='32'>
+    </section>
+
+    <section class='_gen container-fixed' data-basis='16' data-count='48'>
+    </section>
+
+    <section class='_gen container-fixed is-responsive' data-gen='spread'>
+    </section>
+
+    <section class='container-fixed'>
+      <div alt=n class='len-8_lmd-4 push-4 pull-4 push-6-m pull-6-m'></div>
+      <div alt=n class='len-2 push-4 '></div>
+      <div alt=n class='len-2 pull-8 '></div>
+    </section>
+
+
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
+    <script src='../res/js/lux-helper.js'></script>
+    <script>
+      let basis = 16;
+      let count = 32;
+      let main  = $('._gen');
+          
+      let sizes = { 
+                    spread : [ 16, 15, 1, 14, 2, 13, 3, 12, 4, 11, 5, 10, 6, 9, 7, 8, 8 ]
+                  };
+
+      //console.log(el.childElementCount);
+      //console.log(main);
+      //console.log(el.scrollWidth)
+      for(let i=0; i<main.length; i++){
+
+        let el = main[i];
+        basis = $(el).data('basis');
+        count = $(el).data('count');
+        let genSet; let gen = $(el).data('gen') || false;
+
+        if( gen  && Array.isArray(sizes[gen]) ){
+          genSet = sizes[gen].slice();
+
+          count = Array.isArray(genSet) && genSet.length;
+          if(!count) continue;
+        }
+
+        console.log( count )
+
+        for(let j=0; j<count; j++){
+
+          let frag = document.createDocumentFragment();
+          let div  = document.createElement('div');
+              div.setAttribute('alt',el.childElementCount+1);
+              div.setAttribute('id','j'+(el.childElementCount+1));
+              if( genSet ){
+                div.setAttribute('class','len-' + genSet[j] );
+                div.setAttribute('alt',genSet[j]);
+              }
+              frag.appendChild(div)
+              el.appendChild(frag)
+              console.log(el.scrollWidth)
+        }  
+
+      } 
+    </script>
+  </body>
+</html>
