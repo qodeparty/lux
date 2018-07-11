@@ -13,8 +13,13 @@ $attr_pre='^='
 $attr_suf='$='
 $attr_any='*='
 
+$str='%s'
 $dash_i='-%s'
 $under_i='_%s'
+
+$abr_cell=c
+$abr_right=r
+$abr_left=l
 
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions
@@ -140,28 +145,29 @@ $cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
 $cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
 
 
-$cl_attr_screen_s     = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
+$cl_attr_screen_s       = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
 
+$cl_attr_media_s        = __attr_class($under_i + $str + $dash_i, $attr_any) // class*=["_%s%s-%s"]
 
+$cl_attr_media_dash_s   = __attr_class($str + $dash_i, $attr_any) // %s-%s
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions offsets
 ////////////////////////////////////////////////////////////////////////////// */
  
-$cl_attr_data_pull_any_s  = __attr_data('pull', 'off' + $dash_i ,$attr_any)  // data-pull-%s
-$cl_attr_data_pull_size_s = __attr_data('pull', $under_i + $dash_i ,$attr_any)
+// $cl_attr_data_pull_any_s  = __attr_data('pull', 'off' + $dash_i ,$attr_any)  // data-pull-%s
+// $cl_attr_data_pull_size_s = __attr_data('pull', $under_i + $dash_i ,$attr_any)
 
-$cl_attr_data_push_any_s  = __attr_data('push', 'off' + $dash_i ,$attr_any) 
-$cl_attr_data_push_size_s = __attr_data('push', $under_i + $dash_i ,$attr_any) 
+// $cl_attr_data_push_any_s  = __attr_data('push', 'off' + $dash_i ,$attr_any) 
+// $cl_attr_data_push_size_s = __attr_data('push', $under_i + $dash_i ,$attr_any) 
 
-
-
+$cl_attr_pull_any_s = __attr_class('left' + $dash_i , $attr_any) // class*="left-"
+$cl_attr_push_any_s = __attr_class('right' + $dash_i , $attr_any) // class*="right-" 
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
 ////////////////////////////////////////////////////////////////////////////// */
 
 $cl_flag_resp =  $pre_is + 'resp' //.is-resp
-
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Modifiers

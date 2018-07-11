@@ -86,13 +86,13 @@ __adv_flex($i)
         max-width  $val
 
 
-  $pull = s($cl_attr_data_pull_any_s,$i) 
+  $pull = s($cl_attr_media_dash_s, unquote($attr_right),$i)
       
   &
     +__grid_spread($pull)
       margin-right $val
 
-  $push = s($cl_attr_data_push_any_s,$i) 
+  $push = s($cl_attr_media_dash_s, unquote($attr_left),$i)
       
   &
     +__grid_spread($push)
@@ -103,8 +103,10 @@ __adv_flex($i)
 
 
 __adv_flex_grid_media($i,$label,$device) // any => *, same => ~
-
-  $this_s_class = s($cl_attr_screen_s,unquote($label),$i) //class*=["_%s-%s"]
+  
+  $lbl = unquote($label)
+  
+  $this_s_class = s($cl_attr_media_s,$abr_cell,$lbl,$i) //class*=["_%s-%s"] => c<size>-<n>
 
   $p_basis = ($i*$atomic_basis);
   $val =  round( $p_basis, 3 )  + '%'
@@ -114,11 +116,11 @@ __adv_flex_grid_media($i,$label,$device) // any => *, same => ~
       flex-basis $val
       max-width  $val      
 
-  $pull = s($cl_attr_data_pull_size_s,unquote($label),$i)
+  $pull = s($cl_attr_media_s, $abr_right, $lbl,$i)
   +__grid_spread($pull)
     margin-right $val
 
-  $push = s($cl_attr_data_push_size_s,unquote($label),$i)
+  $push = s($cl_attr_media_s, $abr_left, $lbl,$i)
   +__grid_spread($push)
     margin-left $val
 
@@ -131,7 +133,7 @@ __adv_flex_cell_media($i,$label,$device)
     $pval=$perc+'%'
     $cache_id1 = 'max' + $device + __cachebust_str($i) + $perc
 
-    $this_s_class = s($cl_attr_screen_s,unquote($label),$i) //class*=["_%s-%s"]
+    $this_s_class = s($cl_attr_media_s,$abr_cell,unquote($label),$i) //class*=["_%s-%s"]
 
     +__cell_spread($this_s_class)
       flex-basis $pval
