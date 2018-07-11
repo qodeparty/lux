@@ -1,44 +1,48 @@
 
 
+//TODO grids => cells, cell => slot
 
-{$cl_flex_grids}
+{$cl_cells}
   position relative
 
 ////////// AUTO GRID CELLS //////////
 
-{$cl_attr_grid}, //class or attr? hmm
-{$cl_attr_pre_grid_any},
-{$cl_attr_pre_grid_under}
+{$cl_attr_cell}, 
+{$cl_attr_pre_cell_any},
+{$cl_attr_pre_cell_under}
   position relative
-  border 1px dotted red
-  padding 1rem
   display flex 
   flex-flow  row wrap
   margin 0
   //margin-bottom 1rem
   
-
-
 $cellPlaceholder
   padding 0.5rem
   max-width 100%
   cursor help
   position relative
   
-
-{$cl_attr_pre_cell_under},   
-{$cl_attr_cell}
+{$cl_attr_slot},
+{$cl_attr_pre_slot_under}
   @extends $cellPlaceholder
   flex 1 1 0% 
 
-{$cl_attr_pre_cell_any}
+{$cl_attr_pre_slot_any}
   @extends $cellPlaceholder
 
-
-{$cl_attr_pre_cell_any} //fixed %
+{$cl_attr_pre_slot_any} //fixed %
   flex none
   
+////////// GRID FROM CELL //////////
 
+
+{$cl_attr_cell}{$cl_attr_slot} // .grid.cell
+{$cl_attr_cell}{$cl_attr_pre_slot_any},
+{$cl_attr_pre_cell_any}{$cl_attr_slot},
+{$cl_attr_pre_cell_any}{$cl_attr_pre_slot_any}
+  margin  0
+  padding 0
+  
 /************************************************************/
 
 
@@ -50,40 +54,119 @@ $cellPlaceholder
   margin-left s("calc( var(--push-index, 1) * %s%)",$atomic_basis)
   
 
-{$cl_attr_cell},
-{$cl_attr_pre_cell_under}   
-  flex-basis calc( 100 / var(--flex-index, 1) )
-  max-width calc( 100 / var(--flex-index, 1) )
+/************************************************************/
 
-{$cl_attr_pre_cell_any}
-  flex-basis s("calc( var(--flex-index, 1) * %s%)",$atomic_basis)
-  max-width s("calc( var(--flex-index, 1) * %s%)",$atomic_basis)
+__plus_flex_make_set()
 
+/************************************************************/
 
-for $i in (0..$basis)
+$len = fx_make_device_iter(1)
 
-  $basis= 1 * $basis //force coerceion =(
-  $ival=($i - 1);
- 
-  if $i > 0
-    $grid=s($cl_attr_pre_grid_any_s,$i) // [class~=grid-%s]
+for $l in (1..$len)
+  $device = fx_make_device_iter()
+  $label  = fx_device_size($device) //sm md lg ..
+  ref=lookup('__'+$device+'_only')
+  if ref is defined
+    +ref()
     
-    &
-      +__cell_spread($grid)
-        --flex-index:$basis - $ival
+      __plus_flex_visibility($label,$device)
+        
+      //order matters - cuz precendence
+      for $i in (0..$basis)
+        __plus_flex_slot_media($i,$label,$device)
 
-    $cell = s($cl_attr_pre_cell_any_s,$i)
+      for $i in (0..$basis)
+        __plus_flex_cell_media($i,$label,$device)
+        
+      if $use_media_offets
+        __plus_margin_pull($i,$label,$device)
+        __plus_margin_push($i,$label,$device)
+
+/************************************************************/
+
++__touch()
+  __plus_flex_make_set('touch','touch')
+
++__desktop()
+  __plus_flex_make_set('desk','desk')
+
+/************************************************************/
+  
+////////// GRID MODIFIERS //////////
+
+$placeholder_grid_top
+  align-items flex-start    
+
+$placeholder_grid_mid
+  align-items center 
     
-    &
-      +__grid_spread($cell)
-        --flex-index:$i
+$placeholder_grid_btm
+  align-items flex-end
+  
 
-  $pull = s($cl_attr_media_dash_s, unquote($attr_right),$i)
-  $push = s($cl_attr_media_dash_s, unquote($attr_left),$i)
 
-  {$pull}
-    --pull-index:$i
++__cell_pre($attr_flush)
+  margin 0
+  
++__cell_pre_slot($attr_flush)
+  padding 0
+  
++__cell_pre($attr_ctr) 
+  justify-content center
 
-  {$push}
-    --push-index:$i
++__cell_pre($attr_right)
+  margin-left auto
+  justify-content flex-end
+  align-self flex-end
+
++__cell_pre($attr_left) 
+  justify-content left
+
+  
+__cell_pre($attr_top, $placeholder_grid_top)
+  
+__cell_pre($attr_mid, $placeholder_grid_mid)
+
+__cell_pre($attr_btm, $placeholder_grid_btm)
+
+  
++__cell_pre('rev')
+  flex-direction row-reverse
+  
++__cell_pre('col')
+  flex-direction column
+
++__cell_pre('crev')
+  flex-direction column-reverse
+
++__cell_pre('nw')
+  flex-wrap nowrap
+
++__cell_pre('bal')
+  justify-content space-evenly   
+
++__cell_pre('spread')
+  justify-content space-between  
+  
++__cell_pre('dist')
+  justify-content space-around 
+
+
+__slot_pre($attr_top, $placeholder_grid_top)
+  
+__slot_pre($attr_mid, $placeholder_grid_mid)
+     
+__slot_pre($attr_btm, $placeholder_grid_btm)
+
+
++__slot_pre($attr_first)
+  order -1 
+
++__slot_pre($attr_last)
+  order 999
+  
++__slot_pre($attr_fill)
+  align-self stretch
+  max-width unset
+  flex 1 1 auto
 

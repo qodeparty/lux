@@ -52,12 +52,12 @@ __grid_spread($cl_sub,$ext=false)
     if $ext  
       @extends {$ext}
 
-// __grid_blank_spread($cl_sub,$ext=false)
-//   {$cl_attr_grid}           > {$cl_sub},
-//   {$cl_attr_pre_grid_under} > {$cl_sub}
-//     {block}
-//     if $ext  
-//       @extends {$ext}
+__grid_blank_spread($cl_sub,$ext=false)
+  {$cl_attr_grid}           > {$cl_sub},
+  {$cl_attr_pre_grid_under} > {$cl_sub}
+    {block}
+    if $ext  
+      @extends {$ext}
       
 __cell_spread($cl_sub)
   {$cl_sub} > {$cl_attr_pre_cell_under},
@@ -66,10 +66,10 @@ __cell_spread($cl_sub)
      {block}
      
 
-// __cell_blank_spread($cl_sub)
-//   {$cl_sub} > {$cl_attr_pre_cell_under},
-//   {$cl_sub} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
-//      {block}
+__cell_blank_spread($cl_sub)
+  {$cl_sub} > {$cl_attr_pre_cell_under},
+  {$cl_sub} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
+     {block}
 
 /************************************************************/
 
@@ -96,7 +96,7 @@ __adv_flex($i)
    
     &
       +__grid_spread($cell)
-        flex-basis $val
+        flex-basis $val !important
         max-width  $val
 
 
@@ -169,3 +169,5 @@ __adv_flex_make_set($label,$screen='qq')
 
   for $i in (0..$basis)
     __adv_flex_grid_media($i,$label,$screen)
+
+

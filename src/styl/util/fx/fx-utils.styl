@@ -10,7 +10,18 @@
   //   __var_def('size-2',$size-2)
   //   __var_def('size-3',$size-3)
   //   weight __var('size-3',$size-3)
-   
+    
+  __i_of_all($i)
+    $perc= $i == 0 ? 0 : round( ( 100/$i ), 3 )  
+    $pval=$perc+'%'
+    return $pval
+      
+  __i_of_basis($i)
+    $p_basis = ($i*$atomic_basis);
+    $val =  round( $p_basis, 3 )  + '%'
+    return $val
+    
+  
 /* //////////////////////////////////////////////////////////////////////////////
 // FX
 ////////////////////////////////////////////////////////////////////////////// */
