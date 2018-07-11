@@ -23,7 +23,6 @@
     "nat-basis"  : true,
     "mobile"     : false,
     "mode-ez"    : true,
-    "mode-adv"   : false,
     "mode-plus"  : true,
     "truegrid"   : false,
     "short-attr" : true,
