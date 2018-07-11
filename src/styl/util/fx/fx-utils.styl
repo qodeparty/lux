@@ -69,14 +69,14 @@
       
       $this = fx_get_config($key)
       $type = typeof($this)
-    
+      //p($type,$this)
       if $type == 'string'
        unquote($this)
       else if $type == 'null'
         p($key + ' => ' +typeof($this))
       else 
        $this
-    //p($val)
+    
     //return $val
           
       

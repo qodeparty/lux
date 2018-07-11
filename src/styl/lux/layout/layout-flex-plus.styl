@@ -1,0 +1,89 @@
+
+
+
+{$cl_flex_grids}
+  position relative
+
+////////// AUTO GRID CELLS //////////
+
+{$cl_attr_grid}, //class or attr? hmm
+{$cl_attr_pre_grid_any},
+{$cl_attr_pre_grid_under}
+  position relative
+  border 1px dotted red
+  padding 1rem
+  display flex 
+  flex-flow  row wrap
+  margin 0
+  //margin-bottom 1rem
+  
+
+
+$cellPlaceholder
+  padding 0.5rem
+  max-width 100%
+  cursor help
+  position relative
+  
+
+{$cl_attr_pre_cell_under},   
+{$cl_attr_cell}
+  @extends $cellPlaceholder
+  flex 1 1 0% 
+
+{$cl_attr_pre_cell_any}
+  @extends $cellPlaceholder
+
+
+{$cl_attr_pre_cell_any} //fixed %
+  flex none
+  
+
+/************************************************************/
+
+
+//TODO:cleanup
+{__attr_class('rt-',$attr_any)}
+  margin-right s("calc( var(--pull-index, 1) * %s%)",$atomic_basis)
+
+{__attr_class('lt-',$attr_any)}
+  margin-left s("calc( var(--push-index, 1) * %s%)",$atomic_basis)
+  
+
+{$cl_attr_cell},
+{$cl_attr_pre_cell_under}   
+  flex-basis calc( 100 / var(--flex-index, 1) )
+  max-width calc( 100 / var(--flex-index, 1) )
+
+{$cl_attr_pre_cell_any}
+  flex-basis s("calc( var(--flex-index, 1) * %s%)",$atomic_basis)
+  max-width s("calc( var(--flex-index, 1) * %s%)",$atomic_basis)
+
+
+for $i in (0..$basis)
+
+  $basis= 1 * $basis //force coerceion =(
+  $ival=($i - 1);
+ 
+  if $i > 0
+    $grid=s($cl_attr_pre_grid_any_s,$i) // [class~=grid-%s]
+    
+    &
+      +__cell_spread($grid)
+        --flex-index:$basis - $ival
+
+    $cell = s($cl_attr_pre_cell_any_s,$i)
+    
+    &
+      +__grid_spread($cell)
+        --flex-index:$i
+
+  $pull = s($cl_attr_media_dash_s, unquote($attr_right),$i)
+  $push = s($cl_attr_media_dash_s, unquote($attr_left),$i)
+
+  {$pull}
+    --pull-index:$i
+
+  {$push}
+    --push-index:$i
+

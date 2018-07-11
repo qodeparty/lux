@@ -44,12 +44,21 @@ __block_pre_elm($el,$cl_sub,$ext=false)
       @extends {$ext}
       
 
-__grid_spread($cl_sub)
+__grid_spread($cl_sub,$ext=false)
   {$cl_attr_grid}           > {$cl_sub},
   {$cl_attr_pre_grid_any}   > {$cl_sub},
   {$cl_attr_pre_grid_under} > {$cl_sub}
     {block}
+    if $ext  
+      @extends {$ext}
 
+// __grid_blank_spread($cl_sub,$ext=false)
+//   {$cl_attr_grid}           > {$cl_sub},
+//   {$cl_attr_pre_grid_under} > {$cl_sub}
+//     {block}
+//     if $ext  
+//       @extends {$ext}
+      
 __cell_spread($cl_sub)
   {$cl_sub} > {$cl_attr_pre_cell_under},
   {$cl_sub} > {$cl_attr_pre_cell_any},
@@ -57,9 +66,14 @@ __cell_spread($cl_sub)
      {block}
      
 
-
+// __cell_blank_spread($cl_sub)
+//   {$cl_sub} > {$cl_attr_pre_cell_under},
+//   {$cl_sub} > {$cl_attr_cell} //lack of specific-_ for sake of simpl
+//      {block}
 
 /************************************************************/
+
+
 
 __adv_flex($i)
 

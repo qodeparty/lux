@@ -4,9 +4,17 @@
 ////////////////////////////////////////////////////////////////////////////// */
 @require './layout-flex-blocks'
 @require './layout-flex-simple'
-@require './layout-flex-adv'
-@require './layout-truegrid'
 
+if $flex_mode_adv 
+  @require './layout-flex-adv'
+
+if $flex_mode_plus
+  @require './layout-flex-plus'
+
+if $inc_truegrid 
+  @require './layout-truegrid'
+
+  
 .basis:after
   content ''+$basis
   text-decoration-line none

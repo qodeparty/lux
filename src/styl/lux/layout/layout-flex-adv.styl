@@ -2,206 +2,207 @@
 // LUX! Layouts 2
 ////////////////////////////////////////////////////////////////////////////// */
 
-if( $flex_mode_adv ) 
+
+{$cl_flex_grids}
+  position relative
+
+////////// AUTO GRID CELLS //////////
+
+{$cl_attr_grid}, //class or attr? hmm
+{$cl_attr_pre_grid_any},
+{$cl_attr_pre_grid_under}
+  position relative
+  border 1px dotted red
+  padding 1rem
+  display flex 
+  flex-flow  row wrap
+  margin 0
+  //margin-bottom 1rem
   
-  {$cl_flex_grids}
-    position relative
 
-  ////////// AUTO GRID CELLS //////////
-
-  {$cl_attr_grid}, //class or attr? hmm
-  {$cl_attr_pre_grid_any},
-  {$cl_attr_pre_grid_under}
-    position relative
-    border 1px dotted red
-    padding 1rem
-    display flex 
-    flex-flow  row wrap
-    margin 0
-    //margin-bottom 1rem
-    
-    
-  $cellPlaceholder
-    padding 0.5rem
-    max-width 100%
-    cursor help
-    position relative
-    
-
-  {$cl_attr_pre_cell_under},   
-  {$cl_attr_cell}
-    @extends $cellPlaceholder
-    flex 1 1 0% 
-
-  {$cl_attr_pre_cell_any}
-    @extends $cellPlaceholder
- 
-
-  {$cl_attr_pre_cell_any} //fixed %
-    flex none
-    
-  .as-tiles {$cl_attr_cell},
-  .as-tiles {$cl_attr_pre_cell_any}
-    align-items stretch
-    min-height min-content
-    __inner_border(1px,$sand_puff)
-    
   
-  .as-tiles {$cl_attr_grid}           
-  .as-tiles {$cl_attr_pre_grid_any}   
-  .as-tiles {$cl_attr_pre_grid_under}
-    padding 0
-    align-items stretch
-    min-height min-content
-    border none
 
+$cellPlaceholder
+  padding 0.5rem
+  max-width 100%
+  cursor help
+  position relative
+  
+
+{$cl_attr_pre_cell_under},   
+{$cl_attr_cell}
+  @extends $cellPlaceholder
+  flex 1 1 0% 
+
+{$cl_attr_pre_cell_any}
+  @extends $cellPlaceholder
+
+
+{$cl_attr_pre_cell_any} //fixed %
+  flex none
+  
+.as-tiles {$cl_attr_cell},
+.as-tiles {$cl_attr_pre_cell_any}
+  align-items stretch
+  min-height min-content
+  __inner_border(1px,$sand_puff)
+  
+
+.as-tiles {$cl_attr_grid}           
+.as-tiles {$cl_attr_pre_grid_any}   
+.as-tiles {$cl_attr_pre_grid_under}
+  padding 0
+  align-items stretch
+  min-height min-content
+  border none
+
+  
+////////// GRID FROM CELL //////////
+
+
+{$cl_attr_grid}{$cl_attr_cell} // .grid.cell
+{$cl_attr_grid}{$cl_attr_pre_cell_any},
+{$cl_attr_pre_grid_any}{$cl_attr_cell},
+{$cl_attr_pre_grid_any}{$cl_attr_pre_cell_any}
+  margin  0
+  padding 0
+  
+////////////////////
+//.as-desktop  //change so mobile doesnt use the sizes
+for $i in (0..$basis)
+  __adv_flex($i)
+
+$len = fx_make_device_iter(1)
+
+for $l in (1..$len)
+  $screen = fx_make_device_iter()
+  $label  = fx_device_size($screen) //sm md lg ..
+  ref=lookup('__'+$screen+'_only')
+  if ref is defined
+    +ref()
     
-  ////////// GRID FROM CELL //////////
-
-
-  {$cl_attr_grid}{$cl_attr_cell} // .grid.cell
-  {$cl_attr_grid}{$cl_attr_pre_cell_any},
-  {$cl_attr_pre_grid_any}{$cl_attr_cell},
-  {$cl_attr_pre_grid_any}{$cl_attr_pre_cell_any}
-    margin  0
-    padding 0
-    
-  ////////////////////
-  //.as-desktop  //change so mobile doesnt use the sizes
-  for $i in (0..$basis)
-    __adv_flex($i)
-
-  $len = fx_make_device_iter(1)
-
-  for $l in (1..$len)
-    $screen = fx_make_device_iter()
-    $label  = fx_device_size($screen) //sm md lg ..
-    ref=lookup('__'+$screen+'_only')
-    if ref is defined
-      +ref()
+      {__to_class($label,'v')},
+      {__to_class('show-on',$screen)}
+        display block !important
       
-        {__to_class($label,'v')},
-        {__to_class('show-on',$screen)}
-          display block !important
+      +__except_device($screen,"show-on")
+        display none !important
+
+      +__except_label($label,"v")
+        display none !important
+
+      {__to_class($label,'h')},
+      {__to_class('hide-on',$screen)}
+        display none !important
         
-        +__except_device($screen,"show-on")
-          display none !important
+      //order matters - cuz precendence
+      for $i in (0..$basis)
+        __adv_flex_cell_media($i,$label,$screen)
 
-        +__except_label($label,"v")
-          display none !important
-
-        {__to_class($label,'h')},
-        {__to_class('hide-on',$screen)}
-          display none !important
-          
-        //order matters - cuz precendence
-        for $i in (0..$basis)
-          __adv_flex_cell_media($i,$label,$screen)
-
-        for $i in (0..$basis)
-          __adv_flex_grid_media($i,$label,$screen)
+      for $i in (0..$basis)
+        __adv_flex_grid_media($i,$label,$screen)
 
 
-  +__touch()
-    __adv_flex_make_set('touch','touch')
++__touch()
+  __adv_flex_make_set('touch','touch')
 
 
 
-  +__mobile()
-    //TODO:cleanup classes
-    .is-responsive {$cl_attr_grid},
-    .is-responsive {$cl_attr_cell},
-    .is-responsive {$cl_attr_pre_grid_any},
-    .is-responsive {$cl_attr_pre_cell_any}
-      flex-direction column
-      flex none
-      flex-basis 0
-      max-width 100% !important
-
-    
-
-  +__desktop()
-    __adv_flex_make_set('desk','desk')
-
-  ////////// GRID MODIFIERS //////////
-
-  $placeholder_grid_top
-    align-items flex-start    
-  
-  $placeholder_grid_mid
-    align-items center 
-      
-  $placeholder_grid_btm
-    align-items flex-end
-    
-
-
-  +__grid_pre($attr_flush)
-    margin 0
-    
-  +__grid_pre_cell($attr_flush)
-    padding 0
-    
-  +__grid_pre($attr_ctr) 
-    justify-content center
-
-  +__grid_pre($attr_right)
-    margin-left auto
-    justify-content flex-end
-    align-self flex-end
-
-  +__grid_pre($attr_left) 
-    justify-content left
-
-    
-    
-  __grid_pre($attr_top, $placeholder_grid_top)
-    
-  __grid_pre($attr_mid, $placeholder_grid_mid)
-  
-  __grid_pre($attr_btm, $placeholder_grid_btm)
-
-    
-  +__grid_pre('rev')
-    flex-direction row-reverse
-    
-  +__grid_pre('col')
++__mobile()
+  //TODO:cleanup classes
+  .is-responsive {$cl_attr_grid},
+  .is-responsive {$cl_attr_cell},
+  .is-responsive {$cl_attr_pre_grid_any},
+  .is-responsive {$cl_attr_pre_cell_any}
     flex-direction column
+    flex none
+    flex-basis 0
+    max-width 100% !important
 
-  +__grid_pre('crev')
-    flex-direction column-reverse
-
-  +__grid_pre('nw')
-    flex-wrap nowrap
-
-  +__grid_pre('bal')
-    justify-content space-evenly   
-
-  +__grid_pre('spread')
-    justify-content space-between  
-    
-  +__grid_pre('dist')
-    justify-content space-around 
-
-
-  __cell_pre($attr_top, $placeholder_grid_top)
-    
-  __cell_pre($attr_mid, $placeholder_grid_mid)
-       
-  __cell_pre($attr_btm, $placeholder_grid_btm)
-
-
-  +__cell_pre($attr_first)
-    order -1 
   
-  +__cell_pre($attr_last)
-    order 999
+
++__desktop()
+  __adv_flex_make_set('desk','desk')
+
+////////// GRID MODIFIERS //////////
+
+$placeholder_grid_top
+  align-items flex-start    
+
+$placeholder_grid_mid
+  align-items center 
     
-  +__grid_pre($attr_auto)
-    align-self stretch
-      
-  +__grid_pre_cell_star($attr_auto)
-    height 100%
+$placeholder_grid_btm
+  align-items flex-end
+  
+
+
++__grid_pre($attr_flush)
+  margin 0
+  
++__grid_pre_cell($attr_flush)
+  padding 0
+  
++__grid_pre($attr_ctr) 
+  justify-content center
+
++__grid_pre($attr_right)
+  margin-left auto
+  justify-content flex-end
+  align-self flex-end
+
++__grid_pre($attr_left) 
+  justify-content left
+
+  
+  
+__grid_pre($attr_top, $placeholder_grid_top)
+  
+__grid_pre($attr_mid, $placeholder_grid_mid)
+
+__grid_pre($attr_btm, $placeholder_grid_btm)
+
+  
++__grid_pre('rev')
+  flex-direction row-reverse
+  
++__grid_pre('col')
+  flex-direction column
+
++__grid_pre('crev')
+  flex-direction column-reverse
+
++__grid_pre('nw')
+  flex-wrap nowrap
+
++__grid_pre('bal')
+  justify-content space-evenly   
+
++__grid_pre('spread')
+  justify-content space-between  
+  
++__grid_pre('dist')
+  justify-content space-around 
+
+
+__cell_pre($attr_top, $placeholder_grid_top)
+  
+__cell_pre($attr_mid, $placeholder_grid_mid)
+     
+__cell_pre($attr_btm, $placeholder_grid_btm)
+
+
++__cell_pre($attr_first)
+  order -1 
+
++__cell_pre($attr_last)
+  order 999
+  
++__grid_pre($attr_auto)
+  align-self stretch
+    
++__grid_pre_cell_star($attr_auto)
+  height 100%
 
 
 
