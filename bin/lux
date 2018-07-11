@@ -654,7 +654,7 @@
 				res=$(stylus $OPT_ALL "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 				status $ret "$res" "Compile Error"
 				rm -f "$LUX_RBUILD/${mod}.css"
-				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css"
+				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css" 
 
 				bname=$(with_basis "layout" "$mod")
 				if [[ "$bname" != "$mod" ]]; then
