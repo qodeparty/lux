@@ -75,10 +75,12 @@ for $l in (1..$len)
         
       //order matters - cuz precendence
       for $j in (0..$basis)
+        __plus_flex_cell_media($j,$label,$device)
+                
+      for $j in (0..$basis)
         __plus_flex_slot_media($j,$label,$device)
 
-      for $j in (0..$basis)
-        __plus_flex_cell_media($j,$label,$device)
+
         
       if $use_media_offets
         for $j in (0..$basis)

@@ -106,6 +106,22 @@ module.exports = () => {
       return null;
     });
 
+    stylus.define('fx_device_prop', function(device,prop){
+      let $val;
+      
+      device = device.string
+      prop   = prop.val;
+      //console.log($devices,device)
+
+      device = $devices[device]
+
+      if( device ){
+        $val  = device[prop]; 
+        return ($val||null); 
+      }
+      return null;
+    });
+
 
     stylus.define('fx_make_size_iter', function(len){
 

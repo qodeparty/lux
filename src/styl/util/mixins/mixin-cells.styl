@@ -129,10 +129,12 @@ __plus_flex_make_set($label=false,$device=false)
     
   //order matters - cuz precendence
   for $i in (0..$basis)
+    __plus_flex_cell_media($i,$label,$device)
+    
+  for $i in (0..$basis)
     __plus_flex_slot_media($i,$label,$device)
 
-  for $i in (0..$basis)
-    __plus_flex_cell_media($i,$label,$device)
+
     
   for $i in (0..$basis)
     __plus_margin_pull($i,$label,$device)
