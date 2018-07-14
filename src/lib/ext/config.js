@@ -4,9 +4,6 @@ $flags  = $config['flags'];
 $vals   = $config['init'];
 
 
-$sizes     = $config['sizes'];
-$size_lbls = $sizes['meta']['labels'];
-
 $percs     = $config['percs']['vals'];
 
 //console.log($size_lbls)
@@ -78,12 +75,6 @@ module.exports = () => {
 
 
 
-    stylus.define('fx_size_meta', function(param){
-      $meta = $sizes['meta'];
-      let lookup = param.val;
-      let $val   = $meta[lookup] || null;
-      return $val; 
-    });
 
     stylus.define('fx_make_perc_iter', function(len){
       const gen = makePercGenerator()

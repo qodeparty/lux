@@ -22,6 +22,12 @@ $size_start    ?= __size_meta('hstart')
     $key='$'+$size_prefix+$v+'' //size-000
     $val= $i * $size_step * $basis // 1 * 0.25 * 16
 
+    $ov = fx_size_override( $v )
+
+    //use override value if specified
+    if $ov is not null
+      $val=$ov
+    
     define($key,$val)      
 
     if $sizes is defined 
@@ -50,4 +56,5 @@ $size_start    ?= __size_meta('hstart')
     define($key,$val)
     // if $devmode 
     //   p($key  + ' ' + lookup($keyval) + ' ' + $step)
+
 

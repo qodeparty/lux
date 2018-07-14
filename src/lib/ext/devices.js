@@ -1,6 +1,11 @@
 
 $devices   = $config['devices']['vals'];
 
+
+$sizes     = $config['sizes'];
+$size_lbls = $sizes['meta']['labels'];
+
+
 cyan  = process.env['COLOR_CYAN'];
 green = process.env['COLOR_GREEN'];
 end   = process.env['COLOR_NONE'];
@@ -69,6 +74,19 @@ module.exports = () => {
 
   return function(stylus){
 
+    stylus.define('fx_size_meta', function(param){
+      $meta = $sizes['meta'];
+      let lookup = param.val;
+      let $val   = $meta[lookup] || null;
+      return $val; 
+    });
+
+    stylus.define('fx_size_override', function(param){
+      $meta = $sizes['meta']['override'];
+      let lookup = param.val;
+      let $val   = $meta[lookup] || null;
+      return $val; 
+    });
 
     stylus.define('fx_devices', function(device,param){
       d = $config['devices'].vals[ id.val ];

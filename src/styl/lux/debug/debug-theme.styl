@@ -10,6 +10,27 @@
 .archxray .changes-shadow .thing
   background var(--debug-color)
 
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG Container
+////////////////////////////////////////////////////////////////////////////// */
+
+// .archxray .wrapper
+//   margin 2rem
+  
+.archxray .container,
+.archxray .container-fixed
+  color var(--debug-color)
+  background rgba($arch_3, .3) !important
+  border 1px dashed var(--debug-color) !important
+  margin-bottom 1rem
+  padding 1rem
+  
+.archxray .pretty-content
+  color #000 !important
+  
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG Container
+////////////////////////////////////////////////////////////////////////////// */
 
 .archxray .thing
   background rgba($lux_blue, .5)
@@ -84,9 +105,7 @@
 .archxray .u1 .thing
   background rgba($sand_puff2, 1) !important
 
-.archxray .pretty-content
-  color $sand_puff !important
-  
+
 .archxray .s1 .thing
   background rgba($scale_0, .5)
   
@@ -155,20 +174,7 @@
   border-radius 5px
   color white
 
-/* //////////////////////////////////////////////////////////////////////////////
-// DEBUG Container
-////////////////////////////////////////////////////////////////////////////// */
 
-// .archxray .wrapper
-//   margin 2rem
-  
-.archxray .container,
-.archxray .container-fixed
-  $this=$sand_puff
-  background rgba($this, .3) !important
-  border 2px dashed $this !important
-  color $this !important
-  margin-bottom 1rem
   
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG BLOCK

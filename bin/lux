@@ -931,6 +931,7 @@
 					case $1 in
 						files) shift; res=$(grep -HiREl --color=always "$1" .);;
 						html) shift; res=$(grep -HiRE --include=\*.html --color=always "$1" .);;
+						styl) shift; res=$(grep -HiRE --include=\*.styl --color=always "$1" .);;
 						*) res=$(grep -HiREn --color=always "$1" .);;
 					esac
 					#query=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) \;`
