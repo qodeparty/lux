@@ -436,10 +436,12 @@
 	function lux_copy_www(){
 		local res ret 
 		info "Copying resouce and generated files to www..."
-		if [ -d "$LUX_WWW"  ]; then
+		if [ -d "$LUX_WWW" ]; then
 			mkdir -p $LUX_WWW/res/build
 			cp -r $LUX_RES $LUX_WWW
 			cp -r $LUX_HOME/www/test $LUX_WWW
+		else
+			error "Problem copying build files"
 		fi
 	}
 

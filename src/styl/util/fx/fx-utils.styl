@@ -26,18 +26,6 @@
 // FX
 ////////////////////////////////////////////////////////////////////////////// */
     
-  __fontsize($ref="")
-    $len = fx_make_size_iter(1)
-    
-    $ref = fx_str_len($ref) > 1 ? __join('-',$ref) : ""
-    
-    for $i in (1..$len)
-      $v=fx_make_size_iter()
-      $key='$'+$size_prefix+$v+'' //size-000
-      $this=$pre_size+$v+$ref
-      {$this}
-        font-size: __rem(lookup($key))
-
 
   __basis_width($slot)
     round( percentage( $slot/$basis ), 3 )    

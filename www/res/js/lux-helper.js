@@ -1,7 +1,46 @@
       $lorem='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Enim nec dui nunc mattis. Netus et malesuada fames ac turpis egestas. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Nisl rhoncus mattis rhoncus urna neque viverra justo. Aliquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. liquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+      
+      var sizes={
+        nano   : { max:360  },
+        mobile : { max:768  },
+        tablet : { max:1024 },
+        desktop: { max:1216 },
+        wide : { max:1440 },
+        full : { max:1920 },
+        jumbo: { max:2560 },
+        ultra: { max:9999 }
+      };
+
+
+      function load_sizer(){
+        let keys = Object.keys(sizes);
+        let frag = document.createDocumentFragment();
+        let div  = document.createElement('div');
+            div.setAttribute('class', 'debug-display as-display watch-resizer' );
+
+        let res = $("<div class='resizer'>"+`${window.innerWidth}`+"</div>");
+            div.appendChild(res[0]);
+
+        for(let i=0;i<keys.length;i++){
+          let key  = keys[i]; let size = sizes[key].max;
+          let cls  = `show-on-${key}`
+          let btn  = document.createElement('button');
+              btn.setAttribute('class', cls );
+              btn.innerHTML = `${key} : ${size}`;
+              div.appendChild(btn);  
+        }
+
+        frag.appendChild(div);
+        $('body').append(frag);
+      }
+
+
+
+
       function subLorem(len=16){
         return $lorem.substring(0,len);
       }
+
       $('.lorem-1').html(subLorem(100));
       $('.lorem-3').html(subLorem(300));
       $('.lorem-5').html(subLorem(500));
@@ -9,3 +48,10 @@
       $('.toggle-debug').on('click', (e) => {
         $('body').toggleClass('archxray');
       });
+
+
+      $(window).on('resize', function(e){
+        $('.resizer').html(window.innerWidth);
+      });
+
+      load_sizer();

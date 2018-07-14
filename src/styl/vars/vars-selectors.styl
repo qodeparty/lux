@@ -21,6 +21,8 @@ $abr_cell=c
 $abr_right=r
 $abr_left=l
 
+$abr_text=t
+
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions
 ////////////////////////////////////////////////////////////////////////////// */
@@ -184,6 +186,17 @@ $cl_attr_pre_slot_any   = __attr_class($pre_slot, $attr_any)
 $cl_attr_pre_slot_under = __attr_class($cl_slot + $under, $attr_any)
 $cl_attr_pre_slot_any_s = __attr_class('slot' + $dash_i, $attr_any) 
 
+/* //////////////////////////////////////////////////////////////////////////////
+// text
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_textblock = $dot + 'text-block'
+$cl_text      = $dot + 'text'
+$pre_text     = $dot + 'text'  + $dash //TODO:fix
+
+$cl_attr_pre_text_any   = __attr_class($pre_text, $attr_any)
+$cl_attr_pre_text_under = __attr_class($cl_text + $under, $attr_any)
+$cl_attr_pre_text_any_s = __attr_class('text' + $dash_i, $attr_any) 
 
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions offsets

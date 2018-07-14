@@ -47,10 +47,12 @@ $cellPlaceholder
 
 
 //TODO:cleanup
-{__attr_class('rt-',$attr_any)}
+{__attr_class('rt-',$attr_any)},
+{__attr_class('_r',$attr_any)}
   margin-right s("calc( var(--pull-index, 1) * %s%)",$atomic_basis)
 
-{__attr_class('lt-',$attr_any)}
+{__attr_class('lt-',$attr_any)},
+{__attr_class('_l',$attr_any)}
   margin-left s("calc( var(--push-index, 1) * %s%)",$atomic_basis)
   
 
@@ -72,15 +74,16 @@ for $l in (1..$len)
       __plus_flex_visibility($label,$device)
         
       //order matters - cuz precendence
-      for $i in (0..$basis)
-        __plus_flex_slot_media($i,$label,$device)
+      for $j in (0..$basis)
+        __plus_flex_slot_media($j,$label,$device)
 
-      for $i in (0..$basis)
-        __plus_flex_cell_media($i,$label,$device)
+      for $j in (0..$basis)
+        __plus_flex_cell_media($j,$label,$device)
         
       if $use_media_offets
-        __plus_margin_pull($i,$label,$device)
-        __plus_margin_push($i,$label,$device)
+        for $j in (0..$basis)
+          __plus_margin_pull($j,$label,$device)
+          __plus_margin_push($j,$label,$device)
 
 /************************************************************/
 

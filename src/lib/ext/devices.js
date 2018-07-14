@@ -97,8 +97,10 @@ module.exports = () => {
       getVals = getVals.val;
       //console.log($devices,device)
 
+      device = $devices[device]
+
       if( device ){
-        $val  = ( getVals ? $devices[device]['range'] : $devices[device]['alt'] );
+        $val  = ( getVals ? device['range'] : device['alt'] );
         return ($val||null); 
       }
       return null;
