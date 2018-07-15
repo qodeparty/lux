@@ -108,6 +108,16 @@ $cl_block_item  = ".block-item"
 $cl_block_vert  = ".block-vert"
 $cl_block_auto  = ".block-auto"
 
+$cl_attr_blocks      = ".blocks"
+$cl_attr_block       = __attr_class($cl_block, $attr_any)
+$cl_attr_block_pre   = __attr_class($cl_block_pre, $attr_any)
+$cl_attr_block_left  = __attr_class($dash + $attr_left, $attr_any)
+$cl_attr_block_right = __attr_class($dash + $attr_right, $attr_any)
+$cl_attr_block_ctr   = __attr_class($dash + $attr_ctr, $attr_any)
+$cl_attr_block_item  = __attr_class($dash + $attr_item, $attr_any)
+$cl_attr_block_vert  = __attr_class($dash + $attr_vert, $attr_any)
+$cl_attr_block_auto  = __attr_class($dash + $attr_auto, $attr_any)
+
 $cl_attr_block_pre_any   = __attr_class( "block" + $dash, $attr_any ) // [class*='block-']
 
 

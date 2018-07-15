@@ -162,13 +162,12 @@ $placeholder_as_tiles
   flex-shrink 1
   flex-basis 0
     
-.as-tiles {$cl_block_left},
-.as-tiles {$cl_block_right},
-.as-tiles {$cl_block_ctr},
+.as-tiles {$cl_attr_block_left},
+.as-tiles {$cl_attr_block_right},
+.as-tiles {$cl_attr_block_ctr},
 .as-tiles {$cl_block_vert},
-.as-tiles {$cl_block_auto},
+.as-tiles {$cl_attr_block_pre},
 .as-tiles {$cl_block},
-
 {$cl_attr_block_pre_any}[class*='-tile']
   @extends $placeholder_as_tiles
   display flex
@@ -176,5 +175,16 @@ $placeholder_as_tiles
 .as-tiles {$cl_block_item},
 {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
   @extends $placeholder_as_tiles
-  //__inner_border(1px,#fff)
+
+    
+// .as-tiles {$cl_attr_block_pre},
+// .as-tiles {$cl_block},
+// {$cl_attr_block_pre_any}[class*='-tile']
+//   @extends $placeholder_as_tiles
+//   display flex
+  
+// .as-tiles {$cl_attr_block_pre}{$cl_attr_block_item},
+// {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
+//   @extends $placeholder_as_tiles
+
     
