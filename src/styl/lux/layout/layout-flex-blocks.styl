@@ -2,12 +2,17 @@
 // Lux Flex Block
 ////////////////////////////////////////////////////////////////////////////// */
 
+
+//TODO: FIX BLOCK ATTR CLASSES
+
 .wrapper,
 {$cl_blocks},
 {$cl_block},
 {$cl_block_item}
   position relative
 
+{$cl_blocks}
+  display flex
 
 // {$cl_attr_block_pre_any} > {$cl_attr_block_pre_any},
 // {$cl_attr_block_pre_any} > {$cl_block},
@@ -27,7 +32,7 @@
 .with-gaps {$cl_attr_block_pre_any}{$cl_attr_left}
   margin-right __rem(4)
   
-.with-gaps {$cl_attr_block_pre_any}{$cl_attr_ctr}
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_center}
   margin 0 __rem(4)
   
 .with-gaps {$cl_block}
@@ -50,7 +55,8 @@
   flex-shrink 0
   // flex-wrap wrap
   // max-width 100%
-
+{$cl_attr_block_pre_any} > [class*='block'][class*='-item']
+  display block
 
 +__block_pre($attr_vert)
   flex-direction column
@@ -108,31 +114,31 @@
   display block
 
 
-.as-tiles {$cl_block}:not(.block-item),
-.as-tiles {$cl_attr_block_pre_any}:not(.block-item)
-  display flex
+// .as-tiles {$cl_block}:not(.block-item),
+// .as-tiles {$cl_attr_block_pre_any}:not(.block-item),
+// {$cl_attr_block_pre_any}[class*='-tile']:not(.block-item)
+//   display flex
 
-+__desktop()
-  for $i in (1..$basis)
-    {$cl_block}{$pre_is}{$i},
-    {$cl_attr_block_pre_any}{$pre_is}{$i},
-    {$cl_layout_col}{$pre_is}{$i}
-      width round( percentage( $i/$basis ), 3 )
-      flex none
+.as-tiles .block-item,
+[class*='block'][class*='-item'][class*='-tile']
+  display block
        
 +__mobile()
-  .as-tiles {$cl_block}:not(.block-item)
+  .as-tiles {$cl_block}:not(.block-item):not(.block-inline)
     display block
       
   {$cl_block},
-  {$cl_attr_block_pre_any}:not(.block-spacer)
+  {$cl_attr_block_pre_any}:not(.block-spacer):not(.block-inline)
     display block
+    
   {$cl_block_item}
     flex-grow 0
+    
   {$cl_block_item} input /* is this necessary */
     max-width 100%
   +__block_pre($attr_auto)
     width 100%
+    
   {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
     margin 0 0
     margin __rem(4) 0
@@ -142,21 +148,33 @@
     display block
     margin 0 auto
 
+// this is weird!
+
+// .block-inline
+//   display inline-flex
+//   flex-grow 1
   
+
+$placeholder_as_tiles
+  align-items stretch
+  min-height min-content
+  flex-grow 1
+  flex-shrink 1
+  flex-basis 0
+    
 .as-tiles {$cl_block_left},
 .as-tiles {$cl_block_right},
 .as-tiles {$cl_block_ctr},
 .as-tiles {$cl_block_vert},
 .as-tiles {$cl_block_auto},
 .as-tiles {$cl_block},
-.as-tiles {$cl_block_item}
-  align-items stretch
-  min-height min-content
-  flex-grow 1
-  flex-shrink 1
-  flex-basis 0
-  display block
 
+{$cl_attr_block_pre_any}[class*='-tile']
+  @extends $placeholder_as_tiles
+  display flex
+  
+.as-tiles {$cl_block_item},
+{$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
+  @extends $placeholder_as_tiles
   //__inner_border(1px,#fff)
     
-
