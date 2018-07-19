@@ -32,7 +32,7 @@ $attr_top= __attr_short( 'top', 'top'    )
 $attr_mid= __attr_short( 'mid', 'middle' )
 $attr_btm= __attr_short( 'btm', 'bottom' )
 
-$attr_ctr   = __attr_short( 'ctr', 'center' ) 
+$attr_ctr   = __attr_short( 'ctr', 'center' )
 $attr_right = __attr_short( 'rt' , 'right'  )
 $attr_left  = __attr_short( 'lt' , 'left'   )
 
@@ -56,7 +56,7 @@ $attr_horz   = 'horz'
 $pre_is   = $dot + $L_is    + $dash         //.is-
 $pre_has  = $dot + $L_has   + $dash         //.has-
 $pre_no   = $dot + $L_spans + $dash         //.no-
-$pre_with = $dot + 'with' + $dash 
+$pre_with = $dot + 'with' + $dash
 
 $pre_index   = $pre_is + $L_i             //.is-i<n>
 $pre_spans   = $dot + $L_spans   + $dash  //.spans-<n>
@@ -109,7 +109,7 @@ $cl_block_vert  = ".block-vert"
 $cl_block_auto  = ".block-auto"
 
 $cl_attr_blocks      = ".blocks"
-$cl_attr_block       = __attr_class($cl_block, $attr_any)
+$cl_attr_block       = __attr_class($cl_block, $attr_in)
 $cl_attr_block_pre   = __attr_class($cl_block_pre, $attr_any)
 $cl_attr_block_left  = __attr_class($dash + $attr_left, $attr_any)
 $cl_attr_block_right = __attr_class($dash + $attr_right, $attr_any)
@@ -152,7 +152,7 @@ $cl_attr_cell_any       = __attr_class($cl_flex_cell, $attr_any) // [class*=cell
 
 $cl_attr_pre_cell_s     = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
 $cl_attr_pre_cell_any   = __attr_class($pre_cell, $attr_any) // [class*=cell-]
-$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any) 
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
 
 
 $cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
@@ -178,11 +178,11 @@ $pre_cell = $dot + $L_flex_cell + $dash  //.cell-
 
 $cl_cell = $dot + $L_flex_cell //L_cell
 $cl_cells = $cl_cell + 's'
-  
-$cl_attr_cell           = __attr_class($cl_cell, $attr_in) 
+
+$cl_attr_cell           = __attr_class($cl_cell, $attr_in)
 $cl_attr_pre_cell_any   = __attr_class($pre_cell, $attr_any)
 $cl_attr_pre_cell_under = __attr_class($cl_cell + $under, $attr_any)
-$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any) 
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
 
 
 
@@ -191,10 +191,10 @@ $pre_slot = $dot + 'slot' + $dash  //.slot-
 $cl_slot  = $dot + 'slot'
 $cl_slots = $cl_slot + 's'
 
-$cl_attr_slot           = __attr_class($cl_slot, $attr_in) 
+$cl_attr_slot           = __attr_class($cl_slot, $attr_in)
 $cl_attr_pre_slot_any   = __attr_class($pre_slot, $attr_any)
 $cl_attr_pre_slot_under = __attr_class($cl_slot + $under, $attr_any)
-$cl_attr_pre_slot_any_s = __attr_class('slot' + $dash_i, $attr_any) 
+$cl_attr_pre_slot_any_s = __attr_class('slot' + $dash_i, $attr_any)
 
 /* //////////////////////////////////////////////////////////////////////////////
 // text
@@ -206,15 +206,15 @@ $pre_text     = $dot + 'text'  + $dash //TODO:fix
 
 $cl_attr_pre_text_any   = __attr_class($pre_text, $attr_any)
 $cl_attr_pre_text_under = __attr_class($cl_text + $under, $attr_any)
-$cl_attr_pre_text_any_s = __attr_class('text' + $dash_i, $attr_any) 
+$cl_attr_pre_text_any_s = __attr_class('text' + $dash_i, $attr_any)
 
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions offsets
 ////////////////////////////////////////////////////////////////////////////// */
- 
+
 
 $cl_attr_pull_any_s = __attr_class('left' + $dash_i , $attr_any) // class*="left-"
-$cl_attr_push_any_s = __attr_class('right' + $dash_i , $attr_any) // class*="right-" 
+$cl_attr_push_any_s = __attr_class('right' + $dash_i , $attr_any) // class*="right-"
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Flags is-x
@@ -248,7 +248,7 @@ $cl_sans_pad    = $pre_no + $L_padding //.no-padding
 $cl_sans_radius = $pre_no + $L_radius  //.no-radius
 $cl_sans_shadow = $pre_no + $L_shadow  //.no-shadow
 $cl_sans_border = $pre_no + $L_border  //.no-border
- 
+
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Modifiers - Block/Flex
@@ -295,9 +295,9 @@ $cl_flag_auto   = $pre_is + $L_auto   //.is-auto
 
   "visible"
   "hidden"
-  
+
   "first"
-  "last"              
+  "last"
   "next"
   "prev"
   "curr"

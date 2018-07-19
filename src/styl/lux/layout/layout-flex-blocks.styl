@@ -11,8 +11,6 @@
 {$cl_block_item}
   position relative
 
-{$cl_blocks}
-  display flex
 
 // {$cl_attr_block_pre_any} > {$cl_attr_block_pre_any},
 // {$cl_attr_block_pre_any} > {$cl_block},
@@ -22,31 +20,31 @@
 
 {$cl_block_item}
   align-self stretch
-    
+
 // {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
 //   margin __rem(12) 0
 
 .with-gaps {$cl_attr_block_pre_any}{$cl_attr_right}
   margin-left __rem(4)
-  
+
 .with-gaps {$cl_attr_block_pre_any}{$cl_attr_left}
   margin-right __rem(4)
-  
+
 .with-gaps {$cl_attr_block_pre_any}{$cl_attr_center}
   margin 0 __rem(4)
-  
+
 .with-gaps {$cl_block}
   margin __rem(4) 0
 
-  
+/* display block on non-mobile */
 {$cl_block}
-  display flex /* display block on non-mobile */
+  display flex
   align-items center
   justify-content space-between
   flex-wrap wrap
-  
 
-  
+
+
 //$block_main_placheholder
 {$cl_attr_block_pre_any}
   display flex
@@ -67,18 +65,18 @@
 
 +__block_pre($attr_left)
   justify-content flex-start
-  flex-grow 0  
+  flex-grow 0
 
 +__block_pre($attr_ctr)
   justify-content center
   margin 0 auto
-  flex-grow 1 
+  flex-grow 1
 
 +__block_pre($attr_item)
   align-items center
   flex-basis auto
   justify-content center
-  flex 1 0 
+  flex 1 0
 
 +__block_pre($attr_auto)
   flex-grow 1
@@ -100,7 +98,7 @@
 //   background transparent
 //   height 300px
 //   padding 1rem
-  
+
 +__block_pre($attr_fixed)
   display block
   flex-wrap nowrap
@@ -122,27 +120,27 @@
 .as-tiles .block-item,
 [class*='block'][class*='-item'][class*='-tile']
   display block
-       
+
 +__mobile()
   .as-tiles {$cl_block}:not(.block-item):not(.block-inline)
     display block
-      
+
   {$cl_block},
-  {$cl_attr_block_pre_any}:not(.block-spacer):not(.block-inline)
+  {$cl_attr_block_pre_any}[class*="-resp"]:not(.block-spacer):not(.block-inline)
     display block
-    
+
   {$cl_block_item}
     flex-grow 0
-    
+
   {$cl_block_item} input /* is this necessary */
     max-width 100%
   +__block_pre($attr_auto)
     width 100%
-    
+
   {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
     margin 0 0
     margin __rem(4) 0
-    
+
   +__block_pre_elm('button',$attr_auto)
     width 100%
     display block
@@ -153,7 +151,7 @@
 // .block-inline
 //   display inline-flex
 //   flex-grow 1
-  
+
 
 $placeholder_as_tiles
   align-items stretch
@@ -161,30 +159,30 @@ $placeholder_as_tiles
   flex-grow 1
   flex-shrink 1
   flex-basis 0
-    
+
 .as-tiles {$cl_attr_block_left},
 .as-tiles {$cl_attr_block_right},
 .as-tiles {$cl_attr_block_ctr},
 .as-tiles {$cl_block_vert},
-.as-tiles {$cl_attr_block_pre},
+.as-tiles {$cl_attr_block_pre}:not(.block-item),
 .as-tiles {$cl_block},
 {$cl_attr_block_pre_any}[class*='-tile']
   @extends $placeholder_as_tiles
   display flex
-  
+
 .as-tiles {$cl_block_item},
 {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
   @extends $placeholder_as_tiles
 
-    
+
 // .as-tiles {$cl_attr_block_pre},
 // .as-tiles {$cl_block},
 // {$cl_attr_block_pre_any}[class*='-tile']
 //   @extends $placeholder_as_tiles
 //   display flex
-  
+
 // .as-tiles {$cl_attr_block_pre}{$cl_attr_block_item},
 // {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
 //   @extends $placeholder_as_tiles
 
-    
+

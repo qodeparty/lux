@@ -1,0 +1,40 @@
+.iconset
+  max-width inherit
+
+.icons
+  display flex
+  flex-wrap wrap
+
+.icons div
+  position relative
+  border 1px solid white
+  padding 2px
+  width 3rem
+  height 3rem
+  color white
+  font-size 2rem
+  font-weight normal
+
+
+[class*='icon-']
+    font-family: Awzum;
+
+[class*='icon-']:before
+    position absolute
+    top 7px
+    left 7px
+
+for $i in (0..500)
+  $pre=''
+
+  if $i < 100
+    $pre=0
+
+  if $i < 10
+     $pre='00'
+
+  {".icon-"+$i}:before
+    content: "\f" + $pre + $i;
+
+
+

@@ -10,27 +10,12 @@
 .archxray .changes-shadow .thing
   background var(--debug-color)
 
+
+
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG Container
 ////////////////////////////////////////////////////////////////////////////// */
 
-// .archxray .wrapper
-//   margin 2rem
-  
-.archxray .container,
-.archxray .container-fixed
-  color var(--debug-color)
-  background rgba($arch_3, .3) !important
-  border 1px dashed var(--debug-color) !important
-  margin-bottom 1rem
-  padding 1rem
-  
-.archxray .pretty-content
-  color #000 !important
-  
-/* //////////////////////////////////////////////////////////////////////////////
-// DEBUG Container
-////////////////////////////////////////////////////////////////////////////// */
 
 .archxray .thing
   background rgba($lux_blue, .5)
@@ -38,80 +23,74 @@
   color white
   min-width 0.625rem
 
- 
+
 .archxray .thing
   position relative
   text-align center
   border-radius 3px
   __inner_border(1px,$sand_sadcloud)
-  
-.archxray .r,
+
+
 .archxray .r .thing
   background rgba($sand_red, .5) !important
- 
-.archxray .o, 
+
 .archxray .o .thing
   background rgba($sand_orange, .5) !important
 
-.archxray .y,  
 .archxray .y .thing
   background rgba($sand_yellow, .5) !important
-  
-.archxray .g,  
+
 .archxray .g .thing
   background rgba($sand_green, .5) !important
 
-.archxray .b,  
 .archxray .b .thing
   background rgba($sand_electric, .5) !important
 
-.archxray .v,  
 .archxray .v .thing
   background rgba($sand_dusk, .5) !important
 
-.archxray .u,  
 .archxray .u .thing
   background rgba($sand_puff2, .5) !important
 
 .archxray .r1,
 .archxray .r1 .thing
   background rgba($sand_red, 1) !important
- 
-.archxray .o1, 
+
+.archxray .o1,
 .archxray .o1 .thing
   background rgba($sand_orange, 1) !important
 
-.archxray .y1,  
+.archxray .y1,
 .archxray .y1 .thing
   background rgba($sand_yellow, 1) !important
-  
-.archxray .g1,  
+
+.archxray .g1,
 .archxray .g1 .thing
   background rgba($sand_green, 1) !important
 
-.archxray .b1,  
+.archxray .b1,
 .archxray .b1 .thing
   background rgba($sand_electric, 1) !important
 
-.archxray .v1,  
+.archxray .v1,
 .archxray .v1 .thing
   background rgba($sand_dusk, 1) !important
 
-.archxray .w1,  
+.archxray .w1,
 .archxray .w1 .thing
   background rgba($sand_puff, 1) !important
 
-.archxray .u1,  
+.archxray .u1,
 .archxray .u1 .thing
   background rgba($sand_puff2, 1) !important
 
 
 .archxray .s1 .thing
   background rgba($scale_0, .5)
-  
+
 .archxray .s2 .thing
-  background rgba($scale_1, .5) 
-  
+  background rgba($scale_1, .5)
+
 .archxray .s3 .thing
   background rgba($scale_2, .5)
 
@@ -128,24 +107,24 @@
   background rgba($scale_6, .5)
 
 .archxray .s8 .thing
-  background rgba($scale_7, .5)   
+  background rgba($scale_7, .5)
 
 
-.archxray .thing.trunc 
+.archxray .thing.trunc
   text-overflow ellipsis
   overflow hidden
   white-space nowrap
-  
+
 //inner border for flush example
 .archxray .has-fake-border .thing
   __inner_border(1px,#fff)
 
 .archxray .with-fake-border[class*="cell-"][class*="-flush"] > div
   box-shadow none
-  
+
 .archxray .with-fake-border[class*="cell-"][class*="-flush"] .thing
   __inner_border(1px,#fff)
-  
+
 .archxray .changes-background .thing
   background var(--display-color,$sand_sadcloud )
 
@@ -169,74 +148,121 @@
 ////////////////////////////////////////////////////////////////////////////// */
 .archxray {$cl_cells}
   margin 25px
-  
+
 .archxray {$cl_cells} article
   border-radius 5px
   color white
 
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG Container
+////////////////////////////////////////////////////////////////////////////// */
 
-  
+// .archxray .wrapper
+//   margin 2rem
+
+.archxray .container,
+.archxray .container-fixed
+  color var(--debug-color)
+  background rgba($arch_3, .3) !important
+  border 1px dashed var(--debug-color) !important
+  margin-bottom 1rem
+  padding 1rem
+
+.archxray .pretty-content
+  color #000 !important
+
+/* //////////////////////////////////////////////////////////////////////////////
+// DEBUG BLOCK
+////////////////////////////////////////////////////////////////////////////// */
+debug_color_outline($this,$fg=$this,$inv=false)
+  if $inv
+    if $this == $fg
+      $fg = $sand_puff
+    background rgba($this, 1)
+    border 1px dashed $this
+    color $fg
+  else
+    background rgba($this, .3)
+    border 1px dashed $this
+    color $fg
+
+$placeholder_debug_r
+  debug_color_outline($sand_red)
+
+$placeholder_debug_o
+  debug_color_outline($sand_orange)
+
+$placeholder_debug_y
+  debug_color_outline($sand_yellow)
+
+$placeholder_debug_g
+  debug_color_outline($sand_green)
+
+$placeholder_debug_b
+  debug_color_outline($sand_electric)
+
+$placeholder_debug_v
+  debug_color_outline($sand_dusk)
+
+$placeholder_debug_u
+  debug_color_outline($sand_puff)
+
+$placeholder_debug_p
+  debug_color_outline($sand_pink)
+
+.archxray .r
+  @extends $placeholder_debug_r
+.archxray .o
+  @extends $placeholder_debug_o
+.archxray .y
+  @extends $placeholder_debug_y
+.archxray .g
+  @extends $placeholder_debug_g
+.archxray .b
+  @extends $placeholder_debug_b
+.archxray .v
+  @extends $placeholder_debug_v
+.archxray .u
+  @extends $placeholder_debug_u
+.archxray .u
+  @extends $placeholder_debug_p
+
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG BLOCK
 ////////////////////////////////////////////////////////////////////////////// */
 
-.archxray {$cl_blocks}:not(.stripes5)
-  //NO:display block
-  padding 2rem
-  margin 1rem
-  
-  //background rgba($sand_twilight, .5)
-  
-.archxray input{$cl_attr_block_pre_any},
-.archxray textarea{$cl_attr_block_pre_any}
-  background white
-  color black !important
- 
- $debug_block_placeholder
-  padding 1rem
+
+.archxray .xray-blocks {$cl_blocks}:not(.stripes5)
+  @extends $placeholder_debug_b
+
+.archxray .xray-blocks {$cl_attr_block_pre_any} > [class*='-pink']
+  debug_color_outline($sand_pink,,true)
+
+.archxray .xray-blocks {$cl_attr_block_pre_any} > [class*='-orange']
+  debug_color_outline($sand_orange,,true)
+
+.archxray .xray-blocks {$cl_attr_block_pre_any} > [class*='-green']
+  debug_color_outline($sand_lime,,true)
+
+
+.archxray .xray-blocks {$cl_attr_block_pre_any}:only-child
+  @extends $placeholder_debug_u
+
+.archxray .xray-blocks [class*='-item']
+  debug_color_outline($sand_puff)
+  padding 15px
+  margin 15px
   border-radius 5px
-  color white
-  __inner_border(1px,$sand_puff)
-    
-.archxray .xray-blocks {$cl_attr_block_pre_any}:not(input):not(textarea):not(.block-spacer):not(.block-breaker)
-  background rgba($lux_blue, .3)
-  @extends $debug_block_placeholder
-  
+// .archxray .xray-blocks {$cl_attr_block},
 // .archxray .xray-blocks {$cl_attr_block_pre_any}
-//   @extends $debug_block_placeholder
-
-.archxray .as-tiles article,
-.archxray {$cl_attr_block_pre_any}[class*='-tile'] article
-  padding 2rem 1.25rem !important
-
-.archxray .xray-blocks .block-breaker
-  $this=$sand_pink
-  background rgba($this, .3) !important
-  border 2px dashed $this
-  color $this
-
- 
-.archxray .xray-blocks .block-breaker:after
-  font-size 12px
-  font-weight bold
-  content 'BRK'
-  text-transform uppercase
-
+//   @extends $placeholder_debug_u
+//   margin 2px
 
 .archxray .xray-blocks .block-spacer
-  $this=$sand_green
-  background rgba($this, .3) !important
-  border 2px dashed $this !important
-  color $this !important
+  debug_color_outline($sand_green)
+  padding 1rem
+  border-radius 5px
 
-.archxray .xray-blocks .block-vspacer
-  $this=$sand_lime
-  background rgba($this, .3) !important
-  border 2px dashed $this !important
-  color $this !important
-
-
-.archxray .xray-blocks .block-vspacer:after,
 .archxray .xray-blocks .block-spacer:after
   font-size 12px
   font-weight bold
@@ -244,11 +270,115 @@
   text-transform uppercase
   text-align center
 
-.archxray .xray-blocks .block-vspacer:after
-  content 'VSP'
+.archxray .xray-blocks .block-lt:before
+  font-family Awzum
+  font-size 12px
+  content '\f061'
+  position absolute
+  top -14px
+  right 0px
+  color var(--debug-color)
 
-.archxray .xray-blocks .blocks
-  $this=$sand_puff
-  background rgba($this, .5) !important
-  border 2px dashed $this !important
-  color $this !important
+.archxray .xray-blocks .block-rt:before
+  font-family Awzum
+  font-size 12px
+  content: '\f060'
+  position absolute
+  top -14px
+  left 0px
+  color var(--debug-color)
+
+.archxray .xray-blocks .block-ctr:before
+  font-family Awzum
+  font-size 12px
+  content: '\f060'
+  position absolute
+  top -14px
+  left 0px
+  color var(--debug-color)
+
+
+// .archxray {$cl_blocks}:not(.stripes5)
+//   //NO:display block
+//   padding 2rem
+//   margin 1rem
+
+//   //background rgba($sand_twilight, .5)
+
+// .archxray input{$cl_attr_block_pre_any},
+// .archxray textarea{$cl_attr_block_pre_any}
+//   background white
+//   color black !important
+
+//  $debug_block_placeholder
+//   padding 1rem
+//   border-radius 5px
+//   color white
+//   __inner_border(1px,$sand_puff)
+
+// .archxray .xray-blocks {$cl_attr_block_pre_any}:not(input):not(textarea):not(.block-spacer):not(.block-breaker),
+// .archxray .xray-blocks {$cl_attr_block}
+//   background rgba($lux_blue, .4)
+//   @extends $debug_block_placeholder
+
+
+// .archxray .xray-blocks {$cl_attr_block_pre_any} > {$cl_attr_block_pre_any}
+//   background red
+
+// // .archxray .xray-blocks {$cl_attr_block_pre_any}
+// //   @extends $debug_block_placeholder
+
+// .archxray .as-tiles article,
+// .archxray {$cl_attr_block_pre_any}[class*='-tile'] article
+//   padding 2rem 1.25rem !important
+
+// .archxray .xray-blocks .block-breaker
+//   $this=$sand_pink
+//   background rgba($this, .3) !important
+//   border 2px dashed $this
+//   color $this
+
+
+// .archxray .xray-blocks .block-breaker:after
+//   font-size 12px
+//   font-weight bold
+//   content 'BRK'
+//   text-transform uppercase
+
+
+// .archxray .xray-blocks .block-spacer
+//   $this=$sand_green
+//   background rgba($this, .3) !important
+//   border 2px dashed $this !important
+//   color $this !important
+
+// .archxray .xray-blocks .block-vspacer
+//   $this=$sand_lime
+//   background rgba($this, .3) !important
+//   border 2px dashed $this !important
+//   color $this !important
+
+
+// .archxray .xray-blocks .block-vspacer:after,
+// .archxray .xray-blocks .block-spacer:after
+//   font-size 12px
+//   font-weight bold
+//   content 'BSP'
+//   text-transform uppercase
+//   text-align center
+
+// .archxray .xray-blocks .block-vspacer:after
+//   content 'VSP'
+
+// .archxray .xray-blocks .blocks
+//   $this=$sand_puff
+//   background rgba($this, .5) !important
+//   border 2px dashed $this !important
+//   color $this !important
+
+
+
+// .font-test:before {
+//     font-family: Awzum;
+//     content: "\f097";
+// }
