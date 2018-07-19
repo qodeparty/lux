@@ -1,5 +1,5 @@
       $lorem='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. Enim nec dui nunc mattis. Netus et malesuada fames ac turpis egestas. Ipsum a arcu cursus vitae congue mauris rhoncus aenean vel. Nisl rhoncus mattis rhoncus urna neque viverra justo. Aliquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi tempus imperdiet nulla malesuada pellentesque. Turpis massa tincidunt dui ut ornare lectus sit amet. Purus in mollis nunc sed. Arcu cursus vitae congue mauris rhoncus aenean vel elit. Scelerisque eu ultrices vitae auctor eu augue ut lectus. liquet nibh praesent tristique magna sit amet purus gravida. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Turpis massa tincidunt dui ut ornare lectus sit amet est. Amet dictum sit amet justo donec enim diam vulputate. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. At auctor urna nunc id cursus metus aliquam. Tristique sollicitudin nibh sit amet commodo nulla.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      
+
       var screens={
         nano   : { max:360  },
         mobile : { max:768  },
@@ -27,14 +27,28 @@
           let btn  = document.createElement('button');
               btn.setAttribute('class', cls );
               btn.innerHTML = `${key} : ${size}`;
-              div.appendChild(btn);  
+              div.appendChild(btn);
         }
 
         frag.appendChild(div);
         $('body').append(frag);
       }
 
+      function load_icons(icons=500){
+        let frag = document.createDocumentFragment();
+        let div   = document.createElement('div');
+            div.setAttribute('class', 'icons' );
 
+        for(let i=0;i<icons;i++){
+          let ch   = document.createElement('div');
+              ch.setAttribute('class', 'icon-'+i );
+              ch.setAttribute('title', 'icon-'+i );
+              div.appendChild(ch);
+        }
+
+        frag.appendChild(div);
+        return frag;
+      }
 
 
       function subLorem(len=16){
@@ -55,3 +69,9 @@
       });
 
       load_sizer();
+
+      let iconFrag = load_icons(300);
+
+      $('.iconset').append(iconFrag);
+
+      //console.log(iconFrag);
