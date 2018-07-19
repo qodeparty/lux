@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Material";
+  src: url("materialdesign-webfont.woff") format('woff');
+}
+
+.font-test {
+    font-family: "Material";
+}
+
+
+.font-test:before {
+    font-family: Material;
+    content: "\f097";
+}

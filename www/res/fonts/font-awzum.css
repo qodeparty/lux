@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "Awzum";
+  src: url("fontawesome-webfont.woff") format('woff');
+}
+
+.font-test {
+    font-family: "Awzum";
+}
+
+
+.font-test:before {
+    font-family: Awzum;
+    content: "\f097";
+}
