@@ -287,37 +287,45 @@ $placeholder_debug_p
 //   margin 2px
 
 
-.archxray .xray-blocks .block-spacer
-  debug_color_outline($sand_green)
-  padding 0 5px
-  border-radius 2px
-
-.archxray .xray-blocks .block-spacer:after
-  font-size 12px
-  font-weight bold
-  content 'BSP'
-  text-transform uppercase
-  text-align center
 
 
-.archxray .xray-blocks .block-breaker
-  debug_color_outline($sand_pink)
-  padding 0 5px
-  border-radius 2px
 
-.archxray .xray-blocks .block-breaker:after
-  font-size 12px
-  font-weight bold
-  content 'BRK'
-  text-transform uppercase
-  text-align center
 
 
 $placeholder_material_design_ico
   font-family Material
-  font-size 14px
+  font-size 16px
   position absolute
   color inherit
+
+
+.archxray .xray-blocks .block-spacer
+  debug_color_outline($sand_green)
+  padding 10px
+  border-radius 2px
+  position realtive
+
+.archxray .xray-blocks .block-spacer:after
+  @extends $placeholder_material_design_ico
+  content '\f84d'
+  top 1px
+  left 2px
+
+
+.archxray .xray-blocks .block-breaker
+  debug_color_outline($sand_pink)
+  padding 10px
+  border-radius 2px
+  position realtive
+
+.archxray .xray-blocks .block-breaker:after
+  @extends $placeholder_material_design_ico
+  content '\f60C'
+  top 1px
+  left 48%
+
+
+
 
 .archxray .xray-blocks {$cl_attr_first}:after
   @extends $placeholder_material_design_ico
@@ -340,14 +348,9 @@ $placeholder_material_design_ico
 .archxray .xray-blocks {$cl_attr_item}:after
   @extends $placeholder_material_design_ico
   content '\f4ca'
-  top 0px
-  left 50%
+  top 0
+  left 0
 
-.archxray .xray-blocks .block-spacer:after
-  @extends $placeholder_material_design_ico
-  content '\f84d'
-  top 0px
-  left 50%
 
 
 // .archxray .xray-blocks {$cl_attr_auto}:after
@@ -360,14 +363,12 @@ $placeholder_material_design_ico
   .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_first}:after
     @extends $placeholder_material_design_ico
     content '\f623'
-    position absolute
     top 0px
     left 48%
 
   .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_last}:after
     @extends $placeholder_material_design_ico
     content '\f621'
-    position absolute
     top unset
     right unset
     bottom 0px !important
@@ -378,6 +379,14 @@ $placeholder_material_design_ico
     content '\f622'
     top 0px
     left 48%
+
+
+  .archxray .xray-blocks .block-spacer:after
+    @extends $placeholder_material_design_ico
+    content '\f84e'
+    top 1px
+    left 48%
+
 
 // .archxray {$cl_blocks}:not(.stripes5)
 //   //NO:display block
