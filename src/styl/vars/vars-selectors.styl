@@ -48,6 +48,8 @@ $attr_fixed  = 'fixed'
 $attr_vert   = 'vert'
 $attr_horz   = 'horz'
 
+$attr_resp   = 'resp'
+
 /* //////////////////////////////////////////////////////////////////////////////
 // Partial Classes (Prefix)
 ////////////////////////////////////////////////////////////////////////////// */
@@ -94,29 +96,32 @@ $cl_with_sm_gaps = $pre_with + 'sm-gaps';
 $cl_attr_right  = __attr_class( $dash + $attr_right, $attr_any)
 $cl_attr_left   = __attr_class( $dash + $attr_left, $attr_any)
 $cl_attr_center = __attr_class( $dash + $attr_ctr, $attr_any)
+
+
+$cl_attr_top    = __attr_class( $dash + $attr_top, $attr_any)
+$cl_attr_mid    = __attr_class( $dash + $attr_mid, $attr_any)
+$cl_attr_btm    = __attr_class( $dash + $attr_btm, $attr_any)
+
+$cl_attr_first  = __attr_class( $dash + $attr_first, $attr_any)
+$cl_attr_last   = __attr_class( $dash + $attr_last, $attr_any)
+
+$cl_attr_item   = __attr_class( $dash + $attr_item, $attr_any)
+$cl_attr_vert   = __attr_class( $dash + $attr_vert, $attr_any)
 $cl_attr_auto   = __attr_class( $dash + $attr_auto, $attr_any)
 
-
+$cl_attr_resp   = __attr_class( $dash + $attr_resp, $attr_any)
 
 $cl_blocks      = ".blocks"
 $cl_block       = ".block"
 $cl_block_pre   = ".block-"
 $cl_block_left  = ".block-lt"
 $cl_block_right = ".block-rt"
-$cl_block_ctr   = ".block-ctr"
-$cl_block_item  = ".block-item"
-$cl_block_vert  = ".block-vert"
-$cl_block_auto  = ".block-auto"
 
-$cl_attr_blocks      = ".blocks"
+
 $cl_attr_block       = __attr_class($cl_block, $attr_in)
 $cl_attr_block_pre   = __attr_class($cl_block_pre, $attr_any)
-$cl_attr_block_left  = __attr_class($dash + $attr_left, $attr_any)
-$cl_attr_block_right = __attr_class($dash + $attr_right, $attr_any)
-$cl_attr_block_ctr   = __attr_class($dash + $attr_ctr, $attr_any)
-$cl_attr_block_item  = __attr_class($dash + $attr_item, $attr_any)
-$cl_attr_block_vert  = __attr_class($dash + $attr_vert, $attr_any)
-$cl_attr_block_auto  = __attr_class($dash + $attr_auto, $attr_any)
+
+
 
 $cl_attr_block_pre_any   = __attr_class( "block" + $dash, $attr_any ) // [class*='block-']
 

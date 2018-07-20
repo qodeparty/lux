@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>Lux - Layout Standard</title>
     <link rel="icon" type="image/x-icon"  href="../favicon.ico">
-    <link rel='stylesheet' id='base'  href='../res/fonts/font-awzum.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='base'  href='../res/fonts/font-material.css'     type='text/css' media='all' />
     <link rel='stylesheet' id='base'  href='../res/build/debug.css'     type='text/css' media='all' />
     <link rel='stylesheet' id='base'  href='../res/build/equalizer.css' type='text/css' media='all' />
     <link rel='stylesheet' id='base'  href='../res/build/modifier.css' type='text/css' media='all' />
@@ -25,54 +25,208 @@
         <a href='layout-truegrid.html'>True Grid</a>
         <a href='native-tags.html'>Native Tags</a>
         <a href='type-modifiers.html'>Type</a>
+        <a href='elements-icon.html'>Icon</a>
       </section>
     </div>
 
 
-
-
     <div class='has-notes wrapper xray-blocks pretty-content' title='block'>
-      <main class='container-fixed'>
+      <div class='container-fixed'>
       	<div class='block'>
       		<span>Hello, Block </span>
       	</div>
-      </main>
+      </div>
     </div>
 
-    <div class='has-notes wrapper xray-blocks pretty-content' title='block'>
+   <div class='has-notes wrapper xray-blocks pretty-content' title='blocks wrapper'>
+    <div class='container-fixed'>
+    	<div class='blocks'>
+	      	<div class='block'>
+	      		<span>Hello, Block </span>
+	      	</div>
+	     </div>
+    </div>
+   </div>
+
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block > block'>
+      <div class='container-fixed'>
+      	<div class='block'>
+	      	<div class='block-ctr'>
+	      		<span>Hello, Block </span>
+	      	</div>
+      	</div>
+      </div>
+    </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block-item'>
+      <div class='container-fixed'>
+      	<div class='block'>
+	      	<div class='block-item'>
+	      		<p class="lorem-3"></p>
+	      	</div>
+      	</div>
+      </div>
+    </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block items'>
       <div class='container-fixed'>
        <div class='blocks'>
-
-	       <div class='block-resp'>
-		      	<div class='block-item'>
+	       <div class='block-auto-top-resp'>
+		      	<div class='block-item-btm'>
 		      		<p class="lorem-3"></p>
 		      	</div>
 		      	<div class='block-item'>
-		      		<p class="lorem-3"></p>
+		      		<p class="lorem-5"></p>
 		      	</div>
-		      	<div class='block-item'>
-		      		<p class="lorem-3"></p>
+		      	<div class='block-item-mid'>
+		      		<p class="lorem-1"></p>
 		      	</div>
 		      </div>
-
-
-
 		    </div>
       </div>
     </div>
 
-    <div class='container-fixed xray-blocks'>
-       <div class='block'>
-       		<div class='block-rt y'>hey</div>
-       		<div class='block-ctr g'>girl</div>
-       		<div class='block-lt y'>hey</div>
-       </div>
-    </div>
 
 
-    <div class='container-fixed'>
-    	<div class='iconset'></div>
-    </div>
+	<div class='has-notes wrapper xray-blocks pretty-content' title='block-vert items'>
+		<div class='container-fixed'>
+			<div class='blocks'>
+		  	<div class='block-resp-vert-auto'>
+		       <div class='block-item lorem-1'>Apples</div>
+		       <div class='block-item lorem-3'>B</div>
+		       <div class='block-item lorem-5'>C</div>
+		    </div>
+		   </div>
+		</div>
+	</div>
+
+	<div class='has-notes wrapper xray-blocks pretty-content' title='block spacer'>
+	  <div class='container-fixed'>
+	  	<div class='block'>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	  	</div>
+	  </div>
+	</div>
+
+
+	<div class='has-notes wrapper xray-blocks pretty-content' title='block breaker'>
+	  <div class='container-fixed'>
+	  	<div class='block'>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-breaker'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	  	</div>
+	  </div>
+	</div>
+
+	<div class='has-notes wrapper xray-blocks pretty-content' title='block sp + brk'>
+	  <div class='container-fixed'>
+	  	<div class='block'>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-breaker'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	  	</div>
+	  </div>
+	</div>
+
+
+    <div class='has-notes wrapper xray-blocks puff-blocks pretty-content' title='block caps'>
+	    <div class='container-fixed'>
+	       <div class='block-resp'>
+	       		<div class='block-0th-lime'>L</div>
+	       		<div class='block-nth-pink'>R</div>
+	       		<div class='block-auto-ctr-cyan'>C</div>
+	       </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks puff-blocks pretty-content' title='block stacked caps'>
+	    <div class='container-fixed'>
+	       <div class='block-resp'>
+	       		<div class='block-0th-lime'>L</div>
+	       		<div class='block-0th-green'>L2</div>
+	       		<div class='block-nth-red'>R2</div>
+	       		<div class='block-nth-pink'>R</div>
+	       		<div class='block-auto-ctr-cyan'>C</div>
+	       </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks puff-blocks pretty-content' title='block complex caps'>
+	    <div class='container-fixed'>
+	       <div class='block-resp'>
+	       		<div class='block-0th-lime'>L</div>
+	       		<div class='block-0th-auto-green'>L2</div>
+	       		<div class='block-nth-auto-red'>R2</div>
+	       		<div class='block-nth-pink'>R</div>
+	       		<div class='block-blue-ctr'>C</div>
+	       		<div class='block-auto-ctr-cyan lorem-5'>C2</div>
+	       </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block input'>
+	    <div class='container-fixed'>
+	    	<div class='blocks'>
+		       <div class='block'>
+		       	 <input class='elem' type=text>
+		       </div>
+		     </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block item elem'>
+	    <div class='container-fixed'>
+	    	<div class='block-resp'>
+
+		       		 <label class='block-rt' >First Name</label>
+			       	 <input class='block-elem-auto' type=text>
+
+		     </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks pretty-content' title='block item elem'>
+	    <div class='container-fixed'>
+	    	<div class='block-resp'>
+
+		       <div class='block-item'>
+		       		 <label class='elem' >First Name</label>
+			       	 <input class='elem' type=text>
+		       </div>
+
+		       <div class='block-spacer'></div>
+
+		       <div class='block-item'>
+		       		 <label class='elem' >City, State</label>
+			       	 <input class='elem' type=text>
+		       </div>
+		     </div>
+	    </div>
+   </div>
 
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' ></script>
     <script src='../res/js/lux-helper.js'></script>

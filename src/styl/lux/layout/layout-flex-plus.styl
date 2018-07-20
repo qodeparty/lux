@@ -7,32 +7,32 @@
 
 ////////// AUTO GRID CELLS //////////
 
-{$cl_attr_cell}, 
+{$cl_attr_cell},
 {$cl_attr_pre_cell_any},
 {$cl_attr_pre_cell_under}
   position relative
-  display flex 
+  display flex
   flex-flow  row wrap
   margin 0
   //margin-bottom 1rem
-  
+
 $cellPlaceholder
   padding 0.5rem
   max-width 100%
   cursor help
   position relative
-  
+
 {$cl_attr_slot},
 {$cl_attr_pre_slot_under}
   @extends $cellPlaceholder
-  flex 1 1 0% 
+  flex 1 1 0%
 
 {$cl_attr_pre_slot_any}
   @extends $cellPlaceholder
 
 {$cl_attr_pre_slot_any} //fixed %
   flex none
-  
+
 ////////// GRID FROM CELL //////////
 
 
@@ -42,7 +42,7 @@ $cellPlaceholder
 {$cl_attr_pre_cell_any}{$cl_attr_pre_slot_any}
   margin  0
   padding 0
-  
+
 /************************************************************/
 
 
@@ -54,7 +54,7 @@ $cellPlaceholder
 {__attr_class('left-',$attr_any)},
 {__attr_class('_l',$attr_any)}
   margin-left s("calc( var(--push-index, 1) * %s%)",$atomic_basis)
-  
+
 
 /************************************************************/
 
@@ -70,18 +70,18 @@ for $l in (1..$len)
   ref=lookup('__'+$device+'_only')
   if ref is defined
     +ref()
-    
+
       __plus_flex_visibility($label,$device)
-        
+
       //order matters - cuz precendence
       for $j in (0..$basis)
         __plus_flex_cell_media($j,$label,$device)
-                
+
       for $j in (0..$basis)
         __plus_flex_slot_media($j,$label,$device)
 
 
-        
+
       if $use_media_offets
         for $j in (0..$basis)
           __plus_margin_pull($j,$label,$device)
@@ -96,27 +96,27 @@ for $l in (1..$len)
   __plus_flex_make_set('desk','desk')
 
 /************************************************************/
-  
+
 ////////// GRID MODIFIERS //////////
 
 $placeholder_grid_top
-  align-items flex-start    
+  align-items flex-start
 
 $placeholder_grid_mid
-  align-items center 
-    
+  align-items center
+
 $placeholder_grid_btm
   align-items flex-end
-  
+
 
 
 +__cell_pre($attr_flush)
   margin 0
-  
+
 +__cell_pre_slot($attr_flush)
   padding 0
-  
-+__cell_pre($attr_ctr) 
+
++__cell_pre($attr_ctr)
   justify-content center
 
 +__cell_pre($attr_right)
@@ -124,20 +124,20 @@ $placeholder_grid_btm
   justify-content flex-end
   align-self flex-end
 
-+__cell_pre($attr_left) 
++__cell_pre($attr_left)
   justify-content left
 
-  
+
 __cell_pre($attr_top, $placeholder_grid_top)
-  
+
 __cell_pre($attr_mid, $placeholder_grid_mid)
 
 __cell_pre($attr_btm, $placeholder_grid_btm)
 
-  
+
 +__cell_pre('rev')
   flex-direction row-reverse
-  
+
 +__cell_pre('col')
   flex-direction column
 
@@ -148,37 +148,37 @@ __cell_pre($attr_btm, $placeholder_grid_btm)
   flex-wrap nowrap
 
 +__cell_pre('bal')
-  justify-content space-evenly   
+  justify-content space-evenly
 
 +__cell_pre('spread')
-  justify-content space-between  
-  
+  justify-content space-between
+
 +__cell_pre('dist')
-  justify-content space-around 
+  justify-content space-around
 
 
 __slot_pre($attr_top, $placeholder_grid_top)
-  
+
 __slot_pre($attr_mid, $placeholder_grid_mid)
-     
+
 __slot_pre($attr_btm, $placeholder_grid_btm)
 
 
 +__slot_pre($attr_first)
-  order -1 
+  order -1
 
 +__slot_pre($attr_last)
   order 999
-  
+
 +__slot_pre($attr_fill)
   align-self stretch
   max-width unset
   flex 1 1 auto
-  
+
 +__slot_pre($attr_auto)
   align-self stretch
-    
-// +__grid_pre_cell_star($attr_auto)
-//   height 100%
+
++__cell_pre_slot_star($attr_auto)
+  height 100%
 
 

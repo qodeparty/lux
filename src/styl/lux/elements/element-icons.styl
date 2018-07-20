@@ -17,24 +17,19 @@
 
 
 [class*='icon-']
-    font-family: Awzum;
+    font-family: Material;
 
 [class*='icon-']:before
     position absolute
     top 7px
     left 7px
 
-for $i in (0..500)
-  $pre=''
-
-  if $i < 100
-    $pre=0
-
-  if $i < 10
-     $pre='00'
-
+//materialdesign 2594 usable icons
+for $i in (0..2594)
+  $this=fx_hex_pad($i)
   {".icon-"+$i}:before
-    content: "\f" + $pre + $i;
+    content: s("'\f%s'",unquote($this))
+
 
 
 

@@ -24,13 +24,13 @@
 // {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
 //   margin __rem(12) 0
 
-.with-gaps {$cl_attr_block_pre_any}{$cl_attr_right}
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_last}
   margin-left __rem(4)
 
-.with-gaps {$cl_attr_block_pre_any}{$cl_attr_left}
+.with-gaps {$cl_attr_block_pre_any}{$cl_attr_first}
   margin-right __rem(4)
 
-.with-gaps {$cl_attr_block_pre_any}{$cl_attr_center}
+.with-gaps {$cl_attr_block_pre_any}
   margin 0 __rem(4)
 
 .with-gaps {$cl_block}
@@ -51,26 +51,93 @@
   align-items center
   flex-basis auto
   flex-shrink 0
-  // flex-wrap wrap
+  flex-wrap wrap
+  position relative
   // max-width 100%
-{$cl_attr_block_pre_any} > [class*='block'][class*='-item']
-  display block
+
+
+
+// {$cl_attr_block_pre_any} > [class*='block']{$cl_attr_item}
+//   display block
+
+{$cl_block} > {$cl_attr_block_pre_any},
+{$cl_attr_block_pre_any} > {$cl_block}
+  flex 1 1 auto
 
 +__block_pre($attr_vert)
   flex-direction column
 
+/* positional */
+
+
+
++__block_pre($attr_top)
+  align-items flex-start
+
++__block_pre($attr_mid)
+  align-items center
+
++__block_pre($attr_btm)
+  align-items flex-end
+
+
 +__block_pre($attr_right)
   justify-content flex-end
-  flex-grow 0
-
-+__block_pre($attr_left)
-  justify-content flex-start
-  flex-grow 0
+  margin-left auto
+  align-self flex-end
 
 +__block_pre($attr_ctr)
   justify-content center
-  margin 0 auto
+
++__block_pre($attr_left)
+  justify-content flex-start
+
+/* ordernal */
+
++__block_pre($attr_first)
+  flex-grow 0
+  order -1
+
++__block_pre($attr_last)
+  flex-grow 0
+  order 9999
+
+
+{$cl_attr_block_pre_any}{$cl_attr_top} > {$cl_attr_item}
+  align-items flex-start
+
+{$cl_attr_top}{$cl_attr_item}
+  align-items flex-start !important
+
+
+{$cl_attr_block_pre_any}{$cl_attr_mid} > {$cl_attr_item}
+  align-items center
+
+{$cl_attr_mid}{$cl_attr_item}
+  align-items center !important
+
+
+{$cl_attr_block_pre_any}{$cl_attr_btm} > {$cl_attr_item}
+  align-items flex-end
+
+{$cl_attr_btm}{$cl_attr_item}
+  align-items flex-end !important
+
+
+{$cl_attr_block_pre_any}{$cl_attr_auto} > {$cl_attr_item}
+  align-self stretch
+
++__block_pre($attr_auto)
   flex-grow 1
+  flex-shrink 1
+  max-width 100%
+  align-self stretch
+
+
++__block_pre_elm('button',$attr_auto)
+  display block
+  margin 0 auto
+
 
 +__block_pre($attr_item)
   align-items center
@@ -78,26 +145,9 @@
   justify-content center
   flex 1 0
 
-+__block_pre($attr_auto)
-  flex-grow 1
-  max-width 100%
-  min-width __rem(50)
-  padding 2px
 
-+__block_pre_elm('button',$attr_auto)
-  display block
-  margin 0 auto
 
-.block-spacer
-  display block
-  background transparent
-  //width __rem(4)
 
-// .block-vspacer
-//   display block
-//   background transparent
-//   height 300px
-//   padding 1rem
 
 +__block_pre($attr_fixed)
   display block
@@ -105,37 +155,60 @@
   flex-basis 100%
 
 .block-breaker
-  flex-basis 100%
+  flex-basis 100% !important
+  align-self stretch
   margin 0
   padding 0
   background transparent
   display block
 
 
+.block-spacer
+  display block
+  background transparent
+  flex 0 0 auto !important
+
+// .block-vspacer
+//   display block
+//   background transparent
+//   height 300px
+//   padding 1rem
+
 // .as-tiles {$cl_block}:not(.block-item),
 // .as-tiles {$cl_attr_block_pre_any}:not(.block-item),
 // {$cl_attr_block_pre_any}[class*='-tile']:not(.block-item)
 //   display flex
+.block .elem,
+[class*="block-"] [class*='elem']
+  display inline-flex
+  flex 1 1 auto
 
 .as-tiles .block-item,
 [class*='block'][class*='-item'][class*='-tile']
   display block
 
+
+
 +__mobile()
   .as-tiles {$cl_block}:not(.block-item):not(.block-inline)
     display block
 
-  {$cl_block},
   {$cl_attr_block_pre_any}[class*="-resp"]:not(.block-spacer):not(.block-inline)
-    display block
+    //display block
+    flex-direction column
+    align-items stretch
 
-  {$cl_block_item}
-    flex-grow 0
+  // +__block_pre($attr_item)
+  //   flex-grow 0
 
-  {$cl_block_item} input /* is this necessary */
+  {$cl_attr_block_pre_any}[class*="-resp"]  [class*='elem']
+    flex-basis 100%
+
+  {$cl_attr_item} input /* is this necessary */
     max-width 100%
+
   +__block_pre($attr_auto)
-    width 100%
+    max-width 100%
 
   {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
     margin 0 0
@@ -146,11 +219,13 @@
     display block
     margin 0 auto
 
+  .block-spacer
+    flex 0 0 100% !important
+
 // this is weird!
 
-// .block-inline
-//   display inline-flex
-//   flex-grow 1
+
+
 
 
 $placeholder_as_tiles
@@ -160,10 +235,10 @@ $placeholder_as_tiles
   flex-shrink 1
   flex-basis 0
 
-.as-tiles {$cl_attr_block_left},
-.as-tiles {$cl_attr_block_right},
-.as-tiles {$cl_attr_block_ctr},
-.as-tiles {$cl_block_vert},
+.as-tiles {$cl_attr_left},
+.as-tiles {$cl_attr_right},
+.as-tiles {$cl_attr_center},
+.as-tiles {$cl_attr_vert},
 .as-tiles {$cl_attr_block_pre}:not(.block-item),
 .as-tiles {$cl_block},
 {$cl_attr_block_pre_any}[class*='-tile']

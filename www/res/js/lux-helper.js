@@ -34,7 +34,7 @@
         $('body').append(frag);
       }
 
-      function load_icons(icons=500){
+      function load_icons(icons=50){
         let frag = document.createDocumentFragment();
         let div   = document.createElement('div');
             div.setAttribute('class', 'icons' );
@@ -70,8 +70,10 @@
 
       load_sizer();
 
-      let iconFrag = load_icons(300);
+      let iconElm = $('.iconset')
 
-      $('.iconset').append(iconFrag);
-
-      //console.log(iconFrag);
+      if( iconElm.length > 0 ){
+        let size = $('.iconset').data('size');
+        iconElm.append(load_icons(size));
+        console.log(size);
+      }
