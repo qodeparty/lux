@@ -59,6 +59,7 @@
       $('.lorem-3').html(subLorem(300));
       $('.lorem-5').html(subLorem(500));
       $('.lorem-9').html(subLorem(1500));
+
       $('.toggle-debug').on('click', (e) => {
         $('body').toggleClass('archxray');
       });

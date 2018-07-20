@@ -48,49 +48,27 @@
 //$block_main_placheholder
 {$cl_attr_block_pre_any}
   display flex
-  align-items center
+  //align-items center
   flex-basis auto
   flex-shrink 0
-  flex-wrap wrap
   position relative
   // max-width 100%
 
 
+[class*="block-"][class*="-flow"]
+  flex-wrap wrap
 
-// {$cl_attr_block_pre_any} > [class*='block']{$cl_attr_item}
-//   display block
-
-{$cl_block} > {$cl_attr_block_pre_any},
-{$cl_attr_block_pre_any} > {$cl_block}
-  flex 1 1 auto
-
-+__block_pre($attr_vert)
-  flex-direction column
-
-/* positional */
-
-
-
-+__block_pre($attr_top)
-  align-items flex-start
-
-+__block_pre($attr_mid)
++__block_pre($attr_item)
   align-items center
-
-+__block_pre($attr_btm)
-  align-items flex-end
-
-
-+__block_pre($attr_right)
-  justify-content flex-end
-  margin-left auto
-  align-self flex-end
-
-+__block_pre($attr_ctr)
+  flex-basis auto
   justify-content center
+  flex 1 0
 
-+__block_pre($attr_left)
-  justify-content flex-start
+
++__block_pre($attr_fixed)
+  display block
+  flex-wrap nowrap
+  flex-basis 100%
 
 /* ordernal */
 
@@ -103,22 +81,63 @@
   order 9999
 
 
-{$cl_attr_block_pre_any}{$cl_attr_top} > {$cl_attr_item}
+
++__block_pre($attr_vert)
+  flex-direction column
+
+/* positional */
+
+$placeholder_block_top
   align-items flex-start
+
+$placeholder_block_mid
+  align-items center
+
+$placeholder_block_btm
+  align-items flex-end
+
+$placeholder_block_left
+  justify-content flex-start
+
+$placeholder_block_center
+  justify-content center
+
+$placeholder_block_right
+  justify-content flex-end
+
+__block_pre($attr_top,$placeholder_block_top)
+
+__block_pre($attr_mid,$placeholder_block_mid)
+
+__block_pre($attr_btm,$placeholder_block_btm)
+
+
+
+__block_pre($attr_left,$placeholder_block_left)
+
+__block_pre($attr_ctr,$placeholder_block_center)
+
+__block_pre($attr_right,$placeholder_block_right)
+
+
+
+
+{$cl_attr_block_pre_any}{$cl_attr_top} > {$cl_attr_item}
+  @extends $placeholder_block_top
 
 {$cl_attr_top}{$cl_attr_item}
   align-items flex-start !important
 
 
 {$cl_attr_block_pre_any}{$cl_attr_mid} > {$cl_attr_item}
-  align-items center
+   @extends $placeholder_block_mid
 
 {$cl_attr_mid}{$cl_attr_item}
   align-items center !important
 
 
 {$cl_attr_block_pre_any}{$cl_attr_btm} > {$cl_attr_item}
-  align-items flex-end
+  @extends $placeholder_block_btm
 
 {$cl_attr_btm}{$cl_attr_item}
   align-items flex-end !important
@@ -127,32 +146,13 @@
 {$cl_attr_block_pre_any}{$cl_attr_auto} > {$cl_attr_item}
   align-self stretch
 
+
 +__block_pre($attr_auto)
   flex-grow 1
   flex-shrink 1
   max-width 100%
   align-self stretch
 
-
-+__block_pre_elm('button',$attr_auto)
-  display block
-  margin 0 auto
-
-
-+__block_pre($attr_item)
-  align-items center
-  flex-basis auto
-  justify-content center
-  flex 1 0
-
-
-
-
-
-+__block_pre($attr_fixed)
-  display block
-  flex-wrap nowrap
-  flex-basis 100%
 
 .block-breaker
   flex-basis 100% !important
@@ -167,25 +167,13 @@
   display block
   background transparent
   flex 0 0 auto !important
+  align-self center
 
-// .block-vspacer
-//   display block
-//   background transparent
-//   height 300px
-//   padding 1rem
 
-// .as-tiles {$cl_block}:not(.block-item),
-// .as-tiles {$cl_attr_block_pre_any}:not(.block-item),
-// {$cl_attr_block_pre_any}[class*='-tile']:not(.block-item)
-//   display flex
 .block .elem,
 [class*="block-"] [class*='elem']
   display inline-flex
   flex 1 1 auto
-
-.as-tiles .block-item,
-[class*='block'][class*='-item'][class*='-tile']
-  display block
 
 
 
@@ -221,33 +209,36 @@
 
   .block-spacer
     flex 0 0 100% !important
+    align-self stretch
 
 // this is weird!
 
 
+// .as-tiles .block-item,
+// [class*='block'][class*='-item'][class*='-tile']
+//   display block
 
 
+// $placeholder_as_tiles
+//   align-items stretch
+//   min-height min-content
+//   flex-grow 1
+//   flex-shrink 1
+//   flex-basis 0
 
-$placeholder_as_tiles
-  align-items stretch
-  min-height min-content
-  flex-grow 1
-  flex-shrink 1
-  flex-basis 0
+// .as-tiles {$cl_attr_left},
+// .as-tiles {$cl_attr_right},
+// .as-tiles {$cl_attr_center},
+// .as-tiles {$cl_attr_vert},
+// .as-tiles {$cl_attr_block_pre}:not(.block-item),
+// .as-tiles .block,
+// {$cl_attr_block_pre_any}[class*='-tile']
+//   @extends $placeholder_as_tiles
+//   display flex
 
-.as-tiles {$cl_attr_left},
-.as-tiles {$cl_attr_right},
-.as-tiles {$cl_attr_center},
-.as-tiles {$cl_attr_vert},
-.as-tiles {$cl_attr_block_pre}:not(.block-item),
-.as-tiles {$cl_block},
-{$cl_attr_block_pre_any}[class*='-tile']
-  @extends $placeholder_as_tiles
-  display flex
-
-.as-tiles {$cl_block_item},
-{$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
-  @extends $placeholder_as_tiles
+// .as-tiles {$cl_block_item},
+// {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
+//   @extends $placeholder_as_tiles
 
 
 // .as-tiles {$cl_attr_block_pre},

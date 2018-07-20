@@ -267,10 +267,10 @@ $placeholder_debug_p
   debug_color_outline($sand_sky,$sand_twilight,true)
 
 
-.block > {$cl_attr_block_pre},
-.archxray .xray-blocks .block > .block
-  @extends $placeholder_debug_u
-  padding 0.5rem
+// .block > {$cl_attr_block_pre},
+// .archxray .xray-blocks .block > .block
+//   @extends $placeholder_debug_u
+//   padding 0.5rem
 
 .archxray .xray-blocks .blocks > {$cl_attr_block_pre_any}:only-child
   background transparent
@@ -340,6 +340,12 @@ $placeholder_material_design_ico
 .archxray .xray-blocks {$cl_attr_item}:after
   @extends $placeholder_material_design_ico
   content '\f4ca'
+  top 0px
+  left 50%
+
+.archxray .xray-blocks .block-spacer:after
+  @extends $placeholder_material_design_ico
+  content '\f84d'
   top 0px
   left 50%
 
