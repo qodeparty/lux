@@ -13,6 +13,9 @@ local-*
 *-local*
 *.bak
 
+www/res/css/lux-*.css
+
+
 # Runtime data
 pids
 *.pid
