@@ -1,18 +1,24 @@
-//// lux generated javascript file Fri Jul 20 20:36:08 UTC 2018
+//// lux generated javascript file Fri Jul 20 20:44:59 UTC 2018
 const LUX_VERSION="v0.6"
-const LUX_BUILD="115"
+const LUX_BUILD="116"
 const LUX_BASIS=""
 const LUX_THEME="archxray"
-const LUX_TIMESTAMP="1532118968"
+const LUX_TIMESTAMP="1532119499"
 ////
 
-////found 2 js files
+////found 3 js files
 var js_list = [
 'jslist.js',
-'lux-helper.js'
+'lux-helper.js',
+'lux-meta.js'
 ];
-////found 0 css files
+////found 5 css files
 var css_list = [
+'lux-debug.css',
+'lux-elements.css',
+'lux-equalizer.css',
+'lux-layout.css',
+'lux-modifier.css'
 ];
 ////found 10 html files
 var html_list = [

@@ -541,8 +541,8 @@
 	function lux_copy_res(){
 		info "Copying build & dist to res..."
 		mkdir -p "$LUX_RBUILD"
-		[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RBUILD || error "Missing build directory"
-		[ -d "$LUX_DIST"  ] && cp $LUX_DIST/*.css  $LUX_RBUILD || error "Missing dist directory"
+		[ -d "$LUX_BUILD" ] && cp $LUX_BUILD/*.css $LUX_RBUILD || error "Missing build directory, cant copy res"
+		[ -d "$LUX_DIST"  ] && cp $LUX_DIST/*.css  $LUX_RBUILD || error "Missing dist directory, cant copy res"
 	}
 
 
@@ -589,6 +589,19 @@
 			return 0
 		fi
 		return 1
+	}
+
+
+	function lux_build_all(){
+		info "Building All!"
+		lux_mods
+		lux_var_refresh
+		lux_build_all_mods
+		lux_build
+		lux_copy_res
+		lux_res_mods
+		lux_genlist
+		lux_copy_www
 	}
 
 
@@ -649,15 +662,6 @@
 
 	function lux_build_path(){
 		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
-	}
-
-	function lux_build_all(){
-		info "Building All!"
-		lux_mods
-		lux_build_each
-		lux_build
-		lux_res_mods
-		lux_genlist
 	}
 
 
@@ -770,6 +774,12 @@
 	}
 
 
+	function lux_build_all_mods(){
+		for i in ${!LUX_MODS[@]}; do
+			this="${LUX_MODS[$i]}"
+			lux_build_mod "$this"
+		done
+	}
 
 	function lux_build_mod(){
 		local res ret mod modpath;
@@ -994,6 +1004,8 @@
 				continue
 			fi
 			case $call in
+				all)
+					lux_build_all;;
 				json)
 					add_var "test:1" "eat:candy"
 					lux_var_refresh
@@ -1017,6 +1029,7 @@
 				build|make)
 					case $1 in
 						each) shift; lux_build_each;;
+						all)  shift; lux_build_all;;
 						"")   shift; lux_build;;
 						*)    lux_build_mod "$1";;
 					esac
