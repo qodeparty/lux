@@ -2,14 +2,14 @@
 #!/usr/bin/env bash
 #===============================================================================
 ##     Lux CLI  > lux watch 2 > lux.out  2>&1
-##       __     
-##       \ \    
-##        \ \   
-##         > \  
-##        / ^ \ 
+##       __
+##       \ \
+##        \ \
+##         > \
+##        / ^ \
 ##       /_/ \_\
-##         
-##  QodeParty (c) 2018 
+##
+##  QodeParty (c) 2018
 #===============================================================================
 
 
@@ -19,12 +19,13 @@
 	readonly script_pid=$$
 	readonly script_author="qodeparty"
 	readonly script_id="lux"
-	readonly script_vers="$(git describe --abbrev=0 --tags)"
-	readonly script_build="$(cd $LUX_HOME;git rev-list HEAD --count)"
 	readonly script_prefix="LUX"
 	readonly script_rc_file=".luxrc"
 	readonly script_log_file="$script_id.log"
 	readonly script_lic="MIT License"
+
+	script_vers="$(git describe --abbrev=0 --tags)"
+	script_build="$(cd $LUX_HOME;git rev-list HEAD --count)"
 
 #-------------------------------------------------------------------------------
 # Term
@@ -79,7 +80,7 @@
 	function  pass(){ local text=${1:-}; __print " $text$x" "pass";	}
 	function fatal(){ trap - EXIT; __print "$fail $1 [$2]"; exit 1; }
 	function quiet(){ [ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1; }
-	function status(){ 
+	function status(){
 		local ret res msg
 		ret=$1; res=$2; msg=$3; __print "$res";
 		[ $ret -eq 1 ] && fatal "Error: $msg, exiting" "1";
@@ -111,7 +112,7 @@
 	function lux_usage_sh(){
 		data="$(cat <<-EOF
 			${n}${x}${grey}
-			Usage: lux cmd [cmd, ...] --info --debug 
+			Usage: lux cmd [cmd, ...] --info --debug
 			try lux help to get a list of commands
 			${x}
 		EOF
@@ -141,19 +142,19 @@
 			${s}${p}${sc} unlink ${x}${t}   remove lux-cli from command line
 			${s}${p}${sc} rcfile ${x}${t}   regenerate .luxrc file in [${y}$HOME${x}]
 			${s}${p}${sc} dev    ${x}${t}   compile styles and copy to dev dist
-			${s}${p}${sc} res    ${x}${t}   copy build to dev/res for testing  
+			${s}${p}${sc} res    ${x}${t}   copy build to dev/res for testing
 			${s}${p}${sc} each   ${x}${t}   generate lux sub module files for testing
 			${s}${p}${sc} watch ${y}t${x}${t}   watch dev files for changes every [${y}t-seconds${x}]
 			${n}
 			${s}${b}Info Commands${x}${n}
 			${s}${p}${sc} dir    ${x}${t}   output lux home path for use in scripts
 			${s}${p}${sc} vars   ${x}${t}   output lux variables
-			${s}${p}${sc} mods   ${x}${t}   output lux style mods	
+			${s}${p}${sc} mods   ${x}${t}   output lux style mods
 			${n}
 			${s}${b}Flags${x}${n}
 			${s}${p}${sc} --debug${x}${t}   enable debug mode
-			${s}${p}${sc} --info ${x}${t}   enable verbose output	
-			${s}${p}${sc} --lang ${x}${t}   translate class and ids for specified lang	
+			${s}${p}${sc} --info ${x}${t}   enable verbose output
+			${s}${p}${sc} --lang ${x}${t}   translate class and ids for specified lang
 			${s}${p}${sc} --12/16${x}${t}   set grid basis to basis-12 or basis-16
 			${n}
 			${b}${line//#/}${x}
@@ -171,21 +172,21 @@
 		lux_var_refresh
 		data="$(cat <<-EOF
 			$line
-			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www') 
+			${s}${yellow}$script_id $script_vers build:$(lux_build_version 'build') www:$(lux_build_version 'www')
 
 			${s}${b}USR_CONF   = ${yellow}${LUX_USER_CONF//$THIS_ROOT/.}
-			
+
 			${s}${b}LUX_ID     = ${w}$LUX_ID
 			${s}${b}LUX_RC     = ${w}$LUX_RC
 			${s}${b}LUX_HOME   = ${w}${LUX_HOME//$LUX_HOME/.}
 			${s}${b}LUX_BIN    = ${w}${LUX_BIN//$LUX_HOME/.}
-			
+
 			${s}${b}LUX_CORE   = ${w}${LUX_CORE//$LUX_HOME/.}
 			${s}${b}LUX_VARS   = ${w}${LUX_VARS//$LUX_HOME/.}
 			${s}${b}LUX_UTIL   = ${w}${LUX_UTIL//$LUX_HOME/.}
 			${s}${b}LUX_DIST   = ${w}${LUX_DIST//$LUX_HOME/.}
 			${s}${b}LUX_BUILD  = ${w}${LUX_BUILD//$LUX_HOME/.}
-			
+
 			${s}${b}LUX_RES    = ${w}${LUX_RES//$LUX_HOME/.}
 			${s}${b}LUX_RBUILD = ${w}${LUX_RBUILD//$LUX_HOME/.}
 
@@ -195,10 +196,10 @@
 
 			${s}${p}THIS_ROOT  = ${w}$THIS_ROOT
 			${s}${p}THIS_DIR   = ${w}$THIS_DIR
-			${s}${p}BIN_DIR    = ${w}$BIN_DIR	
+			${s}${p}BIN_DIR    = ${w}$BIN_DIR
 
 			${s}${b}LUX_WWW    = ${y}$LUX_WWW
-			${s}${b}LUX_MODS   = ${y}${LUX_MODS[*]}	
+			${s}${b}LUX_MODS   = ${y}${LUX_MODS[*]}
 
 			${x}
 			$line
@@ -228,7 +229,7 @@
 	CPID="$$"
 	BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
 	THIS_DIR="$( cd $BIN_DIR && cd ..; pwd -P )"
-	
+
 	LUX_HOME="${LUX_HOME:-$THIS_DIR}"
 	THIS_ROOT="$(dirname $LUX_HOME)"
 
@@ -264,7 +265,7 @@
 	BASH_RC="$HOME/.bashrc"
 	[ -f "$HOME/.profile" ] && BASH_PROFILE="$HOME/.profile" || BASH_PROFILE="$HOME/.bash_profile"
 
-	echo $OPT_USE
+	#echo $OPT_USE
   #stylus --use f.js --with='{ k:v }'
   #
 #-------------------------------------------------------------------------------
@@ -320,7 +321,7 @@
 #-------------------------------------------------------------------------------
 # Lang
 #-------------------------------------------------------------------------------
-	
+
 	function lux_trans(){
 		:
 		#class=>new_class
@@ -333,6 +334,9 @@
 
 	#OPT_USE="--use $LUX_EXT/cli-vars.js --with {lux_build:\"$script_build\",lux_vers:\"$script_vers\"}"
 	function lux_var_refresh(){
+		script_vers="$(cd $LUX_HOME;git describe --abbrev=0 --tags)"
+		script_build="$(cd $LUX_HOME;git rev-list HEAD --count)"
+		www_build="$(cd $LUX_WWW;git rev-list HEAD --count)"
 
 		OPT_USE="--use $LUX_EXT/pre-vars.js --with $(json_maker)"
 
@@ -348,6 +352,11 @@
 			build) echo $(cd $LUX_HOME;git rev-list HEAD --count);;
 			*)     echo $(cd $LUX_HOME;git describe --abbrev=0 --tags --exact-match);;
 		esac
+	}
+
+	function lux_version(){
+		lux_var_refresh
+		printf "$script_vers.$script_build"
 	}
 
 	function lux_user_config(){
@@ -385,6 +394,26 @@
 		LUX_MODS=($(find "$LUX_CORE" -type d -printf '%P\n' ))
 	}
 
+
+	function lux_res_mods(){
+		local i css_path clean this this_file
+		lux_mods
+		css_path="$LUX_RES/css"
+		clean=${1:-1}
+		for i in ${!LUX_MODS[@]}; do
+			this="${LUX_MODS[$i]}"
+			this_file="${LUX_BUILD}/${this}.css"
+			that_file="$css_path/lux-${this}.css"
+			if [ $clean -eq 0 ]; then
+				[ -f "$that_file" ] && rm -rf "$that_file" || :
+			else
+				[ -f "$this_file" ] && cp "$this_file" "$that_file"  || error "Didnt copy $this"
+			fi
+		done
+
+		[ $clean -eq 0 ] && info "Cleaning (${LUX_MODS[*]}) styles" || info "Copying (${LUX_MODS[*]}) styles";
+	}
+
 	function lux_prep(){
 		local src data
 		src="$1"
@@ -400,9 +429,10 @@
 
 	function lux_clean(){
 		info "Cleaning... dist build res/build"
-		[ -d $LUX_DIST ]  && rm -rf $LUX_DIST  || : 
-		[ -d $LUX_BUILD ] && rm -rf $LUX_BUILD || : 
+		[ -d $LUX_DIST ]  && rm -rf $LUX_DIST  || :
+		[ -d $LUX_BUILD ] && rm -rf $LUX_BUILD || :
 		[ -d $LUX_RBUILD ]   && rm -rf $LUX_RBUILD   || :
+		lux_res_mods 0
 	}
 
 
@@ -411,7 +441,7 @@
 		path=$2
 		ftype=$3
 		jsfile="./www/res/js/${var}.js"
-		list=($(find "./www/${path}" -type f -name "*.${ftype}" -printf '%P\n' ))
+		list=($(find "./www/${path}" -type f -name "*.${ftype}" ! -name '_*.*' -printf '%P\n' ))
 		len=$((${#list[@]}-1));
 
 		printf "%s\\n" "//generated ${len}" > $jsfile
@@ -425,6 +455,14 @@
 	}
 
 
+	function lux_genlist(){
+		touch "$LUX_RES/js/jslist.js"
+		lux_listfile "jslist" "res/js" "js"
+		lux_listfile "csslist" "res/css" "css"
+		lux_listfile "htmllist" "test" "html"
+	}
+
+
 	function lux_copy_res(){
 		info "Copying build & dist to res..."
 		mkdir -p "$LUX_RBUILD"
@@ -434,7 +472,7 @@
 
 
 	function lux_copy_www(){
-		local res ret 
+		local res ret
 		info "Copying resouce and generated files to www..."
 		if [ -d "$LUX_WWW" ]; then
 			mkdir -p $LUX_WWW/res/build
@@ -500,7 +538,7 @@
 		lux_mods
 
 		if [ ${#this} -gt 0 ] && [ -f $this ]; then
-			
+
 			thisd=$(dirname $this)
 			thisb=$(basename $thisd)
 			thisf=$(basename $this)
@@ -509,30 +547,40 @@
 			info "Compiling... ($thisb/$thisf) $buildtype"
 
 			case $buildtype in
-				main) 
-						silly "Rebuild main! ($thisb)"	 
+				main)
+						silly "Rebuild main! ($thisb)"
 						lux_build
 					;;
 				each)
-						silly "Rebuild each! ($thisb)"	 
+						silly "Rebuild each! ($thisb)"
 						lux_build_each
 						lux_build
 					;;
-				mod)  
-						silly "Rebuild mod! ($thisb)"	
+				mod)
+						silly "Rebuild mod! ($thisb)"
 						lux_build_submod "$this"
 						lux_build
 					;;
-				*)    
-						silly "Woops!" 
+				*)
+						silly "Woops!"
 					;;
 			esac
 			lux_copy_res
+			lux_res_mods
+			lux_genlist
 		fi
 	}
 
 	function lux_build_path(){
 		[ ! -d $LUX_BUILD ] && mkdir -p $LUX_BUILD
+	}
+
+	function lux_build_all(){
+		lux_mods
+		lux_build_each
+		lux_build
+		lux_res_mods
+		lux_genlist
 	}
 
 
@@ -552,6 +600,9 @@
 
 		lux_prep "$LUX_DIST/$this_name.css"
 		lux_prep "$LUX_DIST/$this_name.min.css"
+
+		lux_res_mods
+		lux_genlist
 	}
 
 
@@ -563,7 +614,7 @@
 		index='index.styl'
 		files=();
 		lux_mods
-		arr=("${LUX_MODS[@]}"); 
+		arr=("${LUX_MODS[@]}");
 
 		lux_build_path
 
@@ -575,7 +626,7 @@
 			[ -d "$this" ] && files=($(find $this -type f -name *.styl -printf "%f\n" )) || err="Invalid directory ($d)"
 
 			if [ -z "$err" ]; then
-				
+
 				res=$(in_array "$index" "${files[@]}"); ret=$?
 
 				if [ $ret -eq 0 ]; then
@@ -594,12 +645,13 @@
 					status $ret "$res" "Compile Error"
 				done
 			else
-				error "$err" 
+				error "$err"
 			fi
 
 			err=
 		done
-		
+		lux_res_mods
+		lux_genlist
 	}
 
 	function with_basis(){
@@ -618,7 +670,7 @@
 
 		if [ $ret -eq 0 ]; then
 			lux_build_path
-			if in_string '-' "$name"; then 
+			if in_string '-' "$name"; then
 				info "[SUB] Rebuilding Sub... ${name}.css"
 				res=$(stylus $OPT_ALL "$this" --out "$LUX_BUILD/${name}.css"); ret=$?;
 				status $ret "$res" "Compile Error"
@@ -630,7 +682,7 @@
 				if [[ "$bname" != "$name" ]]; then
 					cp "$LUX_BUILD/${name}.css" "$LUX_BUILD/${bname}.css"
 					cp "$LUX_BUILD/${name}.css" "$LUX_RBUILD/${bname}.css"
-				fi	
+				fi
 
 			fi
 			lux_build_mod "${name%%\-*}"
@@ -644,10 +696,10 @@
 
 	function lux_build_mod(){
 		local res ret mod modpath;
-		mod="$1"		
+		mod="$1"
 		res=$(in_array "$mod" "${LUX_MODS[@]}"); ret=$?;
 
-	
+
 		if [ $ret -eq 0 ]; then
 			lux_build_path
 			modpath=$(lux_buildtype $mod true)
@@ -656,7 +708,7 @@
 				res=$(stylus $OPT_ALL "${modpath}/index.styl" --out "$LUX_BUILD/${mod}.css");
 				status $ret "$res" "Compile Error"
 				rm -f "$LUX_RBUILD/${mod}.css"
-				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css" 
+				cp "$LUX_BUILD/${mod}.css" "$LUX_RBUILD/${mod}.css"
 
 				bname=$(with_basis "layout" "$mod")
 				if [[ "$bname" != "$mod" ]]; then
@@ -666,7 +718,7 @@
 
 
 			else
-				error "Invalid module directory ($mod)";	
+				error "Invalid module directory ($mod)";
 			fi
 		else
 			error "Unknown module ($mod)";
@@ -678,21 +730,21 @@
 	function lux_watch(){
 		local IFS sec chsum chsum2 chval res this thisd thisb thisf diff_time;
 		sec="${1:-5}"
-		
+
 		printf -v "diff_time" "%.2f" "-$(echo "$sec/60"|bc -l)" #this isnt working now?
 		chsum1=""; opt_debug=0
 		__print "\n\n\n$line"
 		info "Watching ./src ... $diff_time"
 		while [[ true ]];
 		do
-		
+
 			chsum2=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin -0.5 -exec md5sum {}  \;`
 
-			if [[ $chsum1 != $chsum2 ]] ; then 
-				res=$(echo "$chsum2")  
-				IFS=' ' read -r -a array <<< "$res"  
+			if [[ $chsum1 != $chsum2 ]] ; then
+				res=$(echo "$chsum2")
+				IFS=' ' read -r -a array <<< "$res"
 				this="${array[1]}";chval="${array[0]}"
-				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})..."; 
+				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})...";
 
 				#FIX COMPILE PATHS
 				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
@@ -703,7 +755,7 @@
 			fi
 
 			sleep 1
-			
+
 		done
 	}
 
@@ -738,7 +790,7 @@
 
 
 	function file_add_block(){
-		local newval src block_lbl match_st match_end data res ret 
+		local newval src block_lbl match_st match_end data res ret
 		newval="$1"; src="$2"; block_lbl="$3"; delim="$4"; ret=1;
 		match_st=$(file_marker "str" "${block_lbl}" "${delim}" )
 		match_end=$(file_marker "end" "${block_lbl}" "${delim}" )
@@ -812,7 +864,7 @@
 					${tab} if [ -f "$LUX_RC" ] ; then
 					${tab}   source "$LUX_RC"
 					${tab} else
-					${tab}   [ -t 1 ] && echo "\$(tput setaf 214).luxrc is missing, lux link or unlink to fix ${x}" ||: 
+					${tab}   [ -t 1 ] && echo "\$(tput setaf 214).luxrc is missing, lux link or unlink to fix ${x}" ||:
 					${tab} fi
 				EOF
 				)";
@@ -833,7 +885,7 @@
 		[ -f "$LUX_RC" ] && rm -f "$LUX_RC"
 		res=$(file_del_block "$src" "$lbl" )
 		ret=$?
-		[ $ret -eq 0 ] && __print ".luxrc removed from $BASH_RC" "red" ||: 
+		[ $ret -eq 0 ] && __print ".luxrc removed from $BASH_RC" "red" ||:
 	}
 
 
@@ -876,7 +928,7 @@
 #-------------------------------------------------------------------------------
 	function __dispatch(){
 		#log_debug "[fx:$FUNCNAME] args:$#"
-		local call ret 
+		local call ret
 		skip=1
 
 		#call=$1; shift
@@ -898,7 +950,7 @@
 				continue
 			fi
 			case $call in
-				json) 
+				json)
 					add_var "test:1" "eat:candy"
 					lux_var_refresh
 					json_maker "nile:queen"
@@ -907,6 +959,7 @@
 				help) lux_usage;;
 				vars) lux_vars;;
 				mods) opt_debug=0; info "=> ${LUX_MODS[*]}";;
+				rmods) opt_debug=0; lux_res_mods;;
 				dir)  quiet 0; echo "$LUX_HOME";;
 				dev)
 					lux_build_each
@@ -940,13 +993,10 @@
 					break;
 					;;
 				clean) lux_clean ;;
-				list)
-					lux_listfile "csslist" "res/css" "css"
-					lux_listfile "htmllist" "test" "html"
-					;;
+				list) lux_genlist	;;
 				watch) lux_watch "$1"; shift;;
-				www) 
-					opt_debug=0; 
+				www)
+					opt_debug=0;
 					case $1 in
 						push) shift; lux_copy_www; lux_push_www "$1";;
 						*)    lux_copy_www "$1";;
@@ -954,20 +1004,25 @@
 					break;
 					;;
 				tpl) template_vars;;
+				vers*)
+					opt_quiet=0
+					lux_version
+					exit 0
+				;;
 				skip) break;;
-				--*) 
+				--*)
 					case $call in
 						--conf*)
-							lux_user_config $1 
+							lux_user_config $1
 							skip=0
 							;;
 						--local*)
-							lux_user_config 'local-conf.json' 
+							lux_user_config 'local-conf.json'
 							;;
 						*) : ;;
 					esac
 				;;
-				*) 
+				*)
 					if [ ! -z "$call" ]; then
 						fatal "Invalid command" $call;
 						lux_usage;  ret=1
@@ -981,7 +1036,7 @@
 
 
 	function main(){
-		__dispatch "$@" 
+		__dispatch "$@"
 	}
 
 
@@ -1000,7 +1055,7 @@ else
 	[[ "${@}" =~ "--force" ]] && opt_force=0 || :
 	[[ "${@}" =~ "--12"    ]] && add_var "basis:12" && opt_basis=12 || :
 	[[ "${@}" =~ "--16"    ]] && add_var "basis:16" && opt_basis=16 || :
-
+	[[ "${@}" =~ "--vers"  ]] && opt_quiet=0 && lux_version && exit 0 || :
 	#[ -t 1 ] && [ $opt_force -eq 0 ] && opt_quiet=1 ||:
 
 	#args=( "${args[@]/\-*}" ); #delete anything that looks like an option
