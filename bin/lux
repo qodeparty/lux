@@ -531,7 +531,8 @@
 		info "Cleaning... dist build res/build"
 		[ -d $LUX_DIST ]  && rm -rf $LUX_DIST  || :
 		[ -d $LUX_BUILD ] && rm -rf $LUX_BUILD || :
-		[ -d $LUX_RBUILD ]   && rm -rf $LUX_RBUILD   || :
+		[ -d $LUX_RBUILD ] && rm -rf $LUX_RBUILD || :
+		[ -f $LUX_META_JS ] && rm $LUX_META_JS || :
 		lux_res_mods 0
 	}
 
