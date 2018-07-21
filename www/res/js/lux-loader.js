@@ -3,7 +3,7 @@
 
 let dash = document.getElementById('dashboard');
 
-const preloadScripts=['res/js/lux-meta','res/js/lux-helper','res/js/lux-gx','res/js/lux-sheets'];
+const preloadScripts=['res/js/lux-meta','res/js/lux-helper','res/js/lux-storage','res/js/lux-gx','res/js/lux-sheets'];
       preloadScripts.push( !dash ? 'res/js/lux-adapter' : 'res/js/lux-dashboard' );
 
 
@@ -21,6 +21,7 @@ const preloadScripts=['res/js/lux-meta','res/js/lux-helper','res/js/lux-gx','res
   Lux.scripts = {};
   Lux.sheets  = {};
 
+ //////////////////////////////////////////////////////////
 
   let baseURL;
 

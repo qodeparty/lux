@@ -17,7 +17,10 @@
     <link rel='stylesheet' id='s6' type='text/css' media='all' href='res/css/lux-layout.css'        />
     <link rel='stylesheet' id='s6' type='text/css' media='all' href='res/css/mod-dashboard.css'   />
     <style>
-      html{  position:relative; }
+      html{
+        position:relative;
+        overflow-y:hidden !important;
+      }
       iframe{
         position: absolute;
         top:0;
@@ -30,9 +33,9 @@
 
 
 ################################################################## -->
-  <body id='annotate' class='bg-grid archxray debug' >
+  <body id='annotate' class='bg-grid archxray debug version debug-sizer' >
 
-    <div id='app'>
+    <div id='app' >
 
       <!-- start:viewer  -->
       <viewer></viewer>
@@ -40,12 +43,13 @@
 
       <!-- start:dashboard  -->
       <div id='dashboard' >
-        <dashboard>
+        <dashboard class='stripes4'>
         </dashboard>
       </div>
       <!-- end:dashboard -->
 
     </div>
+
 <!-- ##################################################################
 
 

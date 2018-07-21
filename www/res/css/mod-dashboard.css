@@ -16,7 +16,7 @@
     border-style: solid;
     border-color: #ccc;
     border-image: initial;
-    background:#CBEAF3;
+    /*background:#CBEAF3;*/
   }
 
   #dashboard .field{
@@ -128,7 +128,7 @@
 
   #viewer{
     overflow:hidden;
-    padding:20px;
+    /*padding:20px;*/
     display: block;       /* iframes are inline by default */
     border: none;         /* Reset default border */
     height: 100vh;        /* Viewport-relative units */

@@ -69,7 +69,6 @@
         $('.resizer').html(window.innerWidth);
       });
 
-      load_sizer();
 
       let iconElm = $('.iconset')
 
@@ -77,4 +76,12 @@
         let size = $('.iconset').data('size');
         iconElm.append(load_icons(size));
         console.log(size);
+      }
+
+      let sizerElm = $('.debug-sizer');
+
+      console.log( sizerElm );
+
+      if( sizerElm.length > 0 ){
+        load_sizer();
       }

@@ -4,16 +4,12 @@ if(typeof Vue!=='undefined'){
       const lux = $.Lux;
 
 
-      // let $doc  = $(document);
-      // let $ctrl = $('#config');
-      // let $exe  = $('#update');
-
-
       function findWindow() {
         return window.frames[0];
       }
 
 
+      console.log( lux.fx );
 
       Vue.use(Vuex);
 
@@ -123,7 +119,10 @@ if(typeof Vue!=='undefined'){
             //console.log(sheets.map( sheets => sheets.name ));
           },
           LOAD_PAGES : (state, pages)=>{
+            let activePage = lux.fx.store_load('activePage');
             state.pages = pages;
+            state.activePage = activePage;
+            //console.log("ACTIVE PAGE LOAD",activePage);
           },
           LOAD_CHILD : (state, remote)=>{
             state.remote = remote;
@@ -186,6 +185,10 @@ if(typeof Vue!=='undefined'){
             state.activePalette = family;
             //console.log('activated palette', family);
           },
+          ACTIVATE_PAGE : (state, page) => {
+            state.activePage = page;
+            //console.log('ACTIVATE PAGE ACTION 2');
+          },
           JUMP_PAGE : (state, page) => {
             state.activePage = page;
           }
@@ -201,7 +204,6 @@ if(typeof Vue!=='undefined'){
 
           loadChild: (context, remote) =>{
             context.commit('LOAD_CHILD', remote);
-            //console.log('vuex load child dispatch', remote);
           },
 
           loadSheets: (context, sheets) => {
@@ -238,9 +240,13 @@ if(typeof Vue!=='undefined'){
           activatePalette : (context, payload ) => {
            context.commit('ACTIVATE_PALETTE', payload);
           },
+          activatePage : (context, payload ) => {
+            //console.log('ACTIVATE PAGE ACTION');
+            context.commit('ACTIVATE_PAGE', payload);
+          },
           jumpPage : (context, page) => {
             const remote = context.state.remote;
-            //console.clear();
+
             if( page ){
               let url = 'test/' + page;
               remote.location  = url;
@@ -436,13 +442,14 @@ if(typeof Vue!=='undefined'){
             template : `
               <div id='pages' >
                 <a class='field-style' @click='expandPages = !expandPages'>
-                  Pages
+                  {{ activePage || 'Pages' }}
                   <em class='badge' :data-badge='pages.length'>{{pages.length}}</em>
                 </a>
                 <template>
                   <ul v-bind:class="{ _expand : expandPages }">
                     <template v-for="(page,index) in pages" >
                       <page
+                        @activate='activatePage'
                         :init-name='page'
                         :key="page.id"></page>
                     </template>
@@ -455,16 +462,31 @@ if(typeof Vue!=='undefined'){
                 return this.$store.state.pages;
               },
               expandPages : {
-                get : function(){ return this.$store.state.expandPages; },
-                set : function(){ this.$store.dispatch('expandPages'); }
+                get : function(){ return this.$store.state.expandPages },
+                set : function(){ this.$store.dispatch('expandPages') }
+              },
+              activePage :{
+                get : function(){ return this.$store.state.activePage },
+                set : function(page){
+                  console.log("SAVE via SETTER - ACTIVE PAGE",page);
+                  this.$store.dispatch('activatePage',page);
+                }
               }
             },
-            methods : {}
+            methods : {
+              activatePage: function(page){
+
+                lux.fx.store_save('activePage',page);
+                console.log("SAVE ACTIVE PAGE",page);
+                this.$store.dispatch('activatePage',page);
+
+              }
+            }
           });
 
           const pageModule = Vue.component('page', {
             template : `
-              <li class='field-style' @click='jump'>
+              <li class='field-style' @click="$emit('activate',name);jump()" >
                 <label>{{name}} &#x1f517;</label>
               </li>
             `,
@@ -583,6 +605,9 @@ if(typeof Vue!=='undefined'){
                   <palettes init-active='architect'>
                   </palettes>
                 </fieldset>
+              </section>
+              <section v-else>
+                <div class='luxlogo'></div>
               </section>
             `,
             computed: {
