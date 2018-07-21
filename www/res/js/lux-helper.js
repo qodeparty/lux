@@ -5,10 +5,10 @@
         mobile : { max:768  },
         tablet : { max:1024 },
         desktop: { max:1216 },
-        wide : { max:1440 },
-        full : { max:1920 },
-        jumbo: { max:2560 },
-        ultra: { max:9999 }
+        wide :   { max:1440 },
+        full :   { max:1920 },
+        jumbo:   { max:2560 },
+        ultra:   { max:9999 }
       };
 
 
