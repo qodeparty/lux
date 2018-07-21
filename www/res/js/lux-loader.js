@@ -25,7 +25,7 @@ const preloadScripts=['res/js/lux-meta','res/js/lux-helper','res/js/lux-gx','res
   let baseURL;
 
   if( w.location.origin.indexOf('github') > -1 ){
-    baseURL='./lux-www/';
+    baseURL=w.location.origin+'/lux-www/';
   }else if( w.location.origin.indexOf('file://') > - 1){
     baseURL='./';
   }else{
