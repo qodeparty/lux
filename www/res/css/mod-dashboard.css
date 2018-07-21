@@ -1,0 +1,356 @@
+
+  #dashboard{
+    margin:10px;
+    bottom:0px;
+    max-width:100%;
+    width:97%;
+    position:fixed;
+
+  }
+
+  #dashboard fieldset {
+    padding:10px;
+    font-family: sans-serif;
+    font-size: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    border-image: initial;
+    background:#CBEAF3;
+  }
+
+  #dashboard .field{
+    max-width:250px;
+    border:1px dotted #ccc;
+    display:inline-block;
+    margin-right:10px;
+
+  }
+
+  #dashboard .field-color input{
+    width:80px;
+    vertical-align: middle;
+  }
+
+  #dashboard .field-color .color{
+    width:30px;
+    height:21px;
+    background:#eee;
+    display:inline-block;
+    vertical-align: middle;
+  }
+
+
+  #dashboard label {
+    cursor:pointer;
+    padding-right:5px;
+    vertical-align: middle;
+  }
+
+  .hide { display:none; }
+  .show { display:block: }
+
+  #sheets, #pages, #palettes{
+    width:14em;
+    margin-right:5px;
+    float:left;
+  }
+
+  #palettes ul,
+  #pages ul,
+  #sheets ul {
+    display:none;
+  }
+
+  #palettes ul._expand,
+  #pages ul._expand,
+  #sheets ul._expand {
+    display:block;
+    position:absolute;
+    bottom:111px;
+  }
+
+  #palettes li, #palettes a,
+  #pages li, #pages a,
+  #sheets li, #sheets a {
+    cursor:pointer;
+    height:35px;
+    border-bottom:1px solid #28A9E1;
+    padding:10px 0 0 10px;
+    font-size:1.2em;
+    background-color:#52bee3;
+    color:#fff;
+    display:block;
+    position:relative;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  #palettes a em,
+  #pages a em,
+  #sheets a em {
+    font-size:2em;
+    position:absolute;
+    right:10px;
+    top:5px;
+    padding-left:10px;
+    border-left:1px solid #28A9E1;
+  }
+
+
+  #palettes li:hover, #palettes a:hover,
+  #pages li:hover,  #pages a:hover,
+  #sheets li:hover, #sheets a:hover{
+    background-color:#ddbb85;
+    color:#fff;
+  }
+
+  .luxlogo{
+    background-image: url("../img/lux.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height:100px;width:100px;
+    float:left;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s ease-out;
+  }
+
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+
+  .fade-enter-to, .fade-leave /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 1;
+  }
+
+  #viewer{
+    overflow:hidden;
+    padding:20px;
+    display: block;       /* iframes are inline by default */
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+  }
+
+  #app{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+  }
+
+  #dashboard .unloaded{
+    background:#28A9E1;
+    color:#94d8Ed;
+  }
+
+
+/*
+CBEAF3
+94d8Ed
+55BCED
+28A9E1
+
+   { hex : 'CBEAF3', name : 'Arch 1' },
+   { hex : '94d8Ed', name : 'Arch 2' },
+   { hex : '55BCED', name : 'Arch 3' }, => 52bee3
+   { hex : '28A9E1', name : 'Arch 4' },
+   { hex : '147bbc', name : 'Arch 6' },
+   { hex : '0a6ba8', name : 'Arch 7' },
+f963e3 pink sand
+d66bc6 purp sand
+6acbd1 sea moss\
+85ddd4 sea moss2
+59b25f sand green
+d6ab6b sand sand
+ddbb85 sand soft => FFA64D
+6d86bc sand purp
+*/
+
+
+
+
+.palette{
+  border:1px dotted #ccc;
+  display:block;
+  clear:both;
+  float:left;
+
+  position:relative;
+  width:100%;
+  margin:0;
+}
+
+
+#palettes li, #palettes a{
+  overflow:visible;
+  width:135px;
+}
+
+.mini .palette{
+  max-height:60px;
+  border:0;
+}
+
+.mini .cursor{
+  display:none;
+}
+
+.mini .swatch{
+  width:16px;
+  height:16px;
+  padding:0;
+  margin-left:0px;
+  margin-bottom:0;
+  border:0;
+  border-right:1px solid #ccc;
+}
+
+.mini .swatch var, .mini .swatch em{
+  display:none;
+}
+
+.mini .swatch i{
+  width:16px;
+  height:16px;
+  border-radius: 0;
+  left:auto;
+  right:auto;
+}
+
+.mini .palette[title]:before{
+  font-size:1em;
+  color:#fff;
+  background-color:transparent;
+  top:10px;
+  left:40px;
+  border:none;
+}
+
+.mini .colors{
+  padding:0;
+  padding-left:1px;
+  padding-top:1px;
+  position:absolute;
+  right:-131px;
+  top:0px;
+  width:131px;
+  height:35px;
+  background:#efefef;
+  border:0;
+  border-bottom:1px solid #ccc;
+}
+
+.colors{
+  padding:25px 10px;
+  float:left;
+  border:1px solid transparent
+}
+
+.cursor{
+  border:1px dashed #3399FF;
+  width:100px;
+  height:110px;
+  margin-left:10px;
+  float:left;
+}
+
+
+.palette[title]:before{
+  content: attr(title) ;
+  background-color:#EBF9FF;
+  font-size:0.7em;
+  font-family:sans-serif;
+  padding:2px;
+  border:1px none #cbebf5;
+  border-bottom-style:solid;
+  border-right-style:solid;
+  color:#25a9e0;
+  top:0;
+  left:0;
+  position:absolute;
+  width:50px;
+  text-align:center;
+
+}
+
+
+.swatch{
+  border:1px dotted #333;
+  position:relative;
+  float:left;
+  width:80px;
+  margin-left:10px;
+  margin-bottom:20px;
+  font-family:sans-serif;
+  font-size:8px;
+  padding:10px;
+  background:#ccc;
+  cursor:pointer;
+}
+
+.swatch i{
+  display:block;
+  height:70px;
+  width:70px;
+  left:0;
+  right:0;
+  margin:0 auto;
+  border-radius: 50%;
+
+  -moz-transition: background ease 0.8s;
+  -ms-transition: background ease 0.8s;
+  -o-transition: background ease 0.8s;
+  -webkit-transition: background ease 0.8s;
+  transition: background ease 0.8s;
+}
+
+.swatch var{
+  top:35px;
+  padding:5px 0;
+  height:10px;
+}
+
+
+
+.swatch var, .swatch input{
+  position:absolute;
+  font-style:normal;
+  font-weight: 600;
+  font-size:10px;
+  width:inherit;
+  left:0;
+  right:0;
+  margin:0 auto;
+  text-align:center;
+  color:white;
+  cursor:pointer;
+}
+
+.swatch input{
+  top:37px;
+  color:#333;
+  border:1px dotted transparent
+}
+
+.swatch em{
+  font-size:10px;
+  background:#ccc;
+  color:white;
+  border-radius:5px;
+  padding:1px 3px;
+  position:absolute;
+  top:105%;
+  left:0;
+  right:0;
+  margin:0 auto;
+  text-align:center;
+}
+
+
+.hidedrag{
+  /* transform:translateX(-9999px); */
+  display:none;
+}

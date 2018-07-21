@@ -2,22 +2,29 @@
 
 
 ################################################################## -->
-<!doctype html>
-<html id='ui' class='no-js'>
-
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>Lux CSS - Viewer</title>
     <link rel="icon" type="image/x-icon"  href="./favicon.ico">
     <link rel='stylesheet' id='s1' type='text/css' media='all' href='res/fonts/font-material.css' />
-    <link rel='stylesheet' id='s2' type='text/css' media='all' href='res/build/debug.css'         />
-    <link rel='stylesheet' id='s3' type='text/css' media='all' href='res/build/equalizer.css'     />
-    <link rel='stylesheet' id='s4' type='text/css' media='all' href='res/build/modifier.css'      />
-    <link rel='stylesheet' id='s5' type='text/css' media='all' href='res/build/elements.css'      />
-    <link rel='stylesheet' id='s6' type='text/css' media='all' href='res/build/layout.css'        />
+    <link rel='stylesheet' id='s2' type='text/css' media='all' href='res/css/lux-debug.css'         />
+    <link rel='stylesheet' id='s3' type='text/css' media='all' href='res/css/lux-equalizer.css'     />
+    <link rel='stylesheet' id='s4' type='text/css' media='all' href='res/css/lux-modifier.css'      />
+    <link rel='stylesheet' id='s5' type='text/css' media='all' href='res/css/lux-elements.css'      />
+    <link rel='stylesheet' id='s6' type='text/css' media='all' href='res/css/lux-layout.css'        />
+    <link rel='stylesheet' id='s6' type='text/css' media='all' href='res/css/mod-dashboard.css'   />
+    <style>
+      html{  position:relative; }
+      iframe{
+        position: absolute;
+        top:0;
+        left: 0;
+        overflow-y:scroll !important;
+      }
+    </style>
   </head>
 <!-- ##################################################################
 
@@ -25,7 +32,7 @@
 ################################################################## -->
   <body id='annotate' class='bg-grid archxray debug' >
 
-    <div id='app' >
+    <div id='app'>
 
       <!-- start:viewer  -->
       <viewer></viewer>
@@ -47,17 +54,10 @@
     <script type='text/javascript' src='https://unpkg.com/vue@2.5.16/dist/vue.js'></script>
     <script type='text/javascript' src='https://unpkg.com/vuex@3.0.1/dist/vuex.min.js'></script>
     <script id='luxloader' src='res/js/lux-loader.js'></script>
-<!--     <script src='res/js/lux-meta.js'></script>
-    <script src='res/js/lux-helper.js'></script> -->
-
-
-
     <script>
-
-      window.name = "luxmain";
-
+      window.name = "luxdash";
       $(()=>{
-        console.warn('Parent Frame loaded');
+        console.warn('Parent Frame Ready');
       });
     </script>
   </body>

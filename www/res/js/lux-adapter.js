@@ -5,9 +5,12 @@ if(parent!==self){
   $(()=>{
 
       window.name = $('html').attr('id') || 'id'+ +(new Date());
-      console.log(`child "${window.name}" loaded` );
+      console.log(`Child Adapater <${window.name}> loaded` );
 
-      parent.$(window.parent.document).trigger('childready');
+      setTimeout( ()=>{
+        console.warn("sending message to parent...");
+        parent.$(window.parent.document).trigger('childready');
+      },1000);
 
       let $lux = window.parent.$.Lux;
 
@@ -17,9 +20,16 @@ if(parent!==self){
           $lux.toggleDashboard();
         }
       });
+
+      $(document).on('parentmessage', (e)=>{
+        console.log(`Window <${window.name}> sees your PARENT`);
+      });
+
+
+
   });
 
 }else{
 
-  console.error("Cannot load Dashboard adapter because window is not child of controller window");
+  console.error("Cannot load Dashboard Adapter because current window is not a child.");
 }

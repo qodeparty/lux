@@ -1,3 +1,16 @@
+
+//check to see if dashboard element exists, otherwise its probably an adapter page
+
+let dash = document.getElementById('dashboard');
+
+const preloadScripts=['res/js/lux-meta','res/js/lux-helper','res/js/lux-gx','res/js/lux-sheets'];
+      preloadScripts.push( !dash ? 'res/js/lux-adapter' : 'res/js/lux-dashboard' );
+
+
+
+//console.warn(preloadScripts);
+ ////////////////////////////////////////////////////////////////////////////////////////
+
 ;(function(w, d, $, preload){
 
   "use strict";
@@ -6,8 +19,7 @@
 
   Lux.events  = {};
   Lux.scripts = {};
-  Lux.sheets  = [];
-  Lux.jsons   = [];
+  Lux.sheets  = {};
 
   const baseURL = w.location.origin +'/';
 
@@ -93,7 +105,7 @@
 
   function requireScripts(){
     let files   = Array.from(arguments);
-    console.info(files);
+    //console.info(files);
     let promise = loadScript(files.pop());
     if(promise)
       files.forEach((file)=>{
@@ -104,7 +116,7 @@
   }
 
   d.addEventListener('scriptload', function (e) {
-    console.info('scriptload event', e.detail);
+    //console.info('scriptload event', e.detail);
     Lux.scripts[ e.detail.src ] = e.detail;
     //console.info(Lux.scripts);
   }, false);
@@ -116,7 +128,7 @@
  //////////////////////////////////////////////////////////
 
   preload = Array.from(preload);
-  preload = preload.map(el=>el+'.js');
+  preload = preload.map(el=>baseURL + el+'.js');
   let promise = requireScripts.apply(this,preload);
 
 
@@ -129,9 +141,10 @@
   $.Lux = Lux;
   $.Lux.fx = FX;
 
-})(window, document, jQuery, ['res/js/lux-meta','res/js/lux-helper','res/js/lux-gx']);
+})(window, document, jQuery, preloadScripts);
 
-if(Vue) Vue.config.productionTip = false;
-console.info($.Lux.fx);
+if(typeof Vue!='undefined'){ Vue.config.productionTip = false; }
+
+//console.info($.Lux.fx);
 
 

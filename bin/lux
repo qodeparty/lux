@@ -374,7 +374,6 @@
 			const LUX_THEME="archxray"
 			const LUX_TIMESTAMP="$(date +%s)"
 
-			if(Vue) Vue.config.productionTip = false;
 			////\n
 		EOF
 		)";
@@ -555,6 +554,7 @@
 			mkdir -p $LUX_WWW/res/build
 			cp -r $LUX_RES $LUX_WWW
 			cp -r $LUX_HOME/www/test $LUX_WWW
+			cp -r $LUX_HOME/www/index.html $LUX_WWW
 		else
 			error "Problem copying build files"
 		fi

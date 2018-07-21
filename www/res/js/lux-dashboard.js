@@ -1,4 +1,4 @@
-
+if(typeof Vue!=='undefined'){
       //window.eventBus = new Vue({});
 
       const lux = $.Lux;
@@ -135,7 +135,7 @@
           TOGGLE_SHEET : (state, name, show) => {
             let remoteLux = state.remote.$.Lux;
             if( remoteLux ){
-              let stat = remoteLux.util.toggleSheet(name);
+              let stat = remoteLux.fx.toggleSheet(name);
               const sheet = state.sheets.find( sheet => sheet.name === name );
               if( sheet ){
                 sheet.active = !stat;
@@ -610,7 +610,7 @@
 
           const dashboardViewer = Vue.component('viewer', {
             template : `
-              <iframe name='viewer' id='viewer' src='test/legacy-native.html' v-on:load="loadLocal" v-on:error='localError'  >
+              <iframe name='viewer' id='viewer' src='test/layout-standard.html' v-on:load="loadLocal" v-on:error='localError'  >
               </iframe>
             `,
 
@@ -653,12 +653,13 @@
                     if( remoteWindow.$ && remoteWindow.$.Lux ){
 
                       remoteLux = remoteWindow.$.Lux;
-                      csslist   = window.csslist  || [];
-                      sheets    = remoteLux.util.get(csslist);
+
+                      csslist   = window.css_list || [];
+                      sheets    = remoteLux.fx.get(csslist); //using sheets fx
 
                       this.$store.dispatch('loadChild',remoteWindow);
                       this.$store.dispatch('loadSheets',sheets);
-                      this.$store.dispatch('loadPages',window.htmllist);
+                      this.$store.dispatch('loadPages',window.html_list);
                       //console.log(sheets);
                       this.$forceUpdate();
 
@@ -694,8 +695,19 @@
 
       }
 
+
+
+
       $(document).on('childready', (e)=>{
-        console.log(' I SEE YOU CHILD ');
+        console.log(`Window <${window.name}> sees you CHILD`);
+        let remoteWindow = findWindow();
+        //console.log(remoteWindow.document);
+
+        setTimeout( ()=>{
+          console.warn("sending message to child...");
+          remoteWindow.$(remoteWindow.document).trigger('parentmessage');
+        },1000);
+
       });
 
       $(document).on('childerror', (e)=>{
@@ -703,6 +715,7 @@
       });
 
       $(loadApp)
+
 
 
       window.onerror = (e)=> {
@@ -713,3 +726,6 @@
       // let iv2 = setTimeout( ()=>{
       //   console.log("MAIN Frame 0 State", window.frames[0].document.readyState);
       // },200);
+}else{
+  console.warn("Dashboard loaded but the context seems invalid!");
+}

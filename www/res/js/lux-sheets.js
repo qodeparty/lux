@@ -5,6 +5,7 @@
 
 
   let Lux = ( $.Lux || w.lux || {} );
+  let FX  = ( Lux.fx || {} );
 
   Lux.sheets = {};
 
@@ -224,7 +225,7 @@
 
   //console.info(d.styleSheets);
 
-  Lux.util = {
+  FX = {
     sheets : Lux.sheets,
     tsh : toggleSheet,
     lsh : linkSheet,
@@ -241,8 +242,9 @@
   };
 
   $.Lux = Lux;
+  $.Lux.fx = Object.assign(FX,$.Lux.fx);
 
 })(window, document, jQuery);
 
 
-console.warn("loaded lux.style");
+//console.warn($.Lux.fx);
