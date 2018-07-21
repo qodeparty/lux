@@ -357,7 +357,7 @@
 	#deletes subfiles after compiling
 	function lux_genlist(){
 		info "Compiling file lists..."
-		touch "$LUX_RES/js/jslist.js"
+		#touch "$LUX_RES/js/js_list.js"
 		lux_listfile "js_list" "res/js" "js"
 		lux_listfile "css_list" "res/css" "css"
 		lux_listfile "html_list" "test" "html"
@@ -373,6 +373,8 @@
 			const LUX_BASIS="$opt_basis"
 			const LUX_THEME="archxray"
 			const LUX_TIMESTAMP="$(date +%s)"
+
+			if(Vue) Vue.config.productionTip = false;
 			////\n
 		EOF
 		)";
