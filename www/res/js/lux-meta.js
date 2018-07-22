@@ -1,9 +1,9 @@
-//// lux generated javascript file Sun Jul 22 06:47:20 UTC 2018
-const LUX_VERSION="v0.7"
-const LUX_BUILD="129"
-const LUX_BASIS="16"
+//// lux generated javascript file Sun Jul 22 06:53:26 UTC 2018
+const LUX_VERSION="v0.8"
+const LUX_BUILD="133"
+const LUX_BASIS=""
 const LUX_THEME="archxray"
-const LUX_TIMESTAMP="1532242040"
+const LUX_TIMESTAMP="1532242406"
 
 ////
 
