@@ -80,7 +80,7 @@
 
       let sizerElm = $('.debug-sizer');
 
-      console.log( sizerElm );
+      //console.log( sizerElm );
 
       if( sizerElm.length > 0 ){
         load_sizer();

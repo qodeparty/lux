@@ -1,7 +1,7 @@
 if(typeof Vue!=='undefined'){
       //window.eventBus = new Vue({});
 
-      const lux = $.Lux;
+      //var lux = $.Lux;
 
 
       function findWindow() {
@@ -9,7 +9,7 @@ if(typeof Vue!=='undefined'){
       }
 
 
-      console.log( lux.fx );
+      //console.log( lux.fx );
 
       Vue.use(Vuex);
 
@@ -72,37 +72,60 @@ if(typeof Vue!=='undefined'){
            { hex : '28A9E1', name : 'Arch 4' },
            { hex : '147bbc', name : 'Arch 6' },
            { hex : '0a6ba8', name : 'Arch 7' },
-           { hex : 'ddbb85', name : 'Accent' },
+           { hex : 'ddbb85', name : 'Accent' }
+          ]
+        },
+
+        {
+          family   : "Sad Clouds",
+          active : false,
+          enabled : true,
+          colors: [
+           { hex : 'f8f9fa', name : 'Grey 2' },
+           { hex : 'e8e8e8', name : 'Puff' },
+           { hex : 'e9ecef', name : 'Grey 1' },
+           { hex : 'e0e0e0', name : 'Cloud' },
+           { hex : 'dee2e6', name : 'Grey 3' },
+           { hex : 'b5b5b5', name : 'Puff 2' },
+           { hex : 'A9A9A9', name : 'Grey Bee' },
+           { hex : '576879', name : 'Sad Cloud' }
+
           ]
         }
 
       ];
 
-      let initState = {
-        remote   : null,
-        display  : true,
-        sheets   : [],
-        pages    : [],
-        palettes : palettes,
-        vars     : [],
-        activePage     : null,
-        activePalette  : null,
-        expandSheets   : false,
-        expandPages    : false,
-        expandPalettes : false
-      };
+      let ap = localStorage.getItem('lux_activePage');
+          ap = ap ? 'test/' + ap : false;
+
+      let dd = localStorage.getItem('lux_display');
+          dd = typeof dd != 'undefined' ? dd : true;
+
+          console.warn('display dash',dd);
+
+      function initStore(fx){
 
 
-      function initStore(){
+        let initState = {
+          remote   : null,
+          display  : dd,
+          sheets   : [],
+          pages    : [],
+          palettes : palettes,
+          vars     : [],
+          activePage     : null,
+          activePalette  : null,
+          expandSheets   : false,
+          expandPages    : false,
+          expandPalettes : false,
+          viewerSrc : ap || 'test/layout-standard.html'
+        };
 
-        console.info("Reloading VueX State");
 
+        //console.info("Reloading VueX State");
 
         const state = Vue.util.extend({}, initState);
-
-        const getters = {
-
-        }
+        const getters = {}
 
         const mutations = {
           RESET_STATE : (state)=>{
@@ -114,15 +137,23 @@ if(typeof Vue!=='undefined'){
           LOAD_APP : (state, remote)=>{
 
           },
+          LOAD_VIEWER : (state, payload)=>{
+
+          },
           LOAD_SHEETS : (state, sheets)=>{
             state.sheets = sheets;
             //console.log(sheets.map( sheets => sheets.name ));
           },
           LOAD_PAGES : (state, pages)=>{
-            let activePage = lux.fx.store_load('activePage');
+            let activePage = fx.store_load('activePage');
             state.pages = pages;
             state.activePage = activePage;
-            //console.log("ACTIVE PAGE LOAD",activePage);
+
+            if( activePage && state.viewerSrc != state.activePage  ){
+              state.viewerSrc = 'test/' + activePage;
+              //console.log("UPDATING VIEWSRC via LOAD_PAGES",activePage)
+            }
+            //$store.dispatch('activatePage',page)
           },
           LOAD_CHILD : (state, remote)=>{
             state.remote = remote;
@@ -167,7 +198,11 @@ if(typeof Vue!=='undefined'){
             console.info(state, payload)
           },
           TOGGLE_DISPLAY : (state, show) => {
-            state.display = !state.display;
+
+            if( typeof show === 'undefined' ) show = !state.display;
+            state.display = show;
+            localStorage.getItem('lux_display',show);
+
           },
           TOGGLE_SHEETS : (state, show) => {
             state.expandSheets = !state.expandSheets;
@@ -187,10 +222,17 @@ if(typeof Vue!=='undefined'){
           },
           ACTIVATE_PAGE : (state, page) => {
             state.activePage = page;
+            if( page && state.viewerSrc != state.activePage  ){
+              state.viewerSrc = 'test/' + page;
+              //console.log("UPDATING VIEWSRC via ACTIVATEPAGE",page)
+            }
             //console.log('ACTIVATE PAGE ACTION 2');
           },
           JUMP_PAGE : (state, page) => {
             state.activePage = page;
+          },
+          SET_VIEWER_SRC : (state, src) => {
+            state.viewerSrc = src;
           }
          };
 
@@ -225,7 +267,10 @@ if(typeof Vue!=='undefined'){
           unloadSheet: (context, payload) => {
             context.commit('UNLOAD_SHEET', payload);
           },
-          toggleDisplay : (context,payload) => {
+          toggleDisplay : (context) => {
+            context.commit('TOGGLE_DISPLAY');
+          },
+          setDisplay : (context,payload) => {
             context.commit('TOGGLE_DISPLAY', payload);
           },
           expandSheets : (context, payload) => {
@@ -246,14 +291,16 @@ if(typeof Vue!=='undefined'){
           },
           jumpPage : (context, page) => {
             const remote = context.state.remote;
-
+            //console.log('JUMPING PAGE',page);
             if( page ){
               let url = 'test/' + page;
               remote.location  = url;
-              console.log(url);
             }
 
             context.commit('JUMP_PAGE', page);
+          },
+          setViewerSrc : (context, payload ) => {
+            context.commit('SET_VIEWER_SRC', payload);
           }
        };
 
@@ -270,11 +317,11 @@ if(typeof Vue!=='undefined'){
 
 
 
-      function loadApp( ){
+      function loadApp( fx ){
 
           console.info('childready event');
 
-          const store = initStore();
+          const store = initStore(fx);
 
           const EventBus = new Vue();
           Object.defineProperties( Vue.prototype, {
@@ -287,7 +334,7 @@ if(typeof Vue!=='undefined'){
 
           Vue.directive('focus', {
             inserted: function (el) {
-             console.log('ins', el)
+             //console.log('ins', el)
              el.focus();
             }
           });
@@ -329,10 +376,10 @@ if(typeof Vue!=='undefined'){
             methods:{
               activatePal: function(family){
 
-                console.log('activate');
+                //console.log('activate');
 
                 const idx = this.$store.state.palettes.findIndex( palette => palette.family === family );
-                console.log( 'activate', family, idx );
+                //console.log( 'activate', family, idx );
 
                 if( idx >= 0 ){
                   this.$store.dispatch('activatePalette',{idx,family});
@@ -371,10 +418,7 @@ if(typeof Vue!=='undefined'){
                 set : function(palette){
                   this.$store.dispatch('loadPalette', palette);
                 }
-              },
-              active(){
-                return (this.palette.active);
-              },
+              }
             },
             methods : {
 
@@ -450,7 +494,7 @@ if(typeof Vue!=='undefined'){
                     <template v-for="(page,index) in pages" >
                       <page
                         @activate='activatePage'
-                        :init-name='page'
+                        :init-page='page'
                         :key="page.id"></page>
                     </template>
                   </ul>
@@ -466,35 +510,34 @@ if(typeof Vue!=='undefined'){
                 set : function(){ this.$store.dispatch('expandPages') }
               },
               activePage :{
-                get : function(){ return this.$store.state.activePage },
+                get : function(){
+                  //console.log('PAGE GET',this.$store.state.activePage );
+                  return this.$store.state.activePage
+                },
                 set : function(page){
-                  console.log("SAVE via SETTER - ACTIVE PAGE",page);
+                  //console.log('PAGE SET',page );
                   this.$store.dispatch('activatePage',page);
                 }
               }
             },
             methods : {
               activatePage: function(page){
-
-                lux.fx.store_save('activePage',page);
-                console.log("SAVE ACTIVE PAGE",page);
+                fx.store_save('activePage',page);
                 this.$store.dispatch('activatePage',page);
-
               }
             }
           });
 
           const pageModule = Vue.component('page', {
             template : `
-              <li class='field-style' @click="$emit('activate',name);jump()" >
+              <li class='field-style' @click="$emit('activate',name)" >
                 <label>{{name}} &#x1f517;</label>
               </li>
             `,
-            props    : [ 'initIndex','initName' ],
+            props    : [ 'initPage' ],
             data     : function(){
               return {
-                index  : this.initIndex,
-                name   : this.initName   || 'Unknown',
+                name   : this.initPage   || 'Unknown',
               };
             },
             methods : {
@@ -523,7 +566,7 @@ if(typeof Vue!=='undefined'){
                         :init-file='sheet.file'
                         :init-locked='sheet.locked'
                         :init-loaded='sheet.loaded'
-                        :key="sheet.id">
+                        :key="sheet.id+index">
                       </stylesheet>
                     </template>
                   </ul>
@@ -611,20 +654,24 @@ if(typeof Vue!=='undefined'){
               </section>
             `,
             computed: {
-              display(){
-                return this.$store.state.display;
+              display: {
+                get : function(){ return this.$store.state.display; },
+                set : function(show){ this.$store.dispatch('toggleDisplay', show ); }
               }
             },
             created(){
-              console.info("dashboard el created");
+              console.info("dashboard created");
             },
             mounted: function(e) {
 
               let self = this;
-              document.body.addEventListener('keydown', function(e) {
-                console.log( e.keyCode );
-                if( e.keyCode == 113 ){
 
+              // let showDash = lux.fx.store_load('display');
+              this.display = dd;
+
+              document.body.addEventListener('keydown', function(e) {
+                //console.log( e.keyCode );
+                if( e.keyCode == 113 ){
                   //self.hidden = !self.hidden;
                   //toggleDashboard();
                   self.$store.dispatch('toggleDisplay');
@@ -635,18 +682,23 @@ if(typeof Vue!=='undefined'){
 
           const dashboardViewer = Vue.component('viewer', {
             template : `
-              <iframe name='viewer' id='viewer' src='test/layout-standard.html' v-on:load="loadLocal" v-on:error='localError'  >
+              <iframe name='viewer' id='viewer' :src='viewerSrc' v-on:load="loadLocal" v-on:error='localError'  >
               </iframe>
             `,
-
+            computed: {
+              viewerSrc: {
+                get : function(){ return this.$store.state.viewerSrc; },
+                set : function(src){ this.$store.dispatch('setViewerSrc', src ); }
+              },
+            },
             mounted: function(e) {
-              console.log('viewer mounted');
+              //console.log('viewer mounted');
               let self = this;
 
               this.$nextTick(()=>{
                 // Code that will run only after the
                 // entire view has been rendered
-                console.log('nextick viewer mounted');
+                //console.log('nextick viewer mounted');
                 self.$store.dispatch('loadChild');
               })
 
@@ -654,7 +706,7 @@ if(typeof Vue!=='undefined'){
             methods:{
               newFrame(e){
                 var iframe = findWindow(e.currentTarget);
-                console.log(e.currentTarget, iframe);
+                //console.log(e.currentTarget, iframe);
               },
               localError(){
                 console.warn("OMG AN ERROR");
@@ -739,9 +791,19 @@ if(typeof Vue!=='undefined'){
         console.warn(' ERROR CHILD! ');
       });
 
-      $(loadApp)
+      if($.Lux.fx){
 
+        $( function(){
+          loadApp($.Lux.fx);
+        });
 
+        console.log('ready!');
+
+      }else{
+        console.error('Lux FX hasnt loaded yet!');
+      }
+
+//this.display = dd;
 
       window.onerror = (e)=> {
         console.error("Page Error!",e);
