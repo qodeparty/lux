@@ -3,17 +3,10 @@
 ///////////////////////////////////////////////////////////////////////////// */
 
 
-
-
-// :root
-//   __root()
-
-///
-  
 *
   &, &:before, &:after
     box-sizing inherit
-    
+
 html, body
   __box_reset()
 
@@ -25,18 +18,18 @@ html
   box-sizing border-box
   overflow-x hidden //this fixes mobile issue not sure if i like it
   overflow-y scroll
- 
+
 body
   font-size 1em
   font-family $basefamily
 
- 
+
 
 /* //////////////////////////////////////////////////////////////////////////////
 // Monkey Elements
 ///////////////////////////////////////////////////////////////////////////// */
 
-canvas, article, aside, figcaption, figure, footer, 
+canvas, article, aside, figcaption, figure, footer,
 header, hgroup, main, menu, nav, section, summary, details
   display block
   __box_reset()
@@ -56,10 +49,10 @@ template
 // Table Elements
 ///////////////////////////////////////////////////////////////////////////// */
 
-table 
+table
   border-collapse collapse
   border-spacing 0
-  
+
 table, tbody, tfoot, thead, tr, th, td, caption
   __box_reset()
 
@@ -71,13 +64,13 @@ caption, th, td
 /* //////////////////////////////////////////////////////////////////////////////
 // Summary
 ///////////////////////////////////////////////////////////////////////////// */
- 
+
 details
   display block
 
-summary 
+summary
   display list-item
-  
+
 /* //////////////////////////////////////////////////////////////////////////////
 // Input
 ///////////////////////////////////////////////////////////////////////////// */
@@ -85,8 +78,8 @@ summary
 form, label, legend, fieldset, output
   __box_reset()
   vertical-align baseline
-  
-label,button, 
+
+label,button,
 input[type=button],
 input[type=submit],
 input[type=file],
@@ -94,7 +87,7 @@ input[type=file],
 
 button[disabled], html input[disabled]
   cursor default
-    
+
 button,
 input,
 select,
@@ -121,13 +114,13 @@ input[type='search']
 
 
 /* //////////////////////////////////////////////////////////////////////////////
-// MEDIA 
+// MEDIA
 ///////////////////////////////////////////////////////////////////////////// */
 
-img 
+img
   max-width 100%
   height auto
-  vertical-align  middle 
+  vertical-align  middle
   border none
 
 
@@ -138,7 +131,7 @@ audio:not([controls])
 audio,
 canvas,
 progress,
-video 
+video
   display inline-block
   vertical-align baseline
 
@@ -153,7 +146,7 @@ video
 
 
 /* //////////////////////////////////////////////////////////////////////////////
-// EXT 
+// EXT
 ///////////////////////////////////////////////////////////////////////////// */
 
 svg:not(:root)

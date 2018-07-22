@@ -11,6 +11,7 @@
     <link rel='stylesheet' id='layout'    href='../res/css/lux-layout.css'    type='text/css' media='all' />
     <link rel='stylesheet' id='modifier'  href='../res/css/lux-modifier.css'  type='text/css' media='all' />
     <link rel='stylesheet' id='elements'  href='../res/css/lux-elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='sandbox'  href='../res/css/mod-sandbox.css'  type='text/css' media='all' />
   </head>
   <body id='annotate' class='bg-grid debug archxray' >
 
@@ -25,7 +26,6 @@
     </div>
 
     <div class='has-notes wrapper xray-blocks puff-blocks pretty-content' title='container'>
-
       <main class='container-fixed'>
         <div class='block-resp'>
           <div class='block-0th-lt y'>
@@ -48,16 +48,38 @@
     </div>
 
 
-    <div class='has-notes wrapper pretty-content' title='container'>
+    <div class='has-notes wrapper ' title='layout ez'>
 
-      <main class='container-fixed with-fake-border as-tiles'>
+      <main class='container-fixed'>
 
+        <div class='layout pretty-content'>
+
+          <div class='r'>This is my header</div>
+          <div class='o'>This is my header nav</div>
+
+          <div class='columns'>
+            <div class='lorem-1 sidebar g'>Aside is here</div>
+            <div class='rows'>
+              <div class='y'>This is my header</div>
+              <div class='b'>This is my nav</div>
+              <!-- <div class='lorem-1 sidebar'>Aside is here</div> -->
+              <div class='content lorem-5 u'>This is my body</div>
+              <div class='b'>This is my footer</div>
+            </div>
+            <!-- <div class='lorem-3 sidebar'>Aside is here</div> -->
+          </div>
+
+          <div class='v'>This is my footer nav</div>
+          <div class='p'>This is my footer</div>
+
+        </div>
       </main>
     </div>
 
-    <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js' ></script>
-    <script id='luxloader' src='../res/js/lux-loader.js'></script>
+    <div id='lux-scripts'>
+      <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js' ></script>
+      <script id='luxloader' src='../res/js/lux-loader.js'></script>
+    </div>
 
-    </script>
   </body>
 </html>

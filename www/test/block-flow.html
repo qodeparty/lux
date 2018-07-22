@@ -11,51 +11,43 @@
     <link rel='stylesheet' id='layout'    href='../res/css/lux-layout.css'    type='text/css' media='all' />
     <link rel='stylesheet' id='modifier'  href='../res/css/lux-modifier.css'  type='text/css' media='all' />
     <link rel='stylesheet' id='elements'  href='../res/css/lux-elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='sandbox'  href='../res/css/mod-sandbox.css'  type='text/css' media='all' />
   </head>
   <body id='annotate' class='bg-grid archxray debug' >
 
 
 
-    <div class='has-notes wrapper xray-blocks ' title='block'>
-      <div class='container-fixed'>
-      	<div class='block is-4'>
-      		<span>Hello, Block </span>
-      	</div>
-      </div>
-    </div>
+		<div class='has-notes wrapper xray-blocks ' title='block'>
+		  <div class='container-fixed'>
+		  	<div class='block is-4'>
+		  		<span>Hello, Block </span>
+		  	</div>
+		  </div>
+		</div>
 
-   <div class='has-notes wrapper xray-blocks ' title='blocks wrapper'>
-    <div class='container-fixed'>
-    	<div class='blocks'>
-	      	<div class='block'>
-	      		<span>Hello, Block </span>
-	      	</div>
-	     </div>
-    </div>
-   </div>
+		<div class='has-notes wrapper xray-blocks ' title='blocks wrapper'>
+		<div class='container-fixed'>
+			<div class='blocks'>
+		    	<div class='block'>
+		    		<span>Hello, Block </span>
+		    	</div>
+		   </div>
+		</div>
+		</div>
 
+		<div class='has-notes wrapper xray-blocks ' title='block-item'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+		    	<div class='block'>
+		      	<div class='block-item'>
+		      		<p class="lorem-3"></p>
+		      	</div>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
 
-    <div class='has-notes wrapper xray-blocks ' title='block > block'>
-      <div class='container-fixed'>
-      	<div class='block'>
-	      	<div class='block-ctr'>
-	      		<span>Hello, Block </span>
-	      	</div>
-      	</div>
-      </div>
-    </div>
-
-    <div class='has-notes wrapper xray-blocks ' title='block-item'>
-      <div class='container-fixed'>
-      	<div class='block'>
-	      	<div class='block-item'>
-	      		<p class="lorem-3"></p>
-	      	</div>
-      	</div>
-      </div>
-    </div>
-
-    <div class='has-notes wrapper xray-blocks ' title='block items'>
+    <div class='has-notes wrapper xray-blocks ' title='block-resp items '>
       <div class='container-fixed'>
        <div class='blocks'>
 	       <div class='block-auto-top-resp'>
@@ -78,7 +70,7 @@
 	<div class='has-notes wrapper xray-blocks ' title='block-vert items'>
 		<div class='container-fixed'>
 			<div class='blocks'>
-		  	<div class='block-resp-vert-auto'>
+		  	<div class='block-vert-auto'>
 		       <div class='block-item lorem-1'>Apples</div>
 		       <div class='block-item lorem-3'>B</div>
 		       <div class='block-item lorem-5'>C</div>
@@ -89,19 +81,21 @@
 
 	<div class='has-notes wrapper xray-blocks ' title='block spacer'>
 	  <div class='container-fixed'>
-	  	<div class='block'>
-	    	<div class='block-item'>
-	    		<p class="lorem-3"></p>
-	    	</div>
-	    	<div class='block-spacer'></div>
-	    	<div class='block-item'>
-	    		<p class="lorem-3"></p>
-	    	</div>
-	    	<div class='block-spacer'></div>
-	    	<div class='block-item'>
-	    		<p class="lorem-3"></p>
-	    	</div>
-	  	</div>
+	  	<div class='blocks'>
+		  	<div class='block-auto'>
+		    	<div class='block-item'>
+		    		<p class="lorem-3"></p>
+		    	</div>
+		    	<div class='block-spacer'></div>
+		    	<div class='block-item'>
+		    		<p class="lorem-5"></p>
+		    	</div>
+		    	<div class='block-spacer'></div>
+		    	<div class='block-item'>
+		    		<p class="lorem-3"></p>
+		    	</div>
+		  	</div>
+		  </div>
 	  </div>
 	</div>
 
@@ -123,6 +117,14 @@
 	<div class='has-notes wrapper xray-blocks ' title='block sp + brk'>
 	  <div class='container-fixed'>
 	  	<div class='block'>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-breaker'></div>
 	    	<div class='block-item'>
 	    		<p class="lorem-3"></p>
 	    	</div>
@@ -189,6 +191,99 @@
 	    </div>
    </div>
 
+    <div class='has-notes wrapper xray-blocks puff-blocks ' title='block as mediablock'>
+	    <div class='container-fixed'>
+	       <div class='block-auto'>
+	       		<div class='block-0th-grey'>
+	       			<figure class='media-image' data-meta='100x100'>
+	       			</figure>
+	       		</div>
+	       		<div class='block-elem-grey'>
+	       			<strong>Jose Garcia</strong>
+	       			<p class='lorem-3'></p>
+	       			<p>What's the use of feeling blue?</p>
+	       		</div>
+	       		<div class='block-nth-grey'>
+	       			<i class="dot"></i>
+	       		</div>
+	       </div>
+	    </div>
+   </div>
+
+    <div class='has-notes wrapper xray-blocks puff-blocks ' title='mediablock'>
+	    <div class='container-fixed'>
+	       <div class='media'>
+
+	       		<div class='media-0th-grey'>
+	       			<figure class='media-image' data-meta='100x100'>
+	       			</figure>
+	       		</div>
+
+	       		<div class='media-body-grey'>
+	       			<strong>Jose Garcia</strong>
+	       			<p class='lorem-3'></p>
+	       			<p>What's the use of feeling blue?</p>
+	       		</div>
+
+	       		<div class='media-nth-grey'>
+	       			<i class="dot"></i>
+	       		</div>
+	       </div>
+	    </div>
+   </div>
+
+
+    <div class='has-notes wrapper xray-blocks puff-blocks ' title='nested mediablock'>
+	    <div class='container-fixed'>
+	       <div class='media'>
+
+	       		<div class='media-0th-grey'>
+	       			<figure class='media-image' data-meta='100x100'>
+	       			</figure>
+	       		</div>
+
+	       		<div class='media-body-grey'>
+	       			<strong>Jose Garcia</strong>
+	       			<p class='lorem-3'></p>
+	       			<p>What's the use of feeling blue?</p>
+
+	       					 <ul class='media-list'>
+
+							       <li>
+							       		<div class='media-0th-grey'>
+							       			<figure class='media-image b' data-meta='100x100'>
+							       			</figure>
+							       		</div>
+
+							       		<div class='media-body-grey'>
+							       			<strong>Blue Diamond</strong>
+							       			<p class='lorem-3'></p>
+							       			<p>What's the use of feeling blue?</p>
+							       		</div>
+
+							       </li>
+							       <li>
+							       		<div class='media-0th-grey'>
+							       			<figure class='media-image r' data-meta='100x100'>
+							       			</figure>
+							       		</div>
+
+							       		<div class='media-body-grey'>
+							       			<strong>Ruby</strong>
+							       			<p class='lorem-3'></p>
+							       			<p>She's a sturdy solitary stone</p>
+							       		</div>
+
+							       </li>
+							    </ul>
+
+	       		</div>
+
+
+	       </div>
+	    </div>
+   </div>
+
 <!--     <div class='has-notes wrapper xray-blocks ' title='block input'>
 	    <div class='container-fixed'>
 	    	<div class='blocks'>
@@ -227,8 +322,8 @@
 		       </div>
 		     </div>
 	    </div>
-   </div> -->
-
+   </div>
+ -->
     <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js' ></script>
     <script id='luxloader' src='../res/js/lux-loader.js'></script>
     <script>
