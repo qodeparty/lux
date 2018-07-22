@@ -16,20 +16,19 @@
   background $sand_green
 
 
-
 $len = fx_make_device_iter(1)
 
 for $l in (1..$len)
   $device = fx_make_device_iter()
-  
+
   $this=fx_device_prop($device,'range')
   $min=$this[0]
   $max=$this[1]
-  
+
   ref=lookup('__'+$device+'_only')
-  
+
   $min= $min ? $min : 272 //apple watch smallest
-    
+
   if ref is defined
     +ref()
       .container-fixed

@@ -5,8 +5,8 @@
 
 __layout_brim(n)
   padding n 0 n 0
-  
-  
+
+
 __layout_gutter(n)
   padding 0 n 0 n
 
@@ -20,27 +20,30 @@ __box_reset_full()
 __box_reset()
   margin 0
   padding 0
-  
 
+__stretch_flex()
+  display flex
+  position relative
+  align-items stretch
 
 __pseudo_border($t=1px,$hex)
-  box-shadow: 
-    $t 0 0 0 $hex, 
+  box-shadow:
+    $t 0 0 0 $hex,
     0 $t 0 0 $hex,
-    $t $t 0 0 $hex,  
+    $t $t 0 0 $hex,
     $t 0 0 0 $hex inset,
     0 $t 0 0 $hex inset
 
 __pseudo_border_var($t=1px)
-  box-shadow: 
-    $t 0 0 0 var(--box-shadow-color), 
+  box-shadow:
+    $t 0 0 0 var(--box-shadow-color),
     0 $t 0 0 var(--box-shadow-color),
-    $t $t 0 0 var(--box-shadow-color),  
+    $t $t 0 0 var(--box-shadow-color),
     $t 0 0 0 var(--box-shadow-color) inset,
     0 $t 0 0 var(--box-shadow-color) inset
 
 __inner_border($t=1px,$hex)
-  box-shadow: 
+  box-shadow:
     0 0 $t $t $hex inset
 
 __except_device($device,$cl_sub)
@@ -48,10 +51,10 @@ __except_device($device,$cl_sub)
   $pstr  = $device + $dash + $cl_sub + $dash + 'placeholder'
   ${$pstr}
     {block}
-    
+
   for $l in (1..$len)
     $screen = fx_make_device_iter()
-     
+
     if $screen != $device
         {$dot + $cl_sub + $dash + $screen}
           @extends ${$pstr}
@@ -62,11 +65,11 @@ __except_label($device,$cl_sub)
   $pstr  = $device + $dash + $cl_sub + $dash + 'placeholder'
   ${$pstr}
     {block}
-    
+
   for $l in (1..$len)
     $screen = fx_make_device_iter()
     $label  = fx_device_size($screen) //sm md lg ..
-     
+
     if $label != $device
         {$dot + $label + $dash + $cl_sub}
           @extends ${$pstr}
@@ -82,15 +85,15 @@ __aspect_ratio($h,$w)
 
 __text_sizes($device="",$size_label=false)
   $len = fx_make_size_iter(1)
-  $label  = $size_label ? $size_label : fx_device_size($device) //sm md lg ..  
-  
+  $label  = $size_label ? $size_label : fx_device_size($device) //sm md lg ..
+
   for $i in (1..$len)
     $v=fx_make_size_iter()
     $v=unquote($v)
     $key='$'+$size_prefix+$v+'' //size-000
-    
+
     $size=lookup($key)
-    
+
     //generate text and _t<size>
     $this = $label ? s($cl_attr_media_s,$abr_text,unquote($label),$v) : s($cl_attr_pre_text_any_s,$v)
 
