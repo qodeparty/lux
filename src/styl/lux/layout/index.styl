@@ -2,16 +2,17 @@
 /* //////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////// */
+@require './layout-flex-ez'
 @require './layout-flex-blocks'
 @require './layout-flex-simple'
 
 if $flex_mode_plus
   @require './layout-flex-plus'
 
-if $inc_truegrid 
+if $inc_truegrid
   @require './layout-truegrid'
 
-  
+
 .basis:after
   content ''+$basis
   text-decoration-line none

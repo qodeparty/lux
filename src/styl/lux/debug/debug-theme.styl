@@ -187,7 +187,7 @@ debug_color_outline($this,$fg=$this,$inv=false)
   else
     background rgba($this, .3)
     border 1px dashed $this
-    color $fg
+    color $fg !important
 
 $placeholder_debug_r
   debug_color_outline($sand_red)
@@ -234,9 +234,14 @@ $placeholder_debug_p
 // DEBUG BLOCK
 ////////////////////////////////////////////////////////////////////////////// */
 .archxray .xray-blocks.puff-blocks {$cl_attr_block_pre_any}:not(.block-spacer),
-.archxray .xray-blocks.puff-blocks {$cl_block}:not(.block-spacer)
+.archxray .xray-blocks.puff-blocks {$cl_block}:not(.block-spacer),
+.archxray .xray-blocks.puff-blocks [class*='media-'],
+.archxray .xray-blocks.puff-blocks .media
   padding 1rem
   position relative
+
+.archxray .xray-blocks.puff-blocks .media-list
+  padding 0.25rem
 
 .archxray .xray-blocks {$cl_blocks}:not(.stripes5)
   @extends $placeholder_debug_b
@@ -269,6 +274,10 @@ $placeholder_debug_p
 .archxray .xray-blocks {$cl_attr_block_pre_any} > [class*='-cyan']
   debug_color_outline($sand_sky,$sand_twilight,true)
 
+.archxray .xray-blocks [class*='media-'][class*='-grey'],
+.archxray .xray-blocks {$cl_attr_block_pre_any}[class*='-grey'],
+.archxray .xray-blocks {$cl_attr_block_pre_any} > [class*='-grey']
+  debug_color_outline($sand_puff,$sand_twilight,true)
 
 // .block > {$cl_attr_block_pre},
 // .archxray .xray-blocks .block > .block
@@ -279,7 +288,7 @@ $placeholder_debug_p
   background transparent
   border none
 
-.archxray .xray-blocks [class*='-item']
+.archxray .xray-blocks {$cl_attr_block_pre_any}[class*='-item']
   debug_color_outline($sand_puff)
   padding 15px
   margin 15px
@@ -306,7 +315,7 @@ $placeholder_material_design_ico
   debug_color_outline($sand_green)
   padding 10px
   border-radius 2px
-  position realtive
+  position relative
 
 .archxray .xray-blocks .block-spacer:after
   @extends $placeholder_material_design_ico
@@ -319,7 +328,7 @@ $placeholder_material_design_ico
   debug_color_outline($sand_pink)
   padding 10px
   border-radius 2px
-  position realtive
+  position relative
 
 .archxray .xray-blocks .block-breaker:after
   @extends $placeholder_material_design_ico
@@ -330,25 +339,25 @@ $placeholder_material_design_ico
 
 
 
-.archxray .xray-blocks {$cl_attr_first}:after
+.archxray .xray-blocks {$cl_attr_block_pre_any}{$cl_attr_first}:after
   @extends $placeholder_material_design_ico
   content '\f792'
   top 0px
   left 0px
 
-.archxray .xray-blocks {$cl_attr_last}:after
+.archxray .xray-blocks {$cl_attr_block_pre_any}{$cl_attr_last}:after
   @extends $placeholder_material_design_ico
   content '\f793'
   top 0px
   right 0px
 
-.archxray .xray-blocks {$cl_attr_center}:after
+.archxray .xray-blocks {$cl_attr_block_pre_any}{$cl_attr_center}:after
   @extends $placeholder_material_design_ico
   content '\f61e'
   top 0px
   left 50%
 
-.archxray .xray-blocks {$cl_attr_item}:after
+.archxray .xray-blocks {$cl_attr_block_pre_any}{$cl_attr_item}:after
   @extends $placeholder_material_design_ico
   content '\f4ca'
   top 0
@@ -363,13 +372,13 @@ $placeholder_material_design_ico
 //   left 50%
 
 +__mobile()
-  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_first}:after
+  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_block_pre_any}{$cl_attr_first}:after
     @extends $placeholder_material_design_ico
     content '\f623'
     top 0px
     left 48%
 
-  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_last}:after
+  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_block_pre_any}{$cl_attr_last}:after
     @extends $placeholder_material_design_ico
     content '\f621'
     top unset
@@ -377,7 +386,7 @@ $placeholder_material_design_ico
     bottom 0px !important
     left 48%
 
-  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_center}:after
+  .archxray .xray-blocks {$cl_attr_resp} {$cl_attr_block_pre_any}{$cl_attr_center}:after
     @extends $placeholder_material_design_ico
     content '\f622'
     top 0px
