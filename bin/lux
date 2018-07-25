@@ -51,6 +51,7 @@
 	blambda="$(sed -n '5,11 p' $BASH_SOURCE)$nl"
 	blambda="${blambda//#/}"
 	line="$(sed -n '16,16 p' $BASH_SOURCE)$nl"
+	bline="$(sed -n '13,13 p' $BASH_SOURCE)$nl"
 	diamond='\xE1\x9B\x9C'
 	delim='\x01'
 	delta="${orange}\xE2\x96\xB3"
@@ -78,7 +79,8 @@
 	function error(){ local text=${1:-}; __print " $text" "fail";	}
 	function  warn(){ local text=${1:-}; __print " $text$x" "delta";	}
 	function  pass(){ local text=${1:-}; __print " $text$x" "pass";	}
-	function fatal(){ trap - EXIT; __print "$fail $1 [$2]"; exit 1; }
+	function success(){ local text=${1:-}; __print "\n$pass $1 [$2] \n$bline\n\n\n"; }
+	function fatal(){ trap - EXIT; __print "\n$fail $1 [$2] \n$bline\n\n\n"; exit 1; }
 	function quiet(){ [ -t 1 ] && opt_quiet=${1:-1} || opt_quiet=1; }
 	function status(){
 		local ret res msg
@@ -620,6 +622,7 @@
 	function lux_compile(){
 		local this thisd thisb thisf d f p buildtype
 		this="$1"
+		btype="$2"
 
 		lux_mods
 
@@ -629,13 +632,17 @@
 			thisb=$(basename $thisd)
 			thisf=$(basename $this)
 
-			buildtype=$(lux_buildtype $thisb)
+			buildtype=${btype:-$(lux_buildtype $thisb)} #passed btype is type
 			info "Compiling... ($thisb/$thisf) $buildtype"
 
 			case $buildtype in
 				main)
 						silly "Rebuild main! ($thisb)"
 						lux_build
+					;;
+				only)
+						silly "Rebuild this only! ($thisb)"
+						lux_build_submod "$this"
 					;;
 				each)
 						silly "Rebuild each! ($thisb)"
@@ -667,6 +674,7 @@
 			fx|mixins) [ -z "$mode" ] && val='each' || val="$LUX_UTIL/$mod";;
 			vars)		   [ -z "$mode" ] && val='each' || val="$LUX_VARS";;
 			*) 				 [ -z "$mode" ] && val='mod'  || val="$LUX_CORE/$mod";;
+			#TODO:smarter mod check to support watch only
 		esac
 		echo $val;
 	}
@@ -827,35 +835,80 @@
 
 
 	function lux_watch(){
-		local IFS sec chsum chsum2 chval res this thisd thisb thisf diff_time;
+		local IFS sec chsum1 chsum2 chval res this;
 		sec="${1:-5}"
+		only="$2"
 
-		printf -v "diff_time" "%.2f" "-$(echo "$sec/60"|bc -l)" #this isnt working now?
+		#printf -v "diff_time" "%.2f" "-$(echo "$sec/60"|bc -l)" #this isnt working now?
 		chsum1=""; opt_debug=0
 		__print "\n\n\n$line"
-		info "Watching ./src ... $diff_time"
+		info "Watching ./src ..." # $diff_time"
 		while [[ true ]];
 		do
 
 			chsum2=`find $LUX_HOME/src -type f \( -name "*.styl" -o -name "*.css*" -o -name "*.js*" \) -mmin -0.5 -exec md5sum {}  \;`
 
 			if [[ $chsum1 != $chsum2 ]] ; then
-				res=$(echo "$chsum2")
-				IFS=' ' read -r -a array <<< "$res"
-				this="${array[1]}";chval="${array[0]}"
+
+
+				this="${chsum2#*  }" #not sure why this is two spaces!!?
 				[ ${#this} -gt 0 ] && trace "Change detected $(basename ${this})...";
 
 				#FIX COMPILE PATHS
-				[[ "$this" =~ ".styl" ]] && lux_compile "$this" || :
-				[[ "$this" =~ ".js" ]]   && lux_compile "$LUX_UTIL/index.styl" || :
+				[[ "$this" =~ ".styl" ]] && res=$(lux_compile "$this") && ret=$? || ret=1;
+				[[ "$this" =~ ".js" ]]   && res=$(lux_compile "$LUX_UTIL/index.styl") || :
 				chsum1=$chsum2
-				[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
-				#info "Check $chsum1 $chsum2"
+
+				chval="${chsum2%% *}"
+
+				if [ $ret -eq 0 ]; then
+					[ -n "$chval" ] && pass "${green}Watch job ($orange$chval$green) completed!$x$nl$line" || :
+				fi
+
 			fi
 
 			sleep 1
 
 		done
+	}
+
+
+	#TODO consolidate the two functions, only differ by find and build commmands for now it works
+	function lux_watch_only(){
+		local IFS  chsum1 chsum2 chval res this;
+		only="$1"
+		count=0
+		__print "\n\n\n$line"
+		info "Watching ./src $only ..."
+		chsum1=""; opt_debug=0
+		if [ -n "$only" ]; then
+			while [[ true ]];
+			do
+
+
+				chsum2=`find $LUX_HOME/src/styl -type f \( -name "$only" \) -mmin -1 -exec md5sum {}  \;`
+				if [[ $chsum1 != $chsum2 ]] ; then
+					this="${chsum2#*  }" #not sure why this is two spaces!!?
+
+					[[ "$this" =~ ".styl" ]] && res=$(lux_compile "$this" "only") && ret=$? || ret=1;
+
+					chsum1=$chsum2
+					chval="${chsum2%% *}"
+
+					if [ $ret -eq 0 ]; then
+						count=$(($count+1));
+						[ -n "$chval" ] && success "Watch job ($count) completed!" "$orange$chval$green" || :
+					else
+						error "Job cancelled due to error! Restarting..."
+						info "Watching ./src $only [$count]\n\n\n"
+					fi
+				fi
+			sleep 1
+
+			done
+		else
+			fail "Watch failed, missing filename"
+		fi
 	}
 
 #-------------------------------------------------------------------------------
@@ -1064,6 +1117,7 @@
 				clean) lux_clean ;;
 				list) lux_genlist	;;
 				watch) lux_watch "$1"; shift;;
+				only) lux_watch_only "$1"; shift;;
 				www)
 					opt_debug=0;
 					case $1 in
