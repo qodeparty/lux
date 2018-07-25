@@ -1,44 +1,152 @@
-
-.media-image{
-	width:100px;
-	height:100px;
-	border:1px solid #dae1e7;
-	background:#f8fafc;
-	position:relative;
-	border-radius:2px;
+.pretty > .container-fixed{
+  color:#000;
 }
 
-.media-image:after{
-	position:absolute;
-	content:attr(data-meta);
-	font-size:12px;
-  top:43px;
-  left:25px;
-  color:inherit; /* #dae1e7 */
-  text-transform:capitalize;
+[class*="xell-"],
+.xell{
+  background:#000;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
 }
 
-.dot {
-  height: 25px;
-  width: 25px;
-  background-color: #0a0a0a33;
-  border-radius: 50%;
-  display: inline-block;
+.xell{
   color:#fff;
-  position:relative;
-  font-weight:bold;
-  cursor:pointer;
 }
 
-.dot:after{
-  content:'×';
-  position:absolute;
-  top:5px;
-  left:7px;
+.xell-1 > .xlot, .xlot-16{
+  flex-basis: 100%;
+}
+
+.xell-2 > .xlot, .xlot-8{
+  flex-basis: 50%;
+}
+
+.xell-3 > .xlot{
+  flex-basis: 33.333%;
+}
+
+.xell-4 > .xlot{
+  flex-basis: 25%;
+}
+
+.xlot-1{
+  flex-basis: 6.25%;
+  max-width: 6.25%;
 }
 
 
-/*.media-list{
-	padding-left:20px !important;
+[class^="xell"] > [class^="xlot"]:nth-child(1){
+  background:var(--color-1);
 }
-*/
+[class^="xell"] > [class^="xlot"]:nth-child(2){
+  background:var(--color-2);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(3){
+  background:var(--color-3);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(4){
+  background:var(--color-4);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(5){
+  background:var(--color-5);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(6){
+  background:var(--color-6);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(7){
+  background:var(--color-7);
+}
+[class*="xell"] > [class^="xlot"]:nth-child(8){
+  background:var(--color-0);
+}
+
+/*[class*="xell"].-auto > [class*="xell"],
+.xell.-auto > [class*="xell"]{
+  align-self: stretch;
+
+  flex: 1 1 auto;
+}
+
+[class*="xlot"].-auto,
+.xlot.-auto{
+  align-self: stretch;
+
+  flex: 1 1 auto;
+}*/
+
+[class^="xell"].-vert{
+  flex-direction: column;
+}
+
+[class^="xell"].-rev{
+  flex-direction: row-reverse;
+}
+
+
+[class^="xell"].-crev{
+  flex-direction: column-reverse;
+}
+
+[class^="xell"].-top{
+  align-items: flex-start
+}
+
+[class^="xlot"].-top{
+  align-self: flex-start
+}
+
+[class^="xell"].-mid{
+  align-items: center;
+}
+
+[class^="xlot"].-mid{
+  align-self: center;
+}
+
+[class^="xell"].-btm{
+ align-items: flex-end;
+}
+
+[class^="xlot"].-btm{
+  align-self: flex-end;
+}
+
+
+
+[class*="xlot-"].-zth,
+.xlot.-zth{
+  flex-grow: 0;
+  order: -1;
+}
+
+.xlot.-nth,
+[class*="xlot"].-nth{
+  flex-grow: 0;
+  order: 999;
+}
+
+
+
+.-rev{}
+.-zth{}
+.-nth{}
+
+.-push{}
+.-sm-r-4
+
+.-pull{}
+.-sm-r-4
+
+.-hide{}
+.-show{}
+
+.xlot{
+  padding: 0.5rem;
+  max-width: 100%;
+  cursor: help;
+  position: relative;
+  flex: 1 1 0%;
+}
+

@@ -177,17 +177,7 @@
 /* //////////////////////////////////////////////////////////////////////////////
 // DEBUG BLOCK
 ////////////////////////////////////////////////////////////////////////////// */
-debug_color_outline($this,$fg=$this,$inv=false)
-  if $inv
-    if $this == $fg
-      $fg = $sand_puff
-    background rgba($this, 1)
-    border 1px dashed $this
-    color $fg
-  else
-    background rgba($this, .3)
-    border 1px dashed $this
-    color $fg !important
+
 
 $placeholder_debug_r
   debug_color_outline($sand_red)
@@ -484,3 +474,44 @@ $placeholder_material_design_ico
 //     font-family: Awzum;
 //     content: "\f097";
 // }
+
+
+
+
+.media-image{
+  width:100px;
+  height:100px;
+  border:1px solid #dae1e7;
+  background:#f8fafc;
+  position:relative;
+  border-radius:2px;
+}
+
+.media-image:after{
+  position:absolute;
+  content:attr(data-meta);
+  font-size:12px;
+  top:43px;
+  left:25px;
+  color:inherit; /* #dae1e7 */
+  text-transform:capitalize;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #0a0a0a33;
+  border-radius: 50%;
+  display: inline-block;
+  color:#fff;
+  position:relative;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.dot:after{
+  content:'×';
+  position:absolute;
+  top:5px;
+  left:7px;
+}

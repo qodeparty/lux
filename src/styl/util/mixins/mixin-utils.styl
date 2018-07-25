@@ -101,3 +101,16 @@ __text_sizes($device="",$size_label=false)
       font-size: __rem($size)
 
 
+
+
+debug_color_outline($this,$fg=$this,$inv=false)
+  if $inv
+    if $this == $fg
+      $fg = $sand_puff
+    background rgba($this, 1)
+    border 1px dashed $this
+    color $fg
+  else
+    background rgba($this, .3)
+    border 1px dashed $this
+    color $fg !important

@@ -1,0 +1,153 @@
+
+$block_pre='[class^="block-"]'
+
+.wrapper,
+.blocks,
+.block,
+.block-item
+  position relative
+
+
+
+
+.block
+  display flex
+  // align-items center
+  // justify-content space-between
+  flex-wrap wrap
+
+  //DIRECTIONAL
+  &.-vert
+  &.-vresp
+    flex-direction column
+
+  &.-vrev
+    flex-direction column-reverse
+
+  &.-hresp
+  &.-horiz
+    flex-direction row
+
+  &.-hrev
+    flex-direction row-reverse
+
+  //VARIANT
+  &.-auto
+    val _
+
+  &.-fixed
+    val _
+
+  //FLUSH
+  &.-0th
+    flex-grow 0
+    order -1
+
+  &.-nth
+    flex-grow 0
+    order 9999
+
+  //POSITIONAL
+  &.-lt
+    justify-content flex-start
+
+  &.-ctr
+    justify-content center
+
+  &.-rt
+    justify-content flex-end
+
+  &.-xy
+    align-items center
+    justify-content center
+
+  &.-top
+    align-items flex-start
+
+  &.-mid
+    align-items center
+
+  &.-btm
+    align-items flex-end
+
+
+.block-item
+  //POSITIONAL
+  &.-lt
+    justify-content flex-start
+
+  &.-ctr
+    justify-content center
+
+  &.-rt
+    justify-content flex-end
+
+  //POSITIONAL
+  &.-top
+    align-self flex-start
+
+  &.-mid
+    align-self center
+
+  &.-btm
+    align-self flex-end
+
+
+
+.block-item
+  display flex
+  flex-basis auto
+  flex 1 1
+
+.block-breaker
+  flex-basis 100% !important
+  align-self stretch
+  margin 0
+  padding 0
+  background transparent
+  display block
+
+
+.block-spacer
+  display flex
+  background transparent
+  flex 0 0 auto
+  align-self center
+  // flex 0 1 100%
+  // align-self stretch
+
+.block-elem
+  val 1
+
+
++__mobile()
+  .block
+    &.-vresp
+      flex-direction row
+    &.-hresp
+      flex-direction column
+  .block-spacer
+    flex 0 1 100%
+    align-self stretch
+
+
+
+.--no-pads,
+.--no-pads > .block,
+.--no-pads > .block-item
+  margin 0 !important
+  padding 0 !important
+
+
+
+[class^="block"][class*='-red']
+  debug_color_outline($sand_red,$sand_twilight,true)
+
+[class^="block"][class*='-pink']
+  debug_color_outline($sand_pink,$sand_twilight,true)
+
+[class^="block"][class*='-cyan']
+  debug_color_outline($sand_sky,$sand_twilight,true)
+
+[class^="block"][class*='-lime']
+  debug_color_outline($sand_lime,$sand_twilight,true)

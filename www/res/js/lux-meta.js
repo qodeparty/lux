@@ -1,9 +1,9 @@
-//// lux generated javascript file Sun Jul 22 17:41:54 UTC 2018
+//// lux generated javascript file Wed Jul 25 07:18:10 UTC 2018
 const LUX_VERSION="v0.8"
-const LUX_BUILD="134"
+const LUX_BUILD="136"
 const LUX_BASIS=""
 const LUX_THEME="archxray"
-const LUX_TIMESTAMP="1532281314"
+const LUX_TIMESTAMP="1532503090"
 
 ////
 
@@ -28,7 +28,7 @@ var css_list = [
 'mod-dashboard.css',
 'mod-sandbox.css'
 ];
-////found 10 html files
+////found 12 html files
 var html_list = [
 'block-flow.html',
 'elements-icon.html',
@@ -38,6 +38,8 @@ var html_list = [
 'layout-standard.html',
 'layout-truegrid.html',
 'native-tags.html',
+'sandbox-1.html',
+'sandbox-2.html',
 'type-modifiers.html',
 'vars-debug.html'
 ];

@@ -1,0 +1,73 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// LUX!
+////////////////////////////////////////////////////////////////////////////// */
+
+[class*="xell-"],
+.xell
+  background #000
+  position relative
+  display flex
+  flex-flow row wrap
+  margin 0
+
+.xlot
+  padding 0.5rem
+  max-width 100%
+  cursor help
+  position relative
+  flex 1 1 0%
+}
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// VARIANTS
+////////////////////////////////////////////////////////////////////////////// */
+
+[class^="xell"].-vert
+  flex-direction column
+
+
+[class^="xell"].-rev
+  flex-direction row-reverse
+
+
+[class^="xell"].-crev
+  flex-direction column-reverse
+
+
+
+[class^="xell"].-top
+  align-items flex-start
+
+
+[class^="xlot"].-top
+  align-self flex-start
+
+
+[class^="xell"].-mid
+  align-items center
+
+
+[class^="xlot"].-mid
+  align-self center
+
+
+[class^="xell"].-btm
+ align-items flex-end
+
+
+[class^="xlot"].-btm
+  align-self flex-end
+
+
+[class*="xlot-"].-zth,
+.xlot.-zth
+  flex-grow 0
+  order -1
+
+
+.xlot.-nth,
+[class*="xlot"].-nth
+  flex-grow 0
+  order 999
+

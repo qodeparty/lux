@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Lux - Sandbox 1</title>
+    <link rel="icon" type="image/x-icon"  href="../favicon.ico">
+    <link rel='stylesheet' id='material'  href='../res/fonts/font-material.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='debug'     href='../res/css/lux-debug.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='equalizer' href='../res/css/lux-equalizer.css' type='text/css' media='all' />
+    <!-- <link rel='stylesheet' id='layout'    href='../res/css/lux-layout.css'    type='text/css' media='all' /> -->
+    <link rel='stylesheet' id='modifier'  href='../res/css/lux-modifier.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='elements'  href='../res/css/lux-elements.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='elements'  href='../res/build/layout-layout-flex-2-blocks.css'  type='text/css' media='all' />
+  </head>
+  <body id='annotate' class='bg-grid archxray debug' >
+
+<!-- ##################################################################
+
+  SANDBOXY!
+
+################################################################## -->
+
+
+
+    <div class='has-notes wrapper pretty' title='new block test'>
+      <div class='container-fixed'>
+      	Hello
+      </div>
+    </div>
+
+
+		<div class='has-notes wrapper xray-blocks ' title='block'>
+		  <div class='container-fixed'>
+		  	<div class='block'>
+		  		<span>Hello, Block </span>
+		  	</div>
+		  </div>
+		</div>
+
+		<div class='has-notes wrapper xray-blocks ' title='block-item'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+		    	<div class='block'>
+		      	<div class='block-item'>
+		      		<p>Hello Block Item!</p>
+		      	</div>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class='has-notes wrapper xray-blocks ' title='block-item defaults'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+		    	<div class='block'>
+		      	<div class='block-item'>
+		      		<p class='lorem-1'>Apple!</p>
+		      	</div>
+		      	<div class='block-item'>
+		      		<p>Banana!</p>
+		      	</div>
+		      	<div class='block-item'>
+		      		<p>Cherry!</p>
+		      	</div>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class='has-notes wrapper xray-blocks ' title='block-item positional LCR'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+		    	<div class='block'>
+		      	<div class='block-item -ctr'>
+		      		Apple!
+		      	</div>
+		      	<div class='block-item -ctr'>
+		      		Banana!
+		      	</div>
+		      	<div class='block-item -ctr'>
+		      		Cherry!
+		      	</div>
+		      	<div class='block-item' title='large'>
+		      		<p class='lorem-1'>Date!</p>
+		      	</div>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class='has-notes wrapper xray-blocks ' title='block-item positional TMB'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+		    	<div class='block'>
+		      	<div class='block-item -top'>
+		      		<p>Apple!</p>
+		      	</div>
+		      	<div class='block-item -mid'>
+		      		<p>Banana!</p>
+		      	</div>
+		      	<div class='block-item -btm'>
+		      		<p>Cherry!</p>
+		      	</div>
+		      	<div class='block-item' title='large'>
+		      		<p class='lorem-1'>Date!</p>
+		      	</div>
+		    	</div>
+		    </div>
+		  </div>
+		</div>
+
+
+		<div class='has-notes wrapper xray-blocks ' title='block teaser'>
+			<div class='block -ctr'>
+				<div class='block-spacer'></div>
+				<div class='block-breaker'></div>
+			</div>
+		</div>
+
+		<div class='has-notes wrapper xray-blocks ' title='block spacer'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+			  	<div class='block -hresp'>
+			    	<div class='block-item'>
+			    		<p class="lorem-5"></p>
+			    	</div>
+			    	<div class='block-spacer'></div>
+			    	<div class='block-item'>
+			    		<p class="lorem-5"></p>
+			    	</div>
+			  	</div>
+			  </div>
+		  </div>
+		</div>
+
+
+		<div class='has-notes wrapper xray-blocks ' title='block breaker'>
+		  <div class='container-fixed'>
+		  	<div class='blocks'>
+			  	<div class='block'>
+			    	<div class='block-item'>
+			    		<p class="lorem-5"></p>
+			    	</div>
+			    	<div class='block-breaker'></div>
+			    	<div class='block-item'>
+			    		<p class="lorem-5"></p>
+			    	</div>
+			  	</div>
+			  </div>
+		  </div>
+		</div>
+
+	<div class='has-notes wrapper xray-blocks ' title='block sp + brk'>
+	  <div class='container-fixed'>
+	  	<div class='block --no-pads'>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-breaker'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-spacer'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	    	<div class='block-breaker'></div>
+	    	<div class='block-item'>
+	    		<p class="lorem-3"></p>
+	    	</div>
+	  	</div>
+	  </div>
+	</div>
+
+
+
+    <div class='has-notes wrapper xray-blocks puff-blocks ' title='block caps'>
+	    <div class='container-fixed'>
+	       <div class='block'>
+	       		<div class='block -0th -lime'>L</div>
+	       		<div class='block -cyan'>C</div>
+	       		<div class='block -nth -red'>R</div>
+	       </div>
+	    </div>
+   </div>
+<!-- ##################################################################
+
+
+################################################################## -->
+    <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js' ></script>
+    <script id='luxloader' src='../res/js/lux-loader.js'></script>
+    <script>
+
+    </script>
+  </body>
+</html>

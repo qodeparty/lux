@@ -201,7 +201,7 @@ if(typeof Vue!=='undefined'){
 
             if( typeof show === 'undefined' ) show = !state.display;
             state.display = show;
-            localStorage.getItem('lux_display',show);
+            localStorage.setItem('lux_display',show);
 
           },
           TOGGLE_SHEETS : (state, show) => {
