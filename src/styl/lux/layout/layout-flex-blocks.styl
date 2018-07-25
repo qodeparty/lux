@@ -1,159 +1,117 @@
 /* //////////////////////////////////////////////////////////////////////////////
-// Lux Flex Block
+// LUX - ELEMENT - IMAGE
 ////////////////////////////////////////////////////////////////////////////// */
 
-
-//TODO: FIX BLOCK ATTR CLASSES
-
 .wrapper,
-{$cl_blocks},
-{$cl_block},
-{$cl_block_item}
+.blocks,
+.block,
+.block-item
   position relative
 
 
-// {$cl_attr_block_pre_any} > {$cl_attr_block_pre_any},
-// {$cl_attr_block_pre_any} > {$cl_block},
-// {$cl_block} > {$cl_attr_block_pre_any},
-// {$cl_block} > {$cl_block}
-//   flex 0 0
-
-{$cl_block_item}
-  align-self stretch
-
-
-// {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
-//   margin __rem(12) 0
-
-// .with-gaps {$cl_attr_block_pre_any}{$cl_attr_last}
-//   margin-left __rem(4)
-
-// .with-gaps {$cl_attr_block_pre_any}{$cl_attr_first}
-//   margin-right __rem(4)
-
-// .with-gaps {$cl_attr_block_pre_any}
-//   margin 0 __rem(4)
-
-// .with-gaps {$cl_block}
-//   margin __rem(4) 0
-
-/* display block on non-mobile */
-{$cl_block}
+.block
   display flex
-  align-items center
-  justify-content space-between
   flex-wrap wrap
 
+  //DIRECTIONAL
+  &.-vert
+  &.-vresp
+    flex-direction column
+
+  &.-vrev
+    flex-direction column-reverse
+
+  &.-hresp
+  &.-horiz
+    flex-direction row
+
+  &.-hrev
+    flex-direction row-reverse
 
 
-//$block_main_placheholder
-{$cl_attr_block_pre_any}
+  &.-fixed
+    flex-wrap nowrap
+
+  &.-flow
+    display inline-flex
+    flex-wrap nowrap
+
+  //FLUSH
+  &.-0th
+    flex-grow 0
+    order -1
+
+  &.-nth
+    flex-grow 0
+    order 9999
+
+  //VARIANT
+  &.-fill
+    flex-grow 1
+    flex-shrink 1
+    max-width 100%
+    align-self stretch
+
+
+  //POSITIONAL
+  &.-lt
+    justify-content flex-start
+
+  &.-ctr
+    justify-content center
+
+  &.-rt
+    justify-content flex-end
+
+  &.-xy
+    align-items center
+    justify-content center
+
+  &.-top
+    align-items flex-start
+
+  &.-mid
+    align-items center
+
+  &.-btm
+    align-items flex-end
+
+
+.block-item
+  //POSITIONAL
+  &.-lt
+    justify-content flex-start
+
+  &.-ctr
+    justify-content center
+
+  &.-rt
+    justify-content flex-end
+
+  //POSITIONAL
+  &.-top
+    align-self flex-start
+
+  &.-mid
+    align-self center
+
+  &.-btm
+    align-self flex-end
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.block > .block-item
   display flex
-  //align-items center
   flex-basis auto
-  flex-shrink 0
-  position relative
-  // max-width 100%
+  flex 1 1
 
+// .block-flow
+//   display inline-flex
+//   flex-basis auto
+//   flex 1 1
 
-[class*="block-"][class*="-flow"]
-  flex-wrap wrap
-
-+__block_pre($attr_item)
-  align-items center
-  flex-basis auto
-  justify-content center
-  flex 1 0
-
-
-+__block_pre($attr_fixed)
-  display block
-  flex-wrap nowrap
-  flex-basis 100%
-
-/* ordernal */
-
-+__block_pre($attr_first)
-  flex-grow 0
-  order -1
-
-+__block_pre($attr_last)
-  flex-grow 0
-  order 9999
-
-
-
-+__block_pre($attr_vert)
-  flex-direction column
-
-/* positional */
-
-$placeholder_block_top
-  align-items flex-start
-
-$placeholder_block_mid
-  align-items center
-
-$placeholder_block_btm
-  align-items flex-end
-
-$placeholder_block_left
-  justify-content flex-start
-
-$placeholder_block_center
-  justify-content center
-
-$placeholder_block_right
-  justify-content flex-end
-
-__block_pre($attr_top,$placeholder_block_top)
-
-__block_pre($attr_mid,$placeholder_block_mid)
-
-__block_pre($attr_btm,$placeholder_block_btm)
-
-
-
-__block_pre($attr_left,$placeholder_block_left)
-
-__block_pre($attr_ctr,$placeholder_block_center)
-
-__block_pre($attr_right,$placeholder_block_right)
-
-
-
-
-{$cl_attr_block_pre_any}{$cl_attr_top} > {$cl_attr_item}
-  @extends $placeholder_block_top
-
-{$cl_attr_top}{$cl_attr_item}
-  align-items flex-start !important
-
-
-{$cl_attr_block_pre_any}{$cl_attr_mid} > {$cl_attr_item}
-   @extends $placeholder_block_mid
-
-{$cl_attr_mid}{$cl_attr_item}
-  align-items center !important
-
-
-{$cl_attr_block_pre_any}{$cl_attr_btm} > {$cl_attr_item}
-  @extends $placeholder_block_btm
-
-{$cl_attr_btm}{$cl_attr_item}
-  align-items flex-end !important
-
-
-{$cl_attr_block_pre_any}{$cl_attr_auto} > {$cl_attr_item}
-  align-self stretch
-
-
-+__block_pre($attr_auto)
-  flex-grow 1
-  flex-shrink 1
-  max-width 100%
-  align-self stretch
-
+.block-item
+  display inline-block
 
 .block-breaker
   flex-basis 100% !important
@@ -165,101 +123,54 @@ __block_pre($attr_right,$placeholder_block_right)
 
 
 .block-spacer
-  display block !important
+  display flex
   background transparent
   flex 0 0 auto
   align-self center
+  // flex 0 1 100%
+  // align-self stretch
 
+.block-elem
+  val 1
 
-
-.block .elem,
-[class*="block-"] [class*='elem']
-  //display block
-  flex 1 1 auto
-  flex-direction column
-
-
+/* /////////////////////////////////////////////////////////////////////////// */
 
 +__mobile()
-
-  {$cl_attr_block_pre_any}[class*='-vresp']
-    flex-direction column
-
-  {$cl_attr_block_pre_any}[class*='-hresp']
-    flex-direction row
-
-  {$cl_attr_block_pre_any}[class*="-resp"]:not(.block-spacer):not(.block-inline)
-    //display block
-    flex-direction column
-    align-items stretch
-
-  // +__block_pre($attr_item)
-  //   flex-grow 0
-
-  {$cl_attr_block_pre_any}[class*="-resp"]  [class*='elem']
-    flex-basis 100%
-
-  // {$cl_attr_item} input // is this necessary
-  //   max-width 100%
-
-  +__block_pre($attr_auto)
-    max-width 100%
-
-  // {$cl_blocks}.with-gaps {$cl_attr_block_pre_any}
-  //   margin 0 0
-  //   margin __rem(4) 0
-
-  // +__block_pre_elm('button',$attr_auto)
-  //   width 100%
-  //   display block
-  //   margin 0 auto
-
+  .block
+    &.-vresp
+      flex-direction row
+    &.-hresp
+      flex-direction column
   .block-spacer
     flex 0 1 100%
     align-self stretch
 
-  // .as-tiles {$cl_block}:not(.block-item):not(.block-inline)
-  //   display block
+/* /////////////////////////////////////////////////////////////////////////// */
 
+.--no-pads,
+.--no-pads > .block,
+.--no-pads > .block-item
+  margin 0 !important
+  padding 0 !important
 
-// this is weird!
+/* /////////////////////////////////////////////////////////////////////////// */
 
+[class*="block"][class*='-red']
+  debug_color_outline($sand_red,$sand_twilight,true)
 
-// .as-tiles .block-item,
-// [class*='block'][class*='-item'][class*='-tile']
-//   display block
+[class*="block"][class*='-pink']
+  debug_color_outline($sand_pink,$sand_twilight,true)
 
+[class*="block"][class*='-cyan']
+  debug_color_outline($sand_sky,$sand_twilight,true)
 
-// $placeholder_as_tiles
-//   align-items stretch
-//   min-height min-content
-//   flex-grow 1
-//   flex-shrink 1
-//   flex-basis 0
+[class*="block"][class*='-lime']
+  debug_color_outline($sand_lime,$sand_twilight,true)
 
-// .as-tiles {$cl_attr_left},
-// .as-tiles {$cl_attr_right},
-// .as-tiles {$cl_attr_center},
-// .as-tiles {$cl_attr_vert},
-// .as-tiles {$cl_attr_block_pre}:not(.block-item),
-// .as-tiles .block,
-// {$cl_attr_block_pre_any}[class*='-tile']
-//   @extends $placeholder_as_tiles
-//   display flex
+[class*="block"][class*='-green']
+  debug_color_outline($sand_green,$sand_twilight,true)
 
-// .as-tiles {$cl_block_item},
-// {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
-//   @extends $placeholder_as_tiles
+[class*="block"][class*='-orange']
+  debug_color_outline($sand_orange,$sand_twilight,true)
 
-
-// .as-tiles {$cl_attr_block_pre},
-// .as-tiles {$cl_block},
-// {$cl_attr_block_pre_any}[class*='-tile']
-//   @extends $placeholder_as_tiles
-//   display flex
-
-// .as-tiles {$cl_attr_block_pre}{$cl_attr_block_item},
-// {$cl_attr_block_pre_any}[class*='-tile'][class*='-item']
-//   @extends $placeholder_as_tiles
-
-
+/* /////////////////////////////////////////////////////////////////////////// */
