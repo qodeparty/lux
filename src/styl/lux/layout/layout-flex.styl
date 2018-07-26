@@ -1,0 +1,303 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// LUX!
+////////////////////////////////////////////////////////////////////////////// */
+
+//TODO: fix mixins / DRY
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// LOCAL MIXINS
+////////////////////////////////////////////////////////////////////////////// */
+
+__all_label($meta,$cl_sub)
+  $len = fx_make_device_iter(1)
+  $pstr  = $meta + $dash + $cl_sub + $dash + 'placeholder'
+  ${$pstr}
+    {block}
+
+  for $l in (1..$len)
+    $screen = fx_make_device_iter()
+    $label  = fx_device_size($screen) //sm md lg ..
+    {$dot + $cl_sub + $label }
+      @extends ${$pstr}
+
+//-<size>-<variant>-val
+
+/************************************************************/
+
+
+[class*="cell-"],
+.cell
+  position relative
+  display flex
+  flex-flow row wrap
+  margin 0
+
+[class*="slot-"],
+.slot
+  max-width 100%
+  cursor help
+  position relative
+  flex 1 1 0%
+
+/* //////////////////////////////////////////////////////////////////////////////
+// VISIBILITY
+////////////////////////////////////////////////////////////////////////////// */
+
+.-v
+.-vtouch
+.-vdesk
+  display block !important
+
+.-h
+.-htouch
+.-hdesk
+  display none !important
+
+
++__all_label('visible','-v-')
+  display none !important
+
+
++__all_label('hidden','-h-')
+  display block !important
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// VARIANTS
+////////////////////////////////////////////////////////////////////////////// */
+
+
+[class*="cell"]
+  display flex
+  flex-wrap wrap
+
+  //DIRECTIONAL
+  &.-vert
+  &.-vresp
+    flex-direction column
+
+  &.-vrev
+    flex-direction column-reverse
+
+  &.-hresp
+  &.-horiz
+    flex-direction row
+
+  &.-hrev
+    flex-direction row-reverse
+
+  &.-fixed
+    flex-wrap nowrap
+
+  &.-flow
+    display inline-flex
+    flex-wrap nowrap
+
+  //VARIANT
+  &.-fill
+    flex-grow 1
+    flex-shrink 1
+    max-width 100%
+    align-self stretch
+
+
+  //POSITIONAL
+  &.-lt
+    justify-content flex-start
+
+  &.-ctr
+    justify-content center
+
+  &.-rt
+    justify-content flex-end
+
+  &.-xy
+    align-items center
+    justify-content center
+
+  &.-top
+    align-items flex-start
+
+  &.-mid
+    align-items center
+
+  &.-btm
+    align-items flex-end
+
+
+
+[class*="slot"]
+  //FLUSH
+  &.-pull
+    flex-grow 0
+    order -1
+  &.-zth
+    order -1
+
+  &.-push
+    flex-grow 0
+    order 9999
+  &.-nth
+    order 9999
+
+
+.slot-spacer
+  text-align center
+  align-self center
+
+
+/************************************************************/
+
+
+{__attr_class('-r',$attr_any)}
+  margin-right s("calc( var(--push-index, 0) * %s%)",$atomic_basis)
+
+{__attr_class('-l',$attr_any)}
+  margin-left s("calc( var(--pull-index, 0) * %s%)",$atomic_basis)
+
+
+
+/************************************************************/
+
+
+for $n in (0..$basis)
+  $pval=__i_of_all($n)
+  .cell-{$n} > [class*="slot"]
+    flex-basis $pval
+    max-width  $pval
+
+
+
+/************************************************************/
+
+
+for $n in (0..$basis)
+  $pval=__i_of_basis($n)
+
+  //support natural basis 1/2 1/4 1/1 etc
+  $cl=__undot(""+__natural_basis($n))
+  unless $cl is 'null'
+    $natural_cls=s('[class*="cell"] > .slot-%s',unquote($cl))
+
+  {$natural_cls},
+  [class*="cell"] > .slot-{$n}
+    flex-basis $pval
+    max-width  $pval
+
+  $natural_cls=''
+
+/************************************************************/
+for $n in (0..$basis)
+  .-r-{$n}
+    --push-index:$n
+
+  .-l-{$n}
+    --pull-index:$n
+
+
+/************************************************************/
+
+$len = fx_make_device_iter(1)
+
+for $l in (1..$len)
+  $device = fx_make_device_iter()
+  $label  = fx_device_size($device) //sm md lg ..
+  ref=lookup('__'+$device+'_only')
+
+  if ref is defined
+    +ref()
+
+      {__to_class('-v',$label)}
+        display block !important
+
+      {__to_class('-h',$label)}
+        display none !important
+
+      for $n in (0..$basis)
+        $pval=__i_of_all($n)
+        $cell = s($cl_media_modifier_s,$abr_cell,unquote($label),$n)
+        {$cell} > [class*="slot"]
+          flex-basis $pval
+          max-width  $pval
+
+      for $n in (0..$basis)
+        $pval=__i_of_basis($n)
+        $slot = s($cl_media_modifier_s,$abr_slot,unquote($label),$n)
+        [class*="cell"] > {$slot}
+          flex-basis $pval
+          max-width  $pval
+
+      for $n in (0..$basis)
+        .-r{unquote($label)}-{$n}
+          --push-index:$n
+
+        .-l{unquote($label)}-{$n}
+          --pull-index:$n
+
+
+/************************************************************/
+
++__touch()
+
+  {__to_class('-v',unquote('touch'))}
+    display block !important
+
+  {__to_class('-h',unquote('touch'))}
+    display none !important
+
+  for $n in (0..$basis)
+    $pval=__i_of_all($n)
+    $cell = s($cl_media_modifier_s,$abr_cell,unquote('touch'),$n)
+    {$cell} > [class*="slot"]
+      flex-basis $pval
+      max-width  $pval
+
+  for $n in (0..$basis)
+    $pval=__i_of_basis($n)
+    $slot = s($cl_media_modifier_s,$abr_slot,unquote('touch'),$n)
+    [class*="cell"] > {$slot}
+      flex-basis $pval
+      max-width  $pval
+
+  for $n in (0..$basis)
+    .-r{unquote('touch')}-{$n}
+      --push-index:$n
+
+    .-l{unquote('touch')}-{$n}
+      --pull-index:$n
+
+
++__desktop()
+
+  {__to_class('-v',unquote('desk'))}
+    display block !important
+
+  {__to_class('-h',unquote('desk'))}
+    display none !important
+
+  for $n in (0..$basis)
+    $pval=__i_of_all($n)
+    $cell = s($cl_media_modifier_s,$abr_cell,unquote('desk'),$n)
+    {$cell} > [class*="slot"]
+      flex-basis $pval
+      max-width  $pval
+
+  for $n in (0..$basis)
+    $pval=__i_of_basis($n)
+    $slot = s($cl_media_modifier_s,$abr_slot,unquote('desk'),$n)
+    [class*="cell"] > {$slot}
+      flex-basis $pval
+      max-width  $pval
+
+  for $n in (0..$basis)
+    .-r{unquote('desk')}-{$n}
+      --push-index:$n
+
+    .-l{unquote('desk')}-{$n}
+      --pull-index:$n
+
+/************************************************************/
+
+//[class*="cell"] > [class*="cell"] > [class*="cell"]

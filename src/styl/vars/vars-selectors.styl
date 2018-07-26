@@ -18,10 +18,13 @@ $dash_i='-%s'
 $under_i='_%s'
 
 $abr_cell=c
+$abr_slot=s
 $abr_right=r
 $abr_left=l
 
 $abr_text=t
+
+$cl_media_modifier_s     = '.-%s%s-%s'
 
 /* //////////////////////////////////////////////////////////////////////////////
 // mini directions
@@ -169,6 +172,8 @@ $cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
 $cl_attr_screen_s       = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
 
 $cl_attr_media_s        = __attr_class($under_i + $str + $dash_i, $attr_any) // class*=["_%s%s-%s"]
+
+
 
 $cl_attr_media_dash_s   = __attr_class($str + $dash_i, $attr_any) // %s-%s
 $cl_attr_media_dashin_s = __attr_class($str + $dash_i, $attr_in) // %s-%s

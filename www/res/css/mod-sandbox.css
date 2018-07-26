@@ -1,3 +1,8 @@
+
+.wrapper{
+  position:relative;
+}
+
 .pretty > .container-fixed{
   color:#000;
 }
@@ -130,8 +135,7 @@
 
 
 .-rev{}
-.-zth{}
-.-nth{}
+
 
 .-push{}
 .-sm-r-4

@@ -44,12 +44,22 @@
     if $use_natural
       $cl=fx_perc_frac($i)
       if $cl
-        return unquote($pre_is + $cl)
+        return unquote($cl)
+        //return unquote($pre_is + $cl) used to be is-<size>
+
 
 //cachebust on the limits of a range 1..$basis
 //because joining limit classes causes css precendence conflict
  __cachebust_str($i)
     return($i==1||$i==$basis?$i:'')
+
+
+__maybeCache() // [1]
+  if($useCache)
+    +cache(arguments) // [2]
+      {block} // [3]
+  else
+    {block}
 
 /* //////////////////////////////////////////////////////////////////////////////
 // CSS Vars
