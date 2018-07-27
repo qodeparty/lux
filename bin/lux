@@ -342,8 +342,8 @@
 		var=$1
 		path=$2
 		ftype=$3
-		jsfile="./www/res/js/${var}.js"
-		list=($(find "./www/${path}" -type f -name "*.${ftype}" ! -name '_*.*' -printf '%P\n' ))
+		jsfile="$LUX_HOME/www/res/js/${var}.js"
+		list=($(find "$LUX_HOME/www/${path}" -type f -name "*.${ftype}" ! -name '_*.*' -printf '%P\n' ))
 		len=$((${#list[@]}-1));
 
 		printf "%s\\n" "////found $(($len+1)) $ftype files" > $jsfile
@@ -354,6 +354,8 @@
 			printf "%s\\n" "$this" >> $jsfile
 		done
 		printf "%s\\n" "];" >> $jsfile
+
+		#info $LUX_HOME
 	}
 
 	#deletes subfiles after compiling

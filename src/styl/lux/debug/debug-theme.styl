@@ -328,13 +328,14 @@ $placeholder_material_design_ico
   top 1px
   left 2px
 
-
+.archxray .xray-blocks .control-breaker
 .archxray .xray-blocks .block-breaker
   debug_color_outline($sand_pink)
   padding 10px
   border-radius 2px
   position relative
 
+.archxray .xray-blocks .control-breaker:after
 .archxray .xray-blocks .block-breaker:after
   @extends $placeholder_material_design_ico
   content '\f60C'
@@ -413,6 +414,19 @@ $placeholder_material_design_ico
   //color 1px solid rgba(147, 128, 108, 0.25)
   color rgba(147, 128, 108, 0.25) //#a79f9d
 
+// .archxray .control .elem
+//   border 1px dashed rgba(78, 192, 228, 0.5)
+//   padding 2px
+
+.archxray .field > label
+  border 1px dotted $sand_sky
+  margin-bottom 2px
+
+.archxray .control .elem
+  border 1px dotted $sand_sky
+  margin 2px
+  min-height 2rem
+
 .archxray .control input
   //border-color #dbdbdb
   font-size 1rem
@@ -482,6 +496,9 @@ $placeholder_material_design_ico
   position relative
   outline none
   width 90px
+  height 40px
+  //left -39px
+  z-index 999
 
 .archxray ._debug_status ._debug:active
   background $sand_pine

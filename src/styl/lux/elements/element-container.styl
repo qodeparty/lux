@@ -27,13 +27,13 @@ for $l in (1..$len)
 
   ref=lookup('__'+$device+'_only')
 
-  $min= $min ? $min : 272 //apple watch smallest
+  $min= $min ? $min : 360 // min doesnt work well for nano 272 //apple watch smallest
 
   if ref is defined
     +ref()
       .container-fixed
-        width __rem($min)
+        width __rem($min) //some funkiness here
         max-width __rem($max,16)
         --media $device
-
+        --width $min $max
 

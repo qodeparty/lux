@@ -1,33 +1,93 @@
 
-.control-wrapper
+.field
   display flex
   align-items stretch
   flex-direction column
 
-.control-wrapper > label > span
+.field.-horiz
+  flex-direction row
+  flex-wrap wrap
+
+.field > label > span
   cursor pointer
   font-size 0.75rem
   font-weight bolder
 
-.control-wrapper > label > output
+.field > label > output
   font-size 0.75rem
   font-style italic
+
+
+
+/* /////////////////////////////////////////////////////////////////////////// */
+//needs responsive variants
+.-tiny
+  flex-basis 15%
+  max-width 15%
+  min-width 5rem
+
+.-short
+  flex-basis 25%
+  //max-width 25%
+  min-width 7.75rem
+
+.-medium
+  flex-basis 30%
+  max-width 30%
+  min-width 8.5rem
+
+.-long
+  flex-basis 40%
+  max-width 40%
+  min-width 10rem
+
+.-half
+  flex-basis 50%
+  max-width 50%
+
+.-fill
+  flex-grow 1
+  max-width initial
+  min-width 5rem
+
+.-break
+  flex-basis 100%
+
+.control-breaker
+  flex-basis 100%
+
+
+.-all
+  flex-basis 100%
+  max-width 100%
+
+.-half input,
+.-long input,
+.-medium input,
+.-short input,
+.-tiny input
+  width 100%
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
 
 .control
   position relative
   font-size 1rem
   display flex
   align-items stretch
+  flex-direction row
 // .control > .field
 //   color red
 
 .control input
   position relative
-  flex 1
+  flex 1 1 0
   //max-width 100%
   //width 100%
   line-height 1.5
   display block
+  user-select all
   padding .5em //not sure what these values are
 
 
@@ -40,9 +100,17 @@
 .control button.aside
   cursor pointer
 
-.elem
-  display inline-flex
+.control .elem
   position relative
+  display inline-flex
+  flex 1 1 auto
+
+.control .elem > *
+  flex 1 1 auto
+
+.control .elem > input
+  flex-basis 100%
+
 
 // .elem :first-child
 //   border-radius 5px 0 0 5px
@@ -60,11 +128,117 @@
 
 /* /////////////////////////////////////////////////////////////////////////// */
 
+.-unselectable
+  user-select none
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
 [class*='icon-'].-clickable:before
   cursor pointer
 
 [class*='icon-'].-clickable:hover:before
   color rgba(78, 192, 228, 0.5)
+
+
+/* /////////////////////////////////////////////////////////////////////////// */
+.control .elem2 > input
+  flex-basis auto
+
+.elem2
+  display flex
+  align-items stretch
+
+  .-zth
+    flex-grow 0
+    order -1
+
+  .-nth
+    flex-grow 0
+    order 9999
+
+
+$placeholder-elem2
+  width 2.5rem
+  height 2.5rem
+
+.elem2.-ilr :nth-child(2)
+.elem2.-ilt :nth-child(2)
+  border 1px solid rgba(147,128,108,0.25)
+  border-right none
+  @extends $placeholder-elem2
+
+.elem2.-irt :nth-child(2)
+.elem2.-ilr :nth-child(3)
+  border 1px solid rgba(147,128,108,0.25)
+  border-left none
+  @extends $placeholder-elem2
+
+.elem2.-irt > input
+  border-left 1px solid rgba(147,128,108,0.25)
+
+.elem2.-ilt > input
+  border-right 1px solid rgba(147,128,108,0.25)
+
+.elem2 [class*='icon-']:before
+  position relative
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-ilr'] > input
+  padding-right 2.75rem
+  padding-left 2.75rem
+
+.-ilr :nth-child(2):before
+  left 5px
+  z-index 3
+
+.-ilr :nth-child(3):before
+  right 5px
+  z-index 3
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-irt'] > input
+  padding-right 2.75rem
+
+.-irt :nth-child(2):before
+  right 5px
+  z-index 3
+
+.-irt :nth-child(3)
+  display none
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-ilt'] > input
+  padding-left 2.75rem
+
+.-ilt :nth-child(2):before
+  left 5px
+  z-index 3
+
+.-ilt :nth-child(3)
+  display none
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.control input:focus ~ span
+  color #a79f9d
+
+
+/* /////////////////////////////////////////////////////////////////////////// */
+//focus remove icons
+
+.-short .-irt input:focus
+.-tiny .-irt input:focus
+  padding-right 0
+
+.-short .-ilt input:focus
+.-tiny .-ilt input:focus
+  padding-left 1rem
+
+.-short input:focus ~ span
+.-tiny input:focus ~ span
+  display none
 
 /* /////////////////////////////////////////////////////////////////////////// */
 
@@ -93,47 +267,4 @@
 
 ._err [class*='icon-'].-errorable:before
   content var(--status-icon,'')
-
-
-/* /////////////////////////////////////////////////////////////////////////// */
-
-.elem[class*='-ilt'] > input
-  padding-left 2.75rem
-
-.-ilr :nth-child(2):before
-  left 5px
-  z-index 3
-
-.-ilr :nth-child(3):before
-  right 5px
-  z-index 3
-
-/* /////////////////////////////////////////////////////////////////////////// */
-
-.elem[class*='-irt'] > input
-  padding-right 2.75rem
-
-.-irt :nth-child(2):before
-  right 5px
-  z-index 3
-
-.-irt :nth-child(3)
-  display none
-
-/* /////////////////////////////////////////////////////////////////////////// */
-
-.elem[class*='-ilr'] > input
-  padding-right 2.75rem
-  padding-left 2.75rem
-
-.-ilt :nth-child(2):before
-  left 5px
-  z-index 3
-
-.-ilt :nth-child(3)
-  display none
-/* /////////////////////////////////////////////////////////////////////////// */
-
-.control input:focus ~ span
-  color #a79f9d
 
