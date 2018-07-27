@@ -643,6 +643,7 @@
 				only)
 						silly "Rebuild this only! ($thisb)"
 						lux_build_submod "$this"
+						lux_build_mod "debug"
 					;;
 				each)
 						silly "Rebuild each! ($thisb)"
