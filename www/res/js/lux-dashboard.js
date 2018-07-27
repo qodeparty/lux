@@ -719,10 +719,10 @@ if(typeof Vue!=='undefined'){
 
             },
             methods:{
-              newFrame(e){
-                var iframe = findWindow(e.currentTarget);
-                //console.log(e.currentTarget, iframe);
-              },
+              // newFrame(e){
+              //   var iframe = findWindow(e.currentTarget);
+              //   console.log(e.currentTarget, iframe);
+              // },
               localError(){
                 console.warn("OMG AN ERROR");
               },
@@ -730,6 +730,22 @@ if(typeof Vue!=='undefined'){
 
                 //console.log("xFrame 0 State", window.frames[0].document.readyState, e);
                 //alert("Iframe is now loaded.");
+
+                var iframe = findWindow(e.currentTarget);
+                iframe.onerror=function(e){
+                  console.warn("ERROR!!");
+                }
+
+                console.log(iframe['name'],iframe);
+
+                if( !iframe['name'] || iframe['name'] ==='viewer' ){
+                  setTimeout(()=>{
+                    localStorage.removeItem('lux_activePage');
+                    ap = 'test/layout-standard.html';
+                    this.viewerSrc=ap;
+                    console.warn('IFRAME Error',ap);
+                  },1);
+                }
 
                 this.$nextTick(()=>{
 

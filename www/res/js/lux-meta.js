@@ -1,9 +1,9 @@
-//// lux generated javascript file Fri Jul 27 18:54:56 UTC 2018
+//// lux generated javascript file Fri Jul 27 19:02:44 UTC 2018
 const LUX_VERSION="v0.8.6"
-const LUX_BUILD="145"
-const LUX_BASIS="16"
+const LUX_BUILD="149"
+const LUX_BASIS=""
 const LUX_THEME="archxray"
-const LUX_TIMESTAMP="1532717696"
+const LUX_TIMESTAMP="1532718164"
 
 ////
 
@@ -31,7 +31,7 @@ var css_list = [
 ////found 12 html files
 var html_list = [
 'block-flow.html',
-'elements-contro.html',
+'elements-control.html',
 'elements-icon.html',
 'flex-advanced.html',
 'flex-basis.html',
