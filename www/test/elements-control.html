@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>Lux - </title>
+    <link rel="icon" type="image/x-icon"  href="../favicon.ico">
+    <link rel='stylesheet' id='material'  href='../res/fonts/font-material.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='debug'     href='../res/css/lux-debug.css'     type='text/css' media='all' />
+    <link rel='stylesheet' id='equalizer' href='../res/css/lux-equalizer.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='layout'    href='../res/css/lux-layout.css'    type='text/css' media='all' />
+    <link rel='stylesheet' id='modifier'  href='../res/css/lux-modifier.css'  type='text/css' media='all' />
+    <link rel='stylesheet' id='elements'  href='../res/css/lux-elements.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='elements'  href='../res/build/elements-element-input.css'  type='text/css' media='all' />
+  </head>
+  <body id='annotate' class='bg-grid archxray debug debug-status' >
+
+<!-- ##################################################################
+
+
+################################################################## -->
+
+
+ <div class='has-notes wrapper xray-blocks ' title='control'>
+    <div class='container-fixed w1'>
+    	<div class='control'>
+    		<div class='left b'>
+    			L
+    		</div>
+    		<div class='elem'>
+    			<span class='aside'>Name</span>
+					<input type='text' tab-index='0' placeholder='First Name' value='' >
+    			<button class='aside' tab-index='1'>Ok</button>
+    		</div>
+    		<div class='right r'>
+    			R
+    		</div>
+    	</div>
+    </div>
+ </div>
+
+ <div class='has-notes wrapper xray-blocks ' title='control icons'>
+    <div class='container-fixed w1'>
+    	<div class='control'>
+    		<div class='left b'>
+    			L
+    		</div>
+    		<span class='aside'>Name</span>
+    		<div class='elem -ilr'>
+					<input type='text' tab-index='2' placeholder='Search' value='' >
+					<span class='icon-4'></span>
+					<span class='icon-99'></span>
+    		</div>
+    		<div class='right r'>
+    			R
+    		</div>
+    	</div>
+    </div>
+   </div>
+ </div>
+
+ <div class='has-notes wrapper xray-blocks ' title='control clickable'>
+    <div class='container-fixed w1'>
+    	<div class='control'>
+    		<div class='left b'>
+    			L
+    		</div>
+    		<span class='aside'>Name</span>
+    		<div class='elem -ilr'>
+					<input type='text' tab-index='2' placeholder='Search' value='' >
+					<span class='icon-4'></span>
+					<span class='icon-1795 -clickable' onclick='console.log("clicked")'></span>
+    		</div>
+    		<div class='right r'>
+    			R
+    		</div>
+    	</div>
+    </div>
+   </div>
+ </div>
+
+ <div class='has-notes wrapper xray-blocks ' title='control statusable'>
+    <div class='container-fixed w1'>
+    	<div class='control _debug_status'>
+    		<div class='left b'>
+    			L
+    		</div>
+    		<span class='aside -errorable'>Name</span>
+    		<div class='elem -ilr'>
+					<input type='text' tab-index='2' placeholder='Love Me' value='' >
+					<span class='icon-4'></span>
+					<span class='icon-status -statusable'></span>
+    		</div>
+    		<div class='right r'>
+    			R
+    		</div>
+    		<button class='_debug'>Status</button>
+    	</div>
+    </div>
+ </div>
+
+ <div class='has-notes wrapper xray-blocks ' title='control captions'>
+    <div class='container-fixed w1'>
+    	<div class='control-wrapper'>
+    		<label>
+    			<span>First Name</span>
+	    		<div class='control'>
+		    		<div class='left b'>
+		    			L
+		    		</div>
+		    		<span class='aside'>Name</span>
+		    		<div class='elem -ilt'>
+							<input type='text' tab-index='2' placeholder='Search' value='' >
+							<span class='icon-4'></span>
+		    		</div>
+		    		<div class='right r'>
+		    			R
+		    		</div>
+		    	</div>
+		    	<output>Enter your name for more love...</output>
+	    	</label>
+    	</div>
+    </div>
+   </div>
+ </div>
+
+<!-- ##################################################################
+
+
+################################################################## -->
+    <script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js' ></script>
+    <script id='luxloader' src='../res/js/lux-loader.js'></script>
+    <script>
+
+    </script>
+  </body>
+</html>
