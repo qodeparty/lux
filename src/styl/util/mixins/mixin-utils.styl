@@ -114,3 +114,15 @@ debug_color_outline($this,$fg=$this,$inv=false)
     background rgba($this, .3)
     border 1px dashed $this
     color $fg !important
+
+debug_color_fill($this,$fg=$this,$inv=false)
+  if $inv
+    if $this == $fg
+      $fg = $sand_puff
+    background rgba($this, 1)
+    border 1px dashed $this
+    color $fg
+  else
+    background rgba($this, 1)
+    border 1px dashed $this
+    color $fg !important

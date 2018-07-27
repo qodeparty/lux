@@ -1,9 +1,9 @@
 
   #dashboard{
-    margin:10px;
+    /*margin:10px;*/
     bottom:0px;
     max-width:100%;
-    width:97%;
+    width:100%;
     position:fixed;
 
   }
@@ -16,6 +16,7 @@
     border-style: solid;
     border-color: #ccc;
     border-image: initial;
+    height:100px;
     /*background:#CBEAF3;*/
   }
 
@@ -112,6 +113,7 @@
     background-size: contain;
     height:100px;width:100px;
     float:left;
+    cursor:pointer;
   }
 
   .fade-enter-active, .fade-leave-active {

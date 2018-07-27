@@ -4,6 +4,7 @@
 
 //TODO: fix mixins / DRY
 
+//NOTE: problem with  -l -r prefix changed to -ml -mr
 
 /* //////////////////////////////////////////////////////////////////////////////
 // LOCAL MIXINS
@@ -151,10 +152,10 @@ __all_label($meta,$cl_sub)
 /************************************************************/
 
 
-{__attr_class('-r',$attr_any)}
+{__attr_class('-mr',$attr_any)}
   margin-right s("calc( var(--push-index, 0) * %s%)",$atomic_basis)
 
-{__attr_class('-l',$attr_any)}
+{__attr_class('-ml',$attr_any)}
   margin-left s("calc( var(--pull-index, 0) * %s%)",$atomic_basis)
 
 
@@ -190,10 +191,10 @@ for $n in (0..$basis)
 
 /************************************************************/
 for $n in (0..$basis)
-  .-r-{$n}
+  .-mr-{$n}
     --push-index:$n
 
-  .-l-{$n}
+  .-ml-{$n}
     --pull-index:$n
 
 
@@ -230,10 +231,10 @@ for $l in (1..$len)
           max-width  $pval
 
       for $n in (0..$basis)
-        .-r{unquote($label)}-{$n}
+        .-mr{unquote($label)}-{$n}
           --push-index:$n
 
-        .-l{unquote($label)}-{$n}
+        .-ml{unquote($label)}-{$n}
           --pull-index:$n
 
 
@@ -262,10 +263,10 @@ for $l in (1..$len)
       max-width  $pval
 
   for $n in (0..$basis)
-    .-r{unquote('touch')}-{$n}
+    .-mr{unquote('touch')}-{$n}
       --push-index:$n
 
-    .-l{unquote('touch')}-{$n}
+    .-ml{unquote('touch')}-{$n}
       --pull-index:$n
 
 
@@ -292,10 +293,10 @@ for $l in (1..$len)
       max-width  $pval
 
   for $n in (0..$basis)
-    .-r{unquote('desk')}-{$n}
+    .-mr{unquote('desk')}-{$n}
       --push-index:$n
 
-    .-l{unquote('desk')}-{$n}
+    .-ml{unquote('desk')}-{$n}
       --pull-index:$n
 
 /************************************************************/

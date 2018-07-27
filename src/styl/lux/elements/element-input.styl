@@ -1,0 +1,139 @@
+
+.control-wrapper
+  display flex
+  align-items stretch
+  flex-direction column
+
+.control-wrapper > label > span
+  cursor pointer
+  font-size 0.75rem
+  font-weight bolder
+
+.control-wrapper > label > output
+  font-size 0.75rem
+  font-style italic
+
+.control
+  position relative
+  font-size 1rem
+  display flex
+  align-items stretch
+// .control > .field
+//   color red
+
+.control input
+  position relative
+  flex 1
+  //max-width 100%
+  //width 100%
+  line-height 1.5
+  display block
+  padding .5em //not sure what these values are
+
+
+.control .aside
+.control button.aside
+  vertical-align middle
+  display block
+  flex-grow 0
+
+.control button.aside
+  cursor pointer
+
+.elem
+  display inline-flex
+  position relative
+
+// .elem :first-child
+//   border-radius 5px 0 0 5px
+
+// .elem :last-child
+//   border-radius 0 5px 5px 0
+
+[class*='icon-']:before
+  position absolute
+  top 0
+  color inherit
+  font-size 2.25rem
+  width 2.5rem
+  height 2.5rem
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+[class*='icon-'].-clickable:before
+  cursor pointer
+
+[class*='icon-'].-clickable:hover:before
+  color rgba(78, 192, 228, 0.5)
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+._pass
+  --status-color $sand_green
+  --status-icon '\f12c' //mdi
+
+._err
+  --status-color $sand_red
+  --status-icon '\f156' //mdi
+
+._warn
+  --status-color $sand_orange
+  --status-icon '\f537' //mdi
+
+.-statusable
+  color var(--status-color,initial) !important
+
+.icon-status:before
+  content var(--status-icon,'')
+
+
+
+._err .-errorable
+  color var(--status-color,initial) !important
+
+._err [class*='icon-'].-errorable:before
+  content var(--status-icon,'')
+
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-ilt'] > input
+  padding-left 2.75rem
+
+.-ilr :nth-child(2):before
+  left 5px
+  z-index 3
+
+.-ilr :nth-child(3):before
+  right 5px
+  z-index 3
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-irt'] > input
+  padding-right 2.75rem
+
+.-irt :nth-child(2):before
+  right 5px
+  z-index 3
+
+.-irt :nth-child(3)
+  display none
+
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.elem[class*='-ilr'] > input
+  padding-right 2.75rem
+  padding-left 2.75rem
+
+.-ilt :nth-child(2):before
+  left 5px
+  z-index 3
+
+.-ilt :nth-child(3)
+  display none
+/* /////////////////////////////////////////////////////////////////////////// */
+
+.control input:focus ~ span
+  color #a79f9d
+

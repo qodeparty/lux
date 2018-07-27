@@ -8,7 +8,7 @@
 
 $devmode      ?= __config('flag_devmode')
 $debug        ?= __config('flag_debug')
- 
+
 $basis        ?= __config('var_basis', $var_basis)
 //p($basis)
 $roundby      ?= __config('var_roundby')
@@ -30,13 +30,13 @@ $use_natural  ?= __config('use_nat-basis') //only use fractions that make sense 
 
 $offset_dir    = ( $use_rtl ? right : left )
 
-$layout_gap    ?= __config('var_gap') 
+$layout_gap    ?= __config('var_gap')
 $layout_gutter ?= __config('var_gutter')
 
 $mobile_first  ?= __config('flag_mobile')
 
-$flex_mode_ez  ?= __config('flag_mode-ez')
-$flex_mode_plus?= __config('flag_mode-plus')
+
+$inc_flex_adv ?= __config('flag_mode-plus')
 
 $inc_truegrid  ?= __config('gen_truegrid')
 

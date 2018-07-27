@@ -1,3 +1,4 @@
+/* /////////////////////////////////////////////////////////////////////////// */
 
 .media,
 .media-item,
@@ -22,6 +23,7 @@
   flex 0 0 auto
   order 9999
 
+.media-elem
 .media-group
   display block
 
@@ -32,3 +34,54 @@
 .media-list > li:not(:last-child)
   border-bottom 1px dotted #333
 
+
+//.media-elem > .media-list
+
+/* /////////////////////////////////////////////////////////////////////////// */
+//more template-y
+
+.media-list .media-image
+  width 70px
+  height 70px
+
+.media-list .media-image:after
+  top 30px
+  left 18px
+
+.media-image{
+  width:100px;
+  height:100px;
+  border:1px solid #dae1e7;
+  background:#f8fafc;
+  position:relative;
+  border-radius:2px;
+}
+
+.media-image:after{
+  position:absolute;
+  content:attr(data-meta);
+  font-size:12px;
+  top:43px;
+  left:25px;
+  color:inherit; /* #dae1e7 */
+  text-transform:capitalize;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #0a0a0a33;
+  border-radius: 50%;
+  display: inline-block;
+  color:#fff;
+  position:relative;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.dot:after{
+  content:'×';
+  position:absolute;
+  top:5px;
+  left:7px;
+}
