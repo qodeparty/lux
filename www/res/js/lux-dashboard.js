@@ -98,10 +98,11 @@ if(typeof Vue!=='undefined'){
       let ap = localStorage.getItem('lux_activePage');
           ap = ap ? 'test/' + ap : false;
 
+      //weird boolean casting problem
       let dd = localStorage.getItem('lux_display');
-          dd = typeof dd != 'undefined' ? dd : true;
+          dd = typeof dd != 'undefined' && dd === 'true' ? true : false;
 
-          console.warn('display dash',dd);
+          console.warn('display dash',dd,(typeof dd));
 
       function initStore(fx){
 
@@ -194,15 +195,19 @@ if(typeof Vue!=='undefined'){
           LOAD_PALETTE: (state, payload) => {
             console.info(state, payload)
           },
+          SET_DISPLAY: (state, show) => {
+            state.display = show;
+            console.log('set show dashboard?',state.display, show);
+            localStorage.setItem('lux_display',show);
+
+          },
           UNLOAD_SHEET : (state, payload) => {
             console.info(state, payload)
           },
-          TOGGLE_DISPLAY : (state, show) => {
-
-            if( typeof show === 'undefined' ) show = !state.display;
-            state.display = show;
-            localStorage.setItem('lux_display',show);
-
+          TOGGLE_DISPLAY : (state) => {
+            state.display = !state.display;
+            console.log('toggle dashboard?',state.display);
+            localStorage.setItem('lux_display',state.display);
           },
           TOGGLE_SHEETS : (state, show) => {
             state.expandSheets = !state.expandSheets;
@@ -271,7 +276,7 @@ if(typeof Vue!=='undefined'){
             context.commit('TOGGLE_DISPLAY');
           },
           setDisplay : (context,payload) => {
-            context.commit('TOGGLE_DISPLAY', payload);
+            context.commit('SET_DISPLAY', payload);
           },
           expandSheets : (context, payload) => {
             context.commit('TOGGLE_SHEETS', payload);
@@ -576,7 +581,7 @@ if(typeof Vue!=='undefined'){
             computed: {
               sheets: {
                 get : function(){ return this.$store.state.sheets; },
-                set : function(sheets){ this.$store.dispatch('loadSheets', sheets); }
+                set : function(sheets){ this.$store.dispatch('setSheets', sheets); }
               },
               expandSheets : {
                 get : function(){ return this.$store.state.expandSheets; },
@@ -639,10 +644,10 @@ if(typeof Vue!=='undefined'){
 
           const dashboardModule = Vue.component('dashboard', {
             template : `
-              <section v-if="display">
+              <section v-if="display" >
+                <div class='luxlogo' @click='toggle'></div>
                 <fieldset>
                   <legend>Dashboard (F2)</legend>
-                  <div class='luxlogo'></div>
                   <pages></pages>
                   <stylesheets></stylesheets>
                   <palettes init-active='architect'>
@@ -650,17 +655,20 @@ if(typeof Vue!=='undefined'){
                 </fieldset>
               </section>
               <section v-else>
-                <div class='luxlogo'></div>
+                <div class='luxlogo' @click='toggle'></div>
               </section>
             `,
             computed: {
               display: {
                 get : function(){ return this.$store.state.display; },
-                set : function(show){ this.$store.dispatch('toggleDisplay', show ); }
+                set : function(e){ console.log('SETTING DISPLAY',e); this.$store.dispatch('setDisplay',e); }
               }
             },
+
+
             created(){
-              console.info("dashboard created");
+              //console.info("dashboard created");
+
             },
             mounted: function(e) {
 
@@ -668,6 +676,8 @@ if(typeof Vue!=='undefined'){
 
               // let showDash = lux.fx.store_load('display');
               this.display = dd;
+
+              //console.log('MOUNTING DISPLAY',this.display,dd );
 
               document.body.addEventListener('keydown', function(e) {
                 //console.log( e.keyCode );
@@ -677,6 +687,11 @@ if(typeof Vue!=='undefined'){
                   self.$store.dispatch('toggleDisplay');
                 }
               });
+            },
+            methods : {
+              toggle : function(e){
+                this.$store.dispatch('toggleDisplay' );
+              }
             }
           });
 
@@ -755,7 +770,7 @@ if(typeof Vue!=='undefined'){
             el : '#app',
             store,
             created(){
-              console.info("dashboard created");
+              //console.info("dashboard created");
             }
           });
 

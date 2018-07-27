@@ -123,7 +123,7 @@
       });
 
 
-      let iconElm = $('.iconset')
+      let iconElm = $('.iconset');
 
       if( iconElm.length > 0 ){
         let size = $('.iconset').data('size');
@@ -137,4 +137,32 @@
 
       if( sizerElm.length > 0 ){
         load_sizer();
+      }
+
+      let debugStatus = $('.debug-status');
+
+      if( debugStatus.length > 0 ){
+        console.warn('Debug Status enabled');
+        status_arr=[ '', '_pass', '_err', '_warn', '_info' ];
+
+        $('._debug_status').on('click','._debug',(e)=>{
+
+          let classes = Array.from(e.delegateTarget.classList);
+          let next,idx,len = status_arr.length;
+
+          for(let c in classes){
+            let cls = classes[c];
+            idx = status_arr.indexOf(cls);
+            if( idx >= 0 ){
+              next = ( next == len ? next = 0 : idx + 1 );
+              break;
+            }
+          }
+
+          if( idx < 0 ){ idx=0; next=1; }
+          $(e.delegateTarget).removeClass( status_arr[idx] );
+          $(e.delegateTarget).addClass( status_arr[next] );
+          //console.log(idx,next, status_arr[idx], status_arr[next]);
+
+        });
       }
