@@ -1,5 +1,4 @@
-#rainbow
-#!/usr/bin/env bash
+#!/bin/bash
 #===============================================================================
 ##     Lux CLI  > lux watch 2 > lux.out  2>&1
 ##       __
@@ -25,7 +24,7 @@
 	readonly script_lic="MIT License"
 
 	script_vers="$(git describe --abbrev=0 --tags)"
-	script_build="$(cd $LUX_HOME;git rev-list HEAD --count)"
+	script_build="$(cd $LUX_HOME || exit;git rev-list HEAD --count)"
 
 #-------------------------------------------------------------------------------
 # Term
@@ -229,8 +228,8 @@
 	opt_basis=
 
 	CPID="$$"
-	BIN_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
-	THIS_DIR="$( cd $BIN_DIR && cd ..; pwd -P )"
+	BIN_DIR="$( cd "$(dirname "$0")" || exit; pwd -P )"
+	THIS_DIR="$( cd $BIN_DIR && cd .. || exit; pwd -P )"
 
 	LUX_HOME="${LUX_HOME:-$THIS_DIR}"
 	THIS_ROOT="$(dirname $LUX_HOME)"
@@ -256,7 +255,7 @@
 	LUX_WWW="$( cd $THIS_DIR && cd ../lux-www; pwd -P )"
 
 	LUX_META_JS="$LUX_RES/js/lux-meta.js"
-	LUX_HELPER_JS="$LUX_RES/js/lux-helper.js"
+	#LUX_HELPER_JS="$LUX_RES/js/lux-helper.js"
 
 	LUX_MODS=
 	LUX_CLI_VARS=( "build:$script_build" "vers:$script_vers" )

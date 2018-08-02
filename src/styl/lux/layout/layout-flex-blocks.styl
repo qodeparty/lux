@@ -13,6 +13,11 @@
   display flex
   flex-wrap wrap
 
+  > .block-item
+    display flex
+    flex-basis auto
+    flex 1 1
+
   //DIRECTIONAL
   &.-vert
   &.-vresp
@@ -27,7 +32,6 @@
 
   &.-hrev
     flex-direction row-reverse
-
 
   &.-fixed
     flex-wrap nowrap
@@ -100,10 +104,10 @@
 
 /* /////////////////////////////////////////////////////////////////////////// */
 
-.block > .block-item
-  display flex
-  flex-basis auto
-  flex 1 1
+// .block > .block-item
+//   display flex
+//   flex-basis auto
+//   flex 1 1
 
 // .block-flow
 //   display inline-flex
