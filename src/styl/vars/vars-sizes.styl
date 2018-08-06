@@ -1,0 +1,60 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Size Rhythm
+////////////////////////////////////////////////////////////////////////////// */
+
+
+
+$size_min      ?= __size_meta('min')
+$size_max      ?= __size_meta('max')
+$size_step     ?= __size_meta('step')
+$size_prefix   ?= __size_meta('prefix')   // use $LANG_size?
+$size_start    ?= __size_meta('hstart')
+
+//p($basis)
+/* /////////////////////////////////////////////////////////////////////////////
+// Size Generator 
+///////////////////////////////////////////////////////////////////////////// */
+  
+  $len = fx_make_size_iter(1)
+
+  for $i in (1..$len)
+    $v=fx_make_size_iter()
+    $key='$'+$size_prefix+$v+'' //size-000
+    $val= $i * $size_step * $basis // 1 * 0.25 * 16
+
+    $ov = fx_size_override( $v )
+
+    //use override value if specified
+    if $ov is not null
+      $val=$ov
+    
+    define($key,$val)      
+
+    if $sizes is defined 
+      push($sizes,$key)
+    else
+      $sizes = ($key)
+
+// if $devmode
+//   p($sizes)
+//   for $s in $sizes
+//     p('size=> '+$s + ' = '+ lookup($s))
+    
+
+/* /////////////////////////////////////////////////////////////////////////////
+// $h1-$h6 generator
+///////////////////////////////////////////////////////////////////////////// */
+  for $i in (1..6)
+    if $j is defined 
+      $j+=1
+    else    
+      $j=1
+    $key='$h'+$j
+    $step=$size_start - $i //h1 has inverse value to size1
+    $keyval=$sizes[$step]
+    $val=__rem(lookup($keyval))
+    define($key,$val)
+    // if $devmode 
+    //   p($key  + ' ' + lookup($keyval) + ' ' + $step)
+
+

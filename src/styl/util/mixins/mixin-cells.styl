@@ -1,0 +1,150 @@
+//TODO: check right/left attrs rt/lt doenst work well
+
+__cell_pre($cl_sub,$ext=false)
+  {$cl_attr_pre_cell_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext
+      @extends {$ext}
+
+__cell_pre_slot($cl_sub,$ext=false)
+  $this_attr=__attr_class( $dash + $cl_sub, $attr_any )
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_slot},         // [class~=cell-]
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_pre_slot_any},  // [class*=cell-]
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_pre_slot_under}
+    {block}
+    if $ext
+      @extends {$ext}
+
+__cell_pre_slot_star($cl_sub,$ext=false)
+  $this_attr=__attr_class( $dash + $cl_sub, $attr_any )
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_slot} > *,         // [class~=cell-]
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_pre_slot_any} > *,  // [class*=cell-]
+  {$cl_attr_pre_cell_any}{$this_attr} > {$cl_attr_pre_slot_under} > *
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+__slot_pre($cl_sub,$ext=false)
+  {$cl_attr_pre_slot_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+/************************************************************/
+
+
+__block_pre($cl_sub,$ext=false)
+  {$cl_attr_block_pre_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+__block_pre_elm($el,$cl_sub,$ext=false)
+  {$el}{$cl_attr_block_pre_any}{ __attr_class( $dash + $cl_sub, $attr_any ) }
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+/************************************************************/
+
+
+__cell_spread($cl_sub,$ext=false)
+  {$cl_attr_cell}           > {$cl_sub},
+  {$cl_attr_pre_cell_any}   > {$cl_sub},
+  {$cl_attr_pre_cell_under} > {$cl_sub}
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+__slot_spread($cl_sub,$ext=false)
+  {$cl_sub} > {$cl_attr_slot},
+  {$cl_sub} > {$cl_attr_pre_slot_any},
+  {$cl_sub} > {$cl_attr_pre_slot_under}
+    {block}
+    if $ext
+      @extends {$ext}
+
+
+/************************************************************/
+
+
+__plus_flex_visibility($label=false,$device=false)
+  {__to_class($label,'v')},
+  {__to_class('show-on',$device)}
+    display block !important
+
+  +__except_device($device,"show-on")
+    display none !important
+
+  +__except_label($label,"v")
+    display none !important
+
+  {__to_class($label,'h')},
+  {__to_class('hide-on',$device)}
+    display none !important
+
+
+//maybe not cell/flex specific?
+__plus_margin_pull($i,$label=false,$device=false)
+  $atr=right//unquote($attr_right)
+  $pull = $label ? s($cl_attr_media_s,$abr_right,unquote($label),$i) :s($cl_attr_media_dash_s,$atr,$i)
+  {$pull}
+    --pull-index:$i
+
+
+
+__plus_margin_push($i,$label=false,$device=false)
+  $atl=left//unquote($attr_left)
+  $push = $label ? s($cl_attr_media_s,$abr_left,unquote($label),$i) : s($cl_attr_media_dash_s,$atl,$i)
+  {$push}
+    --push-index:$i
+
+
+
+//note that cell and grid both use $abr_cell c<size>-<n>
+__plus_flex_cell_media($i,$label=false,$device=false)
+  if $i > 0
+    $pval=__i_of_all($i)
+    $pre_cl = $label ? s($cl_attr_media_s,$abr_cell,unquote($label),$i) : s($cl_attr_pre_cell_any_s,$i)
+
+    +__slot_spread($pre_cl)
+      flex-basis $pval
+      max-width  $pval
+
+
+
+__plus_flex_slot_media($i,$label=false,$device=false)
+  if $i > 0
+    $val=__i_of_basis($i)
+    $pre_cl = $label ? s($cl_attr_media_s,$abr_cell,unquote($label),$i) : s($cl_attr_pre_slot_any_s,$i)
+
+    +__cell_spread($pre_cl)
+      flex-basis $val
+      max-width  $val
+
+
+
+__plus_flex_make_set($label=false,$device=false)
+
+  if $device
+    {__to_class($label,'h')},
+    {__to_class('is-hidden',$device)}
+      display none
+
+  //order matters - cuz precendence
+  for $i in (0..$basis)
+    __plus_flex_cell_media($i,$label,$device)
+
+  for $i in (0..$basis)
+    __plus_flex_slot_media($i,$label,$device)
+
+
+
+  for $i in (0..$basis)
+    __plus_margin_pull($i,$label,$device)
+    __plus_margin_push($i,$label,$device)

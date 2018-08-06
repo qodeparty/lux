@@ -20,3 +20,5 @@ const plugin = (vars) => {
 
 module.exports = plugin;
 module.exports.path = __dirname;
+
+//console.log( module.exports  )

@@ -1,0 +1,35 @@
+.iconset
+  max-width inherit
+
+.icons
+  display flex
+  flex-wrap wrap
+
+.icons div
+  position relative
+  border 1px solid white
+  padding 2px
+  width 3rem
+  height 3rem
+  color white
+  font-size 2rem
+  font-weight normal
+
+[class*='_debug'] [class*='_debug']:before
+[class*='icon-']
+  font-family: Material;
+
+.icons [class*='icon-']:before
+    position absolute
+    top 7px
+    left 7px
+
+//materialdesign 2594 usable icons
+for $i in (0..2594)
+  $this=fx_hex_pad($i)
+  {".icon-"+$i}:before
+    content: s("'\f%s'",unquote($this))
+
+
+
+

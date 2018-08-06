@@ -1,0 +1,156 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Util
+////////////////////////////////////////////////////////////////////////////// */
+
+  __join()
+    join('',arguments)
+
+  __root()
+    :root
+      __var_def('color-0',$scale_0)
+      __var_def('color-1',$scale_1)
+      __var_def('color-2',$scale_2)
+      __var_def('color-3',$scale_3)
+      __var_def('color-4',$scale_4)
+      __var_def('color-5',$scale_5)
+      __var_def('color-6',$scale_6)
+      __var_def('color-7',$scale_7)
+      __var_def('grey-1',$grey_2)
+      __var_def('grey-2',$grey_3)
+      __var_def('grey-3',$sand_greybee)
+      __var_def('grey-4',$sand_cloud)
+      __var_def('grey-5',$sand_sadcloud)
+
+  __i_of_all($i)
+    $perc= $i == 0 ? 0 : round( ( 100/$i ), 3 )
+    $pval=$perc+'%'
+    return $pval
+
+  __i_of_basis($i)
+    $p_basis = ($i*$atomic_basis);
+    $val =  round( $p_basis, 3 )  + '%'
+    return $val
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// FX
+////////////////////////////////////////////////////////////////////////////// */
+
+
+  __basis_width($slot)
+    round( percentage( $slot/$basis ), 3 )
+
+  __natural_basis($i)
+    if $use_natural
+      $cl=fx_perc_frac($i)
+      if $cl
+        return unquote($cl)
+        //return unquote($pre_is + $cl) used to be is-<size>
+
+
+//cachebust on the limits of a range 1..$basis
+//because joining limit classes causes css precendence conflict
+ __cachebust_str($i)
+    return($i==1||$i==$basis?$i:'')
+
+
+__maybeCache() // [1]
+  if($useCache)
+    +cache(arguments) // [2]
+      {block} // [3]
+  else
+    {block}
+
+/* //////////////////////////////////////////////////////////////////////////////
+// CSS Vars
+////////////////////////////////////////////////////////////////////////////// */
+
+ //returns var(--val) or just val
+  __var($key,$val)
+    unquote(fx_css_var($key,$val))
+
+ //--key:val
+  __var_def($key,$val)
+    if fx_css_canvar() == true
+      add-property('--'+$key,$val)
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Config
+////////////////////////////////////////////////////////////////////////////// */
+
+  __config($key,$ov=null)
+    $typeov=typeof($ov)
+
+    if ($typeov isnt 'null') && ($typeov isnt 'ident')
+      //p(typeof($ov) +' '+$key)
+      $ov
+    else
+
+      $this = fx_get_config($key)
+      $type = typeof($this)
+      //p($type,$this)
+      if $type == 'string'
+       unquote($this)
+      else if $type == 'null'
+        p($key + ' => ' +typeof($this))
+      else
+       $this
+
+    //return $val
+
+
+
+
+  __device()
+    1
+
+  __size_meta($key)
+    $this = fx_size_meta($key)
+    if typeof($this) == 'string'
+     unquote($this)
+    else if typeof($this) == 'null'
+      p($key + ' => ' +typeof($this))
+    else
+      $this
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Units
+////////////////////////////////////////////////////////////////////////////// */
+  __em($val,$offset=0)
+    p($val,$basis)
+    $val = $val / $basis
+    unquote(__join($val,'em'))
+
+  __rem($val,$offset=0)
+    $val = ( $val - $offset ) / $basis //calculate px offset before conversion
+    unquote(__join($val,'rem'))
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Units
+////////////////////////////////////////////////////////////////////////////// */
+
+  __attr_class($name,$type=$attr_in)
+    //fx_debug(arguments)
+    $name = replace('\.', '', $name)
+    $this = join('', '[class' $type '"' unquote($name) '"]' )
+    return $this
+
+  __attr_data($name,$val,$type=$attr_in)
+    //fx_debug(arguments)
+    $name = replace('\.', '', $name)
+    $this = join('', '[data-' $name $type '"' unquote($val) '"]' )
+    return $this
+
+
+  __undot($class)
+    return( replace('\.', '', $class))
+
+
+  __attr_short($short,$long)
+    return $short_attr ? $short : $long
+
+
+  __to_class($prefix,$name)
+    return join('',$dot,$prefix,$dash,$name)

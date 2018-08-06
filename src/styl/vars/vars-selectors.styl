@@ -1,0 +1,322 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Critical Strings
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$dot='.'
+$dash='-'
+$under='_'
+$amp='&'
+
+$attr_in='~='
+$attr_pre='^='
+$attr_suf='$='
+$attr_any='*='
+
+$str='%s'
+$dash_i='-%s'
+$under_i='_%s'
+
+$abr_cell=c
+$abr_slot=s
+$abr_right=r
+$abr_left=l
+
+$abr_text=t
+
+$cl_media_modifier_s     = '.-%s%s-%s'
+
+/* //////////////////////////////////////////////////////////////////////////////
+// mini directions
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$attr_top= __attr_short( 'top', 'top'    )
+$attr_mid= __attr_short( 'mid', 'middle' )
+$attr_btm= __attr_short( 'btm', 'bottom' )
+
+$attr_ctr   = __attr_short( 'ctr', 'center' )
+$attr_right = __attr_short( 'rt' , 'right'  )
+$attr_left  = __attr_short( 'lt' , 'left'   )
+
+$attr_first  = __attr_short( '0th' , 'first' )
+$attr_last   = __attr_short( 'nth' , 'last'  )
+
+$attr_auto   = $L_auto
+$attr_flush  = 'flush'
+$attr_fill   = 'fill'
+
+$attr_item   = 'item'
+$attr_fixed  = 'fixed'
+$attr_vert   = 'vert'
+$attr_horz   = 'horz'
+
+$attr_resp   = 'resp'
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Partial Classes (Prefix)
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$pre_is   = $dot + $L_is    + $dash         //.is-
+$pre_has  = $dot + $L_has   + $dash         //.has-
+$pre_no   = $dot + $L_spans + $dash         //.no-
+$pre_with = $dot + 'with' + $dash
+
+$pre_index   = $pre_is + $L_i             //.is-i<n>
+$pre_spans   = $dot + $L_spans   + $dash  //.spans-<n>
+$pre_offsets = $dot + $L_offsets + $dash  //.offsets-<n>
+
+$pre_size    = $pre_is + $L_size + $dash  //.is-size-<s>
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Elements
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_ttl      = $dot + $L_title    //.title
+$cl_ttl_is   = $pre_is + $L_title //.is-title
+
+$cl_subttl   = $dot + $L_subtitle //.subtitle
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Flex Simple
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_layout_tbl = $dot + $L_groups //.groups
+$cl_layout_row = $dot + $L_row    //.row
+$cl_layout_col = $dot + $L_col    //.col
+
+$cl_with_gaps    = $pre_with + 'gaps';
+$cl_with_sm_gaps = $pre_with + 'sm-gaps';
+
+/* //////////////////////////////////////////////////////////////////////////////
+//  Flex Blocks
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$cl_attr_right  = __attr_class( $dash + $attr_right, $attr_any)
+$cl_attr_left   = __attr_class( $dash + $attr_left, $attr_any)
+$cl_attr_center = __attr_class( $dash + $attr_ctr, $attr_any)
+
+
+$cl_attr_top    = __attr_class( $dash + $attr_top, $attr_any)
+$cl_attr_mid    = __attr_class( $dash + $attr_mid, $attr_any)
+$cl_attr_btm    = __attr_class( $dash + $attr_btm, $attr_any)
+
+$cl_attr_first  = __attr_class( $dash + $attr_first, $attr_any)
+$cl_attr_last   = __attr_class( $dash + $attr_last, $attr_any)
+
+$cl_attr_item   = __attr_class( $dash + $attr_item, $attr_any)
+$cl_attr_vert   = __attr_class( $dash + $attr_vert, $attr_any)
+$cl_attr_auto   = __attr_class( $dash + $attr_auto, $attr_any)
+
+$cl_attr_resp   = __attr_class( $dash + $attr_resp, $attr_any)
+
+$cl_blocks      = ".blocks"
+$cl_block       = ".block"
+$cl_block_pre   = ".block-"
+$cl_block_left  = ".block-lt"
+$cl_block_right = ".block-rt"
+$cl_block_item  = '.block-item'
+
+$cl_attr_block       = __attr_class($cl_block, $attr_in)
+$cl_attr_block_pre   = __attr_class($cl_block_pre, $attr_any)
+
+
+
+$cl_attr_block_pre_any   = __attr_class( "block" + $dash, $attr_any ) // [class*='block-']
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Flex Advanced
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_container = $dot + $L_container //.container
+
+
+$pre_grid = $dot + $L_flex_grid + $dash  //.grid-
+$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
+
+
+$cl_flex_grids = $dot + $L_flex_grid + 's' //.grids
+
+$cl_flex_grid = $dot + $L_flex_grid //.grid
+$cl_flex_cell = $dot + $L_flex_cell //.cell
+
+$cl_attr_grid           = __attr_class($cl_flex_grid, $attr_in)  // [class~=grid]
+$cl_attr_grid_any       = __attr_class($cl_flex_grid, $attr_any) // [class*=grid]
+
+$cl_attr_pre_grid_s     = __attr_class($L_flex_grid + $dash_i, $attr_in)    // [class~=grid-%s]
+$cl_attr_pre_grid_any   = __attr_class($pre_grid, $attr_any) // [class*=grid-]
+$cl_attr_pre_grid_any_s = __attr_class($L_flex_grid + $dash_i, $attr_any)
+
+$cl_attr_pre_grid_under = __attr_class($L_flex_grid + $under, $attr_any)
+
+
+$cl_attr_cell           = __attr_class($cl_flex_cell, $attr_in)  // [class~=cell]
+$cl_attr_cell_any       = __attr_class($cl_flex_cell, $attr_any) // [class*=cell]
+
+$cl_attr_pre_cell_s     = __attr_class($L_flex_cell + $dash_i, $attr_in) // [class~=cell-%s]
+$cl_attr_pre_cell_any   = __attr_class($pre_cell, $attr_any) // [class*=cell-]
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
+
+
+$cl_attr_pre_cell_under = __attr_class($L_flex_cell + $under, $attr_any)
+
+/* //////////////////////////////////////////////////////////////////////////////
+// media placeholder selectors
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_attr_screen_s       = __attr_class($under_i + $dash_i, $attr_any) // class*=["_%s-%s"]
+
+$cl_attr_media_s        = __attr_class($under_i + $str + $dash_i, $attr_any) // class*=["_%s%s-%s"]
+
+
+
+$cl_attr_media_dash_s   = __attr_class($str + $dash_i, $attr_any) // %s-%s
+$cl_attr_media_dashin_s = __attr_class($str + $dash_i, $attr_in) // %s-%s
+
+/* //////////////////////////////////////////////////////////////////////////////
+// cell-slot selectors
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$pre_cell = $dot + $L_flex_cell + $dash  //.cell-
+
+
+$cl_cell = $dot + $L_flex_cell //L_cell
+$cl_cells = $cl_cell + 's'
+
+$cl_attr_cell           = __attr_class($cl_cell, $attr_in)
+$cl_attr_pre_cell_any   = __attr_class($pre_cell, $attr_any)
+$cl_attr_pre_cell_under = __attr_class($cl_cell + $under, $attr_any)
+$cl_attr_pre_cell_any_s = __attr_class($L_flex_cell + $dash_i, $attr_any)
+
+
+
+$pre_slot = $dot + 'slot' + $dash  //.slot-
+
+$cl_slot  = $dot + 'slot'
+$cl_slots = $cl_slot + 's'
+
+$cl_attr_slot           = __attr_class($cl_slot, $attr_in)
+$cl_attr_pre_slot_any   = __attr_class($pre_slot, $attr_any)
+$cl_attr_pre_slot_under = __attr_class($cl_slot + $under, $attr_any)
+$cl_attr_pre_slot_any_s = __attr_class('slot' + $dash_i, $attr_any)
+
+/* //////////////////////////////////////////////////////////////////////////////
+// text
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_textblock = $dot + 'text-block'
+$cl_text      = $dot + 'text'
+$pre_text     = $dot + 'text'  + $dash //TODO:fix
+
+$cl_attr_pre_text_any   = __attr_class($pre_text, $attr_any)
+$cl_attr_pre_text_under = __attr_class($cl_text + $under, $attr_any)
+$cl_attr_pre_text_any_s = __attr_class('text' + $dash_i, $attr_any)
+
+/* //////////////////////////////////////////////////////////////////////////////
+// mini directions offsets
+////////////////////////////////////////////////////////////////////////////// */
+
+
+$cl_attr_pull_any_s = __attr_class('left' + $dash_i , $attr_any) // class*="left-"
+$cl_attr_push_any_s = __attr_class('right' + $dash_i , $attr_any) // class*="right-"
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Flags is-x
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_flag_resp =  $pre_is + 'resp' //.is-resp
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Modifiers
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_flag_xsm = $pre_is + $L_xsmall //.is-xsmall
+$cl_flag_sm  = $pre_is + $L_small  //.is-small
+$cl_flag_med = $pre_is + $L_medium //.is-medium
+$cl_flag_lg  = $pre_is + $L_large  //.is-large
+$cl_flag_xlg = $pre_is + $L_xlarge //.is-xlarge
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Modifiers - Text
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_txt_cap  = $pre_is + $L_capital //.is-captial
+$cl_txt_low  = $pre_is + $L_lower   //.is-lower
+$cl_txt_up   = $pre_is + $L_upper   //.is-upper
+$cl_txt_ital = $pre_is + $L_italic  //.is-italic
+$cl_txt_sub  = $pre_is + $L_sub     //.is-sub
+$cl_txt_sup  = $pre_is + $L_sup     //.is-sup
+
+$cl_sans_marg   = $pre_no + $L_margins //.no-margins
+$cl_sans_pad    = $pre_no + $L_padding //.no-padding
+$cl_sans_radius = $pre_no + $L_radius  //.no-radius
+$cl_sans_shadow = $pre_no + $L_shadow  //.no-shadow
+$cl_sans_border = $pre_no + $L_border  //.no-border
+
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Modifiers - Block/Flex
+////////////////////////////////////////////////////////////////////////////// */
+
+$cl_flag_hidden = $pre_is + $L_hidden //.is-hidden
+$cl_flag_block  = $pre_is + $L_block  //.is-block
+
+$cl_flag_static = $pre_is + $L_static //.is-static
+$cl_flag_auto   = $pre_is + $L_auto   //.is-auto
+/*
+  [
+  "orange"
+  "yellow"
+  "green"
+  "blue"
+  "purple"
+  "pink"
+  "white"
+  "black"
+  "grey"
+  "teal"
+  "lime"
+  "tropical"
+  "magenta"
+  "neon"
+  "lemon"
+  "electric"
+  "clear"
+  "light"
+  "lighter"
+  "dark"
+  "darker"
+  "inverse"
+
+  "full"
+  "half"
+  "third"
+  "quarter"
+  "fifth"
+  "eighth"
+  "tenth"
+  "none"
+
+  "visible"
+  "hidden"
+
+  "first"
+  "last"
+  "next"
+  "prev"
+  "curr"
+  "this"
+  "that"
+
+  "form"
+  "button"
+  "input"
+  "radio"
+  "field"]
+ */

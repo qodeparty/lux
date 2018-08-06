@@ -1,0 +1,31 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// Grid Systems
+////////////////////////////////////////////////////////////////////////////// */
+
+$screens = { 
+  nano:0,mobile:360,tablet:768,desktop:1024,wide:1216,full:1440,jumbo:1920,ultra:2560
+}
+
+$screen_list = $L_nano $L_mobile $L_tablet $L_desktop  $L_wide  $L_full $L_jumbo $L_ultra
+
+$screen_min      = 0
+$screen_nano     = $screens[ $L_nano    ]
+$screen_mobile   = $screens[ $L_mobile  ] // 22.5em //360px
+$screen_tablet   = $screens[ $L_tablet  ] // 48em //768
+$screen_desktop  = $screens[ $L_desktop ]
+$screen_wide     = $screens[ $L_wide    ]
+$screen_full     = $screens[ $L_full    ] //1440
+$screen_jumbo    = $screens[ $L_jumbo   ] //1920
+$screen_ultra    = $screens[ $L_ultra   ] //2560
+$screen_max      = 9999
+
+
+
+$ranges = fx_device_ranges( $use_nano $use_touch $use_desktop $use_hd $use_ult )
+
+// p($ranges)
+
+// for r in $ranges
+//   p(r[1])
+
+//p(myvar)

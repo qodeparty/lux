@@ -1,0 +1,54 @@
+/* //////////////////////////////////////////////////////////////////////////////
+// System Vars
+////////////////////////////////////////////////////////////////////////////// */
+
+/* //////////////////////////////////////////////////////////////////////////////
+// Grid Systems
+////////////////////////////////////////////////////////////////////////////// */
+
+$devmode      ?= __config('flag_devmode')
+$debug        ?= __config('flag_debug')
+
+$basis        ?= __config('var_basis', $var_basis)
+//p($basis)
+$roundby      ?= __config('var_roundby')
+
+
+$line_height  ?= __config('var_line-height') //8pt softgrid rhythm?
+$basefamily   ?= __config('var_base-family')
+
+$rootfont     ?= __config('var_root-font')
+
+$flex_max     ?= __config('var_flex-max')
+
+
+$use_rtl      ?= __config('use_rtl')
+$use_cssvars  ?= __config('use_cssvars')
+
+$use_aliases  ?= __config('use_aliases')
+$use_natural  ?= __config('use_nat-basis') //only use fractions that make sense for the basis
+
+$offset_dir    = ( $use_rtl ? right : left )
+
+$layout_gap    ?= __config('var_gap')
+$layout_gutter ?= __config('var_gutter')
+
+$mobile_first  ?= __config('flag_mobile')
+
+
+$inc_flex_adv ?= __config('flag_mode-plus')
+
+$inc_truegrid  ?= __config('gen_truegrid')
+
+$atomic_basis  = (100/$basis)
+
+$short_attr    ?= __config('flag_short-attr')
+
+$use_nano      ?= __config('use_bp-nano')  // +nano
+$use_touch     ?= __config('use_bp-touch') // touch or mobile,tablet
+$use_hd        ?= __config('use_bp-hd')
+$use_desktop   ?= __config('use_bp-desktop')
+$use_ultra     ?= __config('use_bp-ult') // +jumbo
+
+
+$use_media_offets ?= __config('use_media-offsets')
