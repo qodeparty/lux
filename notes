@@ -1,19 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
-// LUX!
-///////////////////////////////////////////////////////////////////////////// */
-
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-
-
 #rainbow
-// 320  Mobile S
-// 375  Mobile M
-// 425  Mobile L
-// 768  Tablet
-// 1024 Laptop
-// 1216 Widescreen
-// 1440 Laptop L (Desktop)
-// 1920x1080
-// 2560 4k
+
+--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE
+--import $LUX_UTIL --import $LUX_VARS
+
+
+stylus -c $OPT_ALL -r $LUX_CORE --out "$LUX_DIST/$this_name.min.css"
+
+
+
+stylus --use ./src/lib/ext/pre_vars.js --with "{lux_color:'pink'}" -r ./src/styl/lux --out ./dist/generted.css

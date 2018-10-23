@@ -1,8 +1,11 @@
 {
-
+	"basis" : 16,
 	"breakpoints" : [
-		{ "idx" : 0, "name" : "nano"   },
-		{ "idx" : 1, "name" : "mobile" }
-	]
-
+		{ "name" : "mobile", "range" : [0,360],     "size" : "xsm", "group" : "touch" },
+		{ "name" : "tablet", "range" : [361,768],   "size" : "sm",  "group" : "touch" },
+		{ "name" : "laptop", "range" : [769,1024],  "size" : "med", "group" : "desk"  },
+		{ "name" : "hd",     "range" : [1025,1440], "size" : "lg",  "group" : "desk"  },
+		{ "name" : "ultra",  "range" : [1440,9999], "size" : "xlg", "group" : "desk"  }
+	],
+	"pretty" : "banana"
 }
