@@ -1,0 +1,8 @@
+{
+
+	"breakpoints" : [
+		{ "idx" : 0, "name" : "nano"   },
+		{ "idx" : 1, "name" : "mobile" }
+	]
+
+}
