@@ -7,5 +7,26 @@
 		{ "name" : "hd",     "range" : [1025,1440], "size" : "lg",  "group" : "desk"  },
 		{ "name" : "ultra",  "range" : [1440,9999], "size" : "xlg", "group" : "desk"  }
 	],
-	"pretty" : "banana"
+  "flags" : {
+    "devmode"    : true,
+    "debug"      : true,
+    "rtl"        : false,
+    "ext"        : true,
+    "cssvars"    : true,
+    "ultra"      : true,
+    "aliases"    : false, 
+    "nat-basis"  : true,
+    "mobile"     : false,
+    "mode-ez"    : true,
+    "mode-plus"  : true,
+    "truegrid"   : false,
+    "short-attr" : true,
+    "bp-nano"    : true,
+    "bp-touch"   : false,
+    "bp-desktop" : true,
+    "bp-hd"      : false,
+    "bp-ult"     : true,
+    "media-offsets" : true
+  },
+	"pretty" : "bananaz"
 }

@@ -1,9 +1,9 @@
 //// lux generated javascript file
 const LUX_VERSION="v0.8.6"
-const LUX_BUILD="157"
+const LUX_BUILD="159"
 const LUX_BASIS=""
 const LUX_THEME="archxray"
-const LUX_TIMESTAMP="1533533428"
+const LUX_TIMESTAMP="1540356710"
 ////
 
 ////found 8 js files
