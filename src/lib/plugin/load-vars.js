@@ -11,7 +11,7 @@ const plugin = (vars) => {
     for (var name in vars) {
       if( name.indexOf('lux_') >= 0 ){
         let varname = name.replace('lux_','$var_');
-        //console.log(varname, vars[name]);
+        console.log(varname, vars[name]);
         stylus.define(varname, vars[name]);
       }
     }

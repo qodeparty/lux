@@ -1,0 +1,11 @@
+#rainbow
+
+--include $LUX_EXT --include $LUX_UTIL --include $LUX_VARS --include $LUX_CORE
+--import $LUX_UTIL --import $LUX_VARS
+
+
+stylus -c $OPT_ALL -r $LUX_CORE --out "$LUX_DIST/$this_name.min.css"
+
+
+
+stylus --use ./src/lib/ext/pre_vars.js --with "{lux_color:'pink'}" -r ./src/styl/lux --out ./dist/generted.css
